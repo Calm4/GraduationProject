@@ -1291,6 +1291,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8824340975724530409, guid: d48cb641141e77a47b234e95dcd75bfc, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2056,7 +2060,7 @@ MonoBehaviour:
   cellIndicator: {fileID: 1016619761}
   inputManager: {fileID: 864965515}
   grid: {fileID: 385181513}
-  _databaseSo: {fileID: 11400000, guid: 547acc5b82d39594cb258e843adbfd7f, type: 2}
+  databaseSo: {fileID: 11400000, guid: 547acc5b82d39594cb258e843adbfd7f, type: 2}
   gridVisualization: {fileID: 1112236718}
 --- !u!1 &2140119108
 GameObject:
