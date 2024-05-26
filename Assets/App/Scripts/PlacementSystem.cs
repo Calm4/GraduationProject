@@ -5,8 +5,8 @@ public class PlacementSystem : MonoBehaviour
 {
     [SerializeField] private InputManager inputManager;
     [SerializeField] private GridLayout grid;
-    [SerializeField] private Vector2Int gridSize; // Добавьте это поле для хранения размеров сетки
-    private Vector2Int _gridOffset; // Добавьте это поле для хранения смещения сетки
+    [SerializeField] private Vector2Int gridSize; 
+    private Vector2Int _gridOffset; 
 
     [SerializeField] private ObjectsDatabaseSO databaseSo;
     [SerializeField] private GameObject gridVisualization;
@@ -26,8 +26,8 @@ public class PlacementSystem : MonoBehaviour
     private void Start()
     {
         StopPlacement();
-        _floorData = new GridData(gridSize); // Передайте размеры и смещение сетки в конструктор GridData
-        _furnitureData = new GridData(gridSize); // Передайте размеры и смещение сетки в конструктор GridData
+        _floorData = new GridData(gridSize); 
+        _furnitureData = new GridData(gridSize); 
     }
 
     public void StartPlacement(int id)
