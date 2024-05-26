@@ -1,85 +1,91 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Build;
 using UnityEngine;
 
-public class GridData
+namespace App.Scripts
 {
-    private Dictionary<Vector3Int, PlacementData> placedObjects = new();
-
-    public void AddObjectAt(Vector3Int gridPosition, Vector2 objectSize, int ID, int placedobjectIndex)
+    public class GridData
     {
-        List<Vector3Int> positionToOccupy = CalculatePositions(gridPosition, objectSize);
-        PlacementData data = new PlacementData(positionToOccupy, ID, placedobjectIndex);
-        foreach (var position in positionToOccupy)
-        {
-            if (placedObjects.ContainsKey(position))
-            {
-                throw new Exception($"Dictionary already contains this cell position {position}");
-            }
+        private Dictionary<Vector3Int, PlacementData> _placedObjects = new();
+        private Vector2Int _gridSize;
+        private Vector2Int _gridOffset;
 
-            placedObjects[position] = data;
-        }
-    }
-
-    private List<Vector3Int> CalculatePositions(Vector3Int gridPosition, Vector2 objectSize)
-    {
-        List<Vector3Int> returnVal = new();
-        for (int x = 0; x < objectSize.x; x++)
+        public GridData(Vector2Int gridSize)
         {
-            for (int y = 0; y < objectSize.y; y++)
-            {
-                returnVal.Add(gridPosition + new Vector3Int(x,0,y));
-            }
+            _gridSize = gridSize;
+            _gridOffset = -(_gridSize / 2);
         }
 
-        return returnVal;
-    }
-
-    public bool CanPlaceObjectAt(Vector3Int gridPosition, Vector2 objectSize)
-    {
-        List<Vector3Int> positionToOccupy = CalculatePositions(gridPosition, objectSize);
-        foreach (var position in positionToOccupy)
+        public void AddObjectAt(Vector3Int gridPosition, Vector2 objectSize, int ID, int placedObjectIndex)
         {
-            if (placedObjects.ContainsKey(position))
+            List<Vector3Int> positionsToOccupy = CalculatePositions(gridPosition, objectSize);
+            PlacementData data = new PlacementData(positionsToOccupy, ID, placedObjectIndex);
+            foreach (var position in positionsToOccupy)
             {
-                return false;
+                if (_placedObjects.ContainsKey(position))
+                {
+                    throw new Exception($"Dictionary already contains this cell position {position}");
+                }
+
+                _placedObjects[position] = data;
             }
         }
 
-        return true;
-    }
-
-    public int GetRepresentationIndex(Vector3Int gridPosition)
-    {
-        if (placedObjects.ContainsKey(gridPosition) == false)
+        private List<Vector3Int> CalculatePositions(Vector3Int gridPosition, Vector2 objectSize)
         {
-            return -1;
+            List<Vector3Int> positions = new();
+            for (int x = 0; x < objectSize.x; x++)
+            {
+                for (int y = 0; y < objectSize.y; y++)
+                {
+                    positions.Add(gridPosition + new Vector3Int(x, 0, y));
+                }
+            }
+
+            return positions;
         }
 
-        return placedObjects[gridPosition].PlacedObjectIndex;
-    }
-
-    public void RemoveObjectAt(Vector3Int gridPosition)
-    {
-        foreach (var position in placedObjects[gridPosition].occupiesPositions)
+        public bool CanPlaceObjectAt(Vector3Int gridPosition, Vector2 objectSize)
         {
-            placedObjects.Remove(position);
+            List<Vector3Int> positionsToOccupy = CalculatePositions(gridPosition, objectSize);
+            foreach (var position in positionsToOccupy)
+            {
+                if (!IsWithinBounds(position) || _placedObjects.ContainsKey(position))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private bool IsWithinBounds(Vector3Int position)
+        {
+            Vector3Int offsetPosition = position - new Vector3Int(_gridOffset.x, 0, _gridOffset.y);
+            return offsetPosition.x >= 0 && offsetPosition.x < _gridSize.x && offsetPosition.z >= 0 && offsetPosition.z < _gridSize.y;
+        }
+
+        public int GetRepresentationIndex(Vector3Int gridPosition)
+        {
+            if (!_placedObjects.ContainsKey(gridPosition))
+            {
+                return -1;
+            }
+
+            return _placedObjects[gridPosition].PlacedObjectIndex;
+        }
+
+        public void RemoveObjectAt(Vector3Int gridPosition)
+        {
+            foreach (var position in _placedObjects[gridPosition].occupiesPositions)
+            {
+                _placedObjects.Remove(position);
+            }
         }
     }
 }
 
-internal class PlacementData
-{
-    public List<Vector3Int> occupiesPositions;
-    public int ID { get; private set; }
-    public int PlacedObjectIndex { get; private set; }
 
-    public PlacementData(List<Vector3Int> occupiesPositions, int ID, int placedObjectIndex)
-    {
-        this.occupiesPositions = occupiesPositions;
-        this.ID = ID;
-        this.PlacedObjectIndex = placedObjectIndex;
-    }
-}
+
+
+

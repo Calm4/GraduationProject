@@ -5,9 +5,10 @@ public class PlacementSystem : MonoBehaviour
 {
     [SerializeField] private InputManager inputManager;
     [SerializeField] private GridLayout grid;
+    [SerializeField] private Vector2Int gridSize; // Добавьте это поле для хранения размеров сетки
+    private Vector2Int _gridOffset; // Добавьте это поле для хранения смещения сетки
 
     [SerializeField] private ObjectsDatabaseSO databaseSo;
-
     [SerializeField] private GameObject gridVisualization;
 
     private GridData _floorData;
@@ -21,21 +22,21 @@ public class PlacementSystem : MonoBehaviour
     private IBuildingState _buildingState;
 
     [SerializeField] private SoundFeedback soundFeedback;
-    
+
     private void Start()
     {
         StopPlacement();
-        _floorData = new GridData();
-        _furnitureData = new GridData();
+        _floorData = new GridData(gridSize); // Передайте размеры и смещение сетки в конструктор GridData
+        _furnitureData = new GridData(gridSize); // Передайте размеры и смещение сетки в конструктор GridData
     }
 
     public void StartPlacement(int id)
     {
         StopPlacement();
         gridVisualization.SetActive(true);
-        
+
         _buildingState = new PlacementState(id, grid, previewSystem, databaseSo, _floorData, _furnitureData, objectPlacer, soundFeedback);
-        
+
         inputManager.OnClicked += PlaceStructure;
         inputManager.OnExit += StopPlacement;
     }
@@ -44,9 +45,9 @@ public class PlacementSystem : MonoBehaviour
     {
         StopPlacement();
         gridVisualization.SetActive(true);
-        
-        _buildingState = new RemovingState(grid, previewSystem, _floorData, _furnitureData, objectPlacer , soundFeedback);
-        
+
+        _buildingState = new RemovingState(grid, previewSystem, _floorData, _furnitureData, objectPlacer, soundFeedback);
+
         inputManager.OnClicked += PlaceStructure;
         inputManager.OnExit += StopPlacement;
     }
@@ -63,12 +64,6 @@ public class PlacementSystem : MonoBehaviour
 
         _buildingState.OnAction(gridPosition);
     }
-
-    // private bool CheckPlacementValidity(Vector3Int gridPosition, int selectedObjectIndex)
-    // {
-    //     GridData selectedData = databaseSo.objectsData[selectedObjectIndex].ID == 0 ? _floorData : _furnitureData;
-    //     return selectedData.CanPlaceObjectAt(gridPosition, databaseSo.objectsData[selectedObjectIndex].Size);
-    // }
 
     private void StopPlacement()
     {
@@ -100,3 +95,5 @@ public class PlacementSystem : MonoBehaviour
         }
     }
 }
+
+
