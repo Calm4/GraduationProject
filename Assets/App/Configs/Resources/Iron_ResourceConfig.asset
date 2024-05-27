@@ -15,3 +15,4 @@ MonoBehaviour:
   resourceType: 2
   buyCost: 0
   saleCost: 0
+  initialMaxAmount: 10

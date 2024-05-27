@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1476,7 +1476,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 127
 --- !u!114 &760121112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1543,6 +1543,96 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &805235752
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 805235754}
+  - component: {fileID: 805235753}
+  m_Layer: 0
+  m_Name: ResourcesManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &805235753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805235752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 008ede11bede4399a29b280a3f16ecb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: resources
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[App.Scripts.Resources.ResourcesTypes,
+        Assembly-CSharp],[ResourcesData, Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[App.Scripts.Resources.ResourcesTypes,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  resourceConfigs:
+  - {fileID: 11400000, guid: b4a30f8493488424796036fb0dce3545, type: 2}
+  - {fileID: 11400000, guid: 017539c5c52000b43b51660858d91f03, type: 2}
+  - {fileID: 11400000, guid: f65cd3c57f42c7e478c57b97fd4a48e7, type: 2}
+  - {fileID: 11400000, guid: f5ae9a3c97bcb054f802b25899db4d34, type: 2}
+  - {fileID: 11400000, guid: d502ffcfac7b7c840bd3de77f24a8691, type: 2}
+  - {fileID: 11400000, guid: f9e10c81e0042e94e87b97a1c3e7c3f0, type: 2}
+  - {fileID: 11400000, guid: 6d56a258ed9f9e44fbc598e7d085d3a7, type: 2}
+  - {fileID: 11400000, guid: 7923030f6f0f1854680341d54d0eee92, type: 2}
+  - {fileID: 11400000, guid: 10b56f5eb5bfd774aab1d65b93d86453, type: 2}
+  - {fileID: 11400000, guid: 3df9d4f94b42acc49858e0129dd1dd37, type: 2}
+--- !u!4 &805235754
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805235752}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &864965513
 GameObject:
   m_ObjectHideFlags: 0
@@ -3540,3 +3630,4 @@ SceneRoots:
   - {fileID: 480245617}
   - {fileID: 735332649}
   - {fileID: 480444781}
+  - {fileID: 805235754}
