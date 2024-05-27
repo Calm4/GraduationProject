@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3893143842e546738c062084188065a3, type: 3}
-  m_Name: CameraConfig
+  m_Script: {fileID: 11500000, guid: 737827a1001b46e9a562ca5dee640914, type: 3}
+  m_Name: Iron_ResourceConfig
   m_EditorClassIdentifier: 
-  moveSpeed: 8
-  zoomSpeed: 8
-  rotationSpeed: 800
+  resourceType: 2
+  buyCost: 0
+  saleCost: 0
