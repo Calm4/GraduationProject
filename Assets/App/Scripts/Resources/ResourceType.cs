@@ -1,6 +1,6 @@
 ﻿namespace App.Scripts.Resources
 {
-    public enum ResourcesTypes
+    public enum ResourceType
     {
         Wheat,
         Wood,

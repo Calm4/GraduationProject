@@ -8,7 +8,7 @@ using UnityEngine;
 [Serializable]
 public struct ResourcesData
 {
-    public ResourcesTypes resourceType;
+    public ResourceConfig resourceConfig;
     public int currentAmount;
     public int maxAmount;
 }
