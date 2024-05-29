@@ -6,7 +6,7 @@ using UnityEngine;
 
 
 [Serializable]
-public struct ResourcesData
+public struct ResourceData
 {
     public ResourceConfig resourceConfig;
     public int currentAmount;

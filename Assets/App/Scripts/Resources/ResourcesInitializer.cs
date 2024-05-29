@@ -8,21 +8,9 @@ namespace App.Scripts.Resources
 {
     public class ResourcesInitializer : SerializedMonoBehaviour
     {
-        [SerializeField] private List<ResourceConfig> resourceConfigs;
-        [OdinSerialize] private Dictionary<ResourceType, ResourcesData> resources = new();
+        [Title("Resources Types",Bold = true)]
+        [OdinSerialize] public Dictionary<ResourceType, ResourceData> resources;
         
-        private void Start()
-        {
-            ResourceType[] resourceTypes = (ResourceType[])Enum.GetValues(typeof(ResourceType));
-            
-            foreach (var currentConfig in resourceConfigs)
-            {
-                resources[] = new ResourcesData()
-                {
-                    currentAmount = 0,
-                    maxAmount = currentConfig.initialMaxAmount,
-                };
-            }
-        }
+       
     }
 }

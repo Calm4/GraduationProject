@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 737827a1001b46e9a562ca5dee640914, type: 3}
   m_Name: Wood_ResourceConfig
   m_EditorClassIdentifier: 
-  resourceType: 1
   buyCost: 0
   saleCost: 0
   initialMaxAmount: 10
+  resourceImage: {fileID: -475999896, guid: a212f53675812c6499666e035dda0764, type: 3}

@@ -8,5 +8,6 @@ namespace App.Scripts.Resources
         public int buyCost;
         public int saleCost;
         public int initialMaxAmount;
+        public Sprite resourceImage;
     }
 }

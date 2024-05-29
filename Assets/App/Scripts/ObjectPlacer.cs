@@ -6,12 +6,13 @@ public class ObjectPlacer : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _placedGameObject = new();
 
-    public int PlaceObject(GameObject prefab, Vector3 position)
+    public (GameObject placedObject, int index) PlaceObject(GameObject prefab, Vector3 position)
     {
         GameObject newObject = Instantiate(prefab);
         newObject.transform.position = position;
         _placedGameObject.Add(newObject);
-        return _placedGameObject.Count - 1;
+        int index = _placedGameObject.Count - 1;
+        return (newObject, index);
     }
 
     public void RemoveObjectAt(int gameObjectIndex)

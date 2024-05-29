@@ -1,17 +1,20 @@
 ﻿using System.Collections.Generic;
-using App.Scripts.Resources;
 
-namespace App.Scripts
+namespace App.Scripts.Resources
 {
     public class ResourceManager
     {
-        private Dictionary<ResourceType, ResourcesData> _resources;
+        private readonly Dictionary<ResourceType, ResourceData> _resources;
 
-        public ResourceManager(Dictionary<ResourceType,ResourcesData> resources)
+        public ResourceManager(Dictionary<ResourceType,ResourceData> resources)
         {
             _resources = resources;
         }
 
+        public void PassiveIncreaseResources(int amount, ResourceType resourceType, int timeInterval)
+        {
+            
+        }
         public void AddResource(int amount, ResourceType resourceType)
         {
             if (_resources.ContainsKey(resourceType))

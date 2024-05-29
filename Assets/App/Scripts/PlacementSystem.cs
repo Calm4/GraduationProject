@@ -1,16 +1,18 @@
 using App.Scripts;
+using App.Scripts.Buildings;
 using UnityEngine;
 
 public class PlacementSystem : MonoBehaviour
 {
     [SerializeField] private InputManager inputManager;
     [SerializeField] private GridLayout grid;
-    [SerializeField] private Vector2Int gridSize; 
-    private Vector2Int _gridOffset; 
+    [SerializeField] private Vector2Int gridSize;
+    private Vector2Int _gridOffset;
 
-    [SerializeField] private ObjectsDatabaseSO databaseSo;
     [SerializeField] private GameObject gridVisualization;
 
+    [SerializeField] private GameObject buildingPrefab;
+    
     private GridData _floorData;
     private GridData _furnitureData;
 
@@ -26,16 +28,18 @@ public class PlacementSystem : MonoBehaviour
     private void Start()
     {
         StopPlacement();
-        _floorData = new GridData(gridSize); 
-        _furnitureData = new GridData(gridSize); 
+        _floorData = new GridData(gridSize);
+        _furnitureData = new GridData(gridSize);
     }
 
-    public void StartPlacement(int id)
+    public void StartPlacement(BuildingConfig buildingConfig)
     {
         StopPlacement();
         gridVisualization.SetActive(true);
 
-        _buildingState = new PlacementState(id, grid, previewSystem, databaseSo, _floorData, _furnitureData, objectPlacer, soundFeedback);
+
+        _buildingState = new PlacementState(buildingPrefab, buildingConfig, grid, previewSystem, _floorData, _furnitureData, objectPlacer,
+            soundFeedback);
 
         inputManager.OnClicked += PlaceStructure;
         inputManager.OnExit += StopPlacement;
@@ -71,6 +75,7 @@ public class PlacementSystem : MonoBehaviour
         {
             return;
         }
+
         gridVisualization.SetActive(false);
         _buildingState.EndState();
         inputManager.OnClicked -= PlaceStructure;
@@ -95,5 +100,3 @@ public class PlacementSystem : MonoBehaviour
         }
     }
 }
-
-
