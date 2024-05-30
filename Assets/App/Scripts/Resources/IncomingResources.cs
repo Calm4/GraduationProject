@@ -8,5 +8,6 @@ namespace App.Scripts.Resources
     {
         public ResourceType resourceType;
         public int amount;
+        public float timeIntervalToReceiving;
     }
 }
