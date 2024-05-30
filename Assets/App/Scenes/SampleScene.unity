@@ -193,7 +193,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5202464898378544185, guid: 6534d714a192af04f9275ea4b346e773, type: 3}
       propertyPath: m_text
-      value: Cube
+      value: Archer
       objectReference: {fileID: 0}
     - target: {fileID: 7555284356248604339, guid: 6534d714a192af04f9275ea4b346e773, type: 3}
       propertyPath: m_Pivot.x
@@ -1947,7 +1947,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2723510685932650362, guid: 6534d714a192af04f9275ea4b346e773, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2723510685932650362, guid: 6534d714a192af04f9275ea4b346e773, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1970,8 +1970,12 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2723510685932650362, guid: 6534d714a192af04f9275ea4b346e773, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 11400000, guid: 04db759a4ef403843ac99215e8844b91, type: 2}
+    - target: {fileID: 2723510685932650362, guid: 6534d714a192af04f9275ea4b346e773, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
+      value: App.Scripts.Buildings.BuildingConfig, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4888507193843709564, guid: 6534d714a192af04f9275ea4b346e773, type: 3}
       propertyPath: m_Name
