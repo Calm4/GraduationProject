@@ -32,13 +32,13 @@ public class PlacementSystem : MonoBehaviour
         _furnitureData = new GridData(gridSize);
     }
 
-    public void StartPlacement(BuildingConfig buildingConfig)
+    public void StartPlacement(BasicBuildingConfig basicBuildingConfig)
     {
         StopPlacement();
         gridVisualization.SetActive(true);
 
 
-        _buildingState = new PlacementState(buildingPrefab, buildingConfig, grid, previewSystem, _floorData, _furnitureData, objectPlacer,
+        _buildingState = new PlacementState(buildingPrefab, basicBuildingConfig, grid, previewSystem, _floorData, _furnitureData, objectPlacer,
             soundFeedback);
 
         inputManager.OnClicked += PlaceStructure;

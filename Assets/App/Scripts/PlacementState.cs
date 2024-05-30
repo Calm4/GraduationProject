@@ -11,15 +11,15 @@ public class PlacementState : IBuildingState
     private GridData _furnitureData;
     private ObjectPlacer _objectPlacer;
     private SoundFeedback _soundFeedback;
-    private BuildingConfig _buildingConfig;
+    private BasicBuildingConfig _basicBuildingConfig;
 
     private GameObject _buildingPrefab;
 
-    public PlacementState(GameObject buildingPrefab, BuildingConfig buildingConfig, GridLayout grid, PreviewSystem previewSystem,
+    public PlacementState(GameObject buildingPrefab, BasicBuildingConfig basicBuildingConfig, GridLayout grid, PreviewSystem previewSystem,
         GridData floorData, GridData furnitureData, ObjectPlacer objectPlacer, SoundFeedback soundFeedback)
     {
         _buildingPrefab = buildingPrefab;
-        _buildingConfig = buildingConfig;
+        _basicBuildingConfig = basicBuildingConfig;
         _grid = grid;
         _previewSystem = previewSystem;
         _floorData = floorData;
@@ -32,7 +32,7 @@ public class PlacementState : IBuildingState
             throw new System.Exception($"No building with ID {_buildingConfig.ID}");
         }*/
         
-        _previewSystem.StartShowingPlacementPreview(_buildingPrefab, buildingConfig.size);
+        _previewSystem.StartShowingPlacementPreview(_buildingPrefab, basicBuildingConfig.size);
     }
 
     public void EndState()
@@ -56,25 +56,25 @@ public class PlacementState : IBuildingState
         MeshFilter meshFilter = creatableBuilding.GetComponent<MeshFilter>();
         if (meshFilter != null)
         {
-            meshFilter.mesh = _buildingConfig.mesh;
+            meshFilter.mesh = _basicBuildingConfig.mesh;
         }
 
         MeshRenderer meshRenderer = creatableBuilding.GetComponent<MeshRenderer>();
         if (meshRenderer != null)
         {
-            meshRenderer.material = _buildingConfig.material;
+            meshRenderer.material = _basicBuildingConfig.material;
         }
         
-        GridData selectedData = _buildingConfig.buildingType == BuildingType.Neutral ? _floorData : _furnitureData;
-        selectedData.AddObjectAt(gridPosition, _buildingConfig.size, _buildingConfig.ID, index);
+        GridData selectedData = _basicBuildingConfig.buildingType == BuildingType.Neutral ? _floorData : _furnitureData;
+        selectedData.AddObjectAt(gridPosition, _basicBuildingConfig.size, _basicBuildingConfig.ID, index);
 
         _previewSystem.UpdatePosition(_grid.CellToWorld(gridPosition), false);
     }
 
     private bool CheckPlacementValidity(Vector3Int gridPosition)
     {
-        GridData selectedData = _buildingConfig.buildingType == BuildingType.Neutral ? _floorData : _furnitureData;
-        return selectedData.CanPlaceObjectAt(gridPosition, _buildingConfig.size);
+        GridData selectedData = _basicBuildingConfig.buildingType == BuildingType.Neutral ? _floorData : _furnitureData;
+        return selectedData.CanPlaceObjectAt(gridPosition, _basicBuildingConfig.size);
     }
 
     public void UpdateState(Vector3Int gridPosition)
