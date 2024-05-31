@@ -39,6 +39,23 @@ namespace App.Scripts.Resources
             }
         }
 
+        public void ReturnHalfOfResourcesForDestructionBuilding(BasicBuildingConfig placedObjectConfig)
+        {
+            List<ResourceRequirement> returnedResources = placedObjectConfig.resourcesToBuild;
+
+            foreach (var resource in returnedResources)
+            {
+                var resourceData = _resources[resource.resourceType];
+                resourceData.currentAmount += resource.amountToBuild / 2;
+
+                if (resourceData.currentAmount > resourceData.maxAmount)
+                {
+                    resourceData.currentAmount = resourceData.maxAmount;
+                }
+
+                _resources[resource.resourceType] = resourceData;
+            }
+        }
         public void TakeAwayResourcesForConstruction(BasicBuildingConfig placingObjectConfig)
         {
             List<ResourceRequirement> resourcesToBuild = placingObjectConfig.resourcesToBuild;

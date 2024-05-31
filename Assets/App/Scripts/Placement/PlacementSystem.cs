@@ -58,8 +58,9 @@ namespace App.Scripts.Placement
         {
             StopPlacement();
             gridVisualization.SetActive(true);
-
-            _buildingState = new RemovingState(grid, previewSystem, _floorData, _furnitureData, objectPlacer, soundFeedback);
+            //TODO: ПОЛУЧАТЬ КОНФИГ ДЛЯ УДАЛЕНИЯ 
+            var basicBuildingConfig = new BasicBuildingConfig();
+            _buildingState = new RemovingState(resourcesManager, grid, previewSystem, basicBuildingConfig, _floorData, _furnitureData, objectPlacer, soundFeedback);
 
             inputManager.OnClicked += PlaceStructure;
             inputManager.OnExit += StopPlacement;

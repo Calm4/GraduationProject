@@ -1,9 +1,12 @@
+using App.Scripts.Buildings;
+using App.Scripts.Resources;
 using UnityEngine;
 
 namespace App.Scripts.Placement
 {
     public class RemovingState : IBuildingState
     {
+        private ResourcesManager _resourcesManager;
         private int gameObjectIndex = -1;
         private GridLayout _grid;
         private PreviewSystem _previewSystem;
@@ -11,11 +14,14 @@ namespace App.Scripts.Placement
         private GridData _furnitureData;
         private ObjectPlacer _objectPlacer;
         private SoundFeedback _soundFeedback;
+        private BasicBuildingConfig _basicBuildingConfig;
 
-        public RemovingState(GridLayout grid, PreviewSystem previewSystem, GridData floorData, GridData furnitureData, ObjectPlacer objectPlacer,SoundFeedback soundFeedback)
+        public RemovingState(ResourcesManager resourcesManager, GridLayout grid, PreviewSystem previewSystem,BasicBuildingConfig basicBuildingConfig, GridData floorData, GridData furnitureData, ObjectPlacer objectPlacer,SoundFeedback soundFeedback)
         {
+            _resourcesManager = resourcesManager;
             _grid = grid;
             _previewSystem = previewSystem;
+            _basicBuildingConfig = basicBuildingConfig;
             _floorData = floorData;
             _furnitureData = furnitureData;
             _objectPlacer = objectPlacer;
@@ -53,6 +59,7 @@ namespace App.Scripts.Placement
                     return;
                 }
 
+                _resourcesManager.ReturnHalfOfResourcesForDestructionBuilding(_basicBuildingConfig);
                 selectedData.RemoveObjectAt(gridPosition);
                 _objectPlacer.RemoveObjectAt(gameObjectIndex);
             }
