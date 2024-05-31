@@ -1,8 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ResourcesUI : MonoBehaviour
+namespace App.Scripts.Resources
 {
+    public class ResourcesUI : MonoBehaviour
+    {
    
+    }
 }
