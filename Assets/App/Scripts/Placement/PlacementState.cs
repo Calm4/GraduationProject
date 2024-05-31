@@ -1,10 +1,13 @@
+using System.Resources;
 using App.Scripts.Buildings;
+using App.Scripts.Resources;
 using UnityEngine;
 
 namespace App.Scripts.Placement
 {
     public class PlacementState : IBuildingState
     {
+        private ResourcesManager _resourcesManager;
         private BuildSystem _buildSystem;
         private GridLayout _grid;
         private PreviewSystem _previewSystem;
@@ -16,9 +19,10 @@ namespace App.Scripts.Placement
 
         private GameObject _buildingPrefab;
 
-        public PlacementState(BuildSystem buildSystem,GameObject buildingPrefab, BasicBuildingConfig basicBuildingConfig, GridLayout grid, PreviewSystem previewSystem,
+        public PlacementState(ResourcesManager resourcesManager, BuildSystem buildSystem,GameObject buildingPrefab, BasicBuildingConfig basicBuildingConfig, GridLayout grid, PreviewSystem previewSystem,
             GridData floorData, GridData furnitureData, ObjectPlacer objectPlacer, SoundFeedback soundFeedback)
         {
+            _resourcesManager = resourcesManager;
             _buildSystem = buildSystem;
             _buildingPrefab = buildingPrefab;
             _basicBuildingConfig = basicBuildingConfig;
@@ -51,8 +55,17 @@ namespace App.Scripts.Placement
                 return;
             }
 
+            bool canAccommodate = _buildSystem.CanAccommodateBuilding(_basicBuildingConfig);
+            if (!canAccommodate)
+            {
+                _soundFeedback.PlaySound(SoundType.wrongPlacement);
+                return;
+            }
+
             _soundFeedback.PlaySound(SoundType.Place);
-        
+
+            _resourcesManager.TakeAwayResourcesForConstruction(_basicBuildingConfig);
+            
             var (creatableBuilding, index) = _objectPlacer.PlaceObject(_buildingPrefab, _grid.CellToWorld(gridPosition));
 
             MeshFilter meshFilter = creatableBuilding.GetComponent<MeshFilter>();

@@ -1672,10 +1672,10 @@ MonoBehaviour:
       Data: 1
     - Name: currentAmount
       Entry: 3
-      Data: 5
+      Data: 16
     - Name: maxAmount
       Entry: 3
-      Data: 10
+      Data: 20
     - Name: isLockedNow
       Entry: 5
       Data: false
@@ -1699,13 +1699,13 @@ MonoBehaviour:
       Data: 2
     - Name: currentAmount
       Entry: 3
-      Data: 0
+      Data: 8
     - Name: maxAmount
       Entry: 3
-      Data: 0
+      Data: 10
     - Name: isLockedNow
       Entry: 5
-      Data: true
+      Data: false
     - Name: 
       Entry: 8
       Data: 
@@ -3630,7 +3630,7 @@ MonoBehaviour:
   buildingPrefab: {fileID: 6121667864284025279, guid: d9c65636e0495ff40b3163ed3af25112, type: 3}
   previewSystem: {fileID: 1684993283}
   objectPlacer: {fileID: 1030743403}
-  resourceManager: {fileID: 0}
+  resourcesManager: {fileID: 805235755}
   soundFeedback: {fileID: 72942689}
 --- !u!1 &2140119108
 GameObject:

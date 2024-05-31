@@ -1,17 +1,16 @@
 ﻿using System.Collections.Generic;
 using App.Scripts.Resources;
-using UnityEditor.Build;
 using UnityEngine;
 
 namespace App.Scripts.Buildings
 {
     public class BuildSystem : MonoBehaviour
     {
-        private readonly ResourceManager _resourceManager;
+        private readonly ResourcesManager _resourcesManager;
 
-        public BuildSystem(ResourceManager resourceManager)
+        public BuildSystem(ResourcesManager resourcesManager)
         {
-            _resourceManager = resourceManager;
+            _resourcesManager = resourcesManager;
         }
 
         public bool CanAccommodateBuilding(BasicBuildingConfig placingObjectConfig)
@@ -20,7 +19,7 @@ namespace App.Scripts.Buildings
 
             foreach (var resource in resourcesToBuild)
             {
-                var definiteResource = _resourceManager.GetResourceData(resource.resourceType).currentAmount;
+                var definiteResource = _resourcesManager.GetResourceData(resource.resourceType).currentAmount;
                 if (definiteResource < resource.amountToBuild)
                 {
                     Debug.Log($"Здание не может быть построено. Не хватает ресурса {resource.resourceType}");
