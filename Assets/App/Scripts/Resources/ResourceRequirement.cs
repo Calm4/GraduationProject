@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine.Serialization;
 
 namespace App.Scripts.Resources
 {
@@ -6,6 +7,6 @@ namespace App.Scripts.Resources
     public struct ResourceRequirement
     {
         public ResourceType resourceType;
-        public int amount;
+        public int amountToBuild;
     }
 }

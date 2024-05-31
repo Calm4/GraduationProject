@@ -28,10 +28,8 @@ MonoBehaviour:
   size: {x: 2, y: 2}
   resourcesToBuild:
   - resourceType: 1
-    amount: 4
+    amountToBuild: 4
   - resourceType: 8
-    amount: 2
+    amountToBuild: 2
   moneyToBuild: 5
-  IncomingResources:
-  - resourceType: 4
-    amount: 1
+  incomingResources: []

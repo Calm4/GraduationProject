@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
+using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace App.Scripts.Resources
 {
-    public class ResourceManager
+    public class ResourceManager : SerializedMonoBehaviour
     {
-        private readonly Dictionary<ResourceType, ResourceData> _resources;
+        [SerializeField] private readonly Dictionary<ResourceType, ResourceData> _resources;
 
         public ResourceManager(Dictionary<ResourceType,ResourceData> resources)
         {
@@ -15,6 +17,12 @@ namespace App.Scripts.Resources
         {
             
         }
+        
+        public ResourceData GetResourceData(ResourceType resourceType)
+        {
+            return _resources[resourceType];
+        }
+        
         public void AddResource(int amount, ResourceType resourceType)
         {
             if (_resources.ContainsKey(resourceType))

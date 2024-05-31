@@ -28,7 +28,7 @@ MonoBehaviour:
   size: {x: 1, y: 1}
   resourcesToBuild:
   - resourceType: 1
-    amount: 3
+    amountToBuild: 3
   - resourceType: 2
-    amount: 1
+    amountToBuild: 1
   moneyToBuild: 5

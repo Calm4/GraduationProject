@@ -8,5 +8,6 @@ namespace App.Scripts.Resources
         public ResourceConfig resourceConfig;
         public int currentAmount;
         public int maxAmount;
+        public bool isLockedNow;
     }
 }

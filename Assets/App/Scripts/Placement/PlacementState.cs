@@ -5,6 +5,7 @@ namespace App.Scripts.Placement
 {
     public class PlacementState : IBuildingState
     {
+        private BuildSystem _buildSystem;
         private GridLayout _grid;
         private PreviewSystem _previewSystem;
         private GridData _floorData;
@@ -15,9 +16,10 @@ namespace App.Scripts.Placement
 
         private GameObject _buildingPrefab;
 
-        public PlacementState(GameObject buildingPrefab, BasicBuildingConfig basicBuildingConfig, GridLayout grid, PreviewSystem previewSystem,
+        public PlacementState(BuildSystem buildSystem,GameObject buildingPrefab, BasicBuildingConfig basicBuildingConfig, GridLayout grid, PreviewSystem previewSystem,
             GridData floorData, GridData furnitureData, ObjectPlacer objectPlacer, SoundFeedback soundFeedback)
         {
+            _buildSystem = buildSystem;
             _buildingPrefab = buildingPrefab;
             _basicBuildingConfig = basicBuildingConfig;
             _grid = grid;

@@ -1,5 +1,6 @@
 using App.Scripts.Buildings;
 using App.Scripts.GameInput;
+using App.Scripts.Resources;
 using UnityEngine;
 
 namespace App.Scripts.Placement
@@ -21,6 +22,9 @@ namespace App.Scripts.Placement
         [SerializeField] private PreviewSystem previewSystem;
         [SerializeField] private ObjectPlacer objectPlacer;
 
+        [SerializeField] private ResourceManager resourceManager;
+        private BuildSystem _buildSystem;
+
         private Vector3Int _lastDetectedPosition = Vector3Int.zero;
 
         private IBuildingState _buildingState;
@@ -30,6 +34,9 @@ namespace App.Scripts.Placement
         private void Start()
         {
             StopPlacement();
+;
+            _buildSystem = new BuildSystem(resourceManager);
+            
             _floorData = new GridData(gridSize);
             _furnitureData = new GridData(gridSize);
         }
@@ -40,8 +47,7 @@ namespace App.Scripts.Placement
             gridVisualization.SetActive(true);
 
 
-            _buildingState = new PlacementState(buildingPrefab, basicBuildingConfig, grid, previewSystem, _floorData, _furnitureData, objectPlacer,
-                soundFeedback);
+            _buildingState = new PlacementState(_buildSystem, buildingPrefab, basicBuildingConfig, grid, previewSystem, _floorData, _furnitureData, objectPlacer, soundFeedback);
 
             inputManager.OnClicked += PlaceStructure;
             inputManager.OnExit += StopPlacement;
