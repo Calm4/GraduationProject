@@ -6,13 +6,10 @@ namespace App.Scripts.Placement
     public class PreviewSystem : MonoBehaviour
     {
         [SerializeField] private float previewYOffset = 0.06f;
-
         [SerializeField] private GameObject cellIndicator;
         private Building _previewObject;
-
         [SerializeField] private Material previewMaterialPrefab;
         private Material _previewMaterialInstance;
-
         private Renderer _cellIndicatorRenderer;
 
         private void Start()
@@ -22,14 +19,38 @@ namespace App.Scripts.Placement
             _cellIndicatorRenderer = cellIndicator.GetComponentInChildren<Renderer>();
         }
 
+        private void PrepareMeshAndMaterial(Building prefab)
+        {
+            //TODO: ПОФИКСИТЬ СИСТЕМУ PREVIEW
+            MeshFilter prefabMeshFilter = prefab.GetComponent<MeshFilter>();
+            if (prefabMeshFilter != null)
+            {
+                MeshFilter previewMeshFilter = _previewObject.GetComponent<MeshFilter>();
+                if (previewMeshFilter != null)
+                {
+                    previewMeshFilter.mesh = prefabMeshFilter.sharedMesh;
+                }
+            }
+
+            MeshRenderer prefabMeshRenderer = prefab.GetComponent<MeshRenderer>();
+            if (prefabMeshRenderer != null)
+            {
+                MeshRenderer previewMeshRenderer = _previewObject.GetComponent<MeshRenderer>();
+                if (previewMeshRenderer != null)
+                {
+                    previewMeshRenderer.material = prefabMeshRenderer.sharedMaterial;
+                }
+            }
+        }
+
         public void StartShowingPlacementPreview(Building prefab, Vector2Int size)
         {
             _previewObject = Instantiate(prefab);
+            PrepareMeshAndMaterial(prefab);
             PreparePreview(_previewObject);
             PrepareCursor(size);
             cellIndicator.SetActive(true);
         }
-
         private void PrepareCursor(Vector2Int size)
         {
             if (size.x > 0 || size.y > 0)
