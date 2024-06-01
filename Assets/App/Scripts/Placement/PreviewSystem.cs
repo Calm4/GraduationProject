@@ -1,3 +1,4 @@
+using App.Scripts.Buildings;
 using UnityEngine;
 
 namespace App.Scripts.Placement
@@ -7,7 +8,7 @@ namespace App.Scripts.Placement
         [SerializeField] private float previewYOffset = 0.06f;
 
         [SerializeField] private GameObject cellIndicator;
-        private GameObject _previewObject;
+        private Building _previewObject;
 
         [SerializeField] private Material previewMaterialPrefab;
         private Material _previewMaterialInstance;
@@ -21,7 +22,7 @@ namespace App.Scripts.Placement
             _cellIndicatorRenderer = cellIndicator.GetComponentInChildren<Renderer>();
         }
 
-        public void StartShowingPlacementPreview(GameObject prefab, Vector2Int size)
+        public void StartShowingPlacementPreview(Building prefab, Vector2Int size)
         {
             _previewObject = Instantiate(prefab);
             PreparePreview(_previewObject);
@@ -38,7 +39,7 @@ namespace App.Scripts.Placement
             }
         }
 
-        private void PreparePreview(GameObject go)
+        private void PreparePreview(Building building)
         {
             Renderer[] renderers = _previewObject.GetComponentsInChildren<Renderer>();
             foreach (var renderer in renderers)

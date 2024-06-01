@@ -17,9 +17,9 @@ namespace App.Scripts.Placement
         private SoundFeedback _soundFeedback;
         private BasicBuildingConfig _basicBuildingConfig;
 
-        private GameObject _buildingPrefab;
+        private Building _buildingPrefab;
 
-        public PlacementState(ResourcesManager resourcesManager, BuildSystem buildSystem,GameObject buildingPrefab, BasicBuildingConfig basicBuildingConfig, GridLayout grid, PreviewSystem previewSystem,
+        public PlacementState(ResourcesManager resourcesManager, BuildSystem buildSystem,Building buildingPrefab, BasicBuildingConfig basicBuildingConfig, GridLayout grid, PreviewSystem previewSystem,
             GridData floorData, GridData furnitureData, ObjectPlacer objectPlacer, SoundFeedback soundFeedback)
         {
             _resourcesManager = resourcesManager;
@@ -66,7 +66,7 @@ namespace App.Scripts.Placement
 
             _resourcesManager.TakeAwayResourcesForConstruction(_basicBuildingConfig);
             
-            var (creatableBuilding, index) = _objectPlacer.PlaceObject(_buildingPrefab, _grid.CellToWorld(gridPosition));
+            Building creatableBuilding = _objectPlacer.PlaceObject(_buildingPrefab, _grid.CellToWorld(gridPosition), _basicBuildingConfig);
 
             MeshFilter meshFilter = creatableBuilding.GetComponent<MeshFilter>();
             if (meshFilter != null)
@@ -81,7 +81,7 @@ namespace App.Scripts.Placement
             }
         
             GridData selectedData = _basicBuildingConfig.buildingType == BuildingType.Neutral ? _floorData : _furnitureData;
-            selectedData.AddObjectAt(gridPosition, _basicBuildingConfig.size, _basicBuildingConfig.ID, index);
+            selectedData.AddObjectAt(gridPosition, _basicBuildingConfig.size, _basicBuildingConfig.ID, creatableBuilding);
 
             _previewSystem.UpdatePosition(_grid.CellToWorld(gridPosition), false);
         }

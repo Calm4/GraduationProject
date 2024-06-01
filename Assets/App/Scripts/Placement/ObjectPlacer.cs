@@ -1,29 +1,35 @@
 using System.Collections.Generic;
+using App.Scripts.Buildings;
 using UnityEngine;
 
 namespace App.Scripts.Placement
 {
     public class ObjectPlacer : MonoBehaviour
     {
-        [SerializeField] private List<GameObject> _placedGameObject = new();
+        [SerializeField] private List<Building> _placedGameObject = new();
 
-        public (GameObject placedObject, int index) PlaceObject(GameObject prefab, Vector3 position)
+        public Building PlaceObject(Building prefab, Vector3 position, BasicBuildingConfig config)
         {
-            GameObject newObject = Instantiate(prefab);
+            Building newObject = Instantiate(prefab);
+            newObject.Initialize(config);
             newObject.transform.position = position;
             _placedGameObject.Add(newObject);
-            int index = _placedGameObject.Count - 1;
-            return (newObject, index);
+            return newObject;
         }
 
-        public void RemoveObjectAt(int gameObjectIndex)
+        public void RemoveObject(Building placedObject)
         {
-            if (_placedGameObject.Count <= gameObjectIndex || !_placedGameObject[gameObjectIndex])
+            int index = _placedGameObject.IndexOf(placedObject);
+            if (index >= 0 && index < _placedGameObject.Count)
             {
-                return;
+                Destroy(_placedGameObject[index].gameObject);
+                _placedGameObject[index] = null;
             }
-            Destroy(_placedGameObject[gameObjectIndex]);
-            _placedGameObject[gameObjectIndex] = null;
+        }
+
+        public int GetIndexOfPlacedObject(Building placedObject)
+        {
+            return _placedGameObject.IndexOf(placedObject);
         }
     }
 }

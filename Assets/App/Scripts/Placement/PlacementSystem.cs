@@ -15,7 +15,7 @@ namespace App.Scripts.Placement
 
         [SerializeField] private GameObject gridVisualization;
 
-        [SerializeField] private GameObject buildingPrefab;
+        [SerializeField] private Building buildingPrefab;
     
         private GridData _floorData;
         private GridData _furnitureData;
@@ -47,7 +47,6 @@ namespace App.Scripts.Placement
             StopPlacement();
             gridVisualization.SetActive(true);
 
-
             _buildingState = new PlacementState(resourcesManager, _buildSystem, buildingPrefab, basicBuildingConfig, grid, previewSystem, _floorData, _furnitureData, objectPlacer, soundFeedback);
 
             inputManager.OnClicked += PlaceStructure;
@@ -58,9 +57,8 @@ namespace App.Scripts.Placement
         {
             StopPlacement();
             gridVisualization.SetActive(true);
-            //TODO: ПОЛУЧАТЬ КОНФИГ ДЛЯ УДАЛЕНИЯ 
-            var basicBuildingConfig = new BasicBuildingConfig();
-            _buildingState = new RemovingState(resourcesManager, grid, previewSystem, basicBuildingConfig, _floorData, _furnitureData, objectPlacer, soundFeedback);
+            
+            _buildingState = new RemovingState(resourcesManager, grid, previewSystem, _floorData, _furnitureData, objectPlacer, soundFeedback);
 
             inputManager.OnClicked += PlaceStructure;
             inputManager.OnExit += StopPlacement;

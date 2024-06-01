@@ -7,21 +7,18 @@ namespace App.Scripts.Placement
     public class RemovingState : IBuildingState
     {
         private ResourcesManager _resourcesManager;
-        private int gameObjectIndex = -1;
         private GridLayout _grid;
         private PreviewSystem _previewSystem;
         private GridData _floorData;
         private GridData _furnitureData;
         private ObjectPlacer _objectPlacer;
         private SoundFeedback _soundFeedback;
-        private BasicBuildingConfig _basicBuildingConfig;
 
-        public RemovingState(ResourcesManager resourcesManager, GridLayout grid, PreviewSystem previewSystem,BasicBuildingConfig basicBuildingConfig, GridData floorData, GridData furnitureData, ObjectPlacer objectPlacer,SoundFeedback soundFeedback)
+        public RemovingState(ResourcesManager resourcesManager, GridLayout grid, PreviewSystem previewSystem, GridData floorData, GridData furnitureData, ObjectPlacer objectPlacer, SoundFeedback soundFeedback)
         {
             _resourcesManager = resourcesManager;
             _grid = grid;
             _previewSystem = previewSystem;
-            _basicBuildingConfig = basicBuildingConfig;
             _floorData = floorData;
             _furnitureData = furnitureData;
             _objectPlacer = objectPlacer;
@@ -42,7 +39,7 @@ namespace App.Scripts.Placement
             {
                 selectedData = _furnitureData;
             }
-            else if(_floorData.CanPlaceObjectAt(gridPosition,Vector2Int.one) == false)
+            else if (!_floorData.CanPlaceObjectAt(gridPosition, Vector2Int.one))
             {
                 selectedData = _floorData;
             }
@@ -51,18 +48,16 @@ namespace App.Scripts.Placement
             {
                 return;
             }
-            else
-            {
-                gameObjectIndex = selectedData.GetRepresentationIndex(gridPosition);
-                if (gameObjectIndex == -1)
-                {
-                    return;
-                }
 
-                _resourcesManager.ReturnHalfOfResourcesForDestructionBuilding(_basicBuildingConfig);
-                selectedData.RemoveObjectAt(gridPosition);
-                _objectPlacer.RemoveObjectAt(gameObjectIndex);
+            Building placedObject = selectedData.GetPlacedObject(gridPosition);
+            if (placedObject == null)
+            {
+                return;
             }
+
+            _resourcesManager.ReturnHalfOfResourcesForDestructionBuilding(placedObject.BuildingConfig);
+            selectedData.RemoveObjectAt(gridPosition);
+            _objectPlacer.RemoveObject(placedObject);
 
             Vector3 cellPosition = _grid.CellToWorld(gridPosition);
             _previewSystem.UpdatePosition(cellPosition, CheckIsSelectionIsValid(gridPosition));

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using App.Scripts.Buildings;
 using UnityEngine;
 
 namespace App.Scripts.Placement
@@ -16,10 +17,10 @@ namespace App.Scripts.Placement
             _gridOffset = -(_gridSize / 2);
         }
 
-        public void AddObjectAt(Vector3Int gridPosition, Vector2 objectSize, int ID, int placedObjectIndex)
+        public void AddObjectAt(Vector3Int gridPosition, Vector2 objectSize, int id, Building placedObject)
         {
             List<Vector3Int> positionsToOccupy = CalculatePositions(gridPosition, objectSize);
-            PlacementData data = new PlacementData(positionsToOccupy, ID, placedObjectIndex);
+            PlacementData data = new PlacementData(positionsToOccupy, id, placedObject);
             foreach (var position in positionsToOccupy)
             {
                 if (_placedObjects.ContainsKey(position))
@@ -65,19 +66,19 @@ namespace App.Scripts.Placement
             return offsetPosition.x >= 0 && offsetPosition.x < _gridSize.x && offsetPosition.z >= 0 && offsetPosition.z < _gridSize.y;
         }
 
-        public int GetRepresentationIndex(Vector3Int gridPosition)
+        public Building GetPlacedObject(Vector3Int gridPosition)
         {
             if (!_placedObjects.ContainsKey(gridPosition))
             {
-                return -1;
+                return null;
             }
 
-            return _placedObjects[gridPosition].PlacedObjectIndex;
+            return _placedObjects[gridPosition].PlacedObject;
         }
 
         public void RemoveObjectAt(Vector3Int gridPosition)
         {
-            foreach (var position in _placedObjects[gridPosition].occupiesPositions)
+            foreach (var position in _placedObjects[gridPosition].OccupiesPositions)
             {
                 _placedObjects.Remove(position);
             }

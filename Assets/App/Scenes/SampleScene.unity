@@ -1649,7 +1649,7 @@ MonoBehaviour:
     - Name: maxAmount
       Entry: 3
       Data: 20
-    - Name: isLockedNow
+    - Name: isUnlockedNow
       Entry: 5
       Data: true
     - Name: 
@@ -1676,9 +1676,9 @@ MonoBehaviour:
     - Name: maxAmount
       Entry: 3
       Data: 20
-    - Name: isLockedNow
+    - Name: isUnlockedNow
       Entry: 5
-      Data: false
+      Data: true
     - Name: 
       Entry: 8
       Data: 
@@ -1703,7 +1703,34 @@ MonoBehaviour:
     - Name: maxAmount
       Entry: 3
       Data: 10
-    - Name: isLockedNow
+    - Name: isUnlockedNow
+      Entry: 5
+      Data: true
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 3
+    - Name: $v
+      Entry: 7
+      Data: App.Scripts.Resources.ResourceData, Assembly-CSharp
+    - Name: resourceConfig
+      Entry: 10
+      Data: 3
+    - Name: currentAmount
+      Entry: 3
+      Data: 0
+    - Name: maxAmount
+      Entry: 3
+      Data: 0
+    - Name: isUnlockedNow
       Entry: 5
       Data: false
     - Name: 
@@ -1717,33 +1744,6 @@ MonoBehaviour:
       Data: 
     - Name: $k
       Entry: 3
-      Data: 3
-    - Name: $v
-      Entry: 7
-      Data: App.Scripts.Resources.ResourceData, Assembly-CSharp
-    - Name: resourceConfig
-      Entry: 10
-      Data: 3
-    - Name: currentAmount
-      Entry: 3
-      Data: 0
-    - Name: maxAmount
-      Entry: 3
-      Data: 0
-    - Name: isLockedNow
-      Entry: 5
-      Data: true
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
       Data: 4
     - Name: $v
       Entry: 7
@@ -1757,9 +1757,9 @@ MonoBehaviour:
     - Name: maxAmount
       Entry: 3
       Data: 0
-    - Name: isLockedNow
+    - Name: isUnlockedNow
       Entry: 5
-      Data: true
+      Data: false
     - Name: 
       Entry: 8
       Data: 
@@ -1784,9 +1784,9 @@ MonoBehaviour:
     - Name: maxAmount
       Entry: 3
       Data: 0
-    - Name: isLockedNow
+    - Name: isUnlockedNow
       Entry: 5
-      Data: true
+      Data: false
     - Name: 
       Entry: 8
       Data: 
@@ -1811,9 +1811,9 @@ MonoBehaviour:
     - Name: maxAmount
       Entry: 3
       Data: 0
-    - Name: isLockedNow
+    - Name: isUnlockedNow
       Entry: 5
-      Data: true
+      Data: false
     - Name: 
       Entry: 8
       Data: 
@@ -1838,9 +1838,9 @@ MonoBehaviour:
     - Name: maxAmount
       Entry: 3
       Data: 0
-    - Name: isLockedNow
+    - Name: isUnlockedNow
       Entry: 5
-      Data: true
+      Data: false
     - Name: 
       Entry: 8
       Data: 
@@ -1865,9 +1865,9 @@ MonoBehaviour:
     - Name: maxAmount
       Entry: 3
       Data: 0
-    - Name: isLockedNow
+    - Name: isUnlockedNow
       Entry: 5
-      Data: true
+      Data: false
     - Name: 
       Entry: 8
       Data: 
@@ -1892,9 +1892,9 @@ MonoBehaviour:
     - Name: maxAmount
       Entry: 3
       Data: 0
-    - Name: isLockedNow
+    - Name: isUnlockedNow
       Entry: 5
-      Data: true
+      Data: false
     - Name: 
       Entry: 8
       Data: 
@@ -3627,7 +3627,7 @@ MonoBehaviour:
   grid: {fileID: 385181513}
   gridSize: {x: 30, y: 30}
   gridVisualization: {fileID: 1112236718}
-  buildingPrefab: {fileID: 6121667864284025279, guid: d9c65636e0495ff40b3163ed3af25112, type: 3}
+  buildingPrefab: {fileID: 6827337395158552025, guid: d9c65636e0495ff40b3163ed3af25112, type: 3}
   previewSystem: {fileID: 1684993283}
   objectPlacer: {fileID: 1030743403}
   resourcesManager: {fileID: 805235755}
