@@ -1,4 +1,3 @@
-using System.Resources;
 using App.Scripts.Buildings;
 using App.Scripts.Resources;
 using UnityEngine;
@@ -15,17 +14,15 @@ namespace App.Scripts.Placement
         private GridData _furnitureData;
         private ObjectPlacer _objectPlacer;
         private SoundFeedback _soundFeedback;
-        private BasicBuildingConfig _basicBuildingConfig;
 
         private Building _buildingPrefab;
 
-        public PlacementState(ResourcesManager resourcesManager, BuildSystem buildSystem,Building buildingPrefab, BasicBuildingConfig basicBuildingConfig, GridLayout grid, PreviewSystem previewSystem,
+        public PlacementState(ResourcesManager resourcesManager, BuildSystem buildSystem,Building buildingPrefab, GridLayout grid, PreviewSystem previewSystem,
             GridData floorData, GridData furnitureData, ObjectPlacer objectPlacer, SoundFeedback soundFeedback)
         {
             _resourcesManager = resourcesManager;
             _buildSystem = buildSystem;
             _buildingPrefab = buildingPrefab;
-            _basicBuildingConfig = basicBuildingConfig;
             _grid = grid;
             _previewSystem = previewSystem;
             _floorData = floorData;
@@ -33,12 +30,8 @@ namespace App.Scripts.Placement
             _objectPlacer = objectPlacer;
             _soundFeedback = soundFeedback;
 
-            /*if (_building == null || _building.ID != _buildingConfig.ID)
-        {
-            throw new System.Exception($"No building with ID {_buildingConfig.ID}");
-        }*/
         
-            _previewSystem.StartShowingPlacementPreview(_buildingPrefab, basicBuildingConfig.size);
+            _previewSystem.StartShowingPlacementPreview(_buildingPrefab, _buildingPrefab.BuildingConfig.size);
         }
 
         public void EndState()
@@ -48,54 +41,57 @@ namespace App.Scripts.Placement
 
         public void OnAction(Vector3Int gridPosition)
         {
-            bool placementValidity = CheckPlacementValidity(gridPosition);
-            if (!placementValidity)
+            if (!IsPlacementValid(gridPosition))
             {
-                _soundFeedback.PlaySound(SoundType.wrongPlacement);
+                PlaySound(SoundType.WrongPlacement);
                 return;
             }
 
-            bool canAccommodate = _buildSystem.CanAccommodateBuilding(_basicBuildingConfig);
-            if (!canAccommodate)
-            {
-                _soundFeedback.PlaySound(SoundType.wrongPlacement);
-                return;
-            }
-
-            _soundFeedback.PlaySound(SoundType.Place);
-
-            _resourcesManager.TakeAwayResourcesForConstruction(_basicBuildingConfig);
-            
-            Building creatableBuilding = _objectPlacer.PlaceObject(_buildingPrefab, _grid.CellToWorld(gridPosition), _basicBuildingConfig);
-
-            MeshFilter meshFilter = creatableBuilding.GetComponent<MeshFilter>();
-            if (meshFilter != null)
-            {
-                meshFilter.mesh = _basicBuildingConfig.mesh;
-            }
-
-            MeshRenderer meshRenderer = creatableBuilding.GetComponent<MeshRenderer>();
-            if (meshRenderer != null)
-            {
-                meshRenderer.material = _basicBuildingConfig.material;
-            }
+            PlaceBuilding(gridPosition);
+        }
         
-            GridData selectedData = _basicBuildingConfig.buildingType == BuildingType.Neutral ? _floorData : _furnitureData;
-            selectedData.AddObjectAt(gridPosition, _basicBuildingConfig.size, _basicBuildingConfig.ID, creatableBuilding);
+        private void PlaceBuilding(Vector3Int gridPosition)
+        {
+            if (!_buildSystem.CanAccommodateBuilding(_buildingPrefab.BuildingConfig))
+            {
+                PlaySound(SoundType.WrongPlacement);
+                return;
+            }
+
+            PlaySound(SoundType.Place);
+            _resourcesManager.TakeAwayResourcesForConstruction(_buildingPrefab.BuildingConfig);
+
+            Building creatableBuilding = _objectPlacer.PlaceObject(_buildingPrefab, _grid.CellToWorld(gridPosition), _buildingPrefab.BuildingConfig);
+
+            GridData selectedData = GetSelectedGridData();
+            selectedData.AddObjectAt(gridPosition, _buildingPrefab.BuildingConfig.size, _buildingPrefab.BuildingConfig.ID, creatableBuilding);
 
             _previewSystem.UpdatePosition(_grid.CellToWorld(gridPosition), false);
         }
-
+        private GridData GetSelectedGridData()
+        {
+            return _buildingPrefab.BuildingConfig.buildingType == BuildingType.Neutral ? _floorData : _furnitureData;
+        }
+        
         private bool CheckPlacementValidity(Vector3Int gridPosition)
         {
-            GridData selectedData = _basicBuildingConfig.buildingType == BuildingType.Neutral ? _floorData : _furnitureData;
-            return selectedData.CanPlaceObjectAt(gridPosition, _basicBuildingConfig.size);
+            GridData selectedData = _buildingPrefab.BuildingConfig.buildingType == BuildingType.Neutral ? _floorData : _furnitureData;
+            return selectedData.CanPlaceObjectAt(gridPosition, _buildingPrefab.BuildingConfig.size);
         }
 
+        private bool IsPlacementValid(Vector3Int gridPosition)
+        {
+            GridData selectedData = GetSelectedGridData();
+            return selectedData.CanPlaceObjectAt(gridPosition, _buildingPrefab.BuildingConfig.size);
+        }
         public void UpdateState(Vector3Int gridPosition)
         {
             bool placementValidity = CheckPlacementValidity(gridPosition);
             _previewSystem.UpdatePosition(_grid.CellToWorld(gridPosition), placementValidity);
+        }
+        private void PlaySound(SoundType soundType)
+        {
+            _soundFeedback.PlaySound(soundType);
         }
     }
 }

@@ -9,11 +9,17 @@ namespace App.Scripts.Buildings
 {
     public class BasicBuildingConfig : SerializedScriptableObject
     {
-        [ReadOnly, ShowInInspector] public BuildingType buildingType;
+        [Title("Building Config")]
         public int ID;
+        public string buildingName;
+        [ReadOnly, ShowInInspector] public BuildingType buildingType;
+        
+        [Title("Building Parameters")]
         public Mesh mesh;
         public Material material;
         public Vector2Int size;
+        
+        [Title("Resources")]
         public List<ResourceRequirement> resourcesToBuild;
         public int moneyToBuild;
     }

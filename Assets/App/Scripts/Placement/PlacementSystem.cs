@@ -14,8 +14,6 @@ namespace App.Scripts.Placement
         private Vector2Int _gridOffset;
 
         [SerializeField] private GameObject gridVisualization;
-
-        [SerializeField] private Building buildingPrefab;
     
         private GridData _floorData;
         private GridData _furnitureData;
@@ -42,12 +40,12 @@ namespace App.Scripts.Placement
             _furnitureData = new GridData(gridSize);
         }
 
-        public void StartPlacement(BasicBuildingConfig basicBuildingConfig)
+        public void StartPlacement(Building building)
         {
             StopPlacement();
             gridVisualization.SetActive(true);
 
-            _buildingState = new PlacementState(resourcesManager, _buildSystem, buildingPrefab, basicBuildingConfig, grid, previewSystem, _floorData, _furnitureData, objectPlacer, soundFeedback);
+            _buildingState = new PlacementState(resourcesManager, _buildSystem, building, grid, previewSystem, _floorData, _furnitureData, objectPlacer, soundFeedback);
 
             inputManager.OnClicked += PlaceStructure;
             inputManager.OnExit += StopPlacement;

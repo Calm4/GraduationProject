@@ -23,7 +23,7 @@ namespace App.Scripts
                 case SoundType.Remove:
                     audioSource.PlayOneShot(removeSound);
                     break;
-                case SoundType.wrongPlacement:
+                case SoundType.WrongPlacement:
                     audioSource.PlayOneShot(wrongPlacementSound);
                     break;
                 default:
@@ -37,6 +37,6 @@ namespace App.Scripts
         Click,
         Place,
         Remove,
-        wrongPlacement
+        WrongPlacement
     }
 }
