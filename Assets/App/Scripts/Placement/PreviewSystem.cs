@@ -5,6 +5,7 @@ namespace App.Scripts.Placement
 {
     public class PreviewSystem : MonoBehaviour
     {
+        [SerializeField] private BuildingManager buildingManager;
         [SerializeField] private float previewYOffset = 0.06f;
         [SerializeField] private GameObject cellIndicator;
         private Building _previewObject;
@@ -50,7 +51,7 @@ namespace App.Scripts.Placement
                 Destroy(_previewObject.gameObject);
             }
         
-            _previewObject = Instantiate(prefab);
+            _previewObject = buildingManager.CreateBuilding(prefab);
             Debug.Log(prefab.BuildingConfig.mesh);
             Debug.Log(prefab.BuildingConfig.material);
             PrepareMeshAndMaterial(_previewObject);

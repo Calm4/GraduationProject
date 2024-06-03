@@ -7,23 +7,33 @@ namespace App.Scripts.Buildings
     {
         [SerializeField] private List<Building> _placedBuildings = new List<Building>();
 
-        private Building CreateBuilding(Building buildingPrefab)
+        public Building CreateBuilding(Building buildingPrefab)
         {
             Building building = Instantiate(buildingPrefab);
             building.Initialize(buildingPrefab.BuildingConfig);
 
+            InitializeComponents(building);
+
+            return building;
+        }
+
+        private void InitializeComponents(Building building)
+        {
             var meshFilter = building.GetComponent<MeshFilter>();
+            Debug.Log(meshFilter);
             if (meshFilter != null)
             {
-                meshFilter.mesh = buildingPrefab.BuildingConfig.mesh;
+                Debug.Log(meshFilter.mesh + " до");
+                meshFilter.mesh = building.BuildingConfig.mesh;
+                Debug.Log(meshFilter.mesh + " после");
             }
             var meshRenderer = building.GetComponent<MeshRenderer>();
             if (meshRenderer != null)
             {
-                meshRenderer.material = buildingPrefab.BuildingConfig.material;
+                Debug.Log(meshRenderer.material + " до");
+                meshRenderer.material = building.BuildingConfig.material;
+                Debug.Log(meshRenderer.material + " после");
             }
-
-            return building;
         }
         public Building PlaceBuilding(Building buildingPrefab, Vector3 position)
         {

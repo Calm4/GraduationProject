@@ -3004,6 +3004,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0018e5c6c198474cbd20666919d6f56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingManager: {fileID: 1932316566}
   previewYOffset: 0.06
   cellIndicator: {fileID: 1016619761}
   previewMaterialPrefab: {fileID: 2100000, guid: a3393264bb199074188fe78f8b111821, type: 2}
