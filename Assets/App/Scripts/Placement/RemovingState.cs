@@ -8,28 +8,31 @@ namespace App.Scripts.Placement
     {
         private ResourcesManager _resourcesManager;
         private GridLayout _grid;
-        private PreviewSystem _previewSystem;
+        private BuildingPreview _buildingPreview;
         private GridData _floorData;
         private GridData _furnitureData;
         private BuildingManager _buildingManager;
         private SoundFeedback _soundFeedback;
 
-        public RemovingState(ResourcesManager resourcesManager, GridLayout grid, PreviewSystem previewSystem, GridData floorData, GridData furnitureData, BuildingManager buildingManager, SoundFeedback soundFeedback)
+        public RemovingState(ResourcesManager resourcesManager,BuildingManager buildingManager, GridLayout grid, BuildingPreview buildingPreview, GridData floorData, GridData furnitureData, SoundFeedback soundFeedback)
         {
             _resourcesManager = resourcesManager;
+            _buildingManager = buildingManager;
+            
             _grid = grid;
-            _previewSystem = previewSystem;
+            _buildingPreview = buildingPreview;
+            
             _floorData = floorData;
             _furnitureData = furnitureData;
-            _buildingManager = buildingManager;
+            
             _soundFeedback = soundFeedback;
 
-            previewSystem.StartShowingRemovePreview();
+            buildingPreview.StartShowingRemovePreview();
         }
 
         public void EndState()
         {
-            _previewSystem.StopShowingPreview();
+            _buildingPreview.StopShowingPreview();
         }
 
         public void OnAction(Vector3Int gridPosition)
@@ -60,7 +63,7 @@ namespace App.Scripts.Placement
             _buildingManager.RemoveBuilding(placedObject);
 
             Vector3 cellPosition = _grid.CellToWorld(gridPosition);
-            _previewSystem.UpdatePosition(cellPosition, CheckIsSelectionIsValid(gridPosition));
+            _buildingPreview.UpdatePosition(cellPosition, CheckIsSelectionIsValid(gridPosition));
         }
 
         private bool CheckIsSelectionIsValid(Vector3Int gridPosition)
@@ -72,7 +75,7 @@ namespace App.Scripts.Placement
         public void UpdateState(Vector3Int gridPosition)
         {
             bool validity = CheckIsSelectionIsValid(gridPosition);
-            _previewSystem.UpdatePosition(_grid.CellToWorld(gridPosition),validity);
+            _buildingPreview.UpdatePosition(_grid.CellToWorld(gridPosition),validity);
         }
     }
 }

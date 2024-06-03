@@ -3,18 +3,19 @@ using UnityEngine;
 
 namespace App.Scripts.Placement
 {
-    public class PreviewSystem : MonoBehaviour
+    public class BuildingPreview : MonoBehaviour
     {
         [SerializeField] private BuildingManager buildingManager;
         [SerializeField] private float previewYOffset = 0.06f;
         [SerializeField] private GameObject cellIndicator;
-        private Building _previewObject;
         [SerializeField] private Material previewMaterialPrefab;
+        private Building _previewObject;
         private Material _previewMaterialInstance;
         private Renderer _cellIndicatorRenderer;
 
         private void Start()
         {
+            buildingManager = new BuildingManager();
             _previewMaterialInstance = new Material(previewMaterialPrefab);
             cellIndicator.SetActive(false);
             _cellIndicatorRenderer = cellIndicator.GetComponentInChildren<Renderer>();
@@ -52,8 +53,6 @@ namespace App.Scripts.Placement
             }
         
             _previewObject = buildingManager.CreateBuilding(prefab);
-            Debug.Log(prefab.BuildingConfig.mesh);
-            Debug.Log(prefab.BuildingConfig.material);
             PrepareMeshAndMaterial(_previewObject);
             PreparePreview(_previewObject);
             PrepareCursor(size);

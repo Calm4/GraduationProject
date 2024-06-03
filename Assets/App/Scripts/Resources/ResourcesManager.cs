@@ -118,5 +118,21 @@ namespace App.Scripts.Resources
 
             return 0;
         }
+        public bool CalculatePossibilityOfPlacingBuilding(BasicBuildingConfig placingObjectConfig)
+        {
+            List<ResourceRequirement> resourcesToBuild = placingObjectConfig.resourcesToBuild;
+
+            foreach (var resource in resourcesToBuild)
+            {
+                var definiteResource = GetResourceData(resource.resourceType).currentAmount;
+                if (definiteResource < resource.amountToBuild)
+                {
+                    Debug.Log($"Здание не может быть построено. Не хватает ресурса {resource.resourceType}");
+                    return false;
+                }
+            }
+
+            return true;
+        }
     }
 }

@@ -6,42 +6,39 @@ namespace App.Scripts.Placement
 {
     public class PlacementState : IBuildingState
     {
-        private ResourcesManager _resourcesManager;
-        private BuildSystem _buildSystem;
-        private GridLayout _grid;
-        private PreviewSystem _previewSystem;
-        private GridData _floorData;
-        private GridData _furnitureData;
-        private SoundFeedback _soundFeedback;
+        private readonly ResourcesManager _resourcesManager;
+        private readonly GridLayout _grid;
+        private readonly BuildingPreview _buildingPreview;
+        private readonly GridData _floorData;
+        private readonly GridData _furnitureData;
+        private readonly SoundFeedback _soundFeedback;
         
-        private BuildingManager _buildingManager;
+        private readonly BuildingManager _buildingManager;
 
-        private Building _buildingPrefab;
+        private readonly Building _buildingPrefab;
 
-        public PlacementState(ResourcesManager resourcesManager, BuildSystem buildSystem,Building buildingPrefab, GridLayout grid, PreviewSystem previewSystem,
+        public PlacementState(ResourcesManager resourcesManager,Building buildingPrefab, GridLayout grid, BuildingPreview buildingPreview,
             GridData floorData, GridData furnitureData, BuildingManager buildingManager, SoundFeedback soundFeedback)
         {
             _resourcesManager = resourcesManager;
             _buildingManager = buildingManager;
             
-            _buildSystem = buildSystem;
-            
             _buildingPrefab = buildingPrefab;
             _buildingPrefab.Initialize(buildingPrefab.BuildingConfig);
             
             _grid = grid;
-            _previewSystem = previewSystem;
+            _buildingPreview = buildingPreview;
             _floorData = floorData;
             _furnitureData = furnitureData;
             _soundFeedback = soundFeedback;
 
             
-            _previewSystem.StartShowingPlacementPreview(_buildingPrefab, _buildingPrefab.BuildingConfig.size);
+            _buildingPreview.StartShowingPlacementPreview(_buildingPrefab, _buildingPrefab.BuildingConfig.size);
         }
         
         public void EndState()
         {
-            _previewSystem.StopShowingPreview();
+            _buildingPreview.StopShowingPreview();
         }
 
         public void OnAction(Vector3Int gridPosition)
@@ -57,7 +54,7 @@ namespace App.Scripts.Placement
         
         private void PlaceBuilding(Vector3Int gridPosition)
         {
-            if (!_buildSystem.CanAccommodateBuilding(_buildingPrefab.BuildingConfig))
+            if (!_resourcesManager.CalculatePossibilityOfPlacingBuilding(_buildingPrefab.BuildingConfig))
             {
                 PlaySound(SoundType.WrongPlacement);
                 return;
@@ -71,7 +68,7 @@ namespace App.Scripts.Placement
             GridData selectedData = GetSelectedGridData();
             selectedData.AddObjectAt(gridPosition, _buildingPrefab.BuildingConfig.size, _buildingPrefab.BuildingConfig.ID, creatableBuilding);
 
-            _previewSystem.UpdatePosition(_grid.CellToWorld(gridPosition), false);
+            _buildingPreview.UpdatePosition(_grid.CellToWorld(gridPosition), false);
         }
         private GridData GetSelectedGridData()
         {
@@ -92,7 +89,7 @@ namespace App.Scripts.Placement
         public void UpdateState(Vector3Int gridPosition)
         {
             bool placementValidity = CheckPlacementValidity(gridPosition);
-            _previewSystem.UpdatePosition(_grid.CellToWorld(gridPosition), placementValidity);
+            _buildingPreview.UpdatePosition(_grid.CellToWorld(gridPosition), placementValidity);
         }
         private void PlaySound(SoundType soundType)
         {
