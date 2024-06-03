@@ -12,28 +12,33 @@ namespace App.Scripts.Placement
         private PreviewSystem _previewSystem;
         private GridData _floorData;
         private GridData _furnitureData;
-        private ObjectPlacer _objectPlacer;
         private SoundFeedback _soundFeedback;
+        
+        private BuildingManager _buildingManager;
 
         private Building _buildingPrefab;
 
         public PlacementState(ResourcesManager resourcesManager, BuildSystem buildSystem,Building buildingPrefab, GridLayout grid, PreviewSystem previewSystem,
-            GridData floorData, GridData furnitureData, ObjectPlacer objectPlacer, SoundFeedback soundFeedback)
+            GridData floorData, GridData furnitureData, BuildingManager buildingManager, SoundFeedback soundFeedback)
         {
             _resourcesManager = resourcesManager;
+            _buildingManager = buildingManager;
+            
             _buildSystem = buildSystem;
+            
             _buildingPrefab = buildingPrefab;
+            _buildingPrefab.Initialize(buildingPrefab.BuildingConfig);
+            
             _grid = grid;
             _previewSystem = previewSystem;
             _floorData = floorData;
             _furnitureData = furnitureData;
-            _objectPlacer = objectPlacer;
             _soundFeedback = soundFeedback;
 
-        
+            
             _previewSystem.StartShowingPlacementPreview(_buildingPrefab, _buildingPrefab.BuildingConfig.size);
         }
-
+        
         public void EndState()
         {
             _previewSystem.StopShowingPreview();
@@ -61,7 +66,7 @@ namespace App.Scripts.Placement
             PlaySound(SoundType.Place);
             _resourcesManager.TakeAwayResourcesForConstruction(_buildingPrefab.BuildingConfig);
 
-            Building creatableBuilding = _objectPlacer.PlaceObject(_buildingPrefab, _grid.CellToWorld(gridPosition), _buildingPrefab.BuildingConfig);
+            Building creatableBuilding = _buildingManager.PlaceBuilding(_buildingPrefab,_grid.CellToWorld(gridPosition));
 
             GridData selectedData = GetSelectedGridData();
             selectedData.AddObjectAt(gridPosition, _buildingPrefab.BuildingConfig.size, _buildingPrefab.BuildingConfig.ID, creatableBuilding);

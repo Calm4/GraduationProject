@@ -1,4 +1,5 @@
 using App.Scripts.Buildings;
+using App.Scripts.Buildings.BuildingFactory;
 using App.Scripts.GameInput;
 using App.Scripts.Resources;
 using UnityEngine;
@@ -14,12 +15,12 @@ namespace App.Scripts.Placement
         private Vector2Int _gridOffset;
 
         [SerializeField] private GameObject gridVisualization;
-    
+
         private GridData _floorData;
         private GridData _furnitureData;
 
         [SerializeField] private PreviewSystem previewSystem;
-        [SerializeField] private ObjectPlacer objectPlacer;
+        [SerializeField] private BuildingManager buildingManager;
 
         [SerializeField] private ResourcesManager resourcesManager;
         private BuildSystem _buildSystem;
@@ -29,23 +30,29 @@ namespace App.Scripts.Placement
         private IBuildingState _buildingState;
 
         [SerializeField] private SoundFeedback soundFeedback;
+        [SerializeField] private Building buildingPrefab;
+
 
         private void Start()
         {
             StopPlacement();
-;
             _buildSystem = new BuildSystem(resourcesManager);
-            
+
             _floorData = new GridData(gridSize);
             _furnitureData = new GridData(gridSize);
+
+            inputManager.OnExit += StopPlacement;
         }
 
-        public void StartPlacement(Building building)
+        public void StartPlacement(BasicBuildingConfig buildingConfig)
         {
             StopPlacement();
             gridVisualization.SetActive(true);
+            
+            buildingPrefab.Initialize(buildingConfig);
 
-            _buildingState = new PlacementState(resourcesManager, _buildSystem, building, grid, previewSystem, _floorData, _furnitureData, objectPlacer, soundFeedback);
+            _buildingState = new PlacementState(resourcesManager, _buildSystem, buildingPrefab, grid, previewSystem,
+                _floorData, _furnitureData, buildingManager, soundFeedback);
 
             inputManager.OnClicked += PlaceStructure;
             inputManager.OnExit += StopPlacement;
@@ -55,8 +62,9 @@ namespace App.Scripts.Placement
         {
             StopPlacement();
             gridVisualization.SetActive(true);
-            
-            _buildingState = new RemovingState(resourcesManager, grid, previewSystem, _floorData, _furnitureData, objectPlacer, soundFeedback);
+
+            _buildingState = new RemovingState(resourcesManager, grid, previewSystem, _floorData, _furnitureData,
+                buildingManager, soundFeedback);
 
             inputManager.OnClicked += PlaceStructure;
             inputManager.OnExit += StopPlacement;
@@ -90,6 +98,7 @@ namespace App.Scripts.Placement
             _buildingState = null;
         }
 
+
         private void Update()
         {
             if (_buildingState == null)
@@ -105,5 +114,6 @@ namespace App.Scripts.Placement
                 _lastDetectedPosition = gridPosition;
             }
         }
+        
     }
 }

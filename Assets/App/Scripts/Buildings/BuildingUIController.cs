@@ -15,11 +15,10 @@ namespace App.Scripts.Buildings.BuildingFactory
         [Title("Building Configs List")]
         [SerializeField] private BasicBuildingConfig[] buildingConfigs;
 
-        private BuildingFactory _buildingFactory;
+
 
         private void Start()
         {
-            _buildingFactory = new BuildingFactory(buildingPrefab);
             GenerateButtons();
         }
 
@@ -46,8 +45,7 @@ namespace App.Scripts.Buildings.BuildingFactory
 
         private void OnBuildingButtonClicked(BasicBuildingConfig buildingConfig)
         {
-            Building building = _buildingFactory.CreateBuilding(buildingConfig);
-            placementSystem.StartPlacement(building);
+            placementSystem.StartPlacement(buildingConfig);
         }
     }
 }

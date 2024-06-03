@@ -11,17 +11,17 @@ namespace App.Scripts.Placement
         private PreviewSystem _previewSystem;
         private GridData _floorData;
         private GridData _furnitureData;
-        private ObjectPlacer _objectPlacer;
+        private BuildingManager _buildingManager;
         private SoundFeedback _soundFeedback;
 
-        public RemovingState(ResourcesManager resourcesManager, GridLayout grid, PreviewSystem previewSystem, GridData floorData, GridData furnitureData, ObjectPlacer objectPlacer, SoundFeedback soundFeedback)
+        public RemovingState(ResourcesManager resourcesManager, GridLayout grid, PreviewSystem previewSystem, GridData floorData, GridData furnitureData, BuildingManager buildingManager, SoundFeedback soundFeedback)
         {
             _resourcesManager = resourcesManager;
             _grid = grid;
             _previewSystem = previewSystem;
             _floorData = floorData;
             _furnitureData = furnitureData;
-            _objectPlacer = objectPlacer;
+            _buildingManager = buildingManager;
             _soundFeedback = soundFeedback;
 
             previewSystem.StartShowingRemovePreview();
@@ -57,7 +57,7 @@ namespace App.Scripts.Placement
 
             _resourcesManager.ReturnHalfOfResourcesForDestructionBuilding(placedObject.BuildingConfig);
             selectedData.RemoveObjectAt(gridPosition);
-            _objectPlacer.RemoveObject(placedObject);
+            _buildingManager.RemoveBuilding(placedObject);
 
             Vector3 cellPosition = _grid.CellToWorld(gridPosition);
             _previewSystem.UpdatePosition(cellPosition, CheckIsSelectionIsValid(gridPosition));

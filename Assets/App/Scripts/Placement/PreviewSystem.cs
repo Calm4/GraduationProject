@@ -45,8 +45,15 @@ namespace App.Scripts.Placement
 
         public void StartShowingPlacementPreview(Building prefab, Vector2Int size)
         {
+            if (_previewObject != null)
+            {
+                Destroy(_previewObject.gameObject);
+            }
+        
             _previewObject = Instantiate(prefab);
-            PrepareMeshAndMaterial(prefab);
+            Debug.Log(prefab.BuildingConfig.mesh);
+            Debug.Log(prefab.BuildingConfig.material);
+            PrepareMeshAndMaterial(_previewObject);
             PreparePreview(_previewObject);
             PrepareCursor(size);
             cellIndicator.SetActive(true);
@@ -80,7 +87,8 @@ namespace App.Scripts.Placement
             cellIndicator.SetActive(false);
             if (_previewObject != null)
             {
-                Destroy(_previewObject);
+                Destroy(_previewObject.gameObject);
+                _previewObject = null;
             }
         }
 
