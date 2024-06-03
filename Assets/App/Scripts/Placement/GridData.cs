@@ -7,7 +7,7 @@ namespace App.Scripts.Placement
 {
     public class GridData
     {
-        private Dictionary<Vector3Int, PlacementData> _placedObjects = new();
+        private readonly Dictionary<Vector3Int, PlacementData> _placedObjects = new();
         private Vector2Int _gridSize;
         private Vector2Int _gridOffset;
 
@@ -23,12 +23,10 @@ namespace App.Scripts.Placement
             PlacementData data = new PlacementData(positionsToOccupy, id, placedObject);
             foreach (var position in positionsToOccupy)
             {
-                if (_placedObjects.ContainsKey(position))
+                if (!_placedObjects.TryAdd(position, data))
                 {
                     throw new Exception($"Dictionary already contains this cell position {position}");
                 }
-
-                _placedObjects[position] = data;
             }
         }
 
@@ -68,12 +66,12 @@ namespace App.Scripts.Placement
 
         public Building GetPlacedObject(Vector3Int gridPosition)
         {
-            if (!_placedObjects.ContainsKey(gridPosition))
+            if (!_placedObjects.TryGetValue(gridPosition, out var placedOnThisPositionBuilding))
             {
                 return null;
             }
 
-            return _placedObjects[gridPosition].PlacedObject;
+            return placedOnThisPositionBuilding.PlacedBuilding;
         }
 
         public void RemoveObjectAt(Vector3Int gridPosition)

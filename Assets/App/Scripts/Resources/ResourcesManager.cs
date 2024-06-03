@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using App.Scripts.Buildings;
+using App.Scripts.Buildings.BuildingsConfigs;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -101,9 +101,9 @@ namespace App.Scripts.Resources
 
         public int GetResourceCurrentAmount(ResourceType resourceType)
         {
-            if (_resources.ContainsKey(resourceType))
+            if (_resources.TryGetValue(resourceType, out var resource))
             {
-                return _resources[resourceType].currentAmount;
+                return resource.currentAmount;
             }
 
             return 0;
@@ -111,9 +111,9 @@ namespace App.Scripts.Resources
 
         public int GetResourceMaxAmount(ResourceType resourceType)
         {
-            if (_resources.ContainsKey(resourceType))
+            if (_resources.TryGetValue(resourceType, out var resource))
             {
-                return _resources[resourceType].maxAmount;
+                return resource.maxAmount;
             }
 
             return 0;

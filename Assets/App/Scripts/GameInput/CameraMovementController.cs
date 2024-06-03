@@ -19,13 +19,12 @@ namespace App.Scripts.GameInput
             float rotation = Input.GetAxis("Mouse X");
 
             Ray ray = new Ray(transform.position, transform.forward);
-            RaycastHit hit;
 
             Debug.DrawRay(ray.origin, ray.direction * 100, Color.red);
 
-            if (Physics.Raycast(ray, out hit, 100))
+            if (Physics.Raycast(ray, out var hit, 100))
             {
-                Debug.Log("Hitted");
+                Debug.Log("Hit");
                 transform.RotateAround(hit.point, Vector3.up, rotation * cameraConfig.rotationSpeed * Time.deltaTime);
             }
         }

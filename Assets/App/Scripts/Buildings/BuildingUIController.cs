@@ -1,16 +1,17 @@
-﻿using App.Scripts.Placement;
+﻿using App.Scripts.Buildings.BuildingsConfigs;
+using App.Scripts.Placement;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace App.Scripts.Buildings.BuildingFactory
+namespace App.Scripts.Buildings
 {
     public class BuildingUIController : MonoBehaviour
     {
         [SerializeField] private GameObject buttonPrefab; 
         [SerializeField] private Transform buttonContainer; 
-        [SerializeField] private PlacementSystem placementSystem;
+        [SerializeField] private PlacementManager placementManager;
         [SerializeField] private Building buildingPrefab;
         [Title("Building Configs List")]
         [SerializeField] private BasicBuildingConfig[] buildingConfigs;
@@ -24,16 +25,16 @@ namespace App.Scripts.Buildings.BuildingFactory
 
         private void GenerateButtons()
         {
-            for (int i = 0; i < buildingConfigs.Length; i++)
+            foreach (var config in buildingConfigs)
             {
-                var config = buildingConfigs[i];
                 var buttonInstance = Instantiate(buttonPrefab, buttonContainer);
                 var button = buttonInstance.GetComponent<Button>();
                 var buttonText = buttonInstance.GetComponentInChildren<TMP_Text>(); 
 
                 if (button != null)
                 {
-                    button.onClick.AddListener(() => OnBuildingButtonClicked(config));
+                    var tempConfig = config;
+                    button.onClick.AddListener(() => OnBuildingButtonClicked(tempConfig));
                     
                     if (buttonText != null)
                     {
@@ -45,7 +46,7 @@ namespace App.Scripts.Buildings.BuildingFactory
 
         private void OnBuildingButtonClicked(BasicBuildingConfig buildingConfig)
         {
-            placementSystem.StartPlacement(buildingConfig);
+            placementManager.StartPlacement(buildingConfig);
         }
     }
 }

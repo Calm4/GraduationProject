@@ -6,13 +6,13 @@ namespace App.Scripts.Placement
 {
     public class RemovingState : IBuildingState
     {
-        private ResourcesManager _resourcesManager;
-        private GridLayout _grid;
-        private BuildingPreview _buildingPreview;
-        private GridData _floorData;
-        private GridData _furnitureData;
-        private BuildingManager _buildingManager;
-        private SoundFeedback _soundFeedback;
+        private readonly ResourcesManager _resourcesManager;
+        private readonly GridLayout _grid;
+        private readonly BuildingPreview _buildingPreview;
+        private readonly GridData _floorData;
+        private readonly GridData _furnitureData;
+        private readonly BuildingManager _buildingManager;
+        private readonly SoundFeedback _soundFeedback;
 
         public RemovingState(ResourcesManager resourcesManager,BuildingManager buildingManager, GridLayout grid, BuildingPreview buildingPreview, GridData floorData, GridData furnitureData, SoundFeedback soundFeedback)
         {

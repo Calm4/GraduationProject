@@ -8,13 +8,13 @@ namespace App.Scripts.Placement
     {
         public List<Vector3Int> OccupiesPositions { get; }
         public int ID { get; }
-        public Building PlacedObject { get; }
+        public Building PlacedBuilding { get; }
 
-        public PlacementData(List<Vector3Int> occupiesPositions, int id, Building placedObject)
+        public PlacementData(List<Vector3Int> occupiesPositions, int id, Building placedBuilding)
         {
             OccupiesPositions = occupiesPositions;
             ID = id;
-            PlacedObject = placedObject;
+            PlacedBuilding = placedBuilding;
         }
     }
 }

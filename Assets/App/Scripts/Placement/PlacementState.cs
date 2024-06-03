@@ -1,4 +1,5 @@
 using App.Scripts.Buildings;
+using App.Scripts.Buildings.BuildingsConfigs;
 using App.Scripts.Resources;
 using UnityEngine;
 

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace App.Scripts
@@ -27,7 +28,7 @@ namespace App.Scripts
                     audioSource.PlayOneShot(wrongPlacementSound);
                     break;
                 default:
-                    break;
+                    throw new ArgumentOutOfRangeException(nameof(soundType), soundType, null);
             }
         }
     }

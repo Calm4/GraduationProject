@@ -27,13 +27,13 @@ namespace App.Scripts
             SaveMesh(targetMeshFilter.sharedMesh, gameObject.name, false, true);
         }
 
-        private void SaveMesh(Mesh mesh, string name, bool makeNewInstance, bool optimizeMesh)
+        private void SaveMesh(Mesh mesh, string objName, bool makeNewInstance, bool optimizeMesh)
         {
-            string path = EditorUtility.SaveFilePanel("Save Separate Mesh Agent", "Assets/Media/Meshes", name, "asset");
+            string path = EditorUtility.SaveFilePanel("Save Separate Mesh Agent", "Assets/Media/Meshes", objName, "asset");
 
             path = FileUtil.GetProjectRelativePath(path);
 
-            Mesh meshToSave = (makeNewInstance) ? Object.Instantiate(mesh) as Mesh : mesh;
+            Mesh meshToSave = (makeNewInstance) ? Instantiate(mesh) : mesh;
 
             if (optimizeMesh)
             {

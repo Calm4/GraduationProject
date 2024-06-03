@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
 using App.Scripts.Resources;
 using Sirenix.OdinInspector;
-using Sirenix.Serialization;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace App.Scripts.Buildings
+namespace App.Scripts.Buildings.BuildingsConfigs
 {
     public class BasicBuildingConfig : SerializedScriptableObject
     {

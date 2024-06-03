@@ -1,4 +1,5 @@
 using App.Scripts.Buildings;
+using App.Scripts.Buildings.BuildingsConfigs;
 using App.Scripts.GameInput;
 using App.Scripts.Resources;
 using Sirenix.OdinInspector;
@@ -6,7 +7,7 @@ using UnityEngine;
 
 namespace App.Scripts.Placement
 {
-    public class PlacementSystem : MonoBehaviour
+    public class PlacementManager : MonoBehaviour
     {
         [Title("Grid"), Space] [SerializeField]
         private GridLayout grid;
@@ -18,9 +19,8 @@ namespace App.Scripts.Placement
         private GridData _floorData;
         private GridData _furnitureData;
 
-        [Title("Managers"), Space] [SerializeField]
-        private InputManager inputManager;
-
+        [Title("Managers"), Space] 
+        [SerializeField] private InputManager inputManager;
         [SerializeField] private BuildingManager buildingManager;
         [SerializeField] private ResourcesManager resourcesManager;
 

@@ -9,22 +9,22 @@ namespace App.Scripts.Placement
         [SerializeField] private float previewYOffset = 0.06f;
         [SerializeField] private GameObject cellIndicator;
         [SerializeField] private Material previewMaterialPrefab;
+        
         private Building _previewObject;
         private Material _previewMaterialInstance;
         private Renderer _cellIndicatorRenderer;
 
         private void Start()
         {
-            buildingManager = new BuildingManager();
             _previewMaterialInstance = new Material(previewMaterialPrefab);
             cellIndicator.SetActive(false);
             _cellIndicatorRenderer = cellIndicator.GetComponentInChildren<Renderer>();
         }
 
-        private void PrepareMeshAndMaterial(Building prefab)
+        private void PrepareMeshAndMaterial(Building buildingPrefab)
         {
             //TODO: ПОФИКСИТЬ СИСТЕМУ PREVIEW
-            MeshFilter prefabMeshFilter = prefab.GetComponent<MeshFilter>();
+            MeshFilter prefabMeshFilter = buildingPrefab.GetComponent<MeshFilter>();
             if (prefabMeshFilter != null)
             {
                 MeshFilter previewMeshFilter = _previewObject.GetComponent<MeshFilter>();
@@ -34,7 +34,7 @@ namespace App.Scripts.Placement
                 }
             }
 
-            MeshRenderer prefabMeshRenderer = prefab.GetComponent<MeshRenderer>();
+            MeshRenderer prefabMeshRenderer = buildingPrefab.GetComponent<MeshRenderer>();
             if (prefabMeshRenderer != null)
             {
                 MeshRenderer previewMeshRenderer = _previewObject.GetComponent<MeshRenderer>();
@@ -69,16 +69,16 @@ namespace App.Scripts.Placement
 
         private void PreparePreview(Building building)
         {
-            Renderer[] renderers = _previewObject.GetComponentsInChildren<Renderer>();
-            foreach (var renderer in renderers)
+            Renderer[] renderers = building.GetComponentsInChildren<Renderer>();
+            foreach (var render in renderers)
             {
-                Material[] materials = renderer.materials;
+                Material[] materials = render.materials;
                 for (int i = 0; i < materials.Length; i++)
                 {
                     materials[i] = _previewMaterialInstance;
                 }
 
-                renderer.materials = materials;
+                render.materials = materials;
             }
         }
 

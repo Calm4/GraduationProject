@@ -1,4 +1,4 @@
-﻿namespace App.Scripts.Resources
+﻿namespace App.Scripts.Resources.Money
 {
     public class MoneyManager
     {
@@ -6,7 +6,7 @@
 
         public MoneyManager(MoneyConfig moneyConfig)
         {
-            this.MoneyConfig = moneyConfig;
+            MoneyConfig = moneyConfig;
         }
 
         public void AddMoney(int amount)

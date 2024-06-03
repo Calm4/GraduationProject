@@ -1,4 +1,4 @@
-﻿namespace App.Scripts.Buildings
+﻿namespace App.Scripts.Buildings.BuildingsConfigs
 {
     public enum BuildingType
     {

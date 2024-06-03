@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace App.Scripts.Resources
+namespace App.Scripts.Resources.Money
 {
     [CreateAssetMenu(fileName = "MoneyConfig", menuName = "Configs/Resources/MoneyConfig", order = 0)]
     public class MoneyConfig : ScriptableObject
