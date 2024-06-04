@@ -1,3 +1,4 @@
+using System;
 using App.Scripts.Buildings;
 using App.Scripts.Buildings.BuildingsConfigs;
 using App.Scripts.Resources;
@@ -17,6 +18,8 @@ namespace App.Scripts.Placement
         private readonly BuildingManager _buildingManager;
 
         private readonly Building _buildingPrefab;
+
+        
 
         public PlacementState(ResourcesManager resourcesManager,Building buildingPrefab, GridLayout grid, BuildingPreview buildingPreview,
             GridData floorData, GridData furnitureData, BuildingManager buildingManager, SoundFeedback soundFeedback)

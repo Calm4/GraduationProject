@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using App.Scripts.Buildings.BuildingsConfigs;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -8,7 +9,9 @@ namespace App.Scripts.Resources
     public class ResourcesManager : SerializedMonoBehaviour
     {
         [SerializeField] private Dictionary<ResourceType, ResourceData> _resources;
-
+        
+        public event Action OnUpdateResources;
+        
         public ResourcesManager(Dictionary<ResourceType, ResourceData> resources)
         {
             _resources = resources;
@@ -55,6 +58,7 @@ namespace App.Scripts.Resources
 
                 _resources[resource.resourceType] = resourceData;
             }
+            OnUpdateResources?.Invoke();
         }
         public void TakeAwayResourcesForConstruction(BasicBuildingConfig placingObjectConfig)
         {
@@ -72,6 +76,7 @@ namespace App.Scripts.Resources
 
                 _resources[resource.resourceType] = resourceData; 
             }
+            OnUpdateResources?.Invoke();
         }
 
         public void ReduceResource(int amount, ResourceType resourceType)
