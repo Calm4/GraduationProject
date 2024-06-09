@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: resourses_0
+      name: WheatImage
       rect:
         serializedVersion: 2
         x: 0
@@ -144,7 +144,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: resourses_1
+      name: WoodImage
       rect:
         serializedVersion: 2
         x: 240
@@ -165,7 +165,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: resourses_2
+      name: IronImage
       rect:
         serializedVersion: 2
         x: 480
@@ -186,7 +186,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: resourses_3
+      name: MeatImage
       rect:
         serializedVersion: 2
         x: 720
@@ -207,7 +207,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: resourses_4
+      name: SkinImage
       rect:
         serializedVersion: 2
         x: 944
@@ -228,7 +228,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: resourses_5
+      name: CottonImage
       rect:
         serializedVersion: 2
         x: 0
@@ -249,7 +249,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: resourses_6
+      name: FabricImage
       rect:
         serializedVersion: 2
         x: 240
@@ -270,7 +270,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: resourses_7
+      name: GoldImage
       rect:
         serializedVersion: 2
         x: 480
@@ -291,7 +291,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: resourses_8
+      name: CoalImage
       rect:
         serializedVersion: 2
         x: 720
@@ -312,7 +312,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: resourses_9
+      name: GemImage
       rect:
         serializedVersion: 2
         x: 944
@@ -343,16 +343,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      resourses_0: 1608621086
-      resourses_1: -475999896
-      resourses_2: -1028281216
-      resourses_3: 1761316613
-      resourses_4: -1892438907
-      resourses_5: 1917437548
-      resourses_6: -223129050
-      resourses_7: -701838314
-      resourses_8: -1459979030
-      resourses_9: 845424930
+      CoalImage: -1459979030
+      CottonImage: 1917437548
+      FabricImage: -223129050
+      GemImage: 845424930
+      GoldImage: -701838314
+      IronImage: -1028281216
+      MeatImage: 1761316613
+      SkinImage: -1892438907
+      WheatImage: 1608621086
+      WoodImage: -475999896
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
