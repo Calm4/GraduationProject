@@ -2,6 +2,8 @@ using System;
 using App.Scripts.Buildings;
 using App.Scripts.Buildings.BuildingsConfigs;
 using App.Scripts.Resources;
+using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using UnityEngine;
 
 namespace App.Scripts.Placement
@@ -12,7 +14,7 @@ namespace App.Scripts.Placement
         private readonly GridLayout _grid;
         private readonly BuildingPreview _buildingPreview;
         private readonly GridData _floorData;
-        private readonly GridData _furnitureData;
+         private readonly GridData _furnitureData;
         private readonly SoundFeedback _soundFeedback;
         
         private readonly BuildingManager _buildingManager;

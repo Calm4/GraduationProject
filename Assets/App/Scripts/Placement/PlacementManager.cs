@@ -3,6 +3,7 @@ using App.Scripts.Buildings.BuildingsConfigs;
 using App.Scripts.GameInput;
 using App.Scripts.Resources;
 using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using UnityEngine;
 
 namespace App.Scripts.Placement
@@ -37,6 +38,11 @@ namespace App.Scripts.Placement
 
         private Vector3Int _lastDetectedPosition = Vector3Int.zero;
 
+        [Button]
+        public void GetGridData()
+        {
+            _furnitureData.PrintGridState();
+        }
 
         private void Start()
         {
@@ -107,6 +113,7 @@ namespace App.Scripts.Placement
             _buildingState = null;
         }
 
+        
 
         private void Update()
         {

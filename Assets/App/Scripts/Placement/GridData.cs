@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using App.Scripts.Buildings;
 using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using UnityEngine;
 
 namespace App.Scripts.Placement
@@ -74,7 +75,7 @@ namespace App.Scripts.Placement
             return positions;
         }
         
-        [Button]
+        
         public void PrintGridState()
         {
             for (int y = 0; y < _gridSize.y; y++)
