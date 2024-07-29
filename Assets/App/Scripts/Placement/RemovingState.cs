@@ -59,7 +59,7 @@ namespace App.Scripts.Placement
             }
 
             _resourcesManager.ReturnHalfOfResourcesForDestructionBuilding(placedObject.BuildingConfig);
-            selectedData.RemoveObjectAt(gridPosition);
+            selectedData.RemoveObjectAt(gridPosition, placedObject.BuildingConfig.size);
             _buildingManager.RemoveBuilding(placedObject);
 
             Vector3 cellPosition = _grid.CellToWorld(gridPosition);
