@@ -9,8 +9,8 @@ namespace App.Scripts.Placement
 {
     public class PlacementManager : MonoBehaviour
     {
-        [Title("Grid"), Space] [SerializeField]
-        private GridLayout grid;
+        [Title("Grid"), Space] 
+        [SerializeField] private GridLayout grid;
 
         [SerializeField] private Vector2Int gridSize;
         [SerializeField] private GameObject gridVisualization;
@@ -31,8 +31,8 @@ namespace App.Scripts.Placement
 
         private IBuildingState _buildingState;
 
-        [Title("Sound"), Space] [SerializeField]
-        private SoundFeedback soundFeedback;
+        [Title("Sound"), Space] 
+        [SerializeField] private SoundFeedback soundFeedback;
 
 
         private Vector3Int _lastDetectedPosition = Vector3Int.zero;
@@ -74,6 +74,11 @@ namespace App.Scripts.Placement
             inputManager.OnExit += StopPlacement;
         }
 
+        [Button]
+        private void GridInfo()
+        {
+            Debug.Log(grid);
+        }
         private void PlaceStructure()
         {
             if (inputManager.IsPointerOverUI())

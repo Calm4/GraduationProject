@@ -70,7 +70,7 @@ namespace App.Scripts.Placement
             Building creatableBuilding = _buildingManager.PlaceBuilding(_buildingPrefab,_grid.CellToWorld(gridPosition));
 
             GridData selectedData = GetSelectedGridData();
-            selectedData.AddObjectAt(gridPosition, _buildingPrefab.BuildingConfig.size, _buildingPrefab.BuildingConfig.ID, creatableBuilding);
+            selectedData.AddObjectAt(gridPosition, _buildingPrefab.BuildingConfig.size, creatableBuilding);
 
             _buildingPreview.UpdatePosition(_grid.CellToWorld(gridPosition), false);
         }
