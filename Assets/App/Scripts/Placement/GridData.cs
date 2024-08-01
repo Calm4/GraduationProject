@@ -16,7 +16,7 @@ namespace App.Scripts.Placement
         public GridData(Vector2Int gridSize)
         {
             _gridSize = gridSize;
-            _gridOffset = -(_gridSize / 2);
+            _gridOffset = Vector2Int.zero;
             
             gridCells = new GridCell[gridSize.x, gridSize.y];
             for (int x = 0; x < gridSize.x; x++)
