@@ -10,7 +10,18 @@ namespace App.Scripts.Placement
         //private readonly Dictionary<Vector3Int, PlacementData> _placedObjects = new();
         private Vector2Int _gridSize;
         private Vector2Int _gridOffset;
-
+        public void PrintGridState()
+        {
+            for (int y = 0; y < _gridSize.y; y++)
+            {
+                string row = "";
+                for (int x = 0; x < _gridSize.x; x++)
+                {
+                    row += gridCells[x, y].IsOccupied ? "[X]" : "[ ]";
+                }
+                Debug.Log(row);
+            }
+        }
         public GridData(Vector2Int gridSize)
         {
             _gridSize = gridSize;

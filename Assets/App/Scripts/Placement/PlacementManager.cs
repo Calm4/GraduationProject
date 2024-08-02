@@ -36,7 +36,11 @@ namespace App.Scripts.Placement
 
 
         private Vector3Int _lastDetectedPosition = Vector3Int.zero;
-
+        [Button]
+        public void GetGridData()
+        {
+            _furnitureData.PrintGridState();
+        }
         private void Start()
         {
             StopPlacement();
