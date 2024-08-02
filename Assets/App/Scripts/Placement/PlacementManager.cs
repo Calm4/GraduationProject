@@ -10,11 +10,11 @@ namespace App.Scripts.Placement
     public class PlacementManager : MonoBehaviour
     {
         [Title("Grid"), Space] 
-        [SerializeField] private GridLayout grid;
-        [SerializeField] private Vector2Int gridSize;
-        [SerializeField] private GameObject gridVisualization;
-        [SerializeField] private GameObject floor;
-
+        [SerializeField][VerticalGroup("Grid Settings")] private GridLayout grid;
+        [SerializeField][VerticalGroup("Grid Settings")] private Vector2Int gridSize;
+        [SerializeField][VerticalGroup("Grid Settings")] private GameObject gridVisualization;
+        [SerializeField][VerticalGroup("Grid Settings")] private GameObject floor;
+        
         private Vector2Int _gridOffset;
         private GridData _floorData;
         private GridData _furnitureData;
@@ -74,7 +74,7 @@ namespace App.Scripts.Placement
             inputManager.OnExit += StopPlacement;
         }
 
-        [Button]
+        [Button, VerticalGroup("Grid Settings")]
         private void GridSetup()
         {
             var gridOffset = Vector3.zero - new Vector3((float)gridSize.x/2, 0, (float)gridSize.y/2);
