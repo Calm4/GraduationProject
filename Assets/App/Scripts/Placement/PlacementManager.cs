@@ -3,7 +3,6 @@ using App.Scripts.Buildings.BuildingsConfigs;
 using App.Scripts.GameInput;
 using App.Scripts.Resources;
 using Sirenix.OdinInspector;
-using Sirenix.Serialization;
 using UnityEngine;
 
 namespace App.Scripts.Placement
@@ -12,9 +11,9 @@ namespace App.Scripts.Placement
     {
         [Title("Grid"), Space] 
         [SerializeField] private GridLayout grid;
-
         [SerializeField] private Vector2Int gridSize;
         [SerializeField] private GameObject gridVisualization;
+        [SerializeField] private GameObject floor;
 
         private Vector2Int _gridOffset;
         private GridData _floorData;
@@ -38,18 +37,13 @@ namespace App.Scripts.Placement
 
         private Vector3Int _lastDetectedPosition = Vector3Int.zero;
 
-        [Button]
-        public void GetGridData()
-        {
-            _furnitureData.PrintGridState();
-        }
-
         private void Start()
         {
             StopPlacement();
-
+            
             _floorData = new GridData(gridSize);
             _furnitureData = new GridData(gridSize);
+            GridSetup();
 
             inputManager.OnExit += StopPlacement;
         }
@@ -81,9 +75,14 @@ namespace App.Scripts.Placement
         }
 
         [Button]
-        private void GridInfo()
+        private void GridSetup()
         {
-            Debug.Log(grid);
+            var gridOffset = Vector3.zero - new Vector3((float)gridSize.x/2, 0, (float)gridSize.y/2);
+            grid.transform.position = gridOffset;
+
+            var gridVisualizationSize = new Vector3((float)gridSize.x / 10, 1, (float)gridSize.y / 10);
+            gridVisualization.transform.localScale = gridVisualizationSize;
+            floor.transform.localScale = gridVisualizationSize;
         }
         private void PlaceStructure()
         {

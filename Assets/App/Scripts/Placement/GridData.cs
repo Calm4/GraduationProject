@@ -1,7 +1,5 @@
 using System.Collections.Generic;
 using App.Scripts.Buildings;
-using Sirenix.OdinInspector;
-using Sirenix.Serialization;
 using UnityEngine;
 
 namespace App.Scripts.Placement
@@ -73,20 +71,6 @@ namespace App.Scripts.Placement
                 }
             }
             return positions;
-        }
-        
-        
-        public void PrintGridState()
-        {
-            for (int y = 0; y < _gridSize.y; y++)
-            {
-                string row = "";
-                for (int x = 0; x < _gridSize.x; x++)
-                {
-                    row += gridCells[x, y].IsOccupied ? "[X]" : "[ ]";
-                }
-                Debug.Log(row);
-            }
         }
 
         private bool IsWithinBounds(Vector3Int position)

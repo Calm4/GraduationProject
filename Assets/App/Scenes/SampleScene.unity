@@ -300,7 +300,6 @@ Transform:
   m_Children:
   - {fileID: 407665853}
   - {fileID: 1016619760}
-  - {fileID: 1337430599}
   - {fileID: 1684993284}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1020,7 +1019,7 @@ Transform:
   m_GameObject: {fileID: 385181511}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10, y: 0, z: -10}
+  m_LocalPosition: {x: -3, y: 0, z: -3.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1071,6 +1070,7 @@ Transform:
   - {fileID: 864965514}
   - {fileID: 1932316565}
   - {fileID: 805235754}
+  - {fileID: 1337430599}
   m_Father: {fileID: 118223971}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &417493530
@@ -3395,7 +3395,7 @@ GameObject:
   - component: {fileID: 1112236720}
   - component: {fileID: 1112236719}
   m_Layer: 3
-  m_Name: GridVisualization
+  m_Name: GridShaderVisualization
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3483,7 +3483,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.015, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.6, y: 1, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1337430599}
@@ -3891,7 +3891,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1337430599}
   m_Layer: 0
-  m_Name: GridParent
+  m_Name: GridSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3913,7 +3913,7 @@ Transform:
   - {fileID: 1112236722}
   - {fileID: 385181512}
   - {fileID: 2140119112}
-  m_Father: {fileID: 118223971}
+  m_Father: {fileID: 407665853}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1351878652
 GameObject:
@@ -6022,8 +6022,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 385181513}
-  gridSize: {x: 30, y: 30}
+  gridSize: {x: 12, y: 4}
   gridVisualization: {fileID: 1112236718}
+  floor: {fileID: 2140119108}
   inputManager: {fileID: 864965515}
   buildingManager: {fileID: 1932316566}
   resourcesManager: {fileID: 805235755}
@@ -6044,7 +6045,7 @@ GameObject:
   - component: {fileID: 2140119109}
   - component: {fileID: 2140119113}
   m_Layer: 0
-  m_Name: Grass
+  m_Name: BackgroundFloor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6132,7 +6133,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1.1, z: 1}
+  m_LocalScale: {x: 0.6, y: 1, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1337430599}
