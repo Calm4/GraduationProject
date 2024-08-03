@@ -59,12 +59,15 @@ namespace App.Scripts.Placement
             }
 
             _resourcesManager.ReturnHalfOfResourcesForDestructionBuilding(placedObject.BuildingConfig);
-            selectedData.RemoveObjectAt(gridPosition, placedObject.BuildingConfig.size);
+
+            selectedData.RemoveObjectAt(gridPosition);
+
             _buildingManager.RemoveBuilding(placedObject);
 
             Vector3 cellPosition = _grid.CellToWorld(gridPosition);
             _buildingPreview.UpdatePosition(cellPosition, CheckIsSelectionIsValid(gridPosition));
         }
+
 
         private bool CheckIsSelectionIsValid(Vector3Int gridPosition)
         {
@@ -77,5 +80,7 @@ namespace App.Scripts.Placement
             bool validity = CheckIsSelectionIsValid(gridPosition);
             _buildingPreview.UpdatePosition(_grid.CellToWorld(gridPosition),validity);
         }
+        
+        
     }
 }

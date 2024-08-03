@@ -101,6 +101,7 @@ namespace App.Scripts.Placement
             _buildingState.OnAction(gridPosition);
         }
 
+
         private void StopPlacement()
         {
             if (_buildingState == null)

@@ -7,26 +7,14 @@ namespace App.Scripts.Placement
     public class GridData
     {
         private readonly GridCell[,] gridCells;
-        //private readonly Dictionary<Vector3Int, PlacementData> _placedObjects = new();
         private Vector2Int _gridSize;
         private Vector2Int _gridOffset;
-        public void PrintGridState()
-        {
-            for (int y = 0; y < _gridSize.y; y++)
-            {
-                string row = "";
-                for (int x = 0; x < _gridSize.x; x++)
-                {
-                    row += gridCells[x, y].IsOccupied ? "[X]" : "[ ]";
-                }
-                Debug.Log(row);
-            }
-        }
+
         public GridData(Vector2Int gridSize)
         {
             _gridSize = gridSize;
             _gridOffset = Vector2Int.zero;
-            
+
             gridCells = new GridCell[gridSize.x, gridSize.y];
             for (int x = 0; x < gridSize.x; x++)
             {
@@ -36,34 +24,38 @@ namespace App.Scripts.Placement
                 }
             }
         }
+
         public void AddObjectAt(Vector3Int gridPosition, Vector2 objectSize, Building building)
         {
-            List<Vector3Int> positionsToOccupy = CalculatePositions(gridPosition, objectSize);
-            foreach (var position in positionsToOccupy)
+            foreach (var position in CalculatePositions(gridPosition, objectSize))
             {
-                gridCells[position.x, position.z].Occupy(building);
+                gridCells[position.x, position.z].Occupy(building, gridPosition);
             }
         }
-        public void RemoveObjectAt(Vector3Int gridPosition, Vector2 objectSize)
+
+        public void RemoveObjectAt(Vector3Int gridPosition)
         {
-            List<Vector3Int> positionsToOccupy = CalculatePositions(gridPosition, objectSize);
-            foreach (var position in positionsToOccupy)
+            GridCell initialCell = gridCells[gridPosition.x, gridPosition.z];
+            Building building = initialCell.OccupyingBuilding;
+            if (building == null)
+            {
+                return;
+            }
+
+            Vector3Int buildingOrigin = initialCell.BuildingOrigin;
+            Vector2Int buildingSize = building.BuildingConfig.size;
+
+            foreach (var position in CalculatePositions(buildingOrigin, buildingSize))
             {
                 gridCells[position.x, position.z].Vacate();
             }
         }
+
         public bool CanPlaceObjectAt(Vector3Int gridPosition, Vector2 objectSize)
         {
-            List<Vector3Int> positionsToOccupy = CalculatePositions(gridPosition, objectSize);
-            foreach (var position in positionsToOccupy)
+            foreach (var position in CalculatePositions(gridPosition, objectSize))
             {
-                if (!IsWithinBounds(position))
-                {
-                    Debug.LogError($"Position {position} is out of bounds.");
-                    return false;
-                }
-
-                if (gridCells[position.x, position.z].IsOccupied)
+                if (!IsWithinBounds(position) || gridCells[position.x, position.z].IsOccupied)
                 {
                     return false;
                 }
@@ -76,9 +68,9 @@ namespace App.Scripts.Placement
             List<Vector3Int> positions = new();
             for (int x = 0; x < objectSize.x; x++)
             {
-                for (int y = 0; y < objectSize.y; y++)
+                for (int z = 0; z < objectSize.y; z++)
                 {
-                    positions.Add(gridPosition + new Vector3Int(x, 0, y));
+                    positions.Add(gridPosition + new Vector3Int(x, 0, z));
                 }
             }
             return positions;
@@ -88,17 +80,23 @@ namespace App.Scripts.Placement
         {
             Vector3Int offsetPosition = position - new Vector3Int(_gridOffset.x, 0, _gridOffset.y);
             return offsetPosition.x >= 0 && offsetPosition.x < _gridSize.x && offsetPosition.z >= 0 && offsetPosition.z < _gridSize.y;
-        } 
-        
+        }
+
         public Building GetPlacedObject(Vector3Int gridPosition)
         {
             return gridCells[gridPosition.x, gridPosition.z].OccupyingBuilding;
         }
-        
+        public void PrintGridState()
+        {
+            for (int y = 0; y < _gridSize.y; y++)
+            {
+                string row = "";
+                for (int x = 0; x < _gridSize.x; x++)
+                {
+                    row += gridCells[x, y].IsOccupied ? "[X]" : "[ ]";
+                }
+                Debug.Log(row);
+            }
+        }
     }
 }
-
-
-
-
-

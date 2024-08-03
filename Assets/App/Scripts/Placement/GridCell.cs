@@ -1,26 +1,24 @@
 ﻿using App.Scripts.Buildings;
+using UnityEngine;
 
 namespace App.Scripts.Placement
 {
     public class GridCell
     {
-        public bool IsOccupied { get; private set; }
         public Building OccupyingBuilding { get; private set; }
-        public GridCell()
+        public Vector3Int BuildingOrigin { get; private set; }
+        public bool IsOccupied => OccupyingBuilding != null;
+
+        public void Occupy(Building building, Vector3Int origin)
         {
-            IsOccupied = false;
-            OccupyingBuilding = null;
-        }
-        public void Occupy(Building building)
-        {
-            IsOccupied = true;
             OccupyingBuilding = building;
+            BuildingOrigin = origin;
         }
 
         public void Vacate()
         {
-            IsOccupied = false;
             OccupyingBuilding = null;
+            BuildingOrigin = default;
         }
     }
 }
