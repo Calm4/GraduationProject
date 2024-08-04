@@ -12,4 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 333164ef181f416eb0d0914d81af533c, type: 3}
   m_Name: GridData_01
   m_EditorClassIdentifier: 
-  gridObjects: []
+  gridObjects:
+  - type: Building
+    position: {x: 9, y: 1, z: 0}
+    size: {x: 3, y: 2}
+  - type: Building
+    position: {x: 4, y: 2, z: 0}
+    size: {x: 3, y: 2}
+  - type: Building
+    position: {x: 2, y: 5, z: 0}
+    size: {x: 3, y: 2}
+  - type: Building
+    position: {x: 1, y: 7, z: 0}
+    size: {x: 3, y: 2}
+  - type: Building
+    position: {x: 1, y: 9, z: 0}
+    size: {x: 3, y: 2}
+  - type: Building
+    position: {x: 0, y: 12, z: 0}
+    size: {x: 3, y: 2}
+  - type: Building
+    position: {x: 0, y: 2, z: 0}
+    size: {x: 3, y: 2}
+  - type: Building
+    position: {x: 11, y: 3, z: 0}
+    size: {x: 3, y: 2}
