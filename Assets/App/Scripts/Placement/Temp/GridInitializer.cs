@@ -17,7 +17,7 @@ public class GridInitializer : MonoBehaviour
 
     private void InitializeGrid()
     {
-        string path = Path.Combine(Application.dataPath, "Assets/App/Resources/LevelConfigs", "level_setup_.json");
+        string path = Path.Combine(Application.dataPath, "App/Resources/LevelConfigs", "level_setup_.json");
         if (!File.Exists(path))
         {
             Debug.LogError("Configuration file not found!");

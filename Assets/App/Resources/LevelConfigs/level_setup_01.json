@@ -1,0 +1,112 @@
+{
+    "items": [
+        {
+            "type": "Building",
+            "position": {
+                "x": 1,
+                "y": 3,
+                "z": 0
+            },
+            "size": {
+                "x": 1,
+                "y": 1
+            }
+        },
+        {
+            "type": "Building",
+            "position": {
+                "x": 2,
+                "y": 3,
+                "z": 0
+            },
+            "size": {
+                "x": 1,
+                "y": 1
+            }
+        },
+        {
+            "type": "Building",
+            "position": {
+                "x": 3,
+                "y": 3,
+                "z": 0
+            },
+            "size": {
+                "x": 1,
+                "y": 1
+            }
+        },
+        {
+            "type": "Building",
+            "position": {
+                "x": 3,
+                "y": 2,
+                "z": 0
+            },
+            "size": {
+                "x": 1,
+                "y": 1
+            }
+        },
+        {
+            "type": "Building",
+            "position": {
+                "x": 2,
+                "y": 2,
+                "z": 0
+            },
+            "size": {
+                "x": 1,
+                "y": 1
+            }
+        },
+        {
+            "type": "Building",
+            "position": {
+                "x": 1,
+                "y": 2,
+                "z": 0
+            },
+            "size": {
+                "x": 1,
+                "y": 1
+            }
+        },
+        {
+            "type": "Building",
+            "position": {
+                "x": 1,
+                "y": 1,
+                "z": 0
+            },
+            "size": {
+                "x": 1,
+                "y": 1
+            }
+        },
+        {
+            "type": "Building",
+            "position": {
+                "x": 2,
+                "y": 1,
+                "z": 0
+            },
+            "size": {
+                "x": 1,
+                "y": 1
+            }
+        },
+        {
+            "type": "Building",
+            "position": {
+                "x": 3,
+                "y": 1,
+                "z": 0
+            },
+            "size": {
+                "x": 1,
+                "y": 1
+            }
+        }
+    ]
+}
