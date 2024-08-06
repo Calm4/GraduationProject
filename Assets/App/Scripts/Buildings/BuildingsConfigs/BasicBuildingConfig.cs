@@ -2,6 +2,7 @@
 using App.Scripts.Resources;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace App.Scripts.Buildings.BuildingsConfigs
 {
@@ -20,5 +21,8 @@ namespace App.Scripts.Buildings.BuildingsConfigs
         [Title("Resources")]
         public List<ResourceRequirement> resourcesToBuild;
         public int moneyToBuild;
+
+        [Title("Icon")]
+        public Sprite sprite;
     }
 }

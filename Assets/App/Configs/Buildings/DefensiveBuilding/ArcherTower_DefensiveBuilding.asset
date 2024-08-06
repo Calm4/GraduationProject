@@ -33,3 +33,4 @@ MonoBehaviour:
   - resourceType: 2
     amountToBuild: 1
   moneyToBuild: 5
+  sprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}

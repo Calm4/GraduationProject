@@ -1,44 +1,42 @@
-﻿using UnityEngine;
+using App.Scripts.Buildings.BuildingsConfigs;
+using App.Scripts.Placement.Temp;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities.Editor;
 using UnityEditor;
+using UnityEngine;
 
 public class GridEditorWindow : OdinEditorWindow
 {
-    [MenuItem("Tools/Grid Editor")]
+    [InlineEditor(Expanded = true), VerticalGroup("Grid Data")]
+    public GridDataAsset gridDataAsset;
+
+    [SerializeField, HideInInspector] private BuildingConfigsData buildingConfigsData;
+
+    private int _gridMinSize = 1;
+    private int _gridMaxSize = 50;
+    private bool[,] grid;
+
+    private BasicBuildingConfig selectedBuildingConfig;
+
+    [MenuItem("Tools/Level Creation Window")]
     private static void OpenWindow()
     {
         GetWindow<GridEditorWindow>().Show();
     }
 
-    [InlineEditor(Expanded = true), VerticalGroup("Grid Data")]
-    public GridDataAsset gridDataAsset;
-
-    
-    private int _gridMinSize = 1;
-    private int _gridMaxSize = 50;
-    private int _objectMinSize = 1;
-    private int _objectMaxSize = 50;
-    private bool[,] grid;
-
-    private Vector2Int currentSize = new Vector2Int(1, 1);
-
-    private void OnEnable()
+    protected override void OnEnable()
     {
-        if (gridDataAsset == null)
+        if (gridDataAsset != null)
         {
-            Debug.LogError("GridDataAsset is not assigned. Please assign it in the inspector.");
-            return;
-        }
+            InitializeGrid(new Vector2Int(gridDataAsset.gridSize.x, gridDataAsset.gridSize.y));
 
-        InitializeGrid(new Vector2Int(gridDataAsset.gridSize.x, gridDataAsset.gridSize.y));
-
-        foreach (var obj in gridDataAsset.gridObjects)
-        {
-            if (obj.position.x < gridDataAsset.gridSize.x && obj.position.y < gridDataAsset.gridSize.y)
+            foreach (var obj in gridDataAsset.gridObjects)
             {
-                MarkOccupiedCells(obj.position, obj.size, true);
+                if (obj.position.x < gridDataAsset.gridSize.x && obj.position.y < gridDataAsset.gridSize.y)
+                {
+                    MarkOccupiedCells(obj.buildingConfig, obj.position, true);
+                }
             }
         }
     }
@@ -55,33 +53,82 @@ public class GridEditorWindow : OdinEditorWindow
             return;
         }
 
+        if (buildingConfigsData == null)
+        {
+            SirenixEditorGUI.ErrorMessageBox("Please assign BuildingConfigsData.");
+            return;
+        }
+
         GUIStyle centeredBoldStyle = new GUIStyle(EditorStyles.boldLabel)
         {
             alignment = TextAnchor.MiddleCenter,
             fontSize = 18
         };
-        
+
         float quarterOfWindowWidth = position.width * 0.25f;
         float threeShadesOfWindowWidth = position.width * 0.75f;
 
         GUILayout.BeginHorizontal();
-        
+
         GUILayout.BeginVertical(GUILayout.Width(quarterOfWindowWidth));
 
         GUILayout.Label("Grid Settings", centeredBoldStyle);
         GUILayout.Label("Grid Size", EditorStyles.boldLabel);
-        gridDataAsset.gridSize = EditorGUILayout.Vector2IntField("", gridDataAsset.gridSize, GUILayout.MaxWidth(quarterOfWindowWidth));
+        gridDataAsset.gridSize =
+            EditorGUILayout.Vector2IntField("", gridDataAsset.gridSize, GUILayout.MaxWidth(quarterOfWindowWidth));
         gridDataAsset.gridSize = Vector2Int.Max(gridDataAsset.gridSize, new Vector2Int(_gridMinSize, _gridMinSize));
         gridDataAsset.gridSize = Vector2Int.Min(gridDataAsset.gridSize, new Vector2Int(_gridMaxSize, _gridMaxSize));
 
         GUILayout.Space(10);
         GUILayout.Label("Object Settings", centeredBoldStyle);
-        GUILayout.Label("Object Size", EditorStyles.boldLabel);
-        currentSize = EditorGUILayout.Vector2IntField("", currentSize, GUILayout.MaxWidth(quarterOfWindowWidth));
-        currentSize = Vector2Int.Max(currentSize, new Vector2Int(_objectMinSize, _objectMinSize));
-        currentSize = Vector2Int.Min(currentSize, new Vector2Int(_objectMaxSize, _objectMaxSize));
 
-        GUILayout.Space(20); // Space before buttons
+        GUILayout.Space(20);
+        GUILayout.Label("Object Type", EditorStyles.boldLabel);
+
+        if (buildingConfigsData.buildingConfigs != null && buildingConfigsData.buildingConfigs.Count > 0)
+        {
+            var buildingNames = buildingConfigsData.buildingConfigs.ConvertAll(b => b.buildingName).ToArray();
+            int selectedIndex = selectedBuildingConfig != null
+                ? buildingConfigsData.buildingConfigs.IndexOf(selectedBuildingConfig)
+                : -1;
+
+            selectedIndex = Mathf.Clamp(EditorGUILayout.Popup("", selectedIndex, buildingNames,
+                GUILayout.Width(quarterOfWindowWidth)), 0, buildingConfigsData.buildingConfigs.Count - 1);
+
+            selectedBuildingConfig = buildingConfigsData.buildingConfigs[selectedIndex];
+        }
+        else
+        {
+            EditorGUILayout.LabelField("No Building Configs Available");
+        }
+
+        GUILayout.Space(20);
+
+        if (selectedBuildingConfig != null)
+        {
+            GUILayout.Label("Object Size", EditorStyles.boldLabel);
+            GUILayout.Space(10);
+
+            EditorGUI.BeginDisabledGroup(true);
+            EditorGUILayout.Vector2IntField("", selectedBuildingConfig.size, GUILayout.Width(quarterOfWindowWidth));
+            EditorGUI.EndDisabledGroup();
+            GUILayout.Space(10);
+
+            if (selectedBuildingConfig.sprite != null)
+            {
+                GUILayout.Label("Object Picture", EditorStyles.boldLabel);
+                GUILayout.Space(10);
+
+                Rect iconRect = EditorGUILayout.GetControlRect(GUILayout.Width(100), GUILayout.Height(100));
+                EditorGUI.DrawTextureTransparent(iconRect, selectedBuildingConfig.sprite.texture, ScaleMode.ScaleToFit);
+            }
+        }
+        else
+        {
+            EditorGUILayout.LabelField("No Building Config Selected");
+        }
+
+        GUILayout.Space(20);
         if (GUILayout.Button("Export to JSON"))
         {
             gridDataAsset.ExportToJson();
@@ -94,6 +141,7 @@ public class GridEditorWindow : OdinEditorWindow
 
         GUILayout.EndVertical();
 
+
         GUILayout.BeginVertical(GUILayout.Width(threeShadesOfWindowWidth));
 
         if (grid == null || gridDataAsset.gridSize.x != grid.GetLength(0) ||
@@ -103,11 +151,14 @@ public class GridEditorWindow : OdinEditorWindow
         }
 
         float scrollViewHeight = Mathf.Max(position.height * 0.9f, 300);
-        scrollPosition = GUILayout.BeginScrollView(scrollPosition, GUILayout.Width(threeShadesOfWindowWidth), GUILayout.Height(scrollViewHeight));
+        scrollPosition = GUILayout.BeginScrollView(scrollPosition, GUILayout.Width(threeShadesOfWindowWidth),
+            GUILayout.Height(scrollViewHeight));
 
         DrawGrid();
 
         GUILayout.EndScrollView();
+
+
         GUILayout.EndVertical();
         GUILayout.EndHorizontal();
     }
@@ -123,43 +174,59 @@ public class GridEditorWindow : OdinEditorWindow
         float paddedGridHeight = cellSize * gridDataAsset.gridSize.y;
 
         GUILayout.BeginHorizontal();
-        GUILayout.FlexibleSpace(); // Centering the grid horizontally
-        Rect gridRect = EditorGUILayout.GetControlRect(GUILayout.Width(paddedGridWidth), GUILayout.Height(paddedGridHeight));
+        GUILayout.FlexibleSpace();
+        Rect gridRect =
+            EditorGUILayout.GetControlRect(GUILayout.Width(paddedGridWidth), GUILayout.Height(paddedGridHeight));
 
         for (int y = gridDataAsset.gridSize.y - 1; y >= 0; y--)
         {
             for (int x = 0; x < gridDataAsset.gridSize.x; x++)
             {
-                bool isOccupied = grid[x, y];
-                Color color = isOccupied ? Color.red : Color.green;
+                Rect cellRect = new Rect(gridRect.x + x * cellSize,
+                    gridRect.y + (gridDataAsset.gridSize.y - 1 - y) * cellSize, cellSize, cellSize);
 
-                Rect cellRect = new Rect(gridRect.x + x * cellSize, gridRect.y + (gridDataAsset.gridSize.y - 1 - y) * cellSize, cellSize, cellSize);
-                EditorGUI.DrawRect(cellRect, color);
+                var objInCell = gridDataAsset.gridObjects.Find(obj =>
+                    obj.position.x <= x && x < obj.position.x + obj.buildingConfig.size.x &&
+                    obj.position.y <= y && y < obj.position.y + obj.buildingConfig.size.y);
 
-                EditorGUI.DrawRect(new Rect(cellRect.x, cellRect.y, cellSize, 1), Color.black);
-                EditorGUI.DrawRect(new Rect(cellRect.x, cellRect.y + cellSize - 1, cellSize, 1), Color.black);
-                EditorGUI.DrawRect(new Rect(cellRect.x, cellRect.y, 1, cellSize), Color.black);
-                EditorGUI.DrawRect(new Rect(cellRect.x + cellSize - 1, cellRect.y, 1, cellSize), Color.black);
+                if (objInCell != null)
+                {
+                    if (objInCell.buildingConfig.sprite != null)
+                    {
+                        EditorGUI.DrawTextureTransparent(cellRect, objInCell.buildingConfig.sprite.texture,
+                            ScaleMode.ScaleToFit);
+                    }
+                }
+                else
+                {
+                    EditorGUI.DrawRect(cellRect, Color.green);
+
+                    EditorGUI.DrawRect(new Rect(cellRect.x, cellRect.y, cellSize, 1), Color.black);
+                    EditorGUI.DrawRect(new Rect(cellRect.x, cellRect.y + cellSize - 1, cellSize, 1), Color.black);
+                    EditorGUI.DrawRect(new Rect(cellRect.x, cellRect.y, 1, cellSize), Color.black);
+                    EditorGUI.DrawRect(new Rect(cellRect.x + cellSize - 1, cellRect.y, 1, cellSize), Color.black);
+                }
 
                 if (Event.current.type == EventType.MouseDown && cellRect.Contains(Event.current.mousePosition))
                 {
-                    if (Event.current.button == 0)
+                    if (Event.current.button == 0 && selectedBuildingConfig != null)
                     {
-                        if (CanPlaceObject(x, y, currentSize))
+                        if (CanPlaceObject(selectedBuildingConfig, new Vector2Int(x, y)))
                         {
-                            ToggleObjectPlacement(new Vector3Int(x, y, 0), currentSize);
+                            ToggleObjectPlacement(selectedBuildingConfig, new Vector3Int(x, y, 0));
                         }
                     }
                     else if (Event.current.button == 1)
                     {
-                        RemoveObjectAtPosition(new Vector3Int(x, y, 0));
+                        RemoveObjectAtAnyPosition(new Vector2Int(x, y));
                     }
 
                     Event.current.Use();
                 }
             }
         }
-        GUILayout.FlexibleSpace(); 
+
+        GUILayout.FlexibleSpace();
         GUILayout.EndHorizontal();
     }
 
@@ -171,40 +238,50 @@ public class GridEditorWindow : OdinEditorWindow
         {
             if (obj.position.x < newSize.x && obj.position.y < newSize.y)
             {
-                MarkOccupiedCells(obj.position, obj.size, true);
+                MarkOccupiedCells(obj.buildingConfig, obj.position, true);
             }
         }
     }
 
-    private void ToggleObjectPlacement(Vector3Int position, Vector2Int size)
+    private void ToggleObjectPlacement(BasicBuildingConfig buildingConfig, Vector3Int position)
     {
-        if (!grid[position.x, position.y])
+        if (CanPlaceObject(buildingConfig, new Vector2Int(position.x, position.y)))
         {
-            var newObject = new GridObjectData("Building", position, size);
+            RemoveObjectAtAnyPosition(new Vector2Int(position.x, position.y));
+
+            var newObject = new GridObjectData(buildingConfig, position);
             gridDataAsset.gridObjects.Add(newObject);
-            MarkOccupiedCells(position, size, true);
+
+            MarkOccupiedCells(buildingConfig, position, true);
+
             Repaint();
         }
     }
 
-    private void RemoveObjectAtPosition(Vector3Int position)
+    private void RemoveObjectAtAnyPosition(Vector2Int position)
     {
-        var objToRemove = gridDataAsset.gridObjects.Find(obj => obj.position == position);
+        var objToRemove = gridDataAsset.gridObjects.Find(obj =>
+        {
+            return obj.position.x <= position.x && position.x < obj.position.x + obj.buildingConfig.size.x &&
+                   obj.position.y <= position.y && position.y < obj.position.y + obj.buildingConfig.size.y;
+        });
+
         if (objToRemove != null)
         {
-            MarkOccupiedCells(objToRemove.position, objToRemove.size, false);
+            MarkOccupiedCells(objToRemove.buildingConfig, objToRemove.position, false);
             gridDataAsset.gridObjects.Remove(objToRemove);
+            Repaint();
         }
     }
 
-    private bool CanPlaceObject(int x, int y, Vector2Int size)
+    private bool CanPlaceObject(BasicBuildingConfig buildingConfig, Vector2Int position)
     {
-        for (int i = 0; i < size.x; i++)
+        for (int i = 0; i < buildingConfig.size.x; i++)
         {
-            for (int j = 0; j < size.y; j++)
+            for (int j = 0; j < buildingConfig.size.y; j++)
             {
-                int posX = x + i;
-                int posY = y + j;
+                int posX = position.x + i;
+                int posY = position.y + j;
 
                 if (posX >= gridDataAsset.gridSize.x || posY >= gridDataAsset.gridSize.y || grid[posX, posY])
                 {
@@ -216,13 +293,19 @@ public class GridEditorWindow : OdinEditorWindow
         return true;
     }
 
-    private void MarkOccupiedCells(Vector3Int position, Vector2Int size, bool isOccupied)
+    private void MarkOccupiedCells(BasicBuildingConfig buildingConfig, Vector3Int position, bool isOccupied)
     {
-        for (int x = 0; x < size.x; x++)
+        for (int x = 0; x < buildingConfig.size.x; x++)
         {
-            for (int y = 0; y < size.y; y++)
+            for (int y = 0; y < buildingConfig.size.y; y++)
             {
-                grid[position.x + x, position.y + y] = isOccupied;
+                int gridX = position.x + x;
+                int gridY = position.y + y;
+
+                if (gridX >= 0 && gridX < grid.GetLength(0) && gridY >= 0 && gridY < grid.GetLength(1))
+                {
+                    grid[gridX, gridY] = isOccupied;
+                }
             }
         }
     }

@@ -29,3 +29,4 @@ MonoBehaviour:
   size: {x: 1, y: 2}
   resourcesToBuild: []
   moneyToBuild: 0
+  sprite: {fileID: 21300000, guid: 2778ca8bc5fd4a0479426360c738e8ed, type: 3}

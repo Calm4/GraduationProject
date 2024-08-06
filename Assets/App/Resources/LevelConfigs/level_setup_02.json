@@ -1,0 +1,84 @@
+{
+    "items": [
+        {
+            "buildingConfig": {
+                "instanceID": 27608
+            },
+            "position": {
+                "x": 0,
+                "y": 3,
+                "z": 0
+            }
+        },
+        {
+            "buildingConfig": {
+                "instanceID": 27774
+            },
+            "position": {
+                "x": 0,
+                "y": 2,
+                "z": 0
+            }
+        },
+        {
+            "buildingConfig": {
+                "instanceID": 27774
+            },
+            "position": {
+                "x": 1,
+                "y": 2,
+                "z": 0
+            }
+        },
+        {
+            "buildingConfig": {
+                "instanceID": 27774
+            },
+            "position": {
+                "x": 2,
+                "y": 2,
+                "z": 0
+            }
+        },
+        {
+            "buildingConfig": {
+                "instanceID": 27774
+            },
+            "position": {
+                "x": 3,
+                "y": 2,
+                "z": 0
+            }
+        },
+        {
+            "buildingConfig": {
+                "instanceID": 27774
+            },
+            "position": {
+                "x": 4,
+                "y": 2,
+                "z": 0
+            }
+        },
+        {
+            "buildingConfig": {
+                "instanceID": 27746
+            },
+            "position": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            }
+        },
+        {
+            "buildingConfig": {
+                "instanceID": 27746
+            },
+            "position": {
+                "x": 3,
+                "y": 0,
+                "z": 0
+            }
+        }
+    ]
+}

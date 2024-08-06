@@ -29,12 +29,12 @@ public class GridInitializer : MonoBehaviour
 
         foreach (var obj in objects.items)
         {
-            Building prefab = obj.type == "Mountain" ? mountainPrefab : forestPrefab;
-            Vector2 objectSize = new Vector2(obj.size.x, obj.size.y);
+            Building prefab = true ? forestPrefab : mountainPrefab;
+            Vector2 objectSize = new Vector2(obj.buildingConfig.size.x, obj.buildingConfig.size.y);
             Vector3Int position = obj.position;
 
             gridData.AddObjectAt(position, objectSize, prefab);
-            PlaceVisualObject(position, prefab, obj.size);
+            PlaceVisualObject(position, prefab, obj.buildingConfig.size);
         }
     }
 

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using App.Scripts.Buildings.BuildingsConfigs;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using UnityEditor;
@@ -9,9 +10,9 @@ public class GridDataAsset : ScriptableObject
 {
     [TableList]
     public List<GridObjectData> gridObjects = new List<GridObjectData>();
-    
+
     [HideInInspector] public Vector2Int gridSize = new Vector2Int(10, 10);
-    
+
     public void ExportToJson()
     {
         // Open file save panel to select the save location
@@ -31,7 +32,7 @@ public class GridDataAsset : ScriptableObject
         File.WriteAllText(path, json);
         Debug.Log($"Grid data exported to JSON at path: {path}");
     }
-    
+
     public void ClearGrid()
     {
         gridObjects.Clear();
@@ -43,3 +44,4 @@ public class GridDataAsset : ScriptableObject
         public T[] items;
     }
 }
+

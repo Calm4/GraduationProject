@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 333164ef181f416eb0d0914d81af533c, type: 3}
-  m_Name: GridData_01
+  m_Name: GridData
   m_EditorClassIdentifier: 
   gridObjects: []
-  gridSize: {x: 5, y: 5}
+  gridSize: {x: 10, y: 10}

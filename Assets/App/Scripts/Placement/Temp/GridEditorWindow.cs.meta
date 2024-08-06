@@ -1,3 +1,14 @@
-﻿fileFormatVersion: 2
-guid: b71021bcc0cf40e88eefad5e462554be
-timeCreated: 1722792388
+fileFormatVersion: 2
+guid: ddafd4e2dd3e6ef4bb8e69ffe202fd8d
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - m_ViewDataDictionary: {instanceID: 0}
+  - gridDataAsset: {instanceID: 0}
+  - buildingConfigsData: {fileID: 11400000, guid: c10e51bb945d92e45a0b124f18f15578, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
