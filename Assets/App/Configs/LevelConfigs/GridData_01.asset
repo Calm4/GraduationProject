@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: GridData_01
   m_EditorClassIdentifier: 
   gridObjects: []
-  gridSize: {x: 5, y: 5}
+  gridSize: {x: 15, y: 15}
