@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace App.Scripts
+namespace App.Scripts.Sound
 {
     public class SoundFeedback : MonoBehaviour
     {

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace App.Scripts
+namespace App.Scripts.Setup
 {
     public class MeshCombiner : MonoBehaviour
     {

@@ -1,14 +1,13 @@
-using System;
 using App.Scripts.Buildings;
 using App.Scripts.Buildings.BuildingsConfigs;
+using App.Scripts.Placement.Grid;
 using App.Scripts.Resources;
-using Sirenix.OdinInspector;
-using Sirenix.Serialization;
+using App.Scripts.Sound;
 using UnityEngine;
 
-namespace App.Scripts.Placement
+namespace App.Scripts.Placement.Placement.States
 {
-    public class PlacementState : IBuildingState
+    public class StateOfObjectPlacing : IBuildingState
     {
         private readonly ResourcesManager _resourcesManager;
         private readonly GridLayout _grid;
@@ -23,7 +22,7 @@ namespace App.Scripts.Placement
 
         
 
-        public PlacementState(ResourcesManager resourcesManager,Building buildingPrefab, GridLayout grid, BuildingPreview buildingPreview,
+        public StateOfObjectPlacing(ResourcesManager resourcesManager,Building buildingPrefab, GridLayout grid, BuildingPreview buildingPreview,
             GridData floorData, GridData furnitureData, BuildingManager buildingManager, SoundFeedback soundFeedback)
         {
             _resourcesManager = resourcesManager;

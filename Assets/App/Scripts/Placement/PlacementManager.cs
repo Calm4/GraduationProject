@@ -1,11 +1,14 @@
 using App.Scripts.Buildings;
 using App.Scripts.Buildings.BuildingsConfigs;
 using App.Scripts.GameInput;
+using App.Scripts.Placement.Grid;
+using App.Scripts.Placement.Placement.States;
 using App.Scripts.Resources;
+using App.Scripts.Sound;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace App.Scripts.Placement
+namespace App.Scripts.Placement.Placement
 {
     public class PlacementManager : MonoBehaviour
     {
@@ -59,7 +62,7 @@ namespace App.Scripts.Placement
 
             buildingPrefab.Initialize(buildingConfig);
 
-            _buildingState = new PlacementState(resourcesManager, buildingPrefab, grid, buildingPreview,
+            _buildingState = new StateOfObjectPlacing(resourcesManager, buildingPrefab, grid, buildingPreview,
                 _floorData, _furnitureData, buildingManager, soundFeedback);
 
             inputManager.OnClicked += PlaceStructure;
@@ -71,7 +74,7 @@ namespace App.Scripts.Placement
             StopPlacement();
             gridVisualization.SetActive(true);
 
-            _buildingState = new RemovingState(resourcesManager, buildingManager, grid, buildingPreview, _floorData,
+            _buildingState = new StateOfObjectRemoving(resourcesManager, buildingManager, grid, buildingPreview, _floorData,
                 _furnitureData, soundFeedback);
 
             inputManager.OnClicked += PlaceStructure;

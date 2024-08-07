@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace App.Scripts.Placement
+namespace App.Scripts.Buildings
 {
     public interface IBuildingState
     {

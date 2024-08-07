@@ -1,10 +1,12 @@
 using App.Scripts.Buildings;
+using App.Scripts.Placement.Grid;
 using App.Scripts.Resources;
+using App.Scripts.Sound;
 using UnityEngine;
 
-namespace App.Scripts.Placement
+namespace App.Scripts.Placement.Placement.States
 {
-    public class RemovingState : IBuildingState
+    public class StateOfObjectRemoving : IBuildingState
     {
         private readonly ResourcesManager _resourcesManager;
         private readonly GridLayout _grid;
@@ -14,7 +16,7 @@ namespace App.Scripts.Placement
         private readonly BuildingManager _buildingManager;
         private readonly SoundFeedback _soundFeedback;
 
-        public RemovingState(ResourcesManager resourcesManager,BuildingManager buildingManager, GridLayout grid, BuildingPreview buildingPreview, GridData floorData, GridData furnitureData, SoundFeedback soundFeedback)
+        public StateOfObjectRemoving(ResourcesManager resourcesManager,BuildingManager buildingManager, GridLayout grid, BuildingPreview buildingPreview, GridData floorData, GridData furnitureData, SoundFeedback soundFeedback)
         {
             _resourcesManager = resourcesManager;
             _buildingManager = buildingManager;

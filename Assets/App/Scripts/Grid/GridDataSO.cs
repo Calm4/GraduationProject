@@ -7,7 +7,7 @@ using UnityEngine;
 namespace App.Scripts.Placement.LevelCreatingWindow
 {
     [CreateAssetMenu(fileName = "GridData", menuName = "Grid/Grid Data", order = 1)]
-    public class GridDataAsset : ScriptableObject
+    public class GridDataSO : ScriptableObject
     {
         [HideInInspector]
         public List<GridObjectData> gridObjects = new List<GridObjectData>();
