@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using Sirenix.OdinInspector;
 using UnityEditor;
 using UnityEngine;
 
-namespace App.Scripts.Placement.LevelCreatingWindow
+namespace App.Scripts.Grid
 {
     [CreateAssetMenu(fileName = "GridData", menuName = "Grid/Grid Data", order = 1)]
     public class GridDataSO : ScriptableObject

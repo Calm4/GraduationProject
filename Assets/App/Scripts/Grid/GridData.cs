@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using App.Scripts.Buildings;
 using UnityEngine;
 
-namespace App.Scripts.Placement.Grid
+namespace App.Scripts.Grid
 {
     public class GridData
     {

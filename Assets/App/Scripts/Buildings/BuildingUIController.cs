@@ -1,6 +1,5 @@
 ﻿using App.Scripts.Buildings.BuildingsConfigs;
 using App.Scripts.Placement;
-using App.Scripts.Placement.Placement;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;

@@ -1,11 +1,11 @@
 using App.Scripts.Buildings;
 using App.Scripts.Buildings.BuildingsConfigs;
-using App.Scripts.Placement.Grid;
+using App.Scripts.Grid;
 using App.Scripts.Resources;
 using App.Scripts.Sound;
 using UnityEngine;
 
-namespace App.Scripts.Placement.Placement.States
+namespace App.Scripts.Placement.States
 {
     public class StateOfObjectPlacing : IBuildingState
     {

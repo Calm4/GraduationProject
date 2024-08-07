@@ -1,14 +1,14 @@
 using App.Scripts.Buildings;
 using App.Scripts.Buildings.BuildingsConfigs;
 using App.Scripts.GameInput;
-using App.Scripts.Placement.Grid;
-using App.Scripts.Placement.Placement.States;
+using App.Scripts.Grid;
+using App.Scripts.Placement.States;
 using App.Scripts.Resources;
 using App.Scripts.Sound;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace App.Scripts.Placement.Placement
+namespace App.Scripts.Placement
 {
     public class PlacementManager : MonoBehaviour
     {

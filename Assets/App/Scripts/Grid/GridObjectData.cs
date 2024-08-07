@@ -2,7 +2,7 @@
 using App.Scripts.Buildings.BuildingsConfigs;
 using UnityEngine;
 
-namespace App.Scripts.Placement.LevelCreatingWindow
+namespace App.Scripts.Grid
 {
     [Serializable]
     public class GridObjectData

@@ -1,5 +1,6 @@
+using App.Scripts.Buildings;
 using App.Scripts.Buildings.BuildingsConfigs;
-using App.Scripts.Placement.LevelCreatingWindow;
+using App.Scripts.Grid;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities.Editor;
@@ -9,7 +10,7 @@ using UnityEngine.Serialization;
 
 namespace App.Scripts.CustomWindows
 {
-    public class GridEditorWindow : OdinEditorWindow
+    public class CreateMapWindow : OdinEditorWindow
     {
         [FormerlySerializedAs("gridDataAsset")] [InlineEditor(Expanded = true), VerticalGroup("Grid Data")]
         public GridDataSO gridDataSo;
@@ -23,10 +24,10 @@ namespace App.Scripts.CustomWindows
         private BasicBuildingConfig _selectedBuildingConfig;
         private Vector2 _scrollPosition;
 
-        [MenuItem("Tools/Level Creation Window")]
+        [MenuItem("Tools/Create Map \ud83d\uddfa\ufe0f")]
         private static void OpenWindow()
         {
-            GetWindow<GridEditorWindow>().Show();
+            GetWindow<CreateMapWindow>().Show();
         }
 
         protected override void OnEnable()
