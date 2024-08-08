@@ -8,14 +8,14 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace App.Scripts.CustomWindows
+namespace App.Scripts.Custom_Windows
 {
     public class CreateMapWindow : OdinEditorWindow
     {
         [FormerlySerializedAs("gridDataAsset")] [InlineEditor(Expanded = true), VerticalGroup("Grid Data")]
         public GridDataSO gridDataSo;
 
-        [SerializeField, HideInInspector] private BuildingConfigsData buildingConfigsData; // поменять на List<BasicBuildingConfig>
+        [SerializeField, HideInInspector] private BuildingConfigsData buildingConfigsData; 
 
         private const int GridMinSize = 1;
         private const int GridMaxSize = 50;
