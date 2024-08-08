@@ -1,26 +1,25 @@
 ﻿using App.Scripts.Buildings;
 using App.Scripts.Buildings.BuildingsConfigs;
 using App.Scripts.Grid;
-using Sirenix.OdinInspector;
 using Sirenix.Utilities.Editor;
 using UnityEditor;
 using UnityEngine;
 
 namespace App.Scripts.Custom_Windows
 {
-    public class MapWindowRenderer
+    public class RenderMapWindow
     {
-        private GridManager _gridManager;
+        private GridMapWindow _gridMapWindow;
         private GridDataSO _gridDataSO;
         private BuildingConfigsData _buildingConfigsData;
         private BasicBuildingConfig _selectedBuildingConfig;
         private Vector2 _scrollPosition;
-        private CreateMapWindow _window;
+        private readonly CreateMapWindow _mapCreateWindow;
 
-        public MapWindowRenderer(CreateMapWindow window, GridManager gridManager, GridDataSO gridDataSO, BuildingConfigsData buildingConfigsData)
+        public RenderMapWindow(CreateMapWindow mapCreateWindow, GridMapWindow gridMapWindow, GridDataSO gridDataSO, BuildingConfigsData buildingConfigsData)
         {
-            _window = window;
-            _gridManager = gridManager;
+            _mapCreateWindow = mapCreateWindow;
+            _gridMapWindow = gridMapWindow;
             _gridDataSO = gridDataSO;
             _buildingConfigsData = buildingConfigsData;
         }
@@ -29,7 +28,7 @@ namespace App.Scripts.Custom_Windows
         {
             _gridDataSO = gridDataSO;
             _buildingConfigsData = buildingConfigsData;
-            _gridManager.InitializeGrid(gridDataSO.gridSize, gridDataSO.gridObjects);
+            _gridMapWindow.InitializeGrid(gridDataSO.gridSize, gridDataSO.gridObjects);
         }
 
         public void Draw()
@@ -53,14 +52,14 @@ namespace App.Scripts.Custom_Windows
 
         private void DrawGridSettings()
         {
-            GUIStyle centeredBoldStyle = new GUIStyle(EditorStyles.boldLabel)
+            var centeredBoldStyle = new GUIStyle(EditorStyles.boldLabel)
             {
                 alignment = TextAnchor.MiddleCenter,
                 fontSize = 18
             };
 
             GUILayout.BeginHorizontal();
-            GUILayout.BeginVertical(GUILayout.Width(_window.position.width * 0.25f));
+            GUILayout.BeginVertical(GUILayout.Width(_mapCreateWindow.position.width * 0.25f));
             GUILayout.Label("Grid Settings", centeredBoldStyle);
             GUILayout.Label("Grid Size", EditorStyles.boldLabel);
 
@@ -80,13 +79,13 @@ namespace App.Scripts.Custom_Windows
             if (_buildingConfigsData.buildingConfigs != null && _buildingConfigsData.buildingConfigs.Count > 0)
             {
                 var buildingNames = _buildingConfigsData.buildingConfigs.ConvertAll(b => b.buildingName).ToArray();
-                int selectedIndex = _selectedBuildingConfig != null
+                var selectedIndex = _selectedBuildingConfig != null
                     ? _buildingConfigsData.buildingConfigs.IndexOf(_selectedBuildingConfig)
                     : -1;
 
                 selectedIndex = Mathf.Clamp(EditorGUILayout.Popup("", selectedIndex, buildingNames), 0, _buildingConfigsData.buildingConfigs.Count - 1);
                 _selectedBuildingConfig = _buildingConfigsData.buildingConfigs[selectedIndex];
-                _window.UpdateGridData(); // Обновите данные при изменении конфигурации
+                _mapCreateWindow.UpdateGridData(); // Обновите данные при изменении конфигурации
             }
             else
             {
@@ -106,7 +105,7 @@ namespace App.Scripts.Custom_Windows
 
             GUILayout.Space(20);
             if (GUILayout.Button("Export to JSON")) _gridDataSO.ExportToJson();
-            if (GUILayout.Button("Clear Grid")) _window.ClearGrid();
+            if (GUILayout.Button("Clear Grid")) _mapCreateWindow.ClearGrid();
 
             GUILayout.EndVertical();
         }
@@ -133,14 +132,14 @@ namespace App.Scripts.Custom_Windows
 
         private void DrawGrid()
         {
-            if (_gridManager == null || !_gridManager.IsGridSizeValid(_gridDataSO.gridSize))
+            if (_gridMapWindow == null || !_gridMapWindow.IsGridSizeValid(_gridDataSO.gridSize))
             {
-                _gridManager = new GridManager(_gridDataSO.gridSize);
-                _gridManager.InitializeGrid(_gridDataSO.gridSize, _gridDataSO.gridObjects);
+                _gridMapWindow = new GridMapWindow(_gridDataSO.gridSize);
+                _gridMapWindow.InitializeGrid(_gridDataSO.gridSize, _gridDataSO.gridObjects);
             }
 
-            float scrollViewHeight = Mathf.Max(_window.position.height * 0.9f, 300);
-            _scrollPosition = GUILayout.BeginScrollView(_scrollPosition, GUILayout.Width(_window.position.width * 0.75f), GUILayout.Height(scrollViewHeight));
+            var scrollViewHeight = Mathf.Max(_mapCreateWindow.position.height * 0.9f, 300);
+            _scrollPosition = GUILayout.BeginScrollView(_scrollPosition, GUILayout.Width(_mapCreateWindow.position.width * 0.75f), GUILayout.Height(scrollViewHeight));
 
             float cellSize = CalculateCellSize();
             DrawGridCells(cellSize);
@@ -199,7 +198,7 @@ namespace App.Scripts.Custom_Windows
         {
             if (Event.current.button == 0 && _selectedBuildingConfig != null)
             {
-                if (_gridManager.CanPlaceObject(_selectedBuildingConfig, new Vector2Int(x, y), _gridDataSO.gridSize))
+                if (_gridMapWindow.CanPlaceObject(_selectedBuildingConfig, new Vector2Int(x, y), _gridDataSO.gridSize))
                 {
                     ToggleObjectPlacement(_selectedBuildingConfig, new Vector3Int(x, y, 0));
                 }
@@ -216,13 +215,13 @@ namespace App.Scripts.Custom_Windows
 
         private void ToggleObjectPlacement(BasicBuildingConfig buildingConfig, Vector3Int position)
         {
-            if (_gridManager.CanPlaceObject(buildingConfig, new Vector2Int(position.x, position.y), _gridDataSO.gridSize))
+            if (_gridMapWindow.CanPlaceObject(buildingConfig, new Vector2Int(position.x, position.y), _gridDataSO.gridSize))
             {
                 RemoveObjectAtAnyPosition(new Vector2Int(position.x, position.y));
                 var newObject = new GridObjectData(buildingConfig, position);
                 _gridDataSO.gridObjects.Add(newObject);
-                _gridManager.MarkOccupiedCells(buildingConfig, position, true);
-                _window.Repaint();
+                _gridMapWindow.MarkOccupiedCells(buildingConfig, position, true);
+                _mapCreateWindow.Repaint();
             }
         }
 
@@ -231,13 +230,13 @@ namespace App.Scripts.Custom_Windows
             var objToRemove = _gridDataSO.gridObjects.Find(obj => IsObjectInCell(obj, position.x, position.y));
             if (objToRemove != null)
             {
-                _gridManager.MarkOccupiedCells(objToRemove.buildingConfig, objToRemove.position, false);
+                _gridMapWindow.MarkOccupiedCells(objToRemove.buildingConfig, objToRemove.position, false);
                 _gridDataSO.gridObjects.Remove(objToRemove);
-                _window.Repaint();
+                _mapCreateWindow.Repaint();
             }
         }
 
         private float CalculateCellSize()
-            => Mathf.Min(_window.position.width * 0.7f / _gridDataSO.gridSize.x, _window.position.height * 0.85f / _gridDataSO.gridSize.y);
+            => Mathf.Min(_mapCreateWindow.position.width * 0.7f / _gridDataSO.gridSize.x, _mapCreateWindow.position.height * 0.85f / _gridDataSO.gridSize.y);
     }
 }

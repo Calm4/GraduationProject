@@ -1,23 +1,21 @@
 ﻿using System.Collections.Generic;
 using App.Scripts.Buildings.BuildingsConfigs;
+using App.Scripts.Grid;
 using UnityEngine;
 
-namespace App.Scripts.Grid
+namespace App.Scripts.Custom_Windows
 {
-    public class GridManager
+    public class GridMapWindow
     {
         private bool[,] _grid;
 
-        public GridManager(Vector2Int gridSize)
+        public GridMapWindow(Vector2Int gridSize)
         {
             _grid = new bool[gridSize.x, gridSize.y];
         }
 
-        public bool IsWithinGrid(Vector2Int position, Vector2Int gridSize)
-            => position.x < gridSize.x && position.y < gridSize.y;
-
-        public bool IsGridSizeValid(Vector2Int newSize)
-            => newSize.x != _grid.GetLength(0) || newSize.y != _grid.GetLength(1);
+        private bool IsWithinGrid(Vector2Int position, Vector2Int gridSize) => position.x < gridSize.x && position.y < gridSize.y;
+        public bool IsGridSizeValid(Vector2Int newSize) => newSize.x != _grid.GetLength(0) || newSize.y != _grid.GetLength(1);
 
         public bool CanPlaceObject(BasicBuildingConfig buildingConfig, Vector2Int position, Vector2Int gridSize)
         {

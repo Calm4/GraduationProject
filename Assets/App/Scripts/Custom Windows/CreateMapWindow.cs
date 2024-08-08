@@ -1,5 +1,4 @@
 using App.Scripts.Buildings;
-using App.Scripts.Buildings.BuildingsConfigs;
 using App.Scripts.Grid;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
@@ -11,8 +10,8 @@ namespace App.Scripts.Custom_Windows
 {
     public class CreateMapWindow : OdinEditorWindow
     {
-        public static readonly int GridMinSize = 1;
-        public static readonly int GridMaxSize = 50;
+        public const int GridMinSize = 1;
+        public const int GridMaxSize = 50;
 
         [FormerlySerializedAs("gridDataAsset")]
         [InlineEditor(Expanded = true), VerticalGroup("Grid Data")]
@@ -20,8 +19,8 @@ namespace App.Scripts.Custom_Windows
 
         [SerializeField, HideInInspector] private BuildingConfigsData buildingConfigsData;
 
-        private GridManager _gridManager;
-        private MapWindowRenderer _renderer;
+        private GridMapWindow _gridMapWindow;
+        private RenderMapWindow _renderer;
 
         [MenuItem("Tools/Create Map \ud83d\uddfa\ufe0f")]
         private static void OpenWindow() => GetWindow<CreateMapWindow>().Show();
@@ -36,14 +35,11 @@ namespace App.Scripts.Custom_Windows
         {
             if (gridDataSo == null || buildingConfigsData == null) return;
 
-            if (_gridManager == null)
-            {
-                _gridManager = new GridManager(gridDataSo.gridSize);
-            }
+            _gridMapWindow ??= new GridMapWindow(gridDataSo.gridSize);
 
             if (_renderer == null)
             {
-                _renderer = new MapWindowRenderer(this, _gridManager, gridDataSo, buildingConfigsData);
+                _renderer = new RenderMapWindow(this, _gridMapWindow, gridDataSo, buildingConfigsData);
             }
             else
             {
@@ -74,8 +70,9 @@ namespace App.Scripts.Custom_Windows
         public void ClearGrid()
         {
             gridDataSo.ClearGrid();
-            _gridManager.InitializeGrid(gridDataSo.gridSize, gridDataSo.gridObjects);
+            _gridMapWindow.InitializeGrid(gridDataSo.gridSize, gridDataSo.gridObjects);
             Repaint();
         }
     }
 }
+ 

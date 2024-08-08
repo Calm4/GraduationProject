@@ -2,7 +2,6 @@
 using App.Scripts.Resources;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace App.Scripts.Buildings.BuildingsConfigs
 {
