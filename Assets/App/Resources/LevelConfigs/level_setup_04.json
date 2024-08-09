@@ -1,0 +1,88 @@
+{
+    "gridSize": {
+        "x": 5,
+        "y": 5
+    },
+    "gridObjects": [
+        {
+            "buildingConfig": {
+                "instanceID": 27784
+            },
+            "position": {
+                "x": 0,
+                "y": 4,
+                "z": 0
+            }
+        },
+        {
+            "buildingConfig": {
+                "instanceID": 27784
+            },
+            "position": {
+                "x": 1,
+                "y": 4,
+                "z": 0
+            }
+        },
+        {
+            "buildingConfig": {
+                "instanceID": 27784
+            },
+            "position": {
+                "x": 2,
+                "y": 4,
+                "z": 0
+            }
+        },
+        {
+            "buildingConfig": {
+                "instanceID": 27784
+            },
+            "position": {
+                "x": 3,
+                "y": 4,
+                "z": 0
+            }
+        },
+        {
+            "buildingConfig": {
+                "instanceID": 27784
+            },
+            "position": {
+                "x": 4,
+                "y": 4,
+                "z": 0
+            }
+        },
+        {
+            "buildingConfig": {
+                "instanceID": 27756
+            },
+            "position": {
+                "x": 0,
+                "y": 2,
+                "z": 0
+            }
+        },
+        {
+            "buildingConfig": {
+                "instanceID": 27756
+            },
+            "position": {
+                "x": 2,
+                "y": 2,
+                "z": 0
+            }
+        },
+        {
+            "buildingConfig": {
+                "instanceID": 27616
+            },
+            "position": {
+                "x": 4,
+                "y": 2,
+                "z": 0
+            }
+        }
+    ]
+}

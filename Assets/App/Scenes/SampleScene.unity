@@ -5375,6 +5375,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedBuildings: []
+  availableBuildingConfigs: []
 --- !u!1 &2009937077
 GameObject:
   m_ObjectHideFlags: 0
@@ -6063,6 +6064,7 @@ MonoBehaviour:
   buildingPreview: {fileID: 1684993283}
   buildingPrefab: {fileID: 6827337395158552025, guid: d9c65636e0495ff40b3163ed3af25112, type: 3}
   soundFeedback: {fileID: 72942689}
+  jsonFile: {fileID: 4900000, guid: 69c749d743b844a499cc0eaee1d170ca, type: 3}
 --- !u!1 &2140119108
 GameObject:
   m_ObjectHideFlags: 0

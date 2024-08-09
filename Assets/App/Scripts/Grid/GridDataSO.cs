@@ -23,9 +23,17 @@ namespace App.Scripts.Grid
                 return;
             }
 
-            string json = JsonUtility.ToJson(new Wrapper<GridObjectData> { items = gridObjects.ToArray() }, true);
+            // Создаем экземпляр класса-обертки и заполняем его данными
+            var dataToSave = new GridSaveData
+            {
+                gridSize = this.gridSize,
+                gridObjects = this.gridObjects.ToArray()
+            };
 
+            // Сериализуем данные в JSON
+            string json = JsonUtility.ToJson(dataToSave, true);
             File.WriteAllText(path, json);
+
             Debug.Log($"Grid data exported to JSON at path: {path}");
         }
 
@@ -34,11 +42,14 @@ namespace App.Scripts.Grid
             gridObjects.Clear();
         }
 
+        // Класс-обертка для сохранения данных
         [System.Serializable]
-        private class Wrapper<T>
+        private class GridSaveData
         {
-            public T[] items;
+            public Vector2Int gridSize;
+            public GridObjectData[] gridObjects;
         }
     }
 }
+
 

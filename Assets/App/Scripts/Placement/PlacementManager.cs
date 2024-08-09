@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using App.Scripts.Buildings;
 using App.Scripts.Buildings.BuildingsConfigs;
 using App.Scripts.GameInput;
@@ -5,6 +6,7 @@ using App.Scripts.Grid;
 using App.Scripts.Placement.States;
 using App.Scripts.Resources;
 using App.Scripts.Sound;
+using Newtonsoft.Json;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -37,24 +39,80 @@ namespace App.Scripts.Placement
         [Title("Sound"), Space] 
         [SerializeField] private SoundFeedback soundFeedback;
 
+        [SerializeField] private TextAsset jsonFile;
 
         private Vector3Int _lastDetectedPosition = Vector3Int.zero;
+        
         [Button]
         public void GetGridData()
         {
             _furnitureData.PrintGridState();
         }
+
         private void Start()
         {
             StopPlacement();
-            
+
+            if (jsonFile != null)
+            {
+                LoadGridSizeFromJson(jsonFile.text);
+            }
+
             _floorData = new GridData(gridSize);
             _furnitureData = new GridData(gridSize);
             GridSetup();
 
+            if (jsonFile != null)
+            {
+                PlaceObjectsFromJson(jsonFile.text); 
+            }
+
             inputManager.OnExit += StopPlacement;
         }
 
+        private void LoadGridSizeFromJson(string jsonString)
+        {
+            GridDataJson gridDataJson = JsonConvert.DeserializeObject<GridDataJson>(jsonString);
+
+            if (gridDataJson != null && gridDataJson.gridSize != null)
+            {
+                gridSize = new Vector2Int(gridDataJson.gridSize.x, gridDataJson.gridSize.y);
+            }
+            else
+            {
+                Debug.LogWarning("No grid size found in JSON, using default size.");
+            }
+        }
+
+        private void PlaceObjectsFromJson(string jsonString)
+        {
+            GridDataJson gridDataJson = JsonConvert.DeserializeObject<GridDataJson>(jsonString);
+
+            foreach (var gridObject in gridDataJson.gridObjects)
+            {
+                var buildingConfig = buildingManager.GetBuildingConfigById(gridObject.buildingConfig.instanceID);
+                if (buildingConfig != null)
+                {
+                    Vector3Int gridPosition = new Vector3Int(gridObject.position.x, gridObject.position.y, gridObject.position.z);
+                    if (_furnitureData.CanPlaceObjectAt(gridPosition, buildingConfig.size))
+                    {
+                        Building building = buildingManager.PlaceBuilding(buildingPrefab, grid.CellToWorld(gridPosition));
+                        _furnitureData.AddObjectAt(gridPosition, buildingConfig.size, building);
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"Cannot place building at {gridPosition}, position is occupied or out of bounds.");
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning($"No building config found for ID {gridObject.buildingConfig.instanceID}");
+                }
+            }
+        }
+
+        
+        
         public void StartPlacement(BasicBuildingConfig buildingConfig)
         {
             StopPlacement();
@@ -137,5 +195,39 @@ namespace App.Scripts.Placement
                 _lastDetectedPosition = gridPosition;
             }
         }
+    }
+    [System.Serializable]
+    public class GridDataJson
+    {
+        public Vector2IntJson gridSize;
+        public List<GridObjectJson> gridObjects;
+    }
+
+    [System.Serializable]
+    public class Vector2IntJson
+    {
+        public int x;
+        public int y;
+    }
+
+    [System.Serializable]
+    public class GridObjectJson
+    {
+        public BuildingConfigJson buildingConfig;
+        public Vector3IntJson position;
+    }
+
+    [System.Serializable]
+    public class BuildingConfigJson
+    {
+        public int instanceID;
+    }
+
+    [System.Serializable]
+    public class Vector3IntJson
+    {
+        public int x;
+        public int y;
+        public int z;
     }
 }
