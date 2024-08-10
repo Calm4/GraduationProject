@@ -6055,7 +6055,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 385181513}
-  gridSize: {x: 5, y: 5}
+  gridSize: {x: 0, y: 0}
   gridVisualization: {fileID: 1112236718}
   floor: {fileID: 2140119108}
   inputManager: {fileID: 864965515}

@@ -46,11 +46,13 @@ namespace App.Scripts.Placement
         
         public List<BasicBuildingConfig> buildingConfigs;
         
+        private BuildingPlacer _buildingPlacer;
         [Button]
         public void GetGridData()
         {
             _furnitureData.PrintGridState();
         }
+
 
         private void Start()
         {
@@ -63,11 +65,13 @@ namespace App.Scripts.Placement
 
             _floorData = new GridData(gridSize);
             _furnitureData = new GridData(gridSize);
+            _buildingPlacer = new BuildingPlacer(_furnitureData, gridSize); // Instantiate BuildingPlacer
+
             GridSetup();
 
             if (jsonFile != null)
             {
-                PlaceObjectsFromJson(jsonFile.text); 
+                PlaceObjectsFromJson(jsonFile.text);
             }
 
             inputManager.OnExit += StopPlacement;
@@ -99,7 +103,7 @@ namespace App.Scripts.Placement
 
                 if (config != null)
                 {
-                    PlaceBuilding(config, gridObject.position);
+                    _buildingPlacer.PlaceBuilding(config, gridObject.position); // Use BuildingPlacer
                 }
                 else
                 {
@@ -109,26 +113,7 @@ namespace App.Scripts.Placement
         }
 
 
-        private void PlaceBuilding(BasicBuildingConfig config, Vector3Int position)
-        {
-            Vector3 gridOffset = new Vector3((float)gridSize.x / 2, 0, (float)gridSize.y / 2);
-
-            GameObject buildingObject = new GameObject(config.buildingName);
-
-            buildingObject.transform.position = new Vector3(position.x - gridOffset.x, 0, position.z - gridOffset.z); 
-
-            Building buildingComponent = buildingObject.AddComponent<Building>();
-            buildingComponent.Initialize(config);
-
-            MeshFilter meshFilter = buildingObject.AddComponent<MeshFilter>();
-            meshFilter.mesh = config.mesh;
-
-            MeshRenderer meshRenderer = buildingObject.AddComponent<MeshRenderer>();
-            meshRenderer.material = config.material;
-
-            Vector2Int buildingSize = config.size; 
-            _furnitureData.AddObjectAt(position, buildingSize, buildingComponent); 
-        }
+       
         
         public void StartPlacement(BasicBuildingConfig buildingConfig)
         {
