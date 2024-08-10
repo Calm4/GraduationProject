@@ -218,7 +218,6 @@ namespace App.Scripts.Placement
     public class GridDataJson
     {
         public Vector2IntJson gridSize;
-        public List<GridObjectJson> gridObjects;
     }
 
     [System.Serializable]
@@ -227,43 +226,12 @@ namespace App.Scripts.Placement
         public int x;
         public int y;
     }
-
-    [System.Serializable]
-    public class GridObjectJson
-    {
-        public BuildingConfigJson buildingConfig;
-        public Vector3IntJson position;
-    }
-
-    [System.Serializable]
-    public class BuildingConfigJson
-    {
-        public int ID;
-    }
-
-    [System.Serializable]
-    public class Vector3IntJson
-    {
-        public int x;
-        public int y;
-        public int z;
-    }
+    
     [System.Serializable]
     public class GridObjectContainer
     {
         public List<GridObjectData> gridObjects;
     }
 
-    [System.Serializable]
-    public class GridObject
-    {
-        public BasicBuildingConfig buildingConfig;
-        public Vector3Int position;
-    }
 
-    [System.Serializable]
-    public class BuildingConfig
-    {
-        public int instanceID;
-    }
 }
