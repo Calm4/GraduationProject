@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using App.Scripts.Buildings.BuildingsConfigs;
 using UnityEditor;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ namespace App.Scripts.Grid
     public class GridDataSO : ScriptableObject
     {
         [HideInInspector]
-        public List<GridObjectData> gridObjects = new List<GridObjectData>();
+        public List<GridObjectData> gridObjects = new();
 
         [HideInInspector] public Vector2Int gridSize;
 
@@ -22,19 +23,31 @@ namespace App.Scripts.Grid
                 Debug.LogWarning("No file path selected.");
                 return;
             }
-
-            // Создаем экземпляр класса-обертки и заполняем его данными
+            
             var dataToSave = new GridSaveData
             {
                 gridSize = this.gridSize,
-                gridObjects = this.gridObjects.ToArray()
+                gridObjects = ConvertPositions(this.gridObjects).ToArray() 
             };
 
-            // Сериализуем данные в JSON
             string json = JsonUtility.ToJson(dataToSave, true);
             File.WriteAllText(path, json);
 
             Debug.Log($"Grid data exported to JSON at path: {path}");
+        }
+
+        private List<GridObjectData> ConvertPositions(List<GridObjectData> objects)
+        {
+            var convertedObjects = new List<GridObjectData>();
+
+            foreach (var obj in objects)
+            {
+                var convertedPosition = new Vector3Int(obj.position.x, obj.position.z, obj.position.y);
+                var convertedObject = new GridObjectData(obj.buildingConfig, convertedPosition);
+                convertedObjects.Add(convertedObject);
+            }
+
+            return convertedObjects;
         }
 
         public void ClearGrid()
@@ -42,7 +55,6 @@ namespace App.Scripts.Grid
             gridObjects.Clear();
         }
 
-        // Класс-обертка для сохранения данных
         [System.Serializable]
         private class GridSaveData
         {
@@ -51,5 +63,4 @@ namespace App.Scripts.Grid
         }
     }
 }
-
 

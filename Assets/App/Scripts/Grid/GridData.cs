@@ -25,13 +25,25 @@ namespace App.Scripts.Grid
             }
         }
 
+        public void InitializeGrid(List<GridObjectData> gridObjects)
+        {
+            foreach (var gridObject in gridObjects)
+            {
+                AddObjectAt(gridObject.position, gridObject.buildingConfig.size, null);
+            }
+        }
+
         public void AddObjectAt(Vector3Int gridPosition, Vector2 objectSize, Building building)
         {
             foreach (var position in CalculatePositions(gridPosition, objectSize))
             {
-                _gridCells[position.x, position.z].Occupy(building, gridPosition);
+                if (IsWithinBounds(position))
+                {
+                    _gridCells[position.x, position.z].Occupy(building, gridPosition);
+                }
             }
         }
+
 
         public void RemoveObjectAt(Vector3Int gridPosition)
         {
@@ -49,6 +61,8 @@ namespace App.Scripts.Grid
             {
                 _gridCells[position.x, position.z].Vacate();
             }
+            
+            Object.Destroy(building.gameObject);
         }
 
         public bool CanPlaceObjectAt(Vector3Int gridPosition, Vector2 objectSize)
@@ -86,6 +100,7 @@ namespace App.Scripts.Grid
         {
             return _gridCells[gridPosition.x, gridPosition.z].OccupyingBuilding;
         }
+
         public void PrintGridState()
         {
             for (int y = 0; y < _gridSize.y; y++)

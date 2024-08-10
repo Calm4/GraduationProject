@@ -16,4 +16,5 @@ namespace App.Scripts.Grid
             this.position = position;
         }
     }
+
 }

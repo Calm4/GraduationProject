@@ -21,7 +21,7 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  ID: 0
+  ID: 1
   buildingName: Archer Tower
   buildingType: 0
   mesh: {fileID: 4300000, guid: a3d2a603eb194f0449e712bcd00699b5, type: 2}

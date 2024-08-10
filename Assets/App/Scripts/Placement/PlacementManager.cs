@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using App.Scripts.Buildings;
 using App.Scripts.Buildings.BuildingsConfigs;
 using App.Scripts.GameInput;
@@ -43,6 +44,8 @@ namespace App.Scripts.Placement
 
         private Vector3Int _lastDetectedPosition = Vector3Int.zero;
         
+        public List<BasicBuildingConfig> buildingConfigs;
+        
         [Button]
         public void GetGridData()
         {
@@ -84,34 +87,48 @@ namespace App.Scripts.Placement
             }
         }
 
-        private void PlaceObjectsFromJson(string jsonString)
+        private void PlaceObjectsFromJson(string json)
         {
-            GridDataJson gridDataJson = JsonConvert.DeserializeObject<GridDataJson>(jsonString);
+            var gridObjects = JsonUtility.FromJson<GridObjectContainer>(json);
 
-            foreach (var gridObject in gridDataJson.gridObjects)
+            _floorData.InitializeGrid(gridObjects.gridObjects);
+
+            foreach (var gridObject in gridObjects.gridObjects)
             {
-                var buildingConfig = buildingManager.GetBuildingConfigById(gridObject.buildingConfig.instanceID);
-                if (buildingConfig != null)
+                var config = buildingConfigs.FirstOrDefault(b => b.ID == gridObject.buildingConfig.ID);
+
+                if (config != null)
                 {
-                    Vector3Int gridPosition = new Vector3Int(gridObject.position.x, gridObject.position.y, gridObject.position.z);
-                    if (_furnitureData.CanPlaceObjectAt(gridPosition, buildingConfig.size))
-                    {
-                        Building building = buildingManager.PlaceBuilding(buildingPrefab, grid.CellToWorld(gridPosition));
-                        _furnitureData.AddObjectAt(gridPosition, buildingConfig.size, building);
-                    }
-                    else
-                    {
-                        Debug.LogWarning($"Cannot place building at {gridPosition}, position is occupied or out of bounds.");
-                    }
+                    PlaceBuilding(config, gridObject.position);
                 }
                 else
                 {
-                    Debug.LogWarning($"No building config found for ID {gridObject.buildingConfig.instanceID}");
+                    Debug.LogWarning($"Building config with ID {gridObject.buildingConfig.ID} not found.");
                 }
             }
         }
 
-        
+
+        private void PlaceBuilding(BasicBuildingConfig config, Vector3Int position)
+        {
+            Vector3 gridOffset = new Vector3((float)gridSize.x / 2, 0, (float)gridSize.y / 2);
+
+            GameObject buildingObject = new GameObject(config.buildingName);
+
+            buildingObject.transform.position = new Vector3(position.x - gridOffset.x, 0, position.z - gridOffset.z); 
+
+            Building buildingComponent = buildingObject.AddComponent<Building>();
+            buildingComponent.Initialize(config);
+
+            MeshFilter meshFilter = buildingObject.AddComponent<MeshFilter>();
+            meshFilter.mesh = config.mesh;
+
+            MeshRenderer meshRenderer = buildingObject.AddComponent<MeshRenderer>();
+            meshRenderer.material = config.material;
+
+            Vector2Int buildingSize = config.size; 
+            _furnitureData.AddObjectAt(position, buildingSize, buildingComponent); 
+        }
         
         public void StartPlacement(BasicBuildingConfig buildingConfig)
         {
@@ -142,13 +159,14 @@ namespace App.Scripts.Placement
         [Button, VerticalGroup("Grid Settings")]
         private void GridSetup()
         {
-            var gridOffset = Vector3.zero - new Vector3((float)gridSize.x/2, 0, (float)gridSize.y/2);
+            var gridOffset = new Vector3(-(float)gridSize.x / 2, 0, -(float)gridSize.y / 2);
             grid.transform.position = gridOffset;
 
             var gridVisualizationSize = new Vector3((float)gridSize.x / 10, 1, (float)gridSize.y / 10);
             gridVisualization.transform.localScale = gridVisualizationSize;
             floor.transform.localScale = gridVisualizationSize;
         }
+
         private void PlaceStructure()
         {
             if (inputManager.IsPointerOverUI())
@@ -220,7 +238,7 @@ namespace App.Scripts.Placement
     [System.Serializable]
     public class BuildingConfigJson
     {
-        public int instanceID;
+        public int ID;
     }
 
     [System.Serializable]
@@ -229,5 +247,23 @@ namespace App.Scripts.Placement
         public int x;
         public int y;
         public int z;
+    }
+    [System.Serializable]
+    public class GridObjectContainer
+    {
+        public List<GridObjectData> gridObjects;
+    }
+
+    [System.Serializable]
+    public class GridObject
+    {
+        public BasicBuildingConfig buildingConfig;
+        public Vector3Int position;
+    }
+
+    [System.Serializable]
+    public class BuildingConfig
+    {
+        public int instanceID;
     }
 }
