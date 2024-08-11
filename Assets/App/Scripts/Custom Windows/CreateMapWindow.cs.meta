@@ -6,7 +6,7 @@ MonoImporter:
   defaultReferences:
   - m_ViewDataDictionary: {instanceID: 0}
   - gridDataSo: {instanceID: 0}
-  - buildingConfigsData: {fileID: 11400000, guid: c10e51bb945d92e45a0b124f18f15578, type: 2}
+  - buildingsDataBase: {fileID: 11400000, guid: c10e51bb945d92e45a0b124f18f15578, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

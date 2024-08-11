@@ -17,18 +17,22 @@ namespace App.Scripts.Custom_Windows
         [InlineEditor(Expanded = true), VerticalGroup("Grid Data")]
         public GridDataSO gridDataSo;
 
-        [FormerlySerializedAs("buildingConfigsData")] [SerializeField, HideInInspector] private BuildingsDataBase buildingsDataBase;
+        [FormerlySerializedAs("buildingConfigsData")] 
+        [SerializeField, HideInInspector] 
+        private BuildingsDataBase buildingsDataBase;
 
         private GridMapWindow _gridMapWindow;
         private RenderMapWindow _renderer;
+        private Vector2Int _previousGridSize;
 
-        [MenuItem("Tools/Create Map \ud83d\uddfa\ufe0f")]
+        [MenuItem("Tools/Create Map 🗺️")]
         private static void OpenWindow() => GetWindow<CreateMapWindow>().Show();
 
         protected override void OnEnable()
         {
             base.OnEnable();
             InitializeRenderer();
+            _previousGridSize = gridDataSo.gridSize; // Сохранение начального размера сетки
         }
 
         private void InitializeRenderer()
@@ -56,6 +60,13 @@ namespace App.Scripts.Custom_Windows
                 InitializeRenderer();
             }
 
+            // Проверка на изменение размера сетки
+            if (gridDataSo.gridSize != _previousGridSize)
+            {
+                ClearGrid(); // Очистка сетки при изменении размера
+                _previousGridSize = gridDataSo.gridSize; // Обновление сохраненного размера
+            }
+
             _renderer?.Draw();
         }
 
@@ -75,4 +86,3 @@ namespace App.Scripts.Custom_Windows
         }
     }
 }
- 
