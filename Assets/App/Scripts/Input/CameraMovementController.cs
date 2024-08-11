@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace App.Scripts.GameInput
+namespace App.Scripts.Input
 {
     public class CameraMovementController : MonoBehaviour
     {
@@ -16,7 +16,7 @@ namespace App.Scripts.GameInput
 
         private void CameraRotation()
         {
-            float rotation = Input.GetAxis("Mouse X");
+            float rotation = UnityEngine.Input.GetAxis("Mouse X");
 
             Ray ray = new Ray(transform.position, transform.forward);
 
@@ -31,7 +31,7 @@ namespace App.Scripts.GameInput
 
         private void CameraZoom()
         {
-            float scroll = Input.GetAxis("Mouse ScrollWheel");
+            float scroll = UnityEngine.Input.GetAxis("Mouse ScrollWheel");
             Vector3 zoom = transform.forward * (scroll * cameraConfig.zoomSpeed);
             transform.Translate(zoom, Space.World);
         }

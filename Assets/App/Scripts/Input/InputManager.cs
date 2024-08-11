@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace App.Scripts.GameInput
+namespace App.Scripts.Input
 {
     public class InputManager : MonoBehaviour
     {
@@ -19,22 +19,22 @@ namespace App.Scripts.GameInput
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0))
+            if (UnityEngine.Input.GetMouseButtonDown(0))
             {
                 OnClicked?.Invoke();
             }
 
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (UnityEngine.Input.GetKeyDown(KeyCode.Escape))
             {
                 OnExit?.Invoke();
             }
 
-            if (Input.GetMouseButton(2))
+            if (UnityEngine.Input.GetMouseButton(2))
             {
                 OnRotateAround?.Invoke();
             }
 
-            if (Input.GetAxis("Mouse ScrollWheel") != 0f)
+            if (UnityEngine.Input.GetAxis("Mouse ScrollWheel") != 0f)
             {
                 OnScroll?.Invoke();
             }
@@ -47,7 +47,7 @@ namespace App.Scripts.GameInput
     
         public Vector3 GetSelectedMapPosition()
         {
-            Vector3 mousePos = Input.mousePosition;
+            Vector3 mousePos = UnityEngine.Input.mousePosition;
             mousePos.z = sceneCamera.nearClipPlane;
             Ray ray = sceneCamera.ScreenPointToRay(mousePos);
             
@@ -61,8 +61,8 @@ namespace App.Scripts.GameInput
 
         public Vector2 GetMovementDirection()
         {
-            float horizontal = Input.GetAxisRaw("Horizontal");
-            float vertical = Input.GetAxisRaw("Vertical");
+            float horizontal = UnityEngine.Input.GetAxisRaw("Horizontal");
+            float vertical = UnityEngine.Input.GetAxisRaw("Vertical");
 
             return new Vector2(horizontal, vertical);
         }

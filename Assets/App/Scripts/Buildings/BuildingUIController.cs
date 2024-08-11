@@ -29,20 +29,29 @@ namespace App.Scripts.Buildings
             {
                 var buttonInstance = Instantiate(buttonPrefab, buttonContainer);
                 var button = buttonInstance.GetComponent<Button>();
-                var buttonText = buttonInstance.GetComponentInChildren<TMP_Text>(); 
+                var buttonText = buttonInstance.GetComponentInChildren<TMP_Text>();
+
+                // Предположим, что Image является первым дочерним элементом Button
+                var buttonImage = buttonInstance.transform.GetChild(0).GetComponent<Image>();
 
                 if (button != null)
                 {
                     var tempConfig = config;
                     button.onClick.AddListener(() => OnBuildingButtonClicked(tempConfig));
-                    
+            
                     if (buttonText != null)
                     {
                         buttonText.text = config.buildingName;
                     }
+
+                    if (buttonImage != null)
+                    {
+                        buttonImage.sprite = config.sprite;
+                    }
                 }
             }
         }
+
 
         private void OnBuildingButtonClicked(BasicBuildingConfig buildingConfig)
         {
