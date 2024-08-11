@@ -17,7 +17,7 @@ namespace App.Scripts.Custom_Windows
         [InlineEditor(Expanded = true), VerticalGroup("Grid Data")]
         public GridDataSO gridDataSo;
 
-        [SerializeField, HideInInspector] private BuildingConfigsData buildingConfigsData;
+        [FormerlySerializedAs("buildingConfigsData")] [SerializeField, HideInInspector] private BuildingsDataBase buildingsDataBase;
 
         private GridMapWindow _gridMapWindow;
         private RenderMapWindow _renderer;
@@ -33,17 +33,17 @@ namespace App.Scripts.Custom_Windows
 
         private void InitializeRenderer()
         {
-            if (gridDataSo == null || buildingConfigsData == null) return;
+            if (gridDataSo == null || buildingsDataBase == null) return;
 
             _gridMapWindow ??= new GridMapWindow(gridDataSo.gridSize);
 
             if (_renderer == null)
             {
-                _renderer = new RenderMapWindow(this, _gridMapWindow, gridDataSo, buildingConfigsData);
+                _renderer = new RenderMapWindow(this, _gridMapWindow, gridDataSo, buildingsDataBase);
             }
             else
             {
-                _renderer.UpdateGrid(gridDataSo, buildingConfigsData);
+                _renderer.UpdateGrid(gridDataSo, buildingsDataBase);
             }
         }
 
@@ -61,9 +61,9 @@ namespace App.Scripts.Custom_Windows
 
         public void UpdateGridData()
         {
-            if (gridDataSo == null || buildingConfigsData == null) return;
+            if (gridDataSo == null || buildingsDataBase == null) return;
 
-            _renderer?.UpdateGrid(gridDataSo, buildingConfigsData);
+            _renderer?.UpdateGrid(gridDataSo, buildingsDataBase);
             Repaint();
         }
 

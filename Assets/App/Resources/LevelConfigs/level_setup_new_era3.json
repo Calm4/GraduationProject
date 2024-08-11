@@ -1,0 +1,40 @@
+{
+    "gridSize": {
+        "x": 5,
+        "y": 5
+    },
+    "gridObjects": [
+        {
+            "buildingConfigID": 0,
+            "position": {
+                "x": 1,
+                "y": 0,
+                "z": 3
+            }
+        },
+        {
+            "buildingConfigID": 1,
+            "position": {
+                "x": 3,
+                "y": 0,
+                "z": 3
+            }
+        },
+        {
+            "buildingConfigID": 2,
+            "position": {
+                "x": 4,
+                "y": 0,
+                "z": 0
+            }
+        },
+        {
+            "buildingConfigID": 3,
+            "position": {
+                "x": 1,
+                "y": 0,
+                "z": 1
+            }
+        }
+    ]
+}

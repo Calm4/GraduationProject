@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0d501d5702534699939a45cb941c0032, type: 3}
-  m_Name: Cylinders_BuildingConfig
+  m_Name: Cylinders_BasicBuildingConfig
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -21,9 +21,9 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  ID: 3
+  ID: 2
   buildingName: Cylinders
-  buildingType: 1
+  buildingType: 0
   mesh: {fileID: 4300000, guid: b4b769a18198ab5429d3e9b723aaab53, type: 2}
   material: {fileID: 2100000, guid: d76d5dba59c8a824a8170635648a356c, type: 2}
   size: {x: 1, y: 2}

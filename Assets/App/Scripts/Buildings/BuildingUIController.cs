@@ -14,7 +14,7 @@ namespace App.Scripts.Buildings
         [SerializeField] private PlacementManager placementManager;
         [SerializeField] private Building buildingPrefab;
         [Title("Building Configs List")]
-        [SerializeField] private BasicBuildingConfig[] buildingConfigs;
+        [SerializeField] private BuildingsDataBase buildingsDataBase;
 
 
 
@@ -25,7 +25,7 @@ namespace App.Scripts.Buildings
 
         private void GenerateButtons()
         {
-            foreach (var config in buildingConfigs)
+            foreach (var config in buildingsDataBase.buildingConfigs)
             {
                 var buttonInstance = Instantiate(buttonPrefab, buttonContainer);
                 var button = buttonInstance.GetComponent<Button>();

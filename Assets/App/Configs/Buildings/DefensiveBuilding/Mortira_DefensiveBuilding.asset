@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43a3daa081334bceb75a5753bc926c81, type: 3}
-  m_Name: ArcherTower_DefensiveBuilding
+  m_Name: Mortira_DefensiveBuilding
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -21,16 +21,16 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  ID: 0
-  buildingName: Archer Tower
+  ID: 3
+  buildingName: Mortira
   buildingType: 0
-  mesh: {fileID: 4300000, guid: a3d2a603eb194f0449e712bcd00699b5, type: 2}
-  material: {fileID: 2100000, guid: c8d0f434948db05438598a0f5237c4b2, type: 2}
+  mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  material: {fileID: 2100000, guid: 9618c6b42230db7408b3b734da21470a, type: 2}
   size: {x: 1, y: 1}
   resourcesToBuild:
   - resourceType: 1
-    amountToBuild: 2
-  - resourceType: 2
     amountToBuild: 1
+  - resourceType: 2
+    amountToBuild: 3
   moneyToBuild: 0
-  sprite: {fileID: 21300000, guid: 99e5d180080c96940a65c6d906ff9131, type: 3}
+  sprite: {fileID: 21300000, guid: bd76726ffb1eb94429fb8143429bd978, type: 3}

@@ -11,23 +11,23 @@ namespace App.Scripts.Custom_Windows
     {
         private GridMapWindow _gridMapWindow;
         private GridDataSO _gridDataSO;
-        private BuildingConfigsData _buildingConfigsData;
+        private BuildingsDataBase _buildingsDataBase;
         private BasicBuildingConfig _selectedBuildingConfig;
         private Vector2 _scrollPosition;
         private readonly CreateMapWindow _mapCreateWindow;
 
-        public RenderMapWindow(CreateMapWindow mapCreateWindow, GridMapWindow gridMapWindow, GridDataSO gridDataSO, BuildingConfigsData buildingConfigsData)
+        public RenderMapWindow(CreateMapWindow mapCreateWindow, GridMapWindow gridMapWindow, GridDataSO gridDataSO, BuildingsDataBase buildingsDataBase)
         {
             _mapCreateWindow = mapCreateWindow;
             _gridMapWindow = gridMapWindow;
             _gridDataSO = gridDataSO;
-            _buildingConfigsData = buildingConfigsData;
+            _buildingsDataBase = buildingsDataBase;
         }
 
-        public void UpdateGrid(GridDataSO gridDataSO, BuildingConfigsData buildingConfigsData)
+        public void UpdateGrid(GridDataSO gridDataSO, BuildingsDataBase buildingsDataBase)
         {
             _gridDataSO = gridDataSO;
-            _buildingConfigsData = buildingConfigsData;
+            _buildingsDataBase = buildingsDataBase;
             _gridMapWindow.InitializeGrid(gridDataSO.gridSize, gridDataSO.gridObjects);
         }
 
@@ -39,7 +39,7 @@ namespace App.Scripts.Custom_Windows
                 return;
             }
 
-            if (_buildingConfigsData == null)
+            if (_buildingsDataBase == null)
             {
                 SirenixEditorGUI.ErrorMessageBox("Please assign BuildingConfigsData.");
                 return;
@@ -76,15 +76,15 @@ namespace App.Scripts.Custom_Windows
         {
             GUILayout.Label("Object Type", EditorStyles.boldLabel);
 
-            if (_buildingConfigsData.buildingConfigs != null && _buildingConfigsData.buildingConfigs.Count > 0)
+            if (_buildingsDataBase.buildingConfigs != null && _buildingsDataBase.buildingConfigs.Count > 0)
             {
-                var buildingNames = _buildingConfigsData.buildingConfigs.ConvertAll(b => b.buildingName).ToArray();
+                var buildingNames = _buildingsDataBase.buildingConfigs.ConvertAll(b => b.buildingName).ToArray();
                 var selectedIndex = _selectedBuildingConfig != null
-                    ? _buildingConfigsData.buildingConfigs.IndexOf(_selectedBuildingConfig)
+                    ? _buildingsDataBase.buildingConfigs.IndexOf(_selectedBuildingConfig)
                     : -1;
 
-                selectedIndex = Mathf.Clamp(EditorGUILayout.Popup("", selectedIndex, buildingNames), 0, _buildingConfigsData.buildingConfigs.Count - 1);
-                _selectedBuildingConfig = _buildingConfigsData.buildingConfigs[selectedIndex];
+                selectedIndex = Mathf.Clamp(EditorGUILayout.Popup("", selectedIndex, buildingNames), 0, _buildingsDataBase.buildingConfigs.Count - 1);
+                _selectedBuildingConfig = _buildingsDataBase.buildingConfigs[selectedIndex];
                 _mapCreateWindow.UpdateGridData(); // Обновите данные при изменении конфигурации
             }
             else
@@ -170,21 +170,34 @@ namespace App.Scripts.Custom_Windows
 
         private void DrawCell(Rect cellRect, int x, int y)
         {
+            // Найти объект, который занимает текущую клетку
             var objInCell = _gridDataSO.gridObjects.Find(obj => IsObjectInCell(obj, x, y));
 
             if (objInCell != null)
             {
-                if (objInCell.buildingConfig.sprite != null)
+                // Проверить, является ли текущая клетка главной (левой нижней) клеткой объекта
+                if (objInCell.position.x == x && objInCell.position.y == y)
                 {
-                    EditorGUI.DrawTextureTransparent(cellRect, objInCell.buildingConfig.sprite.texture, ScaleMode.ScaleToFit);
+                    // Рассчитать прямоугольник для отрисовки текстуры, который будет занимать нужные клетки
+                    Rect objectRect = new Rect(
+                        cellRect.x,
+                        cellRect.y - (objInCell.buildingConfig.size.y - 1) * cellRect.height,
+                        cellRect.width * objInCell.buildingConfig.size.x,
+                        cellRect.height * objInCell.buildingConfig.size.y
+                    );
+
+                    // Отрисовка текстуры с использованием ScaleMode.StretchToFill, чтобы покрыть весь регион
+                    EditorGUI.DrawTextureTransparent(objectRect, objInCell.buildingConfig.sprite.texture, ScaleMode.StretchToFill);
                 }
             }
             else
             {
+                // Если клетка пуста, просто нарисовать её зеленым цветом и границы
                 EditorGUI.DrawRect(cellRect, Color.green);
                 DrawCellBorders(cellRect);
             }
         }
+
 
         private void DrawCellBorders(Rect cellRect)
         {

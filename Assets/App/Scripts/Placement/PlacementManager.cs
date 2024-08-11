@@ -10,6 +10,7 @@ using App.Scripts.Sound;
 using Newtonsoft.Json;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace App.Scripts.Placement
 {
@@ -30,23 +31,22 @@ namespace App.Scripts.Placement
         [SerializeField] private BuildingManager buildingManager;
         [SerializeField] private ResourcesManager resourcesManager;
 
-        [Title("Buildings"), Space] [SerializeField]
-        private BuildingPreview buildingPreview;
-
+        [Title("Buildings"), Space] 
+        [SerializeField] private BuildingPreview buildingPreview;
         [SerializeField] private Building buildingPrefab;
-
+        [FormerlySerializedAs("buildingConfigsData")] [SerializeField] private BuildingsDataBase buildingsDataBase;
         private IBuildingState _buildingState;
+
+        [Title("JSON FILE"), Space]
+        [SerializeField] private TextAsset jsonFile;
 
         [Title("Sound"), Space] 
         [SerializeField] private SoundFeedback soundFeedback;
 
-        [SerializeField] private TextAsset jsonFile;
-
         private Vector3Int _lastDetectedPosition = Vector3Int.zero;
-        
-        public List<BasicBuildingConfig> buildingConfigs;
-        
         private BuildingPlacer _buildingPlacer;
+        
+        
         [Button]
         public void GetGridData()
         {
@@ -93,24 +93,34 @@ namespace App.Scripts.Placement
 
         private void PlaceObjectsFromJson(string json)
         {
-            var gridObjects = JsonUtility.FromJson<GridObjectContainer>(json);
+            var gridObjectsContainer = JsonUtility.FromJson<GridObjectContainer>(json);
+            
+            var gridObjects = new List<GridObjectData>();
 
-            _floorData.InitializeGrid(gridObjects.gridObjects);
-
-            foreach (var gridObject in gridObjects.gridObjects)
+            foreach (var gridObjectSerializable in gridObjectsContainer.gridObjects)
             {
-                var config = buildingConfigs.FirstOrDefault(b => b.ID == gridObject.buildingConfig.ID);
-
+                var config = buildingsDataBase.buildingConfigs.FirstOrDefault(b => b.ID == gridObjectSerializable.buildingConfigID);
                 if (config != null)
                 {
-                    _buildingPlacer.PlaceBuilding(config, gridObject.position); // Use BuildingPlacer
+                    var gridObjectData = new GridObjectData(config, gridObjectSerializable.position);
+                    gridObjects.Add(gridObjectData);
                 }
                 else
                 {
-                    Debug.LogWarning($"Building config with ID {gridObject.buildingConfig.ID} not found.");
+                    Debug.LogWarning($"Building config with ID {gridObjectSerializable.buildingConfigID} not found.");
                 }
             }
+
+            // Передаем преобразованный список в InitializeGrid
+            _floorData.InitializeGrid(gridObjects);
+
+            // Теперь можно разместить объекты
+            foreach (var gridObject in gridObjects)
+            {
+                _buildingPlacer.PlaceBuilding(gridObject.buildingConfig, gridObject.position);
+            }
         }
+
 
 
        
@@ -215,7 +225,7 @@ namespace App.Scripts.Placement
     [System.Serializable]
     public class GridObjectContainer
     {
-        public List<GridObjectData> gridObjects;
+        public List<GridObjectSerializableData> gridObjects;
     }
 
 

@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace App.Scripts.Grid
 {
-    [CreateAssetMenu(fileName = "GridData", menuName = "Grid/Grid Data", order = 1)]
+    [CreateAssetMenu(fileName = "GridData", menuName = "Configs/Grid Data", order = 1)]
     public class GridDataSO : ScriptableObject
     {
         [HideInInspector]
@@ -27,7 +27,7 @@ namespace App.Scripts.Grid
             var dataToSave = new GridSaveData
             {
                 gridSize = this.gridSize,
-                gridObjects = ConvertPositions(this.gridObjects).ToArray() 
+                gridObjects = ConvertToSerializable(gridObjects).ToArray() 
             };
 
             string json = JsonUtility.ToJson(dataToSave, true);
@@ -36,15 +36,15 @@ namespace App.Scripts.Grid
             Debug.Log($"Grid data exported to JSON at path: {path}");
         }
 
-        private List<GridObjectData> ConvertPositions(List<GridObjectData> objects)
+        private List<GridObjectSerializableData> ConvertToSerializable(List<GridObjectData> objects)
         {
-            var convertedObjects = new List<GridObjectData>();
+            var convertedObjects = new List<GridObjectSerializableData>();
 
             foreach (var obj in objects)
             {
                 var convertedPosition = new Vector3Int(obj.position.x, obj.position.z, obj.position.y);
-                var convertedObject = new GridObjectData(obj.buildingConfig, convertedPosition);
-                convertedObjects.Add(convertedObject);
+                var serializableObject = new GridObjectSerializableData(obj.buildingConfig.ID, convertedPosition);
+                convertedObjects.Add(serializableObject);
             }
 
             return convertedObjects;
@@ -59,8 +59,7 @@ namespace App.Scripts.Grid
         private class GridSaveData
         {
             public Vector2Int gridSize;
-            public GridObjectData[] gridObjects;
+            public GridObjectSerializableData[] gridObjects;
         }
     }
 }
-
