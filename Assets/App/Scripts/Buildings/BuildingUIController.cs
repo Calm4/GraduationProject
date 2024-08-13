@@ -1,5 +1,7 @@
-﻿using App.Scripts.Buildings.BuildingsConfigs;
+﻿using System;
+using App.Scripts.Buildings.BuildingsConfigs;
 using App.Scripts.Placement;
+using DG.Tweening;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
@@ -16,6 +18,8 @@ namespace App.Scripts.Buildings
         [Title("Building Configs List")]
         [SerializeField] private BuildingsDataBase buildingsDataBase;
 
+        [SerializeField] private GameObject hideAndShowBuildings;
+        [SerializeField] private Transform positionToMovePanel;
 
 
         private void Start()
@@ -52,10 +56,23 @@ namespace App.Scripts.Buildings
             }
         }
 
+        private void Update()
+        {
+            if (UnityEngine.Input.GetKeyDown(KeyCode.F))
+            {
+                ShowOrHideBuildingsPanel();
+            }
+        }
 
         private void OnBuildingButtonClicked(BasicBuildingConfig buildingConfig)
         {
             placementManager.StartPlacement(buildingConfig);
+        }
+
+        public void ShowOrHideBuildingsPanel()
+        {
+
+            hideAndShowBuildings.transform.DOMove(positionToMovePanel.position, 2f);
         }
     }
 }
