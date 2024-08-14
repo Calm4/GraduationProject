@@ -338,7 +338,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000030517578, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &165633155
@@ -2142,8 +2142,8 @@ MonoBehaviour:
   placementManager: {fileID: 2113443925}
   buildingPrefab: {fileID: 6827337395158552025, guid: d9c65636e0495ff40b3163ed3af25112, type: 3}
   buildingsDataBase: {fileID: 11400000, guid: c10e51bb945d92e45a0b124f18f15578, type: 2}
-  hideAndShowBuildings: {fileID: 1666266091}
-  positionToMovePanel: {fileID: 780952173}
+  buttonsPanel: {fileID: 1666266091}
+  positionToHidePanel: {fileID: 780952173}
 --- !u!1 &780952172
 GameObject:
   m_ObjectHideFlags: 0
@@ -2174,11 +2174,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 760121114}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -1425}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -100}
+  m_SizeDelta: {x: 0, y: 100}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &805235752
 GameObject:
   m_ObjectHideFlags: 0
@@ -3875,7 +3875,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 100}
+  m_AnchoredPosition: {x: 0, y: 125}
   m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1185213255
@@ -6009,7 +6009,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1351878654}
   m_HandleRect: {fileID: 1351878653}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
