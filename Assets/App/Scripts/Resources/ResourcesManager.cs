@@ -25,6 +25,11 @@ namespace App.Scripts.Resources
         {
             return _resources[resourceType];
         }
+        
+        public Dictionary<ResourceType, ResourceData> GetAllResources()
+        {
+            return _resources;
+        }
 
         public void AddResource(int amount, ResourceType resourceType)
         {
