@@ -2142,8 +2142,9 @@ MonoBehaviour:
   placementManager: {fileID: 2113443925}
   buildingPrefab: {fileID: 6827337395158552025, guid: d9c65636e0495ff40b3163ed3af25112, type: 3}
   buildingsDataBase: {fileID: 11400000, guid: c10e51bb945d92e45a0b124f18f15578, type: 2}
-  buttonsPanel: {fileID: 1666266091}
+  buttonsPanel: {fileID: 1666266092}
   positionToHidePanel: {fileID: 780952173}
+  animationTime: 0.3
 --- !u!1 &780952172
 GameObject:
   m_ObjectHideFlags: 0
@@ -6009,7 +6010,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1351878654}
   m_HandleRect: {fileID: 1351878653}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

@@ -4,9 +4,7 @@ using App.Scripts.Placement;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using TMPro;
-using UnityEditor.Build;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace App.Scripts.Buildings
@@ -18,18 +16,21 @@ namespace App.Scripts.Buildings
         [SerializeField] private PlacementManager placementManager;
         [SerializeField] private Building buildingPrefab;
 
-        [Title("Building Configs List")] [SerializeField]
-        private BuildingsDataBase buildingsDataBase;
+        [Title("Building Configs List")] 
+        [SerializeField] private BuildingsDataBase buildingsDataBase;
 
-        [SerializeField] private GameObject buttonsPanel;
-        [SerializeField] private Transform positionToHidePanel;
-        
-        private Vector3 _panelStartPosition;
+        [SerializeField] private RectTransform buttonsPanel; 
+        [SerializeField] private RectTransform positionToHidePanel; 
+ 
+        [Header("Animation Params")] 
+        [SerializeField] private float animationTime; 
+        private Vector2 _panelStartPosition; 
         private bool _isHide = false;
 
         private void Start()
         {
-            _panelStartPosition = buttonsPanel.transform.position; Debug.Log(buttonsPanel.transform.position);
+            _panelStartPosition = buttonsPanel.anchoredPosition;
+            Debug.Log("Start position: " + _panelStartPosition);
             GenerateButtons();
         }
 
@@ -78,13 +79,13 @@ namespace App.Scripts.Buildings
         {
             if (_isHide)
             {
-                buttonsPanel.transform.DOMove(_panelStartPosition, 2f);
-                Debug.Log(_panelStartPosition);
+                buttonsPanel.DOAnchorPos(_panelStartPosition, animationTime);
+                Debug.Log("Show panel at: " + _panelStartPosition);
             }
             else
             {
-                buttonsPanel.transform.DOMove(positionToHidePanel.position, 2f);
-                Debug.Log(positionToHidePanel.position + "!!!");
+                buttonsPanel.DOAnchorPos(positionToHidePanel.anchoredPosition, animationTime);
+                Debug.Log("Hide panel at: " + positionToHidePanel.anchoredPosition);
             }
             _isHide = !_isHide;
         }
