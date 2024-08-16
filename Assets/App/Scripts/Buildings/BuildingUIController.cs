@@ -21,6 +21,7 @@ namespace App.Scripts.Buildings
 
         [SerializeField] private RectTransform buttonsPanel; 
         [SerializeField] private RectTransform positionToHidePanel; 
+        [SerializeField] private RectTransform hideAndShowButton; 
  
         [Header("Animation Params")] 
         [SerializeField] private float animationTime; 
@@ -79,15 +80,20 @@ namespace App.Scripts.Buildings
         {
             if (_isHide)
             {
-                buttonsPanel.DOAnchorPos(_panelStartPosition, animationTime);
+                buttonsPanel.DOAnchorPos(_panelStartPosition, animationTime).SetEase(Ease.OutCirc );  // Эластичное появление панели
+                hideAndShowButton.DORotate(new Vector3(0,0,0), animationTime);
                 Debug.Log("Show panel at: " + _panelStartPosition);
             }
             else
             {
-                buttonsPanel.DOAnchorPos(positionToHidePanel.anchoredPosition, animationTime);
+                buttonsPanel.DOAnchorPos(positionToHidePanel.anchoredPosition, animationTime).SetEase(Ease.InCirc);  // Эластичное скрытие панели
+                hideAndShowButton.DORotate(new Vector3(0,0,180), animationTime);
                 Debug.Log("Hide panel at: " + positionToHidePanel.anchoredPosition);
             }
+
             _isHide = !_isHide;
         }
+
+
     }
 }

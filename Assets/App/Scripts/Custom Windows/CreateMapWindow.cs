@@ -60,6 +60,12 @@ namespace App.Scripts.Custom_Windows
                 InitializeRenderer();
             }
 
+            if (gridDataSo == null)
+            {
+                Debug.LogWarning("PLEASE INITIALIZE DATA");
+                return;
+            }
+            
             // Проверка на изменение размера сетки
             if (gridDataSo.gridSize != _previousGridSize)
             {

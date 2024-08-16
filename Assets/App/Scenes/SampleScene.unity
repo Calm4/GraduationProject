@@ -1203,7 +1203,6 @@ GameObject:
   - component: {fileID: 480245616}
   - component: {fileID: 480245615}
   - component: {fileID: 480245614}
-  - component: {fileID: 480245618}
   m_Layer: 5
   m_Name: ResoursesUI
   m_TagString: Untagged
@@ -1295,22 +1294,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &480245618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 480245613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 222f900ca55131d459e85611b4df1bc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  resourcesDataBase: {fileID: 11400000, guid: 27323eb4ac4544b40902b56568963da7, type: 2}
-  resourceUIContainer: {fileID: 597903126}
-  resourcesManager: {fileID: 805235755}
-  resourceUIPrefab: {fileID: 8732738247636088996, guid: 96ceb105e0bf1d84294dd351c7843b29, type: 3}
 --- !u!1 &536378946
 GameObject:
   m_ObjectHideFlags: 0
@@ -2005,6 +1988,7 @@ MonoBehaviour:
   buildingsDataBase: {fileID: 11400000, guid: c10e51bb945d92e45a0b124f18f15578, type: 2}
   buttonsPanel: {fileID: 1666266092}
   positionToHidePanel: {fileID: 780952173}
+  hideAndShowButton: {fileID: 1185213254}
   animationTime: 0.3
 --- !u!1 &780952172
 GameObject:
@@ -2041,366 +2025,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -100}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0}
---- !u!1 &805235752
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 805235754}
-  - component: {fileID: 805235755}
-  m_Layer: 0
-  m_Name: ResourcesManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &805235754
+--- !u!4 &805235754 stripped
 Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 375878676686424304, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
+  m_PrefabInstance: {fileID: 928003302087690822}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 805235752}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 407665853}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &805235755
+--- !u!114 &805235755 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
+  m_PrefabInstance: {fileID: 928003302087690822}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 805235752}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 008ede11bede4399a29b280a3f16ecb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects:
-    - {fileID: 11400000, guid: 10b56f5eb5bfd774aab1d65b93d86453, type: 2}
-    - {fileID: 11400000, guid: 3df9d4f94b42acc49858e0129dd1dd37, type: 2}
-    - {fileID: 11400000, guid: f9e10c81e0042e94e87b97a1c3e7c3f0, type: 2}
-    - {fileID: 11400000, guid: 6d56a258ed9f9e44fbc598e7d085d3a7, type: 2}
-    - {fileID: 11400000, guid: 7923030f6f0f1854680341d54d0eee92, type: 2}
-    - {fileID: 11400000, guid: d502ffcfac7b7c840bd3de77f24a8691, type: 2}
-    - {fileID: 11400000, guid: b4a30f8493488424796036fb0dce3545, type: 2}
-    - {fileID: 11400000, guid: 017539c5c52000b43b51660858d91f03, type: 2}
-    - {fileID: 11400000, guid: f65cd3c57f42c7e478c57b97fd4a48e7, type: 2}
-    - {fileID: 11400000, guid: f5ae9a3c97bcb054f802b25899db4d34, type: 2}
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: _resources
-      Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[App.Scripts.Resources.ResourceType,
-        Assembly-CSharp],[App.Scripts.Resources.ResourceData, Assembly-CSharp]],
-        mscorlib
-    - Name: comparer
-      Entry: 7
-      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[App.Scripts.Resources.ResourceType,
-        Assembly-CSharp]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 12
-      Data: 10
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 0
-    - Name: $v
-      Entry: 7
-      Data: App.Scripts.Resources.ResourceData, Assembly-CSharp
-    - Name: resourceConfig
-      Entry: 10
-      Data: 0
-    - Name: currentAmount
-      Entry: 3
-      Data: 8
-    - Name: maxAmount
-      Entry: 3
-      Data: 20
-    - Name: isUnlockedNow
-      Entry: 5
-      Data: true
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 1
-    - Name: $v
-      Entry: 7
-      Data: App.Scripts.Resources.ResourceData, Assembly-CSharp
-    - Name: resourceConfig
-      Entry: 10
-      Data: 1
-    - Name: currentAmount
-      Entry: 3
-      Data: 16
-    - Name: maxAmount
-      Entry: 3
-      Data: 20
-    - Name: isUnlockedNow
-      Entry: 5
-      Data: true
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 2
-    - Name: $v
-      Entry: 7
-      Data: App.Scripts.Resources.ResourceData, Assembly-CSharp
-    - Name: resourceConfig
-      Entry: 10
-      Data: 2
-    - Name: currentAmount
-      Entry: 3
-      Data: 8
-    - Name: maxAmount
-      Entry: 3
-      Data: 10
-    - Name: isUnlockedNow
-      Entry: 5
-      Data: true
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 3
-    - Name: $v
-      Entry: 7
-      Data: App.Scripts.Resources.ResourceData, Assembly-CSharp
-    - Name: resourceConfig
-      Entry: 10
-      Data: 3
-    - Name: currentAmount
-      Entry: 3
-      Data: 0
-    - Name: maxAmount
-      Entry: 3
-      Data: 0
-    - Name: isUnlockedNow
-      Entry: 5
-      Data: false
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 4
-    - Name: $v
-      Entry: 7
-      Data: App.Scripts.Resources.ResourceData, Assembly-CSharp
-    - Name: resourceConfig
-      Entry: 10
-      Data: 4
-    - Name: currentAmount
-      Entry: 3
-      Data: 0
-    - Name: maxAmount
-      Entry: 3
-      Data: 0
-    - Name: isUnlockedNow
-      Entry: 5
-      Data: false
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 5
-    - Name: $v
-      Entry: 7
-      Data: App.Scripts.Resources.ResourceData, Assembly-CSharp
-    - Name: resourceConfig
-      Entry: 10
-      Data: 5
-    - Name: currentAmount
-      Entry: 3
-      Data: 0
-    - Name: maxAmount
-      Entry: 3
-      Data: 0
-    - Name: isUnlockedNow
-      Entry: 5
-      Data: false
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 6
-    - Name: $v
-      Entry: 7
-      Data: App.Scripts.Resources.ResourceData, Assembly-CSharp
-    - Name: resourceConfig
-      Entry: 10
-      Data: 6
-    - Name: currentAmount
-      Entry: 3
-      Data: 0
-    - Name: maxAmount
-      Entry: 3
-      Data: 0
-    - Name: isUnlockedNow
-      Entry: 5
-      Data: false
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 7
-    - Name: $v
-      Entry: 7
-      Data: App.Scripts.Resources.ResourceData, Assembly-CSharp
-    - Name: resourceConfig
-      Entry: 10
-      Data: 7
-    - Name: currentAmount
-      Entry: 3
-      Data: 0
-    - Name: maxAmount
-      Entry: 3
-      Data: 0
-    - Name: isUnlockedNow
-      Entry: 5
-      Data: false
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 8
-    - Name: $v
-      Entry: 7
-      Data: App.Scripts.Resources.ResourceData, Assembly-CSharp
-    - Name: resourceConfig
-      Entry: 10
-      Data: 8
-    - Name: currentAmount
-      Entry: 3
-      Data: 15
-    - Name: maxAmount
-      Entry: 3
-      Data: 15
-    - Name: isUnlockedNow
-      Entry: 5
-      Data: true
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 9
-    - Name: $v
-      Entry: 7
-      Data: App.Scripts.Resources.ResourceData, Assembly-CSharp
-    - Name: resourceConfig
-      Entry: 10
-      Data: 9
-    - Name: currentAmount
-      Entry: 3
-      Data: 0
-    - Name: maxAmount
-      Entry: 3
-      Data: 0
-    - Name: isUnlockedNow
-      Entry: 5
-      Data: false
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
 --- !u!1 &808039058
 GameObject:
   m_ObjectHideFlags: 0
@@ -2534,7 +2174,7 @@ GameObject:
   m_Component:
   - component: {fileID: 894908376}
   - component: {fileID: 894908378}
-  - component: {fileID: 894908377}
+  - component: {fileID: 894908379}
   m_Layer: 5
   m_Name: ResourcesPanel
   m_TagString: Untagged
@@ -2562,36 +2202,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &894908377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 894908375}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 170577bce7cbda144b82578f81308d23, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &894908378
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2600,6 +2210,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 894908375}
   m_CullTransparentMesh: 1
+--- !u!114 &894908379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894908375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 222f900ca55131d459e85611b4df1bc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourcesDataBase: {fileID: 11400000, guid: 27323eb4ac4544b40902b56568963da7, type: 2}
+  resourceUIContainer: {fileID: 597903126}
+  resourcesManager: {fileID: 805235755}
+  resourceUIPrefab: {fileID: 8732738247636088996, guid: 96ceb105e0bf1d84294dd351c7843b29, type: 3}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -3174,7 +2800,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1185213254}
   - component: {fileID: 1185213256}
-  - component: {fileID: 1185213255}
   - component: {fileID: 1185213257}
   m_Layer: 5
   m_Name: HideAndShowButton
@@ -3203,36 +2828,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 125}
   m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1185213255
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1185213253}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1185213256
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4857,7 +4452,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1351878654}
   m_HandleRect: {fileID: 1351878653}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -5295,6 +4890,67 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10, y: 2.220446e-16, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1001 &928003302087690822
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 407665853}
+    m_Modifications:
+    - target: {fileID: 375878676686424304, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 375878676686424304, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 375878676686424304, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 375878676686424304, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 375878676686424304, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 375878676686424304, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 375878676686424304, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 375878676686424304, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 375878676686424304, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 375878676686424304, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6251241407557450807, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
+      propertyPath: m_Name
+      value: ResourcesManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
