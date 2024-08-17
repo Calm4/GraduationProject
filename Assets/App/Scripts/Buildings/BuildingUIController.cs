@@ -18,24 +18,11 @@ namespace App.Scripts.Buildings
 
         [Title("Building Configs List")] 
         [SerializeField] private BuildingsDataBase buildingsDataBase;
-
-        [SerializeField] private RectTransform buttonsPanel; 
-        [SerializeField] private RectTransform positionToHidePanel; 
-
-        [Title("HideAndShowButton Parts")]
-        [SerializeField] private RectTransform hideAndShowButton; 
-        [SerializeField] private Image buttonImage; 
-        [SerializeField] private TMP_Text buttonText; 
         
-        [Title("Animation Params")] 
-        [SerializeField] private float animationTime; 
-        private Vector2 _panelStartPosition; 
-        private bool _isHide = false;
-
+        
+        
         private void Start()
         {
-            _panelStartPosition = buttonsPanel.anchoredPosition;
-            Debug.Log("Start position: " + _panelStartPosition);
             GenerateButtons();
         }
 
@@ -66,34 +53,12 @@ namespace App.Scripts.Buildings
                 }
             }
         }
-
-        private void Update()
-        {
-            if (UnityEngine.Input.GetKeyDown(KeyCode.F))
-            {
-                ShowOrHideBuildingsPanel();
-            }
-        }
-
+        
         private void OnBuildingButtonClicked(BasicBuildingConfig buildingConfig)
         {
             placementManager.StartPlacement(buildingConfig);
         }
 
-        public void ShowOrHideBuildingsPanel()
-        {
-            if (_isHide)
-            {
-                buttonsPanel.DOAnchorPos(_panelStartPosition, animationTime).SetEase(Ease.InOutSine);  
-            }
-            else
-            {
-                buttonsPanel.DOAnchorPos(positionToHidePanel.anchoredPosition, animationTime).SetEase(Ease.InCirc);  
-            }
-
-           
-
-            _isHide = !_isHide;
-        }
+        
     }
 }
