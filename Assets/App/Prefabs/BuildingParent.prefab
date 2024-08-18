@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6195401721451145493}
   - component: {fileID: 1496647157508652541}
   - component: {fileID: 6827337395158552025}
+  - component: {fileID: 9111251265515063853}
   m_Layer: 0
   m_Name: BuildingParent
   m_TagString: Untagged
@@ -96,4 +97,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 928c607d72d14cc082780cfc27b068e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <BuildingConfig>k__BackingField: {fileID: 11400000, guid: 33e706f03f1780d4b957ee77e026b748, type: 2}
+  <BuildingConfig>k__BackingField: {fileID: 11400000, guid: d57aeb7122d67484a9e52a7d39ff181a, type: 2}
+--- !u!64 &9111251265515063853
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6121667864284025279}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}

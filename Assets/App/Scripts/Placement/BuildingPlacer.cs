@@ -37,6 +37,9 @@ namespace App.Scripts.Placement
             MeshRenderer meshRenderer = buildingObject.AddComponent<MeshRenderer>();
             meshRenderer.material = config.material;
 
+            MeshCollider meshCollider = buildingObject.AddComponent<MeshCollider>();
+            meshCollider.sharedMesh = config.mesh;
+            
             Vector2Int buildingSize = config.size;
             _furnitureData.AddObjectAt(position, buildingSize, buildingComponent);
         }

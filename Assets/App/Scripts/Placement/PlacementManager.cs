@@ -111,19 +111,13 @@ namespace App.Scripts.Placement
                 }
             }
 
-            // Передаем преобразованный список в InitializeGrid
             _floorData.InitializeGrid(gridObjects);
 
-            // Теперь можно разместить объекты
             foreach (var gridObject in gridObjects)
             {
                 _buildingPlacer.PlaceBuilding(gridObject.buildingConfig, gridObject.position);
             }
         }
-
-
-
-       
         
         public void StartPlacement(BasicBuildingConfig buildingConfig)
         {
