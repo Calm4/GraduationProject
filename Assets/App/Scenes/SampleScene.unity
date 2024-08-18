@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 72942689}
   - component: {fileID: 72942688}
   m_Layer: 0
-  m_Name: SoundFeedback
+  m_Name: SoundFeedbackManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -154,7 +154,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 407665853}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &72942688
 AudioSource:
@@ -936,6 +936,7 @@ Transform:
   - {fileID: 864965514}
   - {fileID: 1932316565}
   - {fileID: 805235754}
+  - {fileID: 72942687}
   m_Father: {fileID: 118223971}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &417493530
@@ -5370,7 +5371,7 @@ PrefabInstance:
     - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
     - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
       propertyPath: serializationData.PrefabModifications.Array.size
       value: 12
@@ -5473,7 +5474,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 118223971}
-  - {fileID: 72942687}
   - {fileID: 1220184421}
   - {fileID: 1707417672}
   - {fileID: 1222205522}
