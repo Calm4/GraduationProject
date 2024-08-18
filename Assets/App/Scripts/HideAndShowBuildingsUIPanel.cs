@@ -1,6 +1,4 @@
-using App.Scripts.Buildings;
 using DG.Tweening;
-using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
 
