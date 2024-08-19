@@ -1,4 +1,3 @@
-using System;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -7,13 +6,11 @@ namespace App.Scripts
 {
     public class BuildingPanelUI : MonoBehaviour
     {
+        [SerializeField] private RectTransform buttonImage;
+        [SerializeField] private AnimationsConfig animationsConfig;
+        [Space][Title("Panel Movement Settings")] [SerializeField] private HideDirection hideDirection = HideDirection.Down;
+
         private RectTransform _goRectTransform;
-    
-        [Title("Animation Params")] 
-        [SerializeField] private float animationTime;
-
-        public event Action<float> OnButtonPressed;
-
         private bool _isHide;
         private Vector2 _panelStartPosition;
 
@@ -25,30 +22,47 @@ namespace App.Scripts
 
         public void ShowOrHideBuildingsPanel()
         {
-            OnButtonPressed?.Invoke(animationTime);
-
+            RotateImage();
             if (_isHide)
             {
-                // Вернуть панель на исходную позицию
-                _goRectTransform.DOAnchorPos(_panelStartPosition, animationTime).SetEase(Ease.InOutSine);
+                _goRectTransform.DOAnchorPos(_panelStartPosition, animationsConfig.panelShowTime).SetEase(Ease.InOutSine);
             }
             else
             {
-                // Рассчитать позицию, при которой панель полностью скрыта за нижней границей экрана
                 Vector2 hidePosition = CalculateHidePosition();
-                _goRectTransform.DOAnchorPos(hidePosition, animationTime).SetEase(Ease.InCirc);
+                _goRectTransform.DOAnchorPos(hidePosition, animationsConfig.panelHideTime).SetEase(Ease.InOutSine);
             }
 
             _isHide = !_isHide;
         }
 
+        private void RotateImage()
+        {
+            buttonImage.transform.DORotate(new Vector3(180, 0, 0), animationsConfig.panelImageRotateTime, RotateMode.LocalAxisAdd);
+        }
+
         private Vector2 CalculateHidePosition()
         {
+            float panelWidth = _goRectTransform.rect.width;
             float panelHeight = _goRectTransform.rect.height;
-            
+
             Vector2 hidePosition = _panelStartPosition;
 
-            hidePosition.y = _panelStartPosition.y - panelHeight;
+            switch (hideDirection)
+            {
+                case HideDirection.Up:
+                    hidePosition.y = _panelStartPosition.y + panelHeight;
+                    break;
+                case HideDirection.Down:
+                    hidePosition.y = _panelStartPosition.y - panelHeight;
+                    break;
+                case HideDirection.Left:
+                    hidePosition.x = _panelStartPosition.x - panelWidth;
+                    break;
+                case HideDirection.Right:
+                    hidePosition.x = _panelStartPosition.x + panelWidth;
+                    break;
+            }
 
             return hidePosition;
         }
