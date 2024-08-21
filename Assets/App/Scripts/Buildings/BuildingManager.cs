@@ -1,18 +1,16 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using App.Scripts.Buildings.BuildingsConfigs; // Добавляем для использования метода FirstOrDefault
 using UnityEngine;
 
 namespace App.Scripts.Buildings
 {
     public class BuildingManager : MonoBehaviour
     {
-        [SerializeField] private List<Building> placedBuildings = new List<Building>();
-        [SerializeField] private List<BasicBuildingConfig> availableBuildingConfigs; // Список всех доступных конфигураций зданий
+        [SerializeField] private List<Building> placedBuildings = new();
+        [SerializeField] private Transform buildingsContainer;
 
         public Building CreateBuilding(Building buildingPrefab)
         {
-            Building building = Instantiate(buildingPrefab);
+            Building building = Instantiate(buildingPrefab, buildingsContainer);
             building.Initialize(buildingPrefab.BuildingConfig);
 
             InitializeComponents(building);
@@ -22,15 +20,19 @@ namespace App.Scripts.Buildings
 
         private void InitializeComponents(Building building)
         {
-            var meshFilter = building.GetComponent<MeshFilter>();
-            if (meshFilter != null)
+            building.gameObject.name = building.BuildingConfig.name;
+
+            if (building.TryGetComponent(out MeshFilter meshFilter))
             {
                 meshFilter.mesh = building.BuildingConfig.mesh;
             }
-            var meshRenderer = building.GetComponent<MeshRenderer>();
-            if (meshRenderer != null)
+            if (building.TryGetComponent(out MeshRenderer meshRenderer))
             {
                 meshRenderer.material = building.BuildingConfig.material;
+            }
+            if (building.TryGetComponent(out MeshCollider meshCollider))
+            {
+                meshCollider.sharedMesh = building.BuildingConfig.mesh;
             }
         }
 
@@ -49,17 +51,6 @@ namespace App.Scripts.Buildings
                 placedBuildings.Remove(building);
                 Destroy(building.gameObject);
             }
-        }
-
-        public int GetIndexOfPlacedBuilding(Building building)
-        {
-            return placedBuildings.IndexOf(building);
-        }
-
-        // Новый метод для получения конфигурации здания по его instanceID
-        public BasicBuildingConfig GetBuildingConfigById(int instanceID)
-        {
-            return availableBuildingConfigs.FirstOrDefault(config => config.ID == instanceID);
         }
     }
 }

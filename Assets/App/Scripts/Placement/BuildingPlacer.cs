@@ -16,7 +16,7 @@ namespace App.Scripts.Placement
             _gridSize = gridSize;
         }
 
-        public void PlaceBuilding(BasicBuildingConfig config, Vector3Int position)
+        public void PlaceBuilding(BasicBuildingConfig config, Vector3Int position, Transform parentTransform)
         {
             var gridOffset = new Vector3((float)_gridSize.x / 2, 0, (float)_gridSize.y / 2);
 
@@ -25,9 +25,9 @@ namespace App.Scripts.Placement
                 transform =
                 {
                     position = new Vector3(position.x - gridOffset.x, 0, position.z - gridOffset.z)
-                }
+                },
             };
-
+            buildingObject.transform.SetParent(parentTransform);
             Building buildingComponent = buildingObject.AddComponent<Building>();
             buildingComponent.Initialize(config);
 
@@ -37,6 +37,9 @@ namespace App.Scripts.Placement
             MeshRenderer meshRenderer = buildingObject.AddComponent<MeshRenderer>();
             meshRenderer.material = config.material;
 
+            MeshCollider meshCollider = buildingObject.AddComponent<MeshCollider>();
+            meshCollider.sharedMesh = config.mesh;
+            
             Vector2Int buildingSize = config.size;
             _furnitureData.AddObjectAt(position, buildingSize, buildingComponent);
         }

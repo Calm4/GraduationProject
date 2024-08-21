@@ -1,4 +1,3 @@
-using System;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -7,35 +6,65 @@ namespace App.Scripts
 {
     public class BuildingPanelUI : MonoBehaviour
     {
-        private RectTransform _goRectTransform; 
-        [SerializeField] private RectTransform positionToHidePanel; 
-    
-        [Title("Animation Params")] 
-        [SerializeField] private float animationTime;
-    
-        public event Action<float> OnButtonPressed;
-    
+        [SerializeField] private RectTransform buttonImage;
+        [SerializeField] private AnimationsConfig animationsConfig;
+        [Space][Title("Panel Movement Settings")] [SerializeField] private HideDirection hideDirection = HideDirection.Down;
+
+        private RectTransform _goRectTransform;
         private bool _isHide;
-        private Vector2 _panelStartPosition; 
-    
+        private Vector2 _panelStartPosition;
+
         private void Start()
         {
             _goRectTransform = GetComponent<RectTransform>();
             _panelStartPosition = _goRectTransform.anchoredPosition;
         }
-    
+
         public void ShowOrHideBuildingsPanel()
         {
-            OnButtonPressed?.Invoke(animationTime);
+            RotateImage();
             if (_isHide)
             {
-                _goRectTransform.DOAnchorPos(_panelStartPosition, animationTime).SetEase(Ease.InOutSine);  
+                _goRectTransform.DOAnchorPos(_panelStartPosition, animationsConfig.panelShowTime).SetEase(Ease.InOutSine);
             }
             else
             {
-                _goRectTransform.DOAnchorPos(positionToHidePanel.anchoredPosition, animationTime).SetEase(Ease.InCirc);  
+                Vector2 hidePosition = CalculateHidePosition();
+                _goRectTransform.DOAnchorPos(hidePosition, animationsConfig.panelHideTime).SetEase(Ease.InOutSine);
             }
+
             _isHide = !_isHide;
+        }
+
+        private void RotateImage()
+        {
+            buttonImage.transform.DORotate(new Vector3(180, 0, 0), animationsConfig.panelImageRotateTime, RotateMode.LocalAxisAdd);
+        }
+
+        private Vector2 CalculateHidePosition()
+        {
+            float panelWidth = _goRectTransform.rect.width;
+            float panelHeight = _goRectTransform.rect.height;
+
+            Vector2 hidePosition = _panelStartPosition;
+
+            switch (hideDirection)
+            {
+                case HideDirection.Up:
+                    hidePosition.y = _panelStartPosition.y + panelHeight;
+                    break;
+                case HideDirection.Down:
+                    hidePosition.y = _panelStartPosition.y - panelHeight;
+                    break;
+                case HideDirection.Left:
+                    hidePosition.x = _panelStartPosition.x - panelWidth;
+                    break;
+                case HideDirection.Right:
+                    hidePosition.x = _panelStartPosition.x + panelWidth;
+                    break;
+            }
+
+            return hidePosition;
         }
     }
 }

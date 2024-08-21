@@ -34,7 +34,7 @@ namespace App.Scripts.Placement
         [Title("Buildings"), Space] 
         [SerializeField] private BuildingPreview buildingPreview;
         [SerializeField] private Building buildingPrefab;
-        [FormerlySerializedAs("buildingConfigsData")] [SerializeField] private BuildingsDataBase buildingsDataBase;
+        [SerializeField] private BuildingsDataBase buildingsDataBase;
         private IBuildingState _buildingState;
 
         [Title("JSON FILE"), Space]
@@ -45,6 +45,7 @@ namespace App.Scripts.Placement
 
         private Vector3Int _lastDetectedPosition = Vector3Int.zero;
         private BuildingPlacer _buildingPlacer;
+        [SerializeField] private Transform parentTransform;
         
         
         [Button]
@@ -65,7 +66,7 @@ namespace App.Scripts.Placement
 
             _floorData = new GridData(gridSize);
             _furnitureData = new GridData(gridSize);
-            _buildingPlacer = new BuildingPlacer(_furnitureData, gridSize); // Instantiate BuildingPlacer
+            _buildingPlacer = new BuildingPlacer(_furnitureData, gridSize);
 
             GridSetup();
 
@@ -111,19 +112,13 @@ namespace App.Scripts.Placement
                 }
             }
 
-            // Передаем преобразованный список в InitializeGrid
             _floorData.InitializeGrid(gridObjects);
 
-            // Теперь можно разместить объекты
             foreach (var gridObject in gridObjects)
             {
-                _buildingPlacer.PlaceBuilding(gridObject.buildingConfig, gridObject.position);
+                _buildingPlacer.PlaceBuilding(gridObject.buildingConfig, gridObject.position, parentTransform);
             }
         }
-
-
-
-       
         
         public void StartPlacement(BasicBuildingConfig buildingConfig)
         {
