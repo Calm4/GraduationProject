@@ -27,6 +27,7 @@ MonoBehaviour:
   mesh: {fileID: 4300000, guid: 51efcb9c47f76ff48879503c6270a9eb, type: 2}
   material: {fileID: 2100000, guid: 74117f645ca87544896e430b75e9a316, type: 2}
   size: {x: 2, y: 2}
+  buildingAssociateColor: {r: 0.058823533, g: 0.8196079, b: 0.5137255, a: 1}
   resourcesToBuild:
   - resourceType: 1
     amountToBuild: 2

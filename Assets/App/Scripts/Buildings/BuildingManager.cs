@@ -10,6 +10,7 @@ namespace App.Scripts.Buildings
         [SerializeField] private Transform buildingsContainer;
         [SerializeField] private Vector3 buildingOffsetPoint;
         [SerializeField] private AnimationsConfig animationsConfig;
+        [SerializeField] private ParticleSystem placingParticle;
         public Building CreateBuilding(Building buildingPrefab)
         {
             Building building = Instantiate(buildingPrefab, buildingsContainer);
@@ -42,9 +43,31 @@ namespace App.Scripts.Buildings
         {
             Building building = CreateBuilding(buildingPrefab);
             building.transform.position = position + buildingOffsetPoint;
-            building.transform.DOMove(position, animationsConfig.buildingPlacingTime).SetEase(Ease.InCirc);
-            placedBuildings.Add(building);
+            
+            Vector3 buildingCenterOffset = new Vector3(building.BuildingConfig.size.x / 2f, 0, building.BuildingConfig.size.y / 2f);
+            Vector3 particlePosition = position + buildingCenterOffset;
+            
+            building.transform.DOMove(position, animationsConfig.buildingPlacingTime).SetEase(Ease.InCirc)
+                .OnComplete(() => SpawnParticles(building, particlePosition));
+            placedBuildings.Add(building); 
             return building;
+        }
+
+        private void SpawnParticles(Building building, Vector3 position)
+        {
+            var particleInstance = Instantiate(placingParticle, position, Quaternion.identity);
+            
+            Gradient gradient = new Gradient();
+            gradient.SetKeys(
+                new[] { new GradientColorKey(building.BuildingConfig.buildingAssociateColor, 1.0f) }, 
+                new[] { new GradientAlphaKey(1.0f, 1.0f) }
+            );
+            
+            var colorOverLifetime = particleInstance.colorOverLifetime;
+            
+            var colorModule = colorOverLifetime;
+            
+            colorModule.color = gradient;
         }
 
         public void RemoveBuilding(Building building)

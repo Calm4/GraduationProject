@@ -25,8 +25,9 @@ MonoBehaviour:
   buildingName: Archer Tower
   buildingType: 0
   mesh: {fileID: 4300000, guid: a3d2a603eb194f0449e712bcd00699b5, type: 2}
-  material: {fileID: 2100000, guid: c8d0f434948db05438598a0f5237c4b2, type: 2}
+  material: {fileID: 2100000, guid: 0f29e3c1c576f6641b9e474f6b194480, type: 2}
   size: {x: 1, y: 1}
+  buildingAssociateColor: {r: 0.043137256, g: 0.70980394, b: 0.9215687, a: 1}
   resourcesToBuild:
   - resourceType: 1
     amountToBuild: 2

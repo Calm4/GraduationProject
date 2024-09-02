@@ -18,12 +18,15 @@ namespace App.Scripts.Buildings.BuildingsConfigs
         public Mesh mesh;
         public Material material;
         public Vector2Int size;
-
+        public Color buildingAssociateColor;
+        
         [Title("Resources")]
         public List<ResourceRequirement> resourcesToBuild;
         public int moneyToBuild;
 
         [Title("Icon")]
         public Sprite sprite;
+        
+        
     }
 }
