@@ -8,5 +8,6 @@ namespace App.Scripts
         public float panelHideTime;
         public float panelShowTime;
         public float panelImageRotateTime;
+        public float buildingPlacingTime;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 namespace App.Scripts.Buildings
@@ -7,7 +8,8 @@ namespace App.Scripts.Buildings
     {
         [SerializeField] private List<Building> placedBuildings = new();
         [SerializeField] private Transform buildingsContainer;
-
+        [SerializeField] private Vector3 buildingOffsetPoint;
+        [SerializeField] private AnimationsConfig animationsConfig;
         public Building CreateBuilding(Building buildingPrefab)
         {
             Building building = Instantiate(buildingPrefab, buildingsContainer);
@@ -39,7 +41,8 @@ namespace App.Scripts.Buildings
         public Building PlaceBuilding(Building buildingPrefab, Vector3 position)
         {
             Building building = CreateBuilding(buildingPrefab);
-            building.transform.position = position;
+            building.transform.position = position + buildingOffsetPoint;
+            building.transform.DOMove(position, animationsConfig.buildingPlacingTime).SetEase(Ease.InCirc);
             placedBuildings.Add(building);
             return building;
         }
