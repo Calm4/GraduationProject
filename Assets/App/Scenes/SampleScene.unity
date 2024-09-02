@@ -1039,6 +1039,7 @@ Transform:
   - {fileID: 1932316565}
   - {fileID: 805235754}
   - {fileID: 72942687}
+  - {fileID: 1339536309}
   m_Father: {fileID: 118223971}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &417493530
@@ -3378,6 +3379,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1338401309}
   m_CullTransparentMesh: 1
+--- !u!1 &1339536308
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1339536309}
+  - component: {fileID: 1339536310}
+  m_Layer: 0
+  m_Name: ParticleManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1339536309
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1339536308}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 407665853}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1339536310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1339536308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a4845fef3e242679a09092d3a53797e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  placingParticle: {fileID: 417761080263594739, guid: 177a550c7533dba4388688b173bd131a, type: 3}
 --- !u!1 &1351878652
 GameObject:
   m_ObjectHideFlags: 0
@@ -4662,7 +4708,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedBuildings: []
-  buildingsContainer: {fileID: 1397484297}
+  particleSpawner: {fileID: 1339536310}
+  buildingsContainer: {fileID: 0}
   buildingOffsetPoint: {x: 0, y: 0.5, z: 0}
   animationsConfig: {fileID: 11400000, guid: 00a106a1462b66348bc3945219768967, type: 2}
   placingParticle: {fileID: 417761080263594739, guid: 177a550c7533dba4388688b173bd131a, type: 3}
@@ -5251,7 +5298,7 @@ MonoBehaviour:
   buildingPreview: {fileID: 1684993283}
   buildingPrefab: {fileID: 6827337395158552025, guid: d9c65636e0495ff40b3163ed3af25112, type: 3}
   buildingsDataBase: {fileID: 11400000, guid: c10e51bb945d92e45a0b124f18f15578, type: 2}
-  jsonFile: {fileID: 4900000, guid: 2ee956246814deb4b9de84cc028803a1, type: 3}
+  jsonFile: {fileID: 4900000, guid: 6a89ff257eca965439feb7a26c8d8309, type: 3}
   soundFeedback: {fileID: 72942689}
   parentTransform: {fileID: 1081304742}
 --- !u!1 &2140119108

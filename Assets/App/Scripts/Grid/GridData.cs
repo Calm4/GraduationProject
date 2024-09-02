@@ -25,14 +25,6 @@ namespace App.Scripts.Grid
             }
         }
 
-        public void InitializeGrid(List<GridObjectData> gridObjects)
-        {
-            foreach (var gridObject in gridObjects)
-            {
-                AddObjectAt(gridObject.position, gridObject.buildingConfig.size, null);
-            }
-        }
-
         public void AddObjectAt(Vector3Int gridPosition, Vector2 objectSize, Building building)
         {
             foreach (var position in CalculatePositions(gridPosition, objectSize))

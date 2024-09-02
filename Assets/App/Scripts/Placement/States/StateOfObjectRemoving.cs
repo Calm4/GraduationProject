@@ -11,12 +11,11 @@ namespace App.Scripts.Placement.States
         private readonly ResourcesManager _resourcesManager;
         private readonly GridLayout _grid;
         private readonly BuildingPreview _buildingPreview;
-        private readonly GridData _floorData;
-        private readonly GridData _furnitureData;
+        private readonly GridData _gridData;
         private readonly BuildingManager _buildingManager;
         private readonly SoundFeedback _soundFeedback;
 
-        public StateOfObjectRemoving(ResourcesManager resourcesManager,BuildingManager buildingManager, GridLayout grid, BuildingPreview buildingPreview, GridData floorData, GridData furnitureData, SoundFeedback soundFeedback)
+        public StateOfObjectRemoving(ResourcesManager resourcesManager,BuildingManager buildingManager, GridLayout grid, BuildingPreview buildingPreview, GridData gridData, SoundFeedback soundFeedback)
         {
             _resourcesManager = resourcesManager;
             _buildingManager = buildingManager;
@@ -24,8 +23,7 @@ namespace App.Scripts.Placement.States
             _grid = grid;
             _buildingPreview = buildingPreview;
             
-            _floorData = floorData;
-            _furnitureData = furnitureData;
+            _gridData = gridData;
             
             _soundFeedback = soundFeedback;
 
@@ -40,15 +38,10 @@ namespace App.Scripts.Placement.States
         public void OnAction(Vector3Int gridPosition)
         {
             GridData selectedData = null;
-            if (!_furnitureData.CanPlaceObjectAt(gridPosition, Vector2Int.one))
+            if (!_gridData.CanPlaceObjectAt(gridPosition, Vector2Int.one))
             {
-                selectedData = _furnitureData;
+                selectedData = _gridData;
             }
-            else if (!_floorData.CanPlaceObjectAt(gridPosition, Vector2Int.one))
-            {
-                selectedData = _floorData;
-            }
-
             if (selectedData == null)
             {
                 return;
@@ -73,8 +66,7 @@ namespace App.Scripts.Placement.States
 
         private bool CheckIsSelectionIsValid(Vector3Int gridPosition)
         {
-            return !(_furnitureData.CanPlaceObjectAt(gridPosition, Vector2Int.one) &&
-                     _floorData.CanPlaceObjectAt(gridPosition, Vector2Int.one));
+            return !_gridData.CanPlaceObjectAt(gridPosition, Vector2Int.one);
         }
 
         public void UpdateState(Vector3Int gridPosition)

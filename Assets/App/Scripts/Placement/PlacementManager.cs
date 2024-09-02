@@ -10,7 +10,6 @@ using App.Scripts.Sound;
 using Newtonsoft.Json;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace App.Scripts.Placement
 {
@@ -23,8 +22,7 @@ namespace App.Scripts.Placement
         [SerializeField][VerticalGroup("Grid Settings")] private GameObject floor;
         
         private Vector2Int _gridOffset;
-        private GridData _floorData;
-        private GridData _furnitureData;
+        private GridData _gridData;
 
         [Title("Managers"), Space] 
         [SerializeField] private InputManager inputManager;
@@ -51,7 +49,7 @@ namespace App.Scripts.Placement
         [Button]
         public void GetGridData()
         {
-            _furnitureData.PrintGridState();
+            _gridData.PrintGridState();
         }
 
 
@@ -64,9 +62,8 @@ namespace App.Scripts.Placement
                 LoadGridSizeFromJson(jsonFile.text);
             }
 
-            _floorData = new GridData(gridSize);
-            _furnitureData = new GridData(gridSize);
-            _buildingPlacer = new BuildingPlacer(_furnitureData, gridSize);
+            _gridData = new GridData(gridSize);
+            _buildingPlacer = new BuildingPlacer(_gridData, gridSize);
 
             GridSetup();
 
@@ -112,8 +109,6 @@ namespace App.Scripts.Placement
                 }
             }
 
-            _floorData.InitializeGrid(gridObjects);
-
             foreach (var gridObject in gridObjects)
             {
                 _buildingPlacer.PlaceBuilding(gridObject.buildingConfig, gridObject.position, parentTransform);
@@ -127,8 +122,8 @@ namespace App.Scripts.Placement
 
             buildingPrefab.Initialize(buildingConfig);
 
-            _buildingState = new StateOfObjectPlacing(resourcesManager, buildingPrefab, grid, buildingPreview,
-                _floorData, _furnitureData, buildingManager, soundFeedback);
+            _buildingState = new StateOfObjectPlacing(resourcesManager, buildingPrefab, grid, buildingPreview
+                , _gridData, buildingManager, soundFeedback);
 
             inputManager.OnClicked += PlaceStructure;
             inputManager.OnExit += StopPlacement;
@@ -139,8 +134,8 @@ namespace App.Scripts.Placement
             StopPlacement();
             gridVisualization.SetActive(true);
 
-            _buildingState = new StateOfObjectRemoving(resourcesManager, buildingManager, grid, buildingPreview, _floorData,
-                _furnitureData, soundFeedback);
+            _buildingState = new StateOfObjectRemoving(resourcesManager, buildingManager, grid, buildingPreview,
+                _gridData, soundFeedback);
 
             inputManager.OnClicked += PlaceStructure;
             inputManager.OnExit += StopPlacement;

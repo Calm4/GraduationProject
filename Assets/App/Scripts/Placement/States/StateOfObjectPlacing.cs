@@ -12,8 +12,7 @@ namespace App.Scripts.Placement.States
         private readonly ResourcesManager _resourcesManager;
         private readonly GridLayout _grid;
         private readonly BuildingPreview _buildingPreview;
-        private readonly GridData _floorData;
-         private readonly GridData _furnitureData;
+         private readonly GridData _gridData;
         private readonly SoundFeedback _soundFeedback;
         
         private readonly BuildingManager _buildingManager;
@@ -23,7 +22,7 @@ namespace App.Scripts.Placement.States
         
 
         public StateOfObjectPlacing(ResourcesManager resourcesManager,Building buildingPrefab, GridLayout grid, BuildingPreview buildingPreview,
-            GridData floorData, GridData furnitureData, BuildingManager buildingManager, SoundFeedback soundFeedback)
+             GridData gridData, BuildingManager buildingManager, SoundFeedback soundFeedback)
         {
             _resourcesManager = resourcesManager;
             _buildingManager = buildingManager;
@@ -33,8 +32,8 @@ namespace App.Scripts.Placement.States
             
             _grid = grid;
             _buildingPreview = buildingPreview;
-            _floorData = floorData;
-            _furnitureData = furnitureData;
+            
+            _gridData = gridData;
             _soundFeedback = soundFeedback;
 
             
@@ -77,13 +76,12 @@ namespace App.Scripts.Placement.States
         }
         private GridData GetSelectedGridData()
         {
-            return _buildingPrefab.BuildingConfig.buildingType == BuildingType.Neutral ? _floorData : _furnitureData;
+            return _gridData;
         }
         
         private bool CheckPlacementValidity(Vector3Int gridPosition)
         {
-            GridData selectedData = _buildingPrefab.BuildingConfig.buildingType == BuildingType.Neutral ? _floorData : _furnitureData;
-            return selectedData.CanPlaceObjectAt(gridPosition, _buildingPrefab.BuildingConfig.size);
+            return _gridData.CanPlaceObjectAt(gridPosition, _buildingPrefab.BuildingConfig.size);
         }
 
         private bool IsPlacementValid(Vector3Int gridPosition)

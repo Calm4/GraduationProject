@@ -7,12 +7,12 @@ namespace App.Scripts.Placement
 {
     public class BuildingPlacer
     {
-        private readonly GridData _furnitureData;
+        private readonly GridData _gridData;
         private readonly Vector2Int _gridSize;
 
-        public BuildingPlacer(GridData furnitureData, Vector2Int gridSize)
+        public BuildingPlacer(GridData gridData, Vector2Int gridSize)
         {
-            _furnitureData = furnitureData;
+            _gridData = gridData;
             _gridSize = gridSize;
         }
 
@@ -41,7 +41,7 @@ namespace App.Scripts.Placement
             meshCollider.sharedMesh = config.mesh;
             
             Vector2Int buildingSize = config.size;
-            _furnitureData.AddObjectAt(position, buildingSize, buildingComponent);
+            _gridData.AddObjectAt(position, buildingSize, buildingComponent);
         }
     }
 }

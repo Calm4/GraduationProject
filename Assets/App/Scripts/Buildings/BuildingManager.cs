@@ -1,16 +1,21 @@
 ﻿using System.Collections.Generic;
 using DG.Tweening;
+using Sirenix.OdinInspector;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace App.Scripts.Buildings
 {
     public class BuildingManager : MonoBehaviour
     {
-        [SerializeField] private List<Building> placedBuildings = new();
+        [Space(20)] [SerializeField] private ParticleSpawner particleSpawner;
         [SerializeField] private Transform buildingsContainer;
         [SerializeField] private Vector3 buildingOffsetPoint;
-        [SerializeField] private AnimationsConfig animationsConfig;
+
+        [Space(20)] [SerializeField] private AnimationsConfig animationsConfig;
         [SerializeField] private ParticleSystem placingParticle;
+
         public Building CreateBuilding(Building buildingPrefab)
         {
             Building building = Instantiate(buildingPrefab, buildingsContainer);
@@ -29,10 +34,12 @@ namespace App.Scripts.Buildings
             {
                 meshFilter.mesh = building.BuildingConfig.mesh;
             }
+
             if (building.TryGetComponent(out MeshRenderer meshRenderer))
             {
                 meshRenderer.material = building.BuildingConfig.material;
             }
+
             if (building.TryGetComponent(out MeshCollider meshCollider))
             {
                 meshCollider.sharedMesh = building.BuildingConfig.mesh;
@@ -43,40 +50,20 @@ namespace App.Scripts.Buildings
         {
             Building building = CreateBuilding(buildingPrefab);
             building.transform.position = position + buildingOffsetPoint;
-            
-            Vector3 buildingCenterOffset = new Vector3(building.BuildingConfig.size.x / 2f, 0, building.BuildingConfig.size.y / 2f);
-            Vector3 particlePosition = position + buildingCenterOffset;
-            
-            building.transform.DOMove(position, animationsConfig.buildingPlacingTime).SetEase(Ease.InCirc)
-                .OnComplete(() => SpawnParticles(building, particlePosition));
-            placedBuildings.Add(building); 
-            return building;
-        }
 
-        private void SpawnParticles(Building building, Vector3 position)
-        {
-            var particleInstance = Instantiate(placingParticle, position, Quaternion.identity);
-            
-            Gradient gradient = new Gradient();
-            gradient.SetKeys(
-                new[] { new GradientColorKey(building.BuildingConfig.buildingAssociateColor, 1.0f) }, 
-                new[] { new GradientAlphaKey(1.0f, 1.0f) }
-            );
-            
-            var colorOverLifetime = particleInstance.colorOverLifetime;
-            
-            var colorModule = colorOverLifetime;
-            
-            colorModule.color = gradient;
+            Vector3 buildingCenterOffset =
+                new Vector3(building.BuildingConfig.size.x / 2f, 0, building.BuildingConfig.size.y / 2f);
+            Vector3 particlePosition = position + buildingCenterOffset;
+
+            building.transform.DOMove(position, animationsConfig.buildingPlacingTime).SetEase(Ease.InCirc)
+                .OnComplete(() => particleSpawner.SpawnParticleAtObject(building, particlePosition));
+            return building;
         }
 
         public void RemoveBuilding(Building building)
         {
-            if (placedBuildings.Contains(building))
-            {
-                placedBuildings.Remove(building);
+            if (!building)
                 Destroy(building.gameObject);
-            }
         }
     }
 }
