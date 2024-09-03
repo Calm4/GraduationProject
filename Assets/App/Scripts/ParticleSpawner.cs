@@ -7,7 +7,7 @@ namespace App.Scripts
     {
         [SerializeField] private ParticleSystem placingParticle;
 
-        public ParticleSystem.ColorOverLifetimeModule SpawnParticleAtObject(Building building, Vector3 position)
+        public void SpawnParticleAtObject(Building building, Vector3 position)
         {
             var particleInstance = Instantiate(placingParticle, position, Quaternion.identity);
 
@@ -22,8 +22,6 @@ namespace App.Scripts
             var colorModule = colorOverLifetime;
             
             colorModule.color = gradient;
-
-            return colorModule;
         }
     }
 }
