@@ -1,5 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+<<<<<<< Updated upstream
 --- !u!1 &4521307652220281831
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,6 +156,8 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+=======
+>>>>>>> Stashed changes
 --- !u!1 &4888507193843709564
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,8 +171,6 @@ GameObject:
   - component: {fileID: 8969007545611288573}
   - component: {fileID: 2723510685932650362}
   - component: {fileID: 5706298725095097967}
-  - component: {fileID: 8277998142274618000}
-  - component: {fileID: 2761727771570690458}
   m_Layer: 5
   m_Name: UIButton
   m_TagString: Untagged
@@ -190,13 +191,20 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8930265877342156107}
-  - {fileID: 2971510150093784014}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
+<<<<<<< Updated upstream
   m_SizeDelta: {x: 70, y: 0}
+=======
+<<<<<<< Updated upstream
+  m_SizeDelta: {x: 160, y: 0}
+=======
+  m_SizeDelta: {x: 52, y: 68}
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6870137226146079208
 CanvasRenderer:
@@ -219,14 +227,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.40476978, g: 0.6698113, b: 0.35702205, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 170577bce7cbda144b82578f81308d23, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f3ace8f73c99b264ab982aee00d3f458, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -287,13 +295,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4888507193843709564}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalFit: 0
+  m_HorizontalFit: 2
   m_VerticalFit: 2
+<<<<<<< Updated upstream
 --- !u!114 &8277998142274618000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,6 +344,8 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
   m_EffectDistance: {x: 2, y: 2}
   m_UseGraphicAlpha: 1
+=======
+>>>>>>> Stashed changes
 --- !u!1 &7537484872748537826
 GameObject:
   m_ObjectHideFlags: 0
@@ -347,7 +358,6 @@ GameObject:
   - component: {fileID: 348793862537743572}
   - component: {fileID: 750468865935700062}
   - component: {fileID: 1190476472024957737}
-  - component: {fileID: 6484707378198057665}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -369,10 +379,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 7555284356248604339}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -5}
+  m_SizeDelta: {x: 48, y: 48}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &348793862537743572
 CanvasRenderer:
@@ -402,7 +412,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+<<<<<<< Updated upstream
   m_Sprite: {fileID: 21300000, guid: c9f29daa0e0c0e747a8aad6ea0b195bc, type: 3}
+=======
+<<<<<<< Updated upstream
+  m_Sprite: {fileID: 21300000, guid: a0e35f6b808bb7447826cc6c69ffe448, type: 3}
+=======
+  m_Sprite: {fileID: 21300000, guid: 1ad39a6dc0d17e847a35e6cb84af36be, type: 3}
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -432,18 +450,3 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
---- !u!114 &6484707378198057665
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7537484872748537826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
-  m_EffectDistance: {x: 2, y: 2}
-  m_UseGraphicAlpha: 1
