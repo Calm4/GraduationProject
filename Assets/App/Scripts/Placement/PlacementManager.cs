@@ -15,36 +15,54 @@ namespace App.Scripts.Placement
 {
     public class PlacementManager : MonoBehaviour
     {
-        [Title("Grid"), Space] 
-        [SerializeField][VerticalGroup("Grid Settings")] private GridLayout grid;
-        [SerializeField][VerticalGroup("Grid Settings")] private Vector2Int gridSize;
-        [SerializeField][VerticalGroup("Grid Settings")] private GameObject gridVisualization;
-        [SerializeField][VerticalGroup("Grid Settings")] private GameObject floor;
-        
+        [Title("Grid"), Space] [SerializeField] [VerticalGroup("Grid Settings")]
+        private GridLayout grid;
+
+        [SerializeField] [VerticalGroup("Grid Settings")]
+        private Vector2Int gridSize;
+
+        [SerializeField] [VerticalGroup("Grid Settings")]
+        private GameObject gridVisualization;
+
+        [SerializeField] [VerticalGroup("Grid Settings")]
+        private GameObject floor;
+
         private Vector2Int _gridOffset;
         private GridData _gridData;
 
-        [Title("Managers"), Space] 
-        [SerializeField] private InputManager inputManager;
+        [Title("Managers"), Space] [SerializeField]
+        private InputManager inputManager;
+
         [SerializeField] private BuildingManager buildingManager;
         [SerializeField] private ResourcesManager resourcesManager;
 
-        [Title("Buildings"), Space] 
-        [SerializeField] private BuildingPreview buildingPreview;
+        [Title("Buildings"), Space] [SerializeField]
+        private BuildingPreview buildingPreview;
+
         [SerializeField] private Building buildingPrefab;
         [SerializeField] private BuildingsDataBase buildingsDataBase;
         private IBuildingState _buildingState;
 
-        [Title("JSON FILE"), Space]
-        [SerializeField] private TextAsset jsonFile;
+        [Title("JSON FILE"), Space] [SerializeField]
+        private TextAsset jsonFile;
 
-        [Title("Sound"), Space] 
-        [SerializeField] private SoundFeedback soundFeedback;
+        [Title("Sound"), Space] [SerializeField]
+        private SoundFeedback soundFeedback;
 
         private Vector3Int _lastDetectedPosition = Vector3Int.zero;
         private BuildingPlacer _buildingPlacer;
         [SerializeField] private Transform parentTransform;
-        
+
+        private bool _isBuildPressed;
+
+        private enum PlacementMode
+        {
+            None,
+            Building,
+            Removing
+        }
+
+        [SerializeField] private PlacementMode currentPlacementMode = PlacementMode.None;
         
         [Button]
         public void GetGridData()
@@ -92,12 +110,14 @@ namespace App.Scripts.Placement
         private void PlaceObjectsFromJson(string json)
         {
             var gridObjectsContainer = JsonUtility.FromJson<GridObjectContainer>(json);
-            
+
             var gridObjects = new List<GridObjectData>();
 
             foreach (var gridObjectSerializable in gridObjectsContainer.gridObjects)
             {
-                var config = buildingsDataBase.buildingConfigs.FirstOrDefault(b => b.ID == gridObjectSerializable.buildingConfigID);
+                var config =
+                    buildingsDataBase.buildingConfigs.FirstOrDefault(b =>
+                        b.ID == gridObjectSerializable.buildingConfigID);
                 if (config != null)
                 {
                     var gridObjectData = new GridObjectData(config, gridObjectSerializable.position);
@@ -114,9 +134,31 @@ namespace App.Scripts.Placement
                 _buildingPlacer.PlaceBuilding(gridObject.buildingConfig, gridObject.position, parentTransform);
             }
         }
-        
+
+        public void StopRemovingAndStartPlacementWithoutBuilding()
+        {
+            if (currentPlacementMode == PlacementMode.Building)
+            {
+                StopPlacement();
+                currentPlacementMode = PlacementMode.None;
+                return;
+            }
+            
+            StopPlacement();
+
+            gridVisualization.SetActive(_isBuildPressed);
+            _isBuildPressed = !_isBuildPressed;
+        }
+
         public void StartPlacement(BasicBuildingConfig buildingConfig)
         {
+            if (currentPlacementMode == PlacementMode.Building)
+            {
+                StopPlacement();
+                currentPlacementMode = PlacementMode.None;
+                return;
+            }
+            
             StopPlacement();
             gridVisualization.SetActive(true);
 
@@ -131,7 +173,15 @@ namespace App.Scripts.Placement
 
         public void StartRemoving()
         {
+            if (currentPlacementMode == PlacementMode.Removing)
+            {
+                StopPlacement();
+                currentPlacementMode = PlacementMode.None;
+                return;
+            }
+            
             StopPlacement();
+            currentPlacementMode = PlacementMode.Removing;
             gridVisualization.SetActive(true);
 
             _buildingState = new StateOfObjectRemoving(resourcesManager, buildingManager, grid, buildingPreview,
@@ -179,9 +229,9 @@ namespace App.Scripts.Placement
             inputManager.OnExit -= StopPlacement;
             _lastDetectedPosition = Vector3Int.zero;
             _buildingState = null;
+            currentPlacementMode = PlacementMode.None;
         }
 
-        
 
         private void Update()
         {
@@ -199,6 +249,7 @@ namespace App.Scripts.Placement
             }
         }
     }
+
     [System.Serializable]
     public class GridDataJson
     {
@@ -211,12 +262,10 @@ namespace App.Scripts.Placement
         public int x;
         public int y;
     }
-    
+
     [System.Serializable]
     public class GridObjectContainer
     {
         public List<GridObjectSerializableData> gridObjects;
     }
-
-
 }
