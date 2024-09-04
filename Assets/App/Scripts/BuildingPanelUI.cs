@@ -10,6 +10,7 @@ namespace App.Scripts
         [SerializeField] private AnimationsConfig animationsConfig;
         [Space][Title("Panel Movement Settings")] [SerializeField] private HideDirection hideDirection = HideDirection.Down;
 
+        [SerializeField] private int panelYOffset;
         private RectTransform _goRectTransform;
         private bool _isHide;
         private Vector2 _panelStartPosition;
@@ -54,7 +55,7 @@ namespace App.Scripts
                     hidePosition.y = _panelStartPosition.y + panelHeight;
                     break;
                 case HideDirection.Down:
-                    hidePosition.y = _panelStartPosition.y - panelHeight;
+                    hidePosition.y = _panelStartPosition.y - panelHeight + panelYOffset;
                     break;
                 case HideDirection.Left:
                     hidePosition.x = _panelStartPosition.x - panelWidth;
