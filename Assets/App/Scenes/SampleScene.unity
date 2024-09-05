@@ -3070,6 +3070,7 @@ GameObject:
   - component: {fileID: 884291283}
   - component: {fileID: 884291285}
   - component: {fileID: 884291286}
+  - component: {fileID: 884291287}
   m_Layer: 5
   m_Name: BuildignsUIPanel
   m_TagString: Untagged
@@ -3180,6 +3181,57 @@ MonoBehaviour:
   hideDirection: 1
   panelXOffset: 0
   panelYOffset: 35
+--- !u!114 &884291287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884291281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 248b231c8c4769d458530bf76cf195ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: buildigsSectionsElements
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[App.Scripts.Buildings.BuildingsConfigs.BuildingType,
+        Assembly-CSharp],[System.Collections.Generic.List`1[[App.Scripts.Buildings.BuildingsConfigs.BasicBuildingConfig,
+        Assembly-CSharp]], mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[App.Scripts.Buildings.BuildingsConfigs.BuildingType,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  defensiveScrollView: {fileID: 0}
+  peacefulScrollView: {fileID: 0}
+  neutralScrollView: {fileID: 0}
 --- !u!1 &885949504
 GameObject:
   m_ObjectHideFlags: 0

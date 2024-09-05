@@ -12,7 +12,7 @@ namespace App.Scripts.Buildings.BuildingsConfigs
         public int ID;
 
         public string buildingName;
-        [ReadOnly, ShowInInspector] public BuildingType buildingType;
+        [ShowInInspector] public BuildingType buildingType;
 
         [Title("Building Parameters")]
         public Mesh mesh;
