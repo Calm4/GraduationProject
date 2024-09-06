@@ -2,8 +2,8 @@
 {
     public enum BuildingType
     {
-        Defensive,
-        Peaceful,
-        Neutral
+        Defensive = 0,
+        Peaceful = 1,
+        Neutral = 2
     }
 }

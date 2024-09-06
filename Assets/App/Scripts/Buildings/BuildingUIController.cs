@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using App.Scripts.Buildings.BuildingsConfigs;
 using App.Scripts.Placement;
 using DG.Tweening;
@@ -12,12 +13,12 @@ namespace App.Scripts.Buildings
     public class BuildingUIController : MonoBehaviour
     {
         [SerializeField] private GameObject buttonPrefab;
-        [SerializeField] private Transform buttonContainer;
+        [SerializeField] private List<Transform> buttonsTypeContainers;
         [SerializeField] private PlacementManager placementManager;
         [SerializeField] private Building buildingPrefab;
 
-        [Title("Building Configs List")] 
-        [SerializeField] private BuildingsDataBase buildingsDataBase;
+        [Title("Building Configs by Section")] 
+        [SerializeField] private BuildingsDataBaseBySectionsSO buildingsDataBaseBySections;
         
         
         
@@ -28,27 +29,46 @@ namespace App.Scripts.Buildings
 
         private void GenerateButtons()
         {
-            foreach (var config in buildingsDataBase.buildingConfigs)
+            // Loop through each section (BuildingType and its corresponding building configs)
+            foreach (var section in buildingsDataBaseBySections.BuildingsDataBaseBySections)
             {
-                var buttonInstance = Instantiate(buttonPrefab, buttonContainer);
-                var button = buttonInstance.GetComponent<Button>();
-                var buttonText = buttonInstance.GetComponentInChildren<TMP_Text>();
+                var buildingType = section.Key;
 
-                var buttonImage = buttonInstance.transform.GetChild(0).GetComponent<Image>();
-
-                if (button != null)
+                // Find the container that matches the BuildingType
+                var matchingContainer = buttonsTypeContainers.Find(container =>
                 {
-                    var tempConfig = config;
-                    button.onClick.AddListener(() => OnBuildingButtonClicked(tempConfig));
+                    var typeComponent = container.GetComponent<BuildingTypeComponent>();
+                    return typeComponent != null && typeComponent.BuildingType == buildingType;
+                });
 
-                    if (buttonText != null)
-                    {
-                        buttonText.text = config.buildingName;
-                    }
+                if (matchingContainer == null)
+                {
+                    Debug.LogError($"No container found for BuildingType: {buildingType}");
+                    continue; // Skip if no matching container is found
+                }
 
-                    if (buttonImage != null)
+                // Instantiate buttons for each building config in the matched container
+                foreach (var config in section.Value)
+                {
+                    var buttonInstance = Instantiate(buttonPrefab, matchingContainer); // Instantiate in the correct container
+                    var button = buttonInstance.GetComponent<Button>();
+                    var buttonText = buttonInstance.GetComponentInChildren<TMP_Text>();
+                    var buttonImage = buttonInstance.transform.GetChild(0).GetComponent<Image>();
+
+                    if (button != null)
                     {
-                        buttonImage.sprite = config.sprite;
+                        var tempConfig = config;
+                        button.onClick.AddListener(() => OnBuildingButtonClicked(tempConfig));
+
+                        if (buttonText != null)
+                        {
+                            buttonText.text = config.buildingName;
+                        }
+
+                        if (buttonImage != null)
+                        {
+                            buttonImage.sprite = config.sprite;
+                        }
                     }
                 }
             }

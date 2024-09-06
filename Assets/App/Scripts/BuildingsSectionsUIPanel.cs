@@ -14,7 +14,7 @@ namespace App.Scripts
       [SerializeField] private ScrollRect peacefulScrollView;
       [SerializeField] private ScrollRect neutralScrollView;
 
-      [FormerlySerializedAs("buildingsSectionsElementsSO")] [SerializeField] private BuildingsDataBaseBySectionsSO buildingsDataBaseBySectionsSO;
+      [SerializeField] private BuildingsDataBaseBySectionsSO buildingsDataBaseBySectionsSO;
       
       
 
