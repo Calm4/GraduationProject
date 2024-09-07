@@ -7,8 +7,10 @@ namespace App.Scripts
 {
     public class BuildingTypeVisibilityManager : MonoBehaviour
     {
-        [SerializeField] private List<Transform> buildingTypeContainers;
-        [SerializeField] private List<Button> buildingTypeButtons;
+        [SerializeField] private Transform parentContainer;      // Родительский контейнер для контейнеров зданий
+        [SerializeField] private Transform buttonsContainer;     // Родительский контейнер для кнопок
+        private List<Transform> buildingTypeContainers;          // Автоматический список контейнеров зданий
+        private List<Button> buildingTypeButtons;                // Автоматический список кнопок
 
         private Button _activeButton;
         [SerializeField] private Color defaultColor; 
@@ -16,8 +18,15 @@ namespace App.Scripts
 
         private void Start()
         {
+            // Автоматически заполняем список контейнеров из дочерних объектов родительского контейнера
+            InitializeBuildingTypeContainers();
+
+            // Автоматически заполняем список кнопок из дочерних объектов
+            InitializeBuildingTypeButtons();
+
+            // Устанавливаем цвет первой кнопки
             SetButtonColor(buildingTypeButtons[0]);
-            
+
             // Назначаем обработчики для каждой кнопки
             for (int i = 0; i < buildingTypeButtons.Count; i++)
             {
@@ -26,9 +35,30 @@ namespace App.Scripts
             }
         }
 
+        // Инициализация контейнеров на основе дочерних объектов
+        private void InitializeBuildingTypeContainers()
+        {
+            buildingTypeContainers = new List<Transform>();
+
+            // Проходим по всем дочерним объектам и добавляем их в список
+            foreach (Transform child in parentContainer)
+            {
+                buildingTypeContainers.Add(child);
+            }
+        }
+
+        // Инициализация кнопок на основе всех дочерних объектов с компонентом Button
+        private void InitializeBuildingTypeButtons()
+        {
+            buildingTypeButtons = new List<Button>();
+
+            // Находим все кнопки внутри родительского контейнера кнопок
+            buildingTypeButtons.AddRange(buttonsContainer.GetComponentsInChildren<Button>());
+        }
+
         private void OnBuildingTypeButtonClicked(int buttonIndex)
         {
-            var selectedType = (BuildingType)buttonIndex;  // Здесь предполагается, что индекс кнопки совпадает с индексом BuildingType
+            var selectedType = (BuildingType)buttonIndex;  // Предполагается, что индекс кнопки совпадает с индексом BuildingType
 
             // Показываем здания выбранного типа
             ShowBuildingType(selectedType);

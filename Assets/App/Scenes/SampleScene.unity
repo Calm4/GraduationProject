@@ -3288,14 +3288,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc4af13e40cb33d4796c0bb25f56dfcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingTypeContainers:
-  - {fileID: 2114879726}
-  - {fileID: 429402091}
-  - {fileID: 1608145951}
-  buildingTypeButtons:
-  - {fileID: 1334731611}
-  - {fileID: 885949506}
-  - {fileID: 156755265}
+  parentContainer: {fileID: 2125755711}
+  buttonsContainer: {fileID: 1372579396}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   selectedColor: {r: 0.3509434, g: 0.3509434, b: 0.3509434, a: 1}
 --- !u!1 &885949504
@@ -9060,7 +9054,7 @@ GameObject:
   - component: {fileID: 2125755714}
   - component: {fileID: 2125755712}
   m_Layer: 5
-  m_Name: Viewport
+  m_Name: BuildingsTypeContents
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
