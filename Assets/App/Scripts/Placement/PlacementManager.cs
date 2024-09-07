@@ -213,6 +213,7 @@ namespace App.Scripts.Placement
             Vector3Int gridPosition = grid.WorldToCell(mousePosition);
 
             _buildingState.OnAction(gridPosition);
+            StopPlacement();
         }
 
 

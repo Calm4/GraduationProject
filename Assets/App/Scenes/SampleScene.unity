@@ -440,6 +440,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visibilityManager: {fileID: 884291287}
   buildingType: 2
+  buildingsContainer: {fileID: 1608145951}
 --- !u!1 &165633152
 GameObject:
   m_ObjectHideFlags: 0
@@ -2886,7 +2887,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
+  m_sendNavigationEvents: 0
   m_DragThreshold: 10
 --- !u!1 &760121110
 GameObject:
@@ -3427,6 +3428,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visibilityManager: {fileID: 884291287}
   buildingType: 1
+  buildingsContainer: {fileID: 429402091}
 --- !u!1 &894908375
 GameObject:
   m_ObjectHideFlags: 0
@@ -4956,6 +4958,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visibilityManager: {fileID: 884291287}
   buildingType: 0
+  buildingsContainer: {fileID: 2114879726}
 --- !u!1 &1337430598
 GameObject:
   m_ObjectHideFlags: 0

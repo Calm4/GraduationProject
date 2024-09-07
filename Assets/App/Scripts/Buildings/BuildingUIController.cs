@@ -29,12 +29,10 @@ namespace App.Scripts.Buildings
 
         private void GenerateButtons()
         {
-            // Loop through each section (BuildingType and its corresponding building configs)
             foreach (var section in buildingsDataBaseBySections.BuildingsDataBaseBySections)
             {
                 var buildingType = section.Key;
 
-                // Find the container that matches the BuildingType
                 var matchingContainer = buttonsTypeContainers.Find(container =>
                 {
                     var typeComponent = container.GetComponent<BuildingTypeComponent>();
@@ -44,13 +42,12 @@ namespace App.Scripts.Buildings
                 if (matchingContainer == null)
                 {
                     Debug.LogError($"No container found for BuildingType: {buildingType}");
-                    continue; // Skip if no matching container is found
+                    continue; 
                 }
 
-                // Instantiate buttons for each building config in the matched container
                 foreach (var config in section.Value)
                 {
-                    var buttonInstance = Instantiate(buttonPrefab, matchingContainer); // Instantiate in the correct container
+                    var buttonInstance = Instantiate(buttonPrefab, matchingContainer);
                     var button = buttonInstance.GetComponent<Button>();
                     var buttonText = buttonInstance.GetComponentInChildren<TMP_Text>();
                     var buttonImage = buttonInstance.transform.GetChild(0).GetComponent<Image>();

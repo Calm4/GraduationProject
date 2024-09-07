@@ -1,21 +1,23 @@
-using App.Scripts;
+using App.Scripts.Buildings.BuildingsConfigs;
 using UnityEngine;
 using UnityEngine.UI;
-using App.Scripts.Buildings.BuildingsConfigs;
 
-[RequireComponent(typeof(Button))]
-public class BuildingTypeButtonSetter : MonoBehaviour
+namespace App.Scripts
 {
-    [SerializeField] private BuildingTypeVisibilityManager visibilityManager;
-    [SerializeField] private BuildingType buildingType;  // Выбор типа из enum
-
-    private void Start()
+    [RequireComponent(typeof(Button))]
+    public class BuildingTypeButtonSetter : MonoBehaviour
     {
-        var button = GetComponent<Button>();
-        if (button != null && visibilityManager != null)
+        [SerializeField] private BuildingTypeVisibilityManager visibilityManager;
+        [SerializeField] private BuildingType buildingType;
+        [SerializeField] private Transform buildingsContainer;
+
+        private void Start()
         {
-            // Добавляем событие на кнопку
-            button.onClick.AddListener(() => visibilityManager.ShowBuildingType(buildingType));
+            var button = GetComponent<Button>();
+            if (button != null && visibilityManager != null)
+            {
+                button.onClick.AddListener(() => visibilityManager.ShowBuildingType(buildingType));
+            }
         }
     }
 }
