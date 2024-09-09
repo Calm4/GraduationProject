@@ -1,9 +1,9 @@
 using System.Collections.Generic;
+using App.Scripts.Buildings.BuildingsConfigs;
 using UnityEngine;
 using UnityEngine.UI;
-using App.Scripts.Buildings.BuildingsConfigs;
 
-namespace App.Scripts
+namespace App.Scripts.Buildings.UI
 {
     public class BuildingTypeVisibilityManager : MonoBehaviour
     {

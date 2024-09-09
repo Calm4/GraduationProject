@@ -1,7 +1,7 @@
 using App.Scripts.Buildings.BuildingsConfigs;
 using UnityEngine;
 
-namespace App.Scripts
+namespace App.Scripts.Buildings
 {
     public class BuildingTypeComponent : MonoBehaviour
     {

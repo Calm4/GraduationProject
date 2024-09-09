@@ -6,7 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace App.Scripts.Buildings
+namespace App.Scripts.Buildings.UI
 {
     public class BuildingUIController : MonoBehaviour
     {

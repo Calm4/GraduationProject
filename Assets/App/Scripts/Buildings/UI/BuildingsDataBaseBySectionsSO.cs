@@ -4,7 +4,7 @@ using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
 
-namespace App.Scripts
+namespace App.Scripts.Buildings.UI
 {
     [CreateAssetMenu(fileName = "BuildingsDataBaseBySections", menuName = "Configs/DataBases/BuildingsDataBaseBySections", order = 0)]
     public class BuildingsDataBaseBySectionsSO : SerializedScriptableObject

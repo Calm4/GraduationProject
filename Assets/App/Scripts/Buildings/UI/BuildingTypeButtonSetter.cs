@@ -2,7 +2,7 @@ using App.Scripts.Buildings.BuildingsConfigs;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace App.Scripts
+namespace App.Scripts.Buildings.UI
 {
     [RequireComponent(typeof(Button))]
     public class BuildingTypeButtonSetter : MonoBehaviour

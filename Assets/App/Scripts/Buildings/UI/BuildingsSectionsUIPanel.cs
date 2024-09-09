@@ -1,12 +1,7 @@
-using System.Collections.Generic;
-using App.Scripts.Buildings.BuildingsConfigs;
-using Sirenix.OdinInspector;
-using Sirenix.Serialization;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-namespace App.Scripts
+namespace App.Scripts.Buildings.UI
 {
    public class BuildingsSectionsUIPanel : MonoBehaviour
    {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace App.Scripts
+namespace App.Scripts.Animations
 {
     [CreateAssetMenu(fileName = "AnimationsConfig", menuName = "Configs/AnimationsConfig", order = 0)]
     public class AnimationsConfig : ScriptableObject

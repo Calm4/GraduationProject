@@ -1,7 +1,7 @@
 ﻿using App.Scripts.Buildings;
 using UnityEngine;
 
-namespace App.Scripts
+namespace App.Scripts.Particles
 {
     public class ParticleSpawner : MonoBehaviour
     {

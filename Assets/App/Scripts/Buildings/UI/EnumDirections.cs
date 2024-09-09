@@ -1,6 +1,6 @@
-﻿namespace App.Scripts
+﻿namespace App.Scripts.Buildings.UI
 {
-    public enum HideDirection
+    public enum EnumDirections
     {
         Up,
         Down,

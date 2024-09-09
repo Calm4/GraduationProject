@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace App.Scripts
+namespace App.Scripts.Buildings.UI
 {
     public class UIButtonsModeSwitcher : MonoBehaviour
     {

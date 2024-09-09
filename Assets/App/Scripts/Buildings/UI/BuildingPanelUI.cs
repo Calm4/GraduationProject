@@ -1,15 +1,17 @@
+using App.Scripts.Animations;
 using App.Scripts.Placement;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-namespace App.Scripts
+namespace App.Scripts.Buildings.UI
 {
     public class BuildingPanelUI : MonoBehaviour
     {
         [SerializeField] private RectTransform buttonImage;
         [SerializeField] private AnimationsConfig animationsConfig;
-        [Space][Title("Panel Movement Settings")] [SerializeField] private HideDirection hideDirection = HideDirection.Down;
+        [FormerlySerializedAs("hideDirection")] [Space][Title("Panel Movement Settings")] [SerializeField] private EnumDirections enumDirections = EnumDirections.Down;
 
         [Space][Title("Panel Offset")]
         [SerializeField] private int panelXOffset;
@@ -57,18 +59,18 @@ namespace App.Scripts
 
             Vector2 hidePosition = _panelStartPosition;
 
-            switch (hideDirection)
+            switch (enumDirections)
             {
-                case HideDirection.Up:
+                case EnumDirections.Up:
                     hidePosition.y = _panelStartPosition.y + panelHeight - panelYOffset;
                     break;
-                case HideDirection.Down:
+                case EnumDirections.Down:
                     hidePosition.y = _panelStartPosition.y - panelHeight + panelYOffset;
                     break;
-                case HideDirection.Left:
+                case EnumDirections.Left:
                     hidePosition.x = _panelStartPosition.x - panelWidth + panelXOffset;
                     break;
-                case HideDirection.Right:
+                case EnumDirections.Right:
                     hidePosition.x = _panelStartPosition.x + panelWidth + panelXOffset;
                     break;
             }
