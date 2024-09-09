@@ -522,6 +522,55 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1 &206000925
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 206000926}
+  - component: {fileID: 206000927}
+  m_Layer: 0
+  m_Name: JsonLoaderManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &206000926
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206000925}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1081304742}
+  m_Father: {fileID: 407665853}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &206000927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206000925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f0c1d17ab1e47f3b221853cec6c9867, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jsonFile: {fileID: 4900000, guid: 6a89ff257eca965439feb7a26c8d8309, type: 3}
+  buildingsDataBase: {fileID: 11400000, guid: c10e51bb945d92e45a0b124f18f15578, type: 2}
+  buildingsFromJsonContainer: {fileID: 1081304742}
+  gridManager: {fileID: 984141355}
 --- !u!1 &237577730
 GameObject:
   m_ObjectHideFlags: 0
@@ -1407,6 +1456,7 @@ Transform:
   - {fileID: 72942687}
   - {fileID: 1339536309}
   - {fileID: 984141354}
+  - {fileID: 206000926}
   m_Father: {fileID: 118223971}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &417493530
@@ -3693,10 +3743,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   placementManager: {fileID: 2113443925}
   <GridLayout>k__BackingField: {fileID: 385181513}
-  <GridSize>k__BackingField: {x: 10, y: 7}
+  gridSize: {x: 0, y: 0}
   gridVisualization: {fileID: 1112236718}
   background: {fileID: 2140119108}
-  jsonFile: {fileID: 4900000, guid: 6a89ff257eca965439feb7a26c8d8309, type: 3}
 --- !u!1001 &1016619759
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4029,7 +4078,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1081304742}
   m_Layer: 0
-  m_Name: StartedObjectsFromJSONContainer
+  m_Name: JsonObjectsContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4043,12 +4092,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1081304741}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2113443924}
+  m_Father: {fileID: 206000926}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1102766881
 GameObject:
@@ -7776,7 +7825,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleSpawner: {fileID: 1339536310}
-  buildingsContainer: {fileID: 0}
+  buildingsContainer: {fileID: 1397484297}
   buildingOffsetPoint: {x: 0, y: 0.5, z: 0}
   animationsConfig: {fileID: 11400000, guid: 00a106a1462b66348bc3945219768967, type: 2}
   placingParticle: {fileID: 417761080263594739, guid: 177a550c7533dba4388688b173bd131a, type: 3}
@@ -8882,8 +8931,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1081304742}
+  m_Children: []
   m_Father: {fileID: 445705721}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2113443925
@@ -8905,9 +8953,6 @@ MonoBehaviour:
   resourcesManager: {fileID: 805235755}
   buildingPreview: {fileID: 1684993283}
   buildingPrefab: {fileID: 6827337395158552025, guid: d9c65636e0495ff40b3163ed3af25112, type: 3}
-  buildingsDataBase: {fileID: 11400000, guid: c10e51bb945d92e45a0b124f18f15578, type: 2}
-  buildingsFromJsonContainer: {fileID: 0}
-  jsonFile: {fileID: 4900000, guid: 6a89ff257eca965439feb7a26c8d8309, type: 3}
   soundFeedback: {fileID: 72942689}
 --- !u!1 &2114879725
 GameObject:

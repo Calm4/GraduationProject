@@ -85,7 +85,7 @@ namespace App.Scripts.Custom_Windows
 
                 selectedIndex = Mathf.Clamp(EditorGUILayout.Popup("", selectedIndex, buildingNames), 0, _buildingsDataBase.buildingConfigs.Count - 1);
                 _selectedBuildingConfig = _buildingsDataBase.buildingConfigs[selectedIndex];
-                _mapCreateWindow.UpdateGridData(); // Обновите данные при изменении конфигурации
+                _mapCreateWindow.UpdateGridData();
             }
             else
             {
@@ -170,15 +170,12 @@ namespace App.Scripts.Custom_Windows
 
         private void DrawCell(Rect cellRect, int x, int y)
         {
-            // Найти объект, который занимает текущую клетку
             var objInCell = _gridDataSO.gridObjects.Find(obj => IsObjectInCell(obj, x, y));
 
             if (objInCell != null)
             {
-                // Проверить, является ли текущая клетка главной (левой нижней) клеткой объекта
                 if (objInCell.position.x == x && objInCell.position.y == y)
                 {
-                    // Рассчитать прямоугольник для отрисовки текстуры, который будет занимать нужные клетки
                     Rect objectRect = new Rect(
                         cellRect.x,
                         cellRect.y - (objInCell.buildingConfig.size.y - 1) * cellRect.height,
@@ -186,13 +183,11 @@ namespace App.Scripts.Custom_Windows
                         cellRect.height * objInCell.buildingConfig.size.y
                     );
 
-                    // Отрисовка текстуры с использованием ScaleMode.StretchToFill, чтобы покрыть весь регион
                     EditorGUI.DrawTextureTransparent(objectRect, objInCell.buildingConfig.sprite.texture, ScaleMode.StretchToFill);
                 }
             }
             else
             {
-                // Если клетка пуста, просто нарисовать её зеленым цветом и границы
                 EditorGUI.DrawRect(cellRect, Color.green);
                 DrawCellBorders(cellRect);
             }

@@ -32,7 +32,7 @@ namespace App.Scripts.Custom_Windows
         {
             base.OnEnable();
             InitializeRenderer();
-            _previousGridSize = gridDataSo.gridSize; // Сохранение начального размера сетки
+            _previousGridSize = gridDataSo.gridSize;
         }
 
         private void InitializeRenderer()
@@ -66,11 +66,10 @@ namespace App.Scripts.Custom_Windows
                 return;
             }
             
-            // Проверка на изменение размера сетки
             if (gridDataSo.gridSize != _previousGridSize)
             {
-                ClearGrid(); // Очистка сетки при изменении размера
-                _previousGridSize = gridDataSo.gridSize; // Обновление сохраненного размера
+                ClearGrid(); 
+                _previousGridSize = gridDataSo.gridSize; 
             }
 
             _renderer?.Draw();

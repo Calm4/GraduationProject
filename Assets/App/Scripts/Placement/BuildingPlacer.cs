@@ -8,17 +8,15 @@ namespace App.Scripts.Placement
     public class BuildingPlacer
     {
         private readonly GridData _gridData;
-        private readonly Vector2Int _gridSize;
 
-        public BuildingPlacer(GridData gridData, Vector2Int gridSize)
+        public BuildingPlacer(GridData gridData)
         {
             _gridData = gridData;
-            _gridSize = gridSize;
         }
 
-        public void PlaceBuilding(BasicBuildingConfig config, Vector3Int position, Transform parentTransform)
+        public void PlaceBuilding(BasicBuildingConfig config, GridManager gridManager, Vector3Int position, Transform parentTransform)
         {
-            var gridOffset = new Vector3((float)_gridSize.x / 2, 0, (float)_gridSize.y / 2);
+            var gridOffset = new Vector3((float)gridManager.GetGridSize().x / 2, 0, (float)gridManager.GetGridSize().y / 2);
 
             var buildingObject = new GameObject(config.buildingName)
             {
