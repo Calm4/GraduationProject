@@ -8,29 +8,14 @@ using App.Scripts.Input;
 using App.Scripts.Placement.States;
 using App.Scripts.Resources;
 using App.Scripts.Sound;
-using Newtonsoft.Json;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace App.Scripts.Placement
 {
     public class PlacementManager : MonoBehaviour
     {
-        /*[Title("Grid"), Space] [SerializeField] [VerticalGroup("Grid Settings")]
-        private GridLayout grid;
-
-        [SerializeField] [VerticalGroup("Grid Settings")]
-        private Vector2Int gridSize;
-
-        [SerializeField] [VerticalGroup("Grid Settings")]
-        private GameObject gridVisualization;
-
-      [SerializeField] [VerticalGroup("Grid Settings")]
-        private GameObject gridSpace;*/
-
-        private Vector2Int _gridOffset;
-        private GridData _gridData;
+        [SerializeField, LabelText(""), Space,Title("Current Placement Mode")] private PlacementMode currentPlacementMode = PlacementMode.None;
 
         [Title("Managers"), Space] [SerializeField]
         private InputManager inputManager;
@@ -44,6 +29,7 @@ namespace App.Scripts.Placement
 
         [SerializeField] private Building buildingPrefab;
         [SerializeField] private BuildingsDataBase buildingsDataBase;
+        [SerializeField] private Transform buildingsFromJsonContainer;
         private IBuildingState _buildingState;
 
         [Title("JSON FILE"), Space] [SerializeField]
@@ -54,9 +40,9 @@ namespace App.Scripts.Placement
 
         private Vector3Int _lastDetectedPosition = Vector3Int.zero;
         private BuildingPlacer _buildingPlacer;
-        [SerializeField] private Transform parentTransform;
-
-        private bool _isBuildPressed;
+        
+        private Vector2Int _gridOffset;
+        private GridData _gridData;
 
         public event Action<bool> OnChangeGridVisualizationVisibility;
 
@@ -66,8 +52,6 @@ namespace App.Scripts.Placement
             Building,
             Removing
         }
-
-        [SerializeField] private PlacementMode currentPlacementMode = PlacementMode.None;
         
         [Button]
         public void GetGridData()
@@ -83,14 +67,6 @@ namespace App.Scripts.Placement
             _gridData = new GridData(gridManager.GridSize);
             _buildingPlacer = new BuildingPlacer(_gridData, gridManager.GridSize);
 
-            /*if (jsonFile != null)
-            {
-                LoadGridSizeFromJson(jsonFile.text);
-            }*/
-
-
-            //GridSetup();
-
             if (jsonFile != null)
             {
                 PlaceObjectsFromJson(jsonFile.text);
@@ -98,20 +74,6 @@ namespace App.Scripts.Placement
 
             inputManager.OnExit += StopPlacement;
         }
-
-        /*private void LoadGridSizeFromJson(string jsonString)
-        {
-            GridDataJson gridDataJson = JsonConvert.DeserializeObject<GridDataJson>(jsonString);
-
-            if (gridDataJson != null && gridDataJson.gridSize != null)
-            {
-                gridSize = new Vector2Int(gridDataJson.gridSize.x, gridDataJson.gridSize.y);
-            }
-            else
-            {
-                Debug.LogWarning("No grid size found in JSON, using default size.");
-            }
-        }*/
 
         private void PlaceObjectsFromJson(string json)
         {
@@ -137,24 +99,9 @@ namespace App.Scripts.Placement
 
             foreach (var gridObject in gridObjects)
             {
-                _buildingPlacer.PlaceBuilding(gridObject.buildingConfig, gridObject.position, parentTransform);
+                _buildingPlacer.PlaceBuilding(gridObject.buildingConfig, gridObject.position, buildingsFromJsonContainer);
             }
         }
-
-        /*public void StopRemovingAndStartPlacementWithoutBuilding()
-        {
-            if (currentPlacementMode == PlacementMode.Building)
-            {
-                StopPlacement();
-                currentPlacementMode = PlacementMode.None;
-                return;
-            }
-            
-            StopPlacement();
-
-            //gridVisualization.SetActive(_isBuildPressed);
-            //_isBuildPressed = !_isBuildPressed;
-        }*/
         
         #region Placement Actions
         public void StartPlacement(BasicBuildingConfig buildingConfig)
@@ -165,12 +112,12 @@ namespace App.Scripts.Placement
                 currentPlacementMode = PlacementMode.None;
                 return;
             }
+
+            currentPlacementMode = PlacementMode.Building;
             
             StopPlacement();
             
             OnChangeGridVisualizationVisibility?.Invoke(true);
-            //gridVisualization.SetActive(true);
-
             buildingPrefab.Initialize(buildingConfig);
 
             _buildingState = new StateOfObjectPlacing(resourcesManager, buildingPrefab, gridManager.GridLayout, buildingPreview
@@ -188,7 +135,6 @@ namespace App.Scripts.Placement
             }
 
             OnChangeGridVisualizationVisibility?.Invoke(false);
-            //gridVisualization.SetActive(false);
             _buildingState.EndState();
             inputManager.OnClicked -= PlaceStructure;
             inputManager.OnExit -= StopPlacement;
@@ -211,7 +157,6 @@ namespace App.Scripts.Placement
             currentPlacementMode = PlacementMode.Removing;
             
             OnChangeGridVisualizationVisibility?.Invoke(true);
-            //gridVisualization.SetActive(true);
 
             _buildingState = new StateOfObjectRemoving(resourcesManager, buildingManager, gridManager.GridLayout, buildingPreview,
                 _gridData, soundFeedback);
@@ -219,19 +164,6 @@ namespace App.Scripts.Placement
             inputManager.OnClicked += PlaceStructure;
             inputManager.OnExit += StopPlacement;
         }
-        
-        
-
-        /*[Button, VerticalGroup("Grid Settings")]
-        private void GridSetup()
-        {
-            var gridOffset = new Vector3(-(float)gridSize.x / 2, 0, -(float)gridSize.y / 2);
-            grid.transform.position = gridOffset;
-
-            var gridVisualizationSize = new Vector3((float)gridSize.x / 10, 1, (float)gridSize.y / 10);
-            gridVisualization.transform.localScale = gridVisualizationSize;
-            gridSpace.transform.localScale = gridVisualizationSize;
-        }*/
 
         private void PlaceStructure()
         {
@@ -246,11 +178,6 @@ namespace App.Scripts.Placement
             _buildingState.OnAction(gridPosition);
             StopPlacement();
         }
-
-
-        
-
-
         private void Update()
         {
             if (_buildingState == null)
@@ -268,20 +195,20 @@ namespace App.Scripts.Placement
         }
     }
 
-    [System.Serializable]
+    [Serializable]
     public class GridDataJson
     {
         public Vector2IntJson gridSize;
     }
 
-    [System.Serializable]
+    [Serializable]
     public class Vector2IntJson
     {
         public int x;
         public int y;
     }
 
-    [System.Serializable]
+    [Serializable]
     public class GridObjectContainer
     {
         public List<GridObjectSerializableData> gridObjects;

@@ -1,6 +1,8 @@
-﻿namespace App.Scripts.Placement
+﻿using UnityEngine;
+
+namespace App.Scripts.Placement
 {
-    public class LoaderFromJson
+    public class LoaderFromJson : MonoBehaviour
     {
         
     }
