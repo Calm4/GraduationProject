@@ -9,18 +9,18 @@ namespace App.Scripts.Placement.States
     public class StateOfObjectRemoving : IBuildingState
     {
         private readonly ResourcesManager _resourcesManager;
-        private readonly GridLayout _grid;
+        private readonly GridLayout _gridLayout;
         private readonly BuildingPreview _buildingPreview;
         private readonly GridData _gridData;
         private readonly BuildingManager _buildingManager;
         private readonly SoundFeedback _soundFeedback;
 
-        public StateOfObjectRemoving(ResourcesManager resourcesManager,BuildingManager buildingManager, GridLayout grid, BuildingPreview buildingPreview, GridData gridData, SoundFeedback soundFeedback)
+        public StateOfObjectRemoving(ResourcesManager resourcesManager,BuildingManager buildingManager, GridLayout gridLayout, BuildingPreview buildingPreview, GridData gridData, SoundFeedback soundFeedback)
         {
             _resourcesManager = resourcesManager;
             _buildingManager = buildingManager;
             
-            _grid = grid;
+            _gridLayout = gridLayout;
             _buildingPreview = buildingPreview;
             
             _gridData = gridData;
@@ -59,7 +59,7 @@ namespace App.Scripts.Placement.States
 
             _buildingManager.RemoveBuilding(placedObject);
 
-            Vector3 cellPosition = _grid.CellToWorld(gridPosition);
+            Vector3 cellPosition = _gridLayout.CellToWorld(gridPosition);
             _buildingPreview.UpdatePosition(cellPosition, CheckIsSelectionIsValid(gridPosition));
         }
 
@@ -72,7 +72,7 @@ namespace App.Scripts.Placement.States
         public void UpdateState(Vector3Int gridPosition)
         {
             bool validity = CheckIsSelectionIsValid(gridPosition);
-            _buildingPreview.UpdatePosition(_grid.CellToWorld(gridPosition),validity);
+            _buildingPreview.UpdatePosition(_gridLayout.CellToWorld(gridPosition),validity);
         }
         
         

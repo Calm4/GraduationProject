@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using App.Scripts.Buildings.BuildingsConfigs;
 using App.Scripts.Placement;
-using DG.Tweening;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;

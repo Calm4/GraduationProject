@@ -1,3 +1,4 @@
+using App.Scripts.Placement;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -17,6 +18,8 @@ namespace App.Scripts
         private bool _isHide;
         private Vector2 _panelStartPosition;
 
+        [SerializeField] private PlacementManager placementManager;
+        
         private void Start()
         {
             _goRectTransform = GetComponent<RectTransform>();
@@ -35,6 +38,9 @@ namespace App.Scripts
                 Vector2 hidePosition = CalculateHidePosition();
                 _goRectTransform.DOAnchorPos(hidePosition, animationsConfig.panelHideTime).SetEase(Ease.InOutSine);
             }
+
+            //TODO НЕ ЗАБЫТЬ ПРО ЭТУ ГАДОСТЬ
+            //placementManager.StopPlacement();
 
             _isHide = !_isHide;
         }

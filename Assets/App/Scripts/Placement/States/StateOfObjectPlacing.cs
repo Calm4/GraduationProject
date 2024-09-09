@@ -10,7 +10,7 @@ namespace App.Scripts.Placement.States
     public class StateOfObjectPlacing : IBuildingState
     {
         private readonly ResourcesManager _resourcesManager;
-        private readonly GridLayout _grid;
+        private readonly GridLayout _gridLayout;
         private readonly BuildingPreview _buildingPreview;
          private readonly GridData _gridData;
         private readonly SoundFeedback _soundFeedback;
@@ -21,7 +21,7 @@ namespace App.Scripts.Placement.States
 
         
 
-        public StateOfObjectPlacing(ResourcesManager resourcesManager,Building buildingPrefab, GridLayout grid, BuildingPreview buildingPreview,
+        public StateOfObjectPlacing(ResourcesManager resourcesManager,Building buildingPrefab, GridLayout gridLayout, BuildingPreview buildingPreview,
              GridData gridData, BuildingManager buildingManager, SoundFeedback soundFeedback)
         {
             _resourcesManager = resourcesManager;
@@ -30,7 +30,7 @@ namespace App.Scripts.Placement.States
             _buildingPrefab = buildingPrefab;
             _buildingPrefab.Initialize(buildingPrefab.BuildingConfig);
             
-            _grid = grid;
+            _gridLayout = gridLayout;
             _buildingPreview = buildingPreview;
             
             _gridData = gridData;
@@ -67,12 +67,12 @@ namespace App.Scripts.Placement.States
             PlaySound(SoundType.Place);
             _resourcesManager.TakeAwayResourcesForConstruction(_buildingPrefab.BuildingConfig);
 
-            Building creatableBuilding = _buildingManager.PlaceBuilding(_buildingPrefab,_grid.CellToWorld(gridPosition));
+            Building creatableBuilding = _buildingManager.PlaceBuilding(_buildingPrefab,_gridLayout.CellToWorld(gridPosition));
 
             GridData selectedData = GetSelectedGridData();
             selectedData.AddObjectAt(gridPosition, _buildingPrefab.BuildingConfig.size, creatableBuilding);
 
-            _buildingPreview.UpdatePosition(_grid.CellToWorld(gridPosition), false);
+            _buildingPreview.UpdatePosition(_gridLayout.CellToWorld(gridPosition), false);
         }
         private GridData GetSelectedGridData()
         {
@@ -92,7 +92,7 @@ namespace App.Scripts.Placement.States
         public void UpdateState(Vector3Int gridPosition)
         {
             bool placementValidity = CheckPlacementValidity(gridPosition);
-            _buildingPreview.UpdatePosition(_grid.CellToWorld(gridPosition), placementValidity);
+            _buildingPreview.UpdatePosition(_gridLayout.CellToWorld(gridPosition), placementValidity);
         }
         private void PlaySound(SoundType soundType)
         {

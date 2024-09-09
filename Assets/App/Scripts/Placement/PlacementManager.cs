@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using App.Scripts.Buildings;
@@ -10,12 +11,13 @@ using App.Scripts.Sound;
 using Newtonsoft.Json;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace App.Scripts.Placement
 {
     public class PlacementManager : MonoBehaviour
     {
-        [Title("Grid"), Space] [SerializeField] [VerticalGroup("Grid Settings")]
+        /*[Title("Grid"), Space] [SerializeField] [VerticalGroup("Grid Settings")]
         private GridLayout grid;
 
         [SerializeField] [VerticalGroup("Grid Settings")]
@@ -24,8 +26,8 @@ namespace App.Scripts.Placement
         [SerializeField] [VerticalGroup("Grid Settings")]
         private GameObject gridVisualization;
 
-        [SerializeField] [VerticalGroup("Grid Settings")]
-        private GameObject floor;
+      [SerializeField] [VerticalGroup("Grid Settings")]
+        private GameObject gridSpace;*/
 
         private Vector2Int _gridOffset;
         private GridData _gridData;
@@ -33,6 +35,7 @@ namespace App.Scripts.Placement
         [Title("Managers"), Space] [SerializeField]
         private InputManager inputManager;
 
+        [SerializeField] private GridManager gridManager;
         [SerializeField] private BuildingManager buildingManager;
         [SerializeField] private ResourcesManager resourcesManager;
 
@@ -55,6 +58,8 @@ namespace App.Scripts.Placement
 
         private bool _isBuildPressed;
 
+        public event Action<bool> OnChangeGridVisualizationVisibility;
+
         private enum PlacementMode
         {
             None,
@@ -74,16 +79,17 @@ namespace App.Scripts.Placement
         private void Start()
         {
             StopPlacement();
+            
+            _gridData = new GridData(gridManager.GridSize);
+            _buildingPlacer = new BuildingPlacer(_gridData, gridManager.GridSize);
 
-            if (jsonFile != null)
+            /*if (jsonFile != null)
             {
                 LoadGridSizeFromJson(jsonFile.text);
-            }
+            }*/
 
-            _gridData = new GridData(gridSize);
-            _buildingPlacer = new BuildingPlacer(_gridData, gridSize);
 
-            GridSetup();
+            //GridSetup();
 
             if (jsonFile != null)
             {
@@ -93,7 +99,7 @@ namespace App.Scripts.Placement
             inputManager.OnExit += StopPlacement;
         }
 
-        private void LoadGridSizeFromJson(string jsonString)
+        /*private void LoadGridSizeFromJson(string jsonString)
         {
             GridDataJson gridDataJson = JsonConvert.DeserializeObject<GridDataJson>(jsonString);
 
@@ -105,7 +111,7 @@ namespace App.Scripts.Placement
             {
                 Debug.LogWarning("No grid size found in JSON, using default size.");
             }
-        }
+        }*/
 
         private void PlaceObjectsFromJson(string json)
         {
@@ -135,7 +141,7 @@ namespace App.Scripts.Placement
             }
         }
 
-        public void StopRemovingAndStartPlacementWithoutBuilding()
+        /*public void StopRemovingAndStartPlacementWithoutBuilding()
         {
             if (currentPlacementMode == PlacementMode.Building)
             {
@@ -146,10 +152,11 @@ namespace App.Scripts.Placement
             
             StopPlacement();
 
-            gridVisualization.SetActive(_isBuildPressed);
-            _isBuildPressed = !_isBuildPressed;
-        }
-
+            //gridVisualization.SetActive(_isBuildPressed);
+            //_isBuildPressed = !_isBuildPressed;
+        }*/
+        
+        #region Placement Actions
         public void StartPlacement(BasicBuildingConfig buildingConfig)
         {
             if (currentPlacementMode == PlacementMode.Building)
@@ -160,16 +167,36 @@ namespace App.Scripts.Placement
             }
             
             StopPlacement();
-            gridVisualization.SetActive(true);
+            
+            OnChangeGridVisualizationVisibility?.Invoke(true);
+            //gridVisualization.SetActive(true);
 
             buildingPrefab.Initialize(buildingConfig);
 
-            _buildingState = new StateOfObjectPlacing(resourcesManager, buildingPrefab, grid, buildingPreview
+            _buildingState = new StateOfObjectPlacing(resourcesManager, buildingPrefab, gridManager.GridLayout, buildingPreview
                 , _gridData, buildingManager, soundFeedback);
 
             inputManager.OnClicked += PlaceStructure;
             inputManager.OnExit += StopPlacement;
         }
+        
+        private void StopPlacement()
+        {
+            if (_buildingState == null)
+            {
+                return;
+            }
+
+            OnChangeGridVisualizationVisibility?.Invoke(false);
+            //gridVisualization.SetActive(false);
+            _buildingState.EndState();
+            inputManager.OnClicked -= PlaceStructure;
+            inputManager.OnExit -= StopPlacement;
+            _lastDetectedPosition = Vector3Int.zero;
+            _buildingState = null;
+            currentPlacementMode = PlacementMode.None;
+        }
+        #endregion
 
         public void StartRemoving()
         {
@@ -182,16 +209,20 @@ namespace App.Scripts.Placement
             
             StopPlacement();
             currentPlacementMode = PlacementMode.Removing;
-            gridVisualization.SetActive(true);
+            
+            OnChangeGridVisualizationVisibility?.Invoke(true);
+            //gridVisualization.SetActive(true);
 
-            _buildingState = new StateOfObjectRemoving(resourcesManager, buildingManager, grid, buildingPreview,
+            _buildingState = new StateOfObjectRemoving(resourcesManager, buildingManager, gridManager.GridLayout, buildingPreview,
                 _gridData, soundFeedback);
 
             inputManager.OnClicked += PlaceStructure;
             inputManager.OnExit += StopPlacement;
         }
+        
+        
 
-        [Button, VerticalGroup("Grid Settings")]
+        /*[Button, VerticalGroup("Grid Settings")]
         private void GridSetup()
         {
             var gridOffset = new Vector3(-(float)gridSize.x / 2, 0, -(float)gridSize.y / 2);
@@ -199,8 +230,8 @@ namespace App.Scripts.Placement
 
             var gridVisualizationSize = new Vector3((float)gridSize.x / 10, 1, (float)gridSize.y / 10);
             gridVisualization.transform.localScale = gridVisualizationSize;
-            floor.transform.localScale = gridVisualizationSize;
-        }
+            gridSpace.transform.localScale = gridVisualizationSize;
+        }*/
 
         private void PlaceStructure()
         {
@@ -210,28 +241,14 @@ namespace App.Scripts.Placement
             }
 
             Vector3 mousePosition = inputManager.GetSelectedMapPosition();
-            Vector3Int gridPosition = grid.WorldToCell(mousePosition);
+            Vector3Int gridPosition = gridManager.GridLayout.WorldToCell(mousePosition);
 
             _buildingState.OnAction(gridPosition);
             StopPlacement();
         }
 
 
-        private void StopPlacement()
-        {
-            if (_buildingState == null)
-            {
-                return;
-            }
-
-            gridVisualization.SetActive(false);
-            _buildingState.EndState();
-            inputManager.OnClicked -= PlaceStructure;
-            inputManager.OnExit -= StopPlacement;
-            _lastDetectedPosition = Vector3Int.zero;
-            _buildingState = null;
-            currentPlacementMode = PlacementMode.None;
-        }
+        
 
 
         private void Update()
@@ -242,7 +259,7 @@ namespace App.Scripts.Placement
             }
 
             Vector3 mousePosition = inputManager.GetSelectedMapPosition();
-            Vector3Int gridPosition = grid.WorldToCell(mousePosition);
+            Vector3Int gridPosition = gridManager.GridLayout.WorldToCell(mousePosition);
             if (_lastDetectedPosition != gridPosition)
             {
                 _buildingState.UpdateState(gridPosition);

@@ -1339,7 +1339,7 @@ GameObject:
   - component: {fileID: 385181512}
   - component: {fileID: 385181513}
   m_Layer: 0
-  m_Name: Grid
+  m_Name: GridLayout
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1354,11 +1354,11 @@ Transform:
   m_GameObject: {fileID: 385181511}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.5, y: 0, z: -2.5}
+  m_LocalPosition: {x: -5, y: 0, z: -3.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1337430599}
+  m_Father: {fileID: 984141354}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!156049354 &385181513
 Grid:
@@ -1406,6 +1406,7 @@ Transform:
   - {fileID: 805235754}
   - {fileID: 72942687}
   - {fileID: 1339536309}
+  - {fileID: 984141354}
   m_Father: {fileID: 118223971}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &417493530
@@ -3276,6 +3277,7 @@ MonoBehaviour:
   hideDirection: 1
   panelXOffset: 0
   panelYOffset: 35
+  placementManager: {fileID: 0}
 --- !u!114 &884291287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3643,6 +3645,59 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraConfig: {fileID: 11400000, guid: fe4c1846dcfa06a44bf3cdddc82e2cf1, type: 2}
   inputManager: {fileID: 864965515}
+--- !u!1 &984141353
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 984141354}
+  - component: {fileID: 984141355}
+  m_Layer: 0
+  m_Name: GridManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &984141354
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 984141353}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1112236722}
+  - {fileID: 385181512}
+  - {fileID: 2140119112}
+  m_Father: {fileID: 407665853}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &984141355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 984141353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7a10cbff6af4ba9895771158766da3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  placementManager: {fileID: 2113443925}
+  <GridLayout>k__BackingField: {fileID: 385181513}
+  <GridSize>k__BackingField: {x: 10, y: 7}
+  gridVisualization: {fileID: 1112236718}
+  background: {fileID: 2140119108}
+  jsonFile: {fileID: 4900000, guid: 6a89ff257eca965439feb7a26c8d8309, type: 3}
 --- !u!1001 &1016619759
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4192,10 +4247,10 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.015, z: 0}
-  m_LocalScale: {x: 1.1, y: 1, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1337430599}
+  m_Father: {fileID: 984141354}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1139616026
 GameObject:
@@ -4987,10 +5042,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1112236722}
-  - {fileID: 385181512}
-  - {fileID: 2140119112}
+  m_Children: []
   m_Father: {fileID: 445705721}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1338401309
@@ -6804,6 +6856,7 @@ MonoBehaviour:
   hideDirection: 1
   panelXOffset: 0
   panelYOffset: 0
+  placementManager: {fileID: 0}
 --- !u!1 &1683865173
 GameObject:
   m_ObjectHideFlags: 0
@@ -8877,11 +8930,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6ba3f460148d984b926e4b3db810e63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grid: {fileID: 385181513}
-  gridSize: {x: 11, y: 5}
-  gridVisualization: {fileID: 1112236718}
-  floor: {fileID: 2140119108}
   inputManager: {fileID: 864965515}
+  gridManager: {fileID: 984141355}
   buildingManager: {fileID: 1932316566}
   resourcesManager: {fileID: 805235755}
   buildingPreview: {fileID: 1684993283}
@@ -9205,10 +9255,10 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1, y: 1, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1337430599}
+  m_Father: {fileID: 984141354}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &2140119113
 BoxCollider:
@@ -9756,6 +9806,7 @@ MonoBehaviour:
   hideDirection: 2
   panelXOffset: 0
   panelYOffset: 0
+  placementManager: {fileID: 0}
 --- !u!222 &8248830629786822760
 CanvasRenderer:
   m_ObjectHideFlags: 0
