@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using App.Scripts.Buildings;
 using App.Scripts.Grid;
@@ -11,8 +12,8 @@ namespace App.Scripts.Placement
 {
     public class JsonLoaderManager : MonoBehaviour
     {
-        [Title("Json File With Buildings Info")] [SerializeField]
-        private TextAsset jsonFile;
+        [Title("Json File With Buildings Info")] 
+        [SerializeField] private TextAsset jsonFile;
 
         [Title("Buildings Parameters")] 
         [SerializeField] private BuildingsDataBase buildingsDataBase;
@@ -21,21 +22,36 @@ namespace App.Scripts.Placement
         
         [Title("Grid Parameters")]
         [SerializeField] private GridManager gridManager;
-
-        private void Start()
+        
+        private void Awake()
         {
-            _buildingPlacer = new BuildingPlacer(gridManager.GridData);
-
-            if (jsonFile != null)
-            {
-                LoadGridSizeFromJson(jsonFile.text);
-                PlaceObjectsFromJson(jsonFile.text);
-            }
+            gridManager.OnGridLoadFromJson += LoadGridSizeFromJson;
+            gridManager.OnBuildingsLoadFromJson += PlaceObjectsFromJson;
         }
 
-        private void PlaceObjectsFromJson(string json)
+        private void LoadGridSizeFromJson()
         {
-            var gridObjectsContainer = JsonUtility.FromJson<GridObjectContainer>(json);
+            GridDataJson gridDataJson = JsonConvert.DeserializeObject<GridDataJson>(jsonFile.text);
+
+            if (gridDataJson != null && gridDataJson.gridSize != null)
+            {
+                var gridSize = new Vector2Int(gridDataJson.gridSize.x, gridDataJson.gridSize.y);
+                
+                GridData gridData = new GridData(gridSize);
+                
+                gridManager.SetGridParameters(gridData, gridSize);
+            }
+            else
+            {
+                Debug.LogWarning("No grid size found in JSON, using default size.");
+            }
+        }
+        
+        private void PlaceObjectsFromJson()
+        {
+            _buildingPlacer = new BuildingPlacer(gridManager.GridData);
+            
+            var gridObjectsContainer = JsonUtility.FromJson<GridObjectContainer>(jsonFile.text);
 
             var gridObjects = new List<GridObjectData>();
 
@@ -62,20 +78,12 @@ namespace App.Scripts.Placement
             }
         }
 
-        private void LoadGridSizeFromJson(string jsonString)
-        {
-            GridDataJson gridDataJson = JsonConvert.DeserializeObject<GridDataJson>(jsonString);
+        
 
-            if (gridDataJson != null && gridDataJson.gridSize != null)
-            {
-                var gridSize = new Vector2Int(gridDataJson.gridSize.x, gridDataJson.gridSize.y);
-                gridManager.SetGridSize(gridSize);
-                Debug.Log(gridSize);
-            }
-            else
-            {
-                Debug.LogWarning("No grid size found in JSON, using default size.");
-            }
+        private void OnDestroy()
+        {
+            gridManager.OnGridLoadFromJson -= LoadGridSizeFromJson;
+            gridManager.OnBuildingsLoadFromJson -= PlaceObjectsFromJson;
         }
     }
 }

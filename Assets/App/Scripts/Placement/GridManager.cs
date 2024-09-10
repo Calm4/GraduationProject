@@ -1,6 +1,8 @@
-﻿using App.Scripts.Grid;
+﻿using System;
+using App.Scripts.Grid;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace App.Scripts.Placement
 {
@@ -13,8 +15,8 @@ namespace App.Scripts.Placement
         [VerticalGroup("Grid Settings")]
         public GridLayout GridLayout { get; private set; }
 
-        [SerializeField] [VerticalGroup("Grid Settings")]
-        private Vector2Int gridSize;
+        [field: SerializeField] [VerticalGroup("Grid Settings")]
+        public Vector2Int GridSize { get; private set; }
 
         [SerializeField] [VerticalGroup("Grid Settings")]
         private GameObject gridVisualization;
@@ -23,36 +25,39 @@ namespace App.Scripts.Placement
         private GameObject background;
 
         public GridData GridData { get; private set; }
+
+        public event Action OnGridLoadFromJson; 
+        public event Action OnBuildingsLoadFromJson; 
         
         private void Awake()
         {
             placementManager.OnChangeGridVisualizationVisibility += SetGridVisualizationVisibility;
-            GridData = new GridData(GetGridSize());
         }
 
         private void Start()
         {
+            OnGridLoadFromJson?.Invoke();
+            GridData = new GridData(GridSize);
+            OnBuildingsLoadFromJson?.Invoke();
+            Debug.Log(GridSize + "!!!");
             GridSetup();
         }
 
         [Button, VerticalGroup("Grid Settings")]
         private void GridSetup()
         {
-            var gridOffset = new Vector3(-(float)gridSize.x / 2, 0, -(float)gridSize.y / 2);
+            var gridOffset = new Vector3(-(float)GridSize.x / 2, 0, -(float)GridSize.y / 2);
             GridLayout.transform.position = gridOffset;
 
-            var mapSize = new Vector3((float)gridSize.x / 10, 1, (float)gridSize.y / 10);
+            var mapSize = new Vector3((float)GridSize.x / 10, 1, (float)GridSize.y / 10);
             gridVisualization.transform.localScale = mapSize;
             background.transform.localScale = mapSize;
         }
 
-        public Vector2Int GetGridSize()
+        public void SetGridParameters(GridData gridData, Vector2Int gridSize)
         {
-            return gridSize;
-        }
-        public void SetGridSize(Vector2Int size)
-        {
-            gridSize = size;
+            GridData = gridData;
+            GridSize = gridSize;
         }
 
         private void SetGridVisualizationVisibility(bool visibilityState)

@@ -16,7 +16,7 @@ namespace App.Scripts.Placement
 
         public void PlaceBuilding(BasicBuildingConfig config, GridManager gridManager, Vector3Int position, Transform parentTransform)
         {
-            var gridOffset = new Vector3((float)gridManager.GetGridSize().x / 2, 0, (float)gridManager.GetGridSize().y / 2);
+            var gridOffset = new Vector3((float)gridManager.GridSize.x / 2, 0, (float)gridManager.GridSize.y / 2);
 
             var buildingObject = new GameObject(config.buildingName)
             {
