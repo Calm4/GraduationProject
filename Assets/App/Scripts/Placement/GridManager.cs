@@ -37,9 +37,7 @@ namespace App.Scripts.Placement
         private void Start()
         {
             OnGridLoadFromJson?.Invoke();
-            GridData = new GridData(GridSize);
             OnBuildingsLoadFromJson?.Invoke();
-            Debug.Log(GridSize + "!!!");
             GridSetup();
         }
 
@@ -49,9 +47,9 @@ namespace App.Scripts.Placement
             var gridOffset = new Vector3(-(float)GridSize.x / 2, 0, -(float)GridSize.y / 2);
             GridLayout.transform.position = gridOffset;
 
-            var mapSize = new Vector3((float)GridSize.x / 10, 1, (float)GridSize.y / 10);
-            gridVisualization.transform.localScale = mapSize;
-            background.transform.localScale = mapSize;
+            var adjustSize = new Vector3((float)GridSize.x / 10, 1, (float)GridSize.y / 10);
+            gridVisualization.transform.localScale = adjustSize;
+            background.transform.localScale = adjustSize;
         }
 
         public void SetGridParameters(GridData gridData, Vector2Int gridSize)

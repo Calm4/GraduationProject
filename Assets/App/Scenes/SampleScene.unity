@@ -2735,11 +2735,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f38c94d02a5837b4a8f8c8a5ace41b18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonImage: {fileID: 2121567073}
   animationsConfig: {fileID: 11400000, guid: 00a106a1462b66348bc3945219768967, type: 2}
   enumDirections: 1
   panelXOffset: 0
-  panelYOffset: 35
+  panelYOffset: 57
   placementManager: {fileID: 0}
 --- !u!114 &884291287
 MonoBehaviour:
@@ -3157,7 +3156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   placementManager: {fileID: 2113443925}
   <GridLayout>k__BackingField: {fileID: 385181513}
-  gridSize: {x: 0, y: 0}
+  <GridSize>k__BackingField: {x: 0, y: 0}
   gridVisualization: {fileID: 1112236718}
   background: {fileID: 2140119108}
 --- !u!1001 &1016619759
@@ -7863,7 +7862,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f38c94d02a5837b4a8f8c8a5ace41b18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonImage: {fileID: 7454304363362590068}
   animationsConfig: {fileID: 11400000, guid: 00a106a1462b66348bc3945219768967, type: 2}
   enumDirections: 2
   panelXOffset: 0

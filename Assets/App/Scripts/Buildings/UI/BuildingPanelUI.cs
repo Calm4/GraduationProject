@@ -9,9 +9,10 @@ namespace App.Scripts.Buildings.UI
 {
     public class BuildingPanelUI : MonoBehaviour
     {
-        [SerializeField] private RectTransform buttonImage;
         [SerializeField] private AnimationsConfig animationsConfig;
-        [FormerlySerializedAs("hideDirection")] [Space][Title("Panel Movement Settings")] [SerializeField] private EnumDirections enumDirections = EnumDirections.Down;
+        
+        [Space, Title("Panel Movement Settings")]
+        [SerializeField] private EnumDirections enumDirections = EnumDirections.Down;
 
         [Space][Title("Panel Offset")]
         [SerializeField] private int panelXOffset;
@@ -30,7 +31,6 @@ namespace App.Scripts.Buildings.UI
 
         public void ShowOrHideBuildingsPanel()
         {
-            RotateImage();
             if (_isHide)
             {
                 _goRectTransform.DOAnchorPos(_panelStartPosition, animationsConfig.panelShowTime).SetEase(Ease.InOutSine);
@@ -45,11 +45,6 @@ namespace App.Scripts.Buildings.UI
             //placementManager.StopPlacement();
 
             _isHide = !_isHide;
-        }
-
-        private void RotateImage()
-        {
-            buttonImage.transform.DORotate(new Vector3(180, 0, 0), animationsConfig.panelImageRotateTime, RotateMode.LocalAxisAdd);
         }
 
         private Vector2 CalculateHidePosition()
