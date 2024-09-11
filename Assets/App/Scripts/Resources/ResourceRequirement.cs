@@ -6,7 +6,7 @@ namespace App.Scripts.Resources
     [Serializable]
     public struct ResourceRequirement
     {
-        public int amountToBuild;
-        public ResourceConfig resourceConfig;
+        public int amount;
+        public BasicResourceConfig config;
     }
 }

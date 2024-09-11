@@ -6,6 +6,6 @@ namespace App.Scripts.Resources
     [CreateAssetMenu(fileName = "ResourcesDataBase", menuName = "Configs/DataBases/ResourcesDataBase", order = 2)]
     public class ResourcesDataBase : ScriptableObject
     {
-        public List<ResourceConfig> resourcesConfigs;
+        public List<BasicResourceConfig> resourcesConfigs;
     }
 }

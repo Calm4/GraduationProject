@@ -29,6 +29,10 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: d76d5dba59c8a824a8170635648a356c, type: 2}
   size: {x: 1, y: 2}
   buildingAssociateColor: {r: 0.9450981, g: 0.5686275, b: 0.050980397, a: 1}
-  resourcesToBuild: []
-  moneyToBuild: 0
+  resourcesToBuild:
+  - amount: 100
+    config: {fileID: 11400000, guid: 690fd2dfdcfe6774fac3487cfcf4dc75, type: 2}
+  maintenanceResources:
+  - amount: 1
+    config: {fileID: 11400000, guid: 7923030f6f0f1854680341d54d0eee92, type: 2}
   sprite: {fileID: 21300000, guid: 2778ca8bc5fd4a0479426360c738e8ed, type: 3}

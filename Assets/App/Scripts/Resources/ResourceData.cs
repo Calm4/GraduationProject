@@ -5,7 +5,7 @@ namespace App.Scripts.Resources
     [Serializable]
     public struct ResourceData
     {
-        public ResourceConfig resourceConfig;
+        public BasicResourceConfig resourceConfig;
         public int currentAmount;
         public int maxAmount;
         public bool isUnlockedNow;

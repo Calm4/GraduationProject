@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: ResourcesDB
   m_EditorClassIdentifier: 
   resourcesConfigs:
+  - {fileID: 11400000, guid: 690fd2dfdcfe6774fac3487cfcf4dc75, type: 2}
   - {fileID: 11400000, guid: b4a30f8493488424796036fb0dce3545, type: 2}
   - {fileID: 11400000, guid: 017539c5c52000b43b51660858d91f03, type: 2}
   - {fileID: 11400000, guid: f65cd3c57f42c7e478c57b97fd4a48e7, type: 2}

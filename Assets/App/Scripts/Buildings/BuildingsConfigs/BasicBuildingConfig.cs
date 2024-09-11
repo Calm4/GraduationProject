@@ -23,7 +23,7 @@ namespace App.Scripts.Buildings.BuildingsConfigs
         
         [Title("Resources")]
         public List<ResourceRequirement> resourcesToBuild;
-        public int moneyToBuild;
+        public List<ResourceRequirement> maintenanceResources;
 
         [Title("Icon")]
         public Sprite sprite;

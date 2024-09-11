@@ -2,6 +2,7 @@
 {
     public enum ResourceType
     {
+        Money,
         Wheat,
         Wood,
         Iron,

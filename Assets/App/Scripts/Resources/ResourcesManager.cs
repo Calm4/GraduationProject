@@ -53,15 +53,15 @@ namespace App.Scripts.Resources
 
             foreach (var resource in returnedResources)
             {
-                var resourceData = _resources[resource.resourceConfig.resourceType];
-                resourceData.currentAmount += resource.amountToBuild / 2;
+                var resourceData = _resources[resource.config.resourceType];
+                resourceData.currentAmount += resource.amount / 2;
 
                 if (resourceData.currentAmount > resourceData.maxAmount)
                 {
                     resourceData.currentAmount = resourceData.maxAmount;
                 }
 
-                _resources[resource.resourceConfig.resourceType] = resourceData;
+                _resources[resource.config.resourceType] = resourceData;
             }
             OnUpdateResources?.Invoke();
         }
@@ -71,15 +71,15 @@ namespace App.Scripts.Resources
 
             foreach (var resource in resourcesToBuild)
             {
-                var resourceData = _resources[resource.resourceConfig.resourceType];
-                resourceData.currentAmount -= resource.amountToBuild;
+                var resourceData = _resources[resource.config.resourceType];
+                resourceData.currentAmount -= resource.amount;
 
                 if (resourceData.currentAmount < 0)
                 {
                     resourceData.currentAmount = 0;
                 }
 
-                _resources[resource.resourceConfig.resourceType] = resourceData; 
+                _resources[resource.config.resourceType] = resourceData; 
             } 
             OnUpdateResources?.Invoke();
         }
@@ -134,10 +134,10 @@ namespace App.Scripts.Resources
 
             foreach (var resource in resourcesToBuild)
             {
-                var definiteResource = GetResourceData(resource.resourceConfig.resourceType).currentAmount;
-                if (definiteResource < resource.amountToBuild)
+                var definiteResource = GetResourceData(resource.config.resourceType).currentAmount;
+                if (definiteResource < resource.amount)
                 {
-                    Debug.Log($"Здание не может быть построено. Не хватает ресурса {resource.resourceConfig.resourceType}");
+                    Debug.Log($"Здание не может быть построено. Не хватает ресурса {resource.config.resourceType}");
                     return false;
                 }
             }

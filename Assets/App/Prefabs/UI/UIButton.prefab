@@ -75,8 +75,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4286247421
-  m_fontColor: {r: 0.9924528, g: 0.9443091, b: 0.47750083, a: 1}
+    rgba: 4287296255
+  m_fontColor: {r: 1, g: 0.9487169, b: 0.5415094, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -212,7 +212,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 68, y: 32}
-  m_Spacing: {x: 5, y: 5}
+  m_Spacing: {x: 15, y: 3}
   m_Constraint: 1
   m_ConstraintCount: 3
 --- !u!1 &1306654973340298354
@@ -612,7 +612,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2363222926768824275}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 

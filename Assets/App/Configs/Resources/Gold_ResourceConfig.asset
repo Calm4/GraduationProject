@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 737827a1001b46e9a562ca5dee640914, type: 3}
   m_Name: Gold_ResourceConfig
   m_EditorClassIdentifier: 
-  resourceType: 5
+  resourceType: 6
+  resourceImage: {fileID: -701838314, guid: a212f53675812c6499666e035dda0764, type: 3}
   buyCost: 0
   saleCost: 0
   initialMaxAmount: 10
-  resourceImage: {fileID: -701838314, guid: a212f53675812c6499666e035dda0764, type: 3}
