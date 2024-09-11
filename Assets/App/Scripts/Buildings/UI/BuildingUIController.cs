@@ -15,11 +15,12 @@ namespace App.Scripts.Buildings.UI
         [SerializeField] private PlacementManager placementManager;
         [SerializeField] private Building buildingPrefab;
 
-        [Title("Building Configs by Section")] 
-        [SerializeField] private BuildingsDataBaseBySectionsSO buildingsDataBaseBySections;
-        
-        
-        
+        [Title("Building Configs by Section")] [SerializeField]
+        private BuildingsDataBaseBySectionsSO buildingsDataBaseBySections;
+
+        [SerializeField] private BuildingsDescriptionUIPanel buildingsDescriptionUIPanel;
+
+
         private void Start()
         {
             GenerateButtons();
@@ -40,7 +41,7 @@ namespace App.Scripts.Buildings.UI
                 if (matchingContainer == null)
                 {
                     Debug.LogError($"No container found for BuildingType: {buildingType}");
-                    continue; 
+                    continue;
                 }
 
                 foreach (var config in section.Value)
@@ -49,12 +50,14 @@ namespace App.Scripts.Buildings.UI
                     var button = buttonInstance.GetComponent<Button>();
                     var buttonText = buttonInstance.GetComponentInChildren<TMP_Text>();
                     var buttonImage = buttonInstance.transform.GetChild(0).GetComponent<Image>();
-
+                    var buttonDescription = buttonInstance.GetComponent<BuildingsDescriptionUIPanel>();
                     if (button != null)
                     {
                         var tempConfig = config;
                         button.onClick.AddListener(() => OnBuildingButtonClicked(tempConfig));
 
+                        buttonDescription.Initialize(tempConfig);
+                        
                         if (buttonText != null)
                         {
                             buttonText.text = config.buildingName;
@@ -68,12 +71,10 @@ namespace App.Scripts.Buildings.UI
                 }
             }
         }
-        
+
         private void OnBuildingButtonClicked(BasicBuildingConfig buildingConfig)
         {
             placementManager.StartPlacement(buildingConfig);
         }
-
-        
     }
 }

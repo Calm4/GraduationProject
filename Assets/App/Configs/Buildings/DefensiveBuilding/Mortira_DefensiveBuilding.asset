@@ -23,6 +23,7 @@ MonoBehaviour:
     SerializationNodes: []
   ID: 3
   buildingName: Mortira
+  buildingDescription: Mortira Description
   buildingType: 0
   mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   material: {fileID: 2100000, guid: 9618c6b42230db7408b3b734da21470a, type: 2}

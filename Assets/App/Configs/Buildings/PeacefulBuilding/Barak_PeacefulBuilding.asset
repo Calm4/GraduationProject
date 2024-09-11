@@ -23,6 +23,7 @@ MonoBehaviour:
     SerializationNodes: []
   ID: 1
   buildingName: Barak
+  buildingDescription: Barak Description
   buildingType: 1
   mesh: {fileID: 4300000, guid: 51efcb9c47f76ff48879503c6270a9eb, type: 2}
   material: {fileID: 2100000, guid: 74117f645ca87544896e430b75e9a316, type: 2}

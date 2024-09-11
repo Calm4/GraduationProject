@@ -2477,6 +2477,7 @@ MonoBehaviour:
   placementManager: {fileID: 2113443925}
   buildingPrefab: {fileID: 6827337395158552025, guid: d9c65636e0495ff40b3163ed3af25112, type: 3}
   buildingsDataBaseBySections: {fileID: 11400000, guid: 74c59810f16beb547b3df15e9a82f909, type: 2}
+  buildingsDescriptionUIPanel: {fileID: 0}
 --- !u!4 &805235754 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 375878676686424304, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
@@ -2739,7 +2740,7 @@ MonoBehaviour:
   enumDirections: 1
   panelXOffset: 0
   panelYOffset: 57
-  placementManager: {fileID: 0}
+  placementManager: {fileID: 2113443925}
 --- !u!114 &884291287
 MonoBehaviour:
   m_ObjectHideFlags: 0

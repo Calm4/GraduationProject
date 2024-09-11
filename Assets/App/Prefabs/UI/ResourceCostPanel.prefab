@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3005484788165070295}
   - component: {fileID: 4863453164237881294}
   m_Layer: 5
-  m_Name: ResourseImage
+  m_Name: ResourceImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 8348615337025482581}
   - component: {fileID: 1338514251460473640}
   m_Layer: 5
-  m_Name: ResourseCostPanel
+  m_Name: ResourceCostPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -203,7 +203,7 @@ GameObject:
   - component: {fileID: 3414920142621318554}
   - component: {fileID: 3184585115746115218}
   m_Layer: 5
-  m_Name: ResourseText
+  m_Name: ResourceText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

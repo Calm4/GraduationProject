@@ -12,6 +12,7 @@ namespace App.Scripts.Buildings.BuildingsConfigs
         public int ID;
 
         public string buildingName;
+        public string buildingDescription;
         [ShowInInspector] public BuildingType buildingType;
 
         [Title("Building Parameters")]
