@@ -66,9 +66,11 @@ public class BuildingsDescriptionUIPanel : MonoBehaviour
         for (int i = 0; i < basicBuildingConfig.resourcesToBuild.Count; i++)
         {
             var constructingResource = Instantiate(resourcePrefab, constructionContainer);
-            //constructingResource.GetComponent<Image>().sprite = basicBuildingConfig.sprite/*.resourcesToBuild[i]*/;
-            var resourceCount = constructingResource.GetComponentInChildren<TMP_Text>();
-            resourceCount.text = basicBuildingConfig.resourcesToBuild[i].amountToBuild.ToString();
+            
+            var resourceImage = constructingResource.GetComponentInChildren<Image>().GetComponentInChildren<Image>(); 
+            resourceImage.sprite = basicBuildingConfig.resourcesToBuild[i].resourceConfig.resourceImage;
+            var resourceAmountToBuild = constructingResource.GetComponentInChildren<TMP_Text>();
+            resourceAmountToBuild.text = basicBuildingConfig.resourcesToBuild[i].amountToBuild.ToString();
         }
     }
 

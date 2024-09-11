@@ -53,7 +53,7 @@ namespace App.Scripts.Resources
 
             foreach (var resource in returnedResources)
             {
-                var resourceData = _resources[resource.resourceType];
+                var resourceData = _resources[resource.resourceConfig.resourceType];
                 resourceData.currentAmount += resource.amountToBuild / 2;
 
                 if (resourceData.currentAmount > resourceData.maxAmount)
@@ -61,7 +61,7 @@ namespace App.Scripts.Resources
                     resourceData.currentAmount = resourceData.maxAmount;
                 }
 
-                _resources[resource.resourceType] = resourceData;
+                _resources[resource.resourceConfig.resourceType] = resourceData;
             }
             OnUpdateResources?.Invoke();
         }
@@ -71,7 +71,7 @@ namespace App.Scripts.Resources
 
             foreach (var resource in resourcesToBuild)
             {
-                var resourceData = _resources[resource.resourceType];
+                var resourceData = _resources[resource.resourceConfig.resourceType];
                 resourceData.currentAmount -= resource.amountToBuild;
 
                 if (resourceData.currentAmount < 0)
@@ -79,8 +79,8 @@ namespace App.Scripts.Resources
                     resourceData.currentAmount = 0;
                 }
 
-                _resources[resource.resourceType] = resourceData; 
-            }
+                _resources[resource.resourceConfig.resourceType] = resourceData; 
+            } 
             OnUpdateResources?.Invoke();
         }
 
@@ -134,10 +134,10 @@ namespace App.Scripts.Resources
 
             foreach (var resource in resourcesToBuild)
             {
-                var definiteResource = GetResourceData(resource.resourceType).currentAmount;
+                var definiteResource = GetResourceData(resource.resourceConfig.resourceType).currentAmount;
                 if (definiteResource < resource.amountToBuild)
                 {
-                    Debug.Log($"Здание не может быть построено. Не хватает ресурса {resource.resourceType}");
+                    Debug.Log($"Здание не может быть построено. Не хватает ресурса {resource.resourceConfig.resourceType}");
                     return false;
                 }
             }
