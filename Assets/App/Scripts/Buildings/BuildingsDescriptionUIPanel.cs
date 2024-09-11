@@ -25,6 +25,7 @@ public class BuildingsDescriptionUIPanel : MonoBehaviour
     
     [Title("Construction Panel")]
     [SerializeField] private RectTransform constructionContainer;
+    [SerializeField] private RectTransform resourcePrefab;
 
     [Title("Help Panel")] 
     [SerializeField] private TMP_Text helpTextField;
@@ -62,7 +63,13 @@ public class BuildingsDescriptionUIPanel : MonoBehaviour
     
     private void InitializeConstructionPanel()
     {
-        
+        for (int i = 0; i < basicBuildingConfig.resourcesToBuild.Count; i++)
+        {
+            var constructingResource = Instantiate(resourcePrefab, constructionContainer);
+            //constructingResource.GetComponent<Image>().sprite = basicBuildingConfig.sprite/*.resourcesToBuild[i]*/;
+            var resourceCount = constructingResource.GetComponentInChildren<TMP_Text>();
+            resourceCount.text = basicBuildingConfig.resourcesToBuild[i].amountToBuild.ToString();
+        }
     }
 
     private void InitializeHelpPanel()
