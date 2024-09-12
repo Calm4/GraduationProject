@@ -48,6 +48,7 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
+    - {fileID: 11400000, guid: 690fd2dfdcfe6774fac3487cfcf4dc75, type: 2}
     - {fileID: 11400000, guid: 10b56f5eb5bfd774aab1d65b93d86453, type: 2}
     - {fileID: 11400000, guid: 3df9d4f94b42acc49858e0129dd1dd37, type: 2}
     - {fileID: 11400000, guid: f9e10c81e0042e94e87b97a1c3e7c3f0, type: 2}
@@ -83,7 +84,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 10
+      Data: 11
     - Name: 
       Entry: 7
       Data: 
@@ -98,10 +99,10 @@ MonoBehaviour:
       Data: 0
     - Name: currentAmount
       Entry: 3
-      Data: 8
+      Data: 8000
     - Name: maxAmount
       Entry: 3
-      Data: 20
+      Data: 10000
     - Name: isUnlockedNow
       Entry: 5
       Data: true
@@ -123,6 +124,33 @@ MonoBehaviour:
     - Name: resourceConfig
       Entry: 10
       Data: 1
+    - Name: currentAmount
+      Entry: 3
+      Data: 0
+    - Name: maxAmount
+      Entry: 3
+      Data: 0
+    - Name: isUnlockedNow
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 7
+      Data: App.Scripts.Resources.ResourceData, Assembly-CSharp
+    - Name: resourceConfig
+      Entry: 10
+      Data: 2
     - Name: currentAmount
       Entry: 3
       Data: 16
@@ -143,202 +171,202 @@ MonoBehaviour:
       Data: 
     - Name: $k
       Entry: 3
-      Data: 2
+      Data: 3
     - Name: $v
       Entry: 7
       Data: App.Scripts.Resources.ResourceData, Assembly-CSharp
     - Name: resourceConfig
       Entry: 10
-      Data: 2
+      Data: 3
+    - Name: currentAmount
+      Entry: 3
+      Data: 16
+    - Name: maxAmount
+      Entry: 3
+      Data: 20
+    - Name: isUnlockedNow
+      Entry: 5
+      Data: true
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 4
+    - Name: $v
+      Entry: 7
+      Data: App.Scripts.Resources.ResourceData, Assembly-CSharp
+    - Name: resourceConfig
+      Entry: 10
+      Data: 4
+    - Name: currentAmount
+      Entry: 3
+      Data: 0
+    - Name: maxAmount
+      Entry: 3
+      Data: 0
+    - Name: isUnlockedNow
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 5
+    - Name: $v
+      Entry: 7
+      Data: App.Scripts.Resources.ResourceData, Assembly-CSharp
+    - Name: resourceConfig
+      Entry: 10
+      Data: 5
+    - Name: currentAmount
+      Entry: 3
+      Data: 0
+    - Name: maxAmount
+      Entry: 3
+      Data: 0
+    - Name: isUnlockedNow
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 6
+    - Name: $v
+      Entry: 7
+      Data: App.Scripts.Resources.ResourceData, Assembly-CSharp
+    - Name: resourceConfig
+      Entry: 10
+      Data: 6
+    - Name: currentAmount
+      Entry: 3
+      Data: 0
+    - Name: maxAmount
+      Entry: 3
+      Data: 0
+    - Name: isUnlockedNow
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 7
+    - Name: $v
+      Entry: 7
+      Data: App.Scripts.Resources.ResourceData, Assembly-CSharp
+    - Name: resourceConfig
+      Entry: 10
+      Data: 7
+    - Name: currentAmount
+      Entry: 3
+      Data: 0
+    - Name: maxAmount
+      Entry: 3
+      Data: 0
+    - Name: isUnlockedNow
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 8
+    - Name: $v
+      Entry: 7
+      Data: App.Scripts.Resources.ResourceData, Assembly-CSharp
+    - Name: resourceConfig
+      Entry: 10
+      Data: 8
+    - Name: currentAmount
+      Entry: 3
+      Data: 0
+    - Name: maxAmount
+      Entry: 3
+      Data: 0
+    - Name: isUnlockedNow
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 9
+    - Name: $v
+      Entry: 7
+      Data: App.Scripts.Resources.ResourceData, Assembly-CSharp
+    - Name: resourceConfig
+      Entry: 10
+      Data: 9
     - Name: currentAmount
       Entry: 3
       Data: 8
     - Name: maxAmount
+      Entry: 3
+      Data: 16
+    - Name: isUnlockedNow
+      Entry: 5
+      Data: true
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
       Entry: 3
       Data: 10
-    - Name: isUnlockedNow
-      Entry: 5
-      Data: true
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 3
     - Name: $v
       Entry: 7
       Data: App.Scripts.Resources.ResourceData, Assembly-CSharp
     - Name: resourceConfig
       Entry: 10
-      Data: 3
-    - Name: currentAmount
-      Entry: 3
-      Data: 0
-    - Name: maxAmount
-      Entry: 3
-      Data: 0
-    - Name: isUnlockedNow
-      Entry: 5
-      Data: false
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 4
-    - Name: $v
-      Entry: 7
-      Data: App.Scripts.Resources.ResourceData, Assembly-CSharp
-    - Name: resourceConfig
-      Entry: 10
-      Data: 4
-    - Name: currentAmount
-      Entry: 3
-      Data: 0
-    - Name: maxAmount
-      Entry: 3
-      Data: 0
-    - Name: isUnlockedNow
-      Entry: 5
-      Data: false
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 5
-    - Name: $v
-      Entry: 7
-      Data: App.Scripts.Resources.ResourceData, Assembly-CSharp
-    - Name: resourceConfig
-      Entry: 10
-      Data: 5
-    - Name: currentAmount
-      Entry: 3
-      Data: 0
-    - Name: maxAmount
-      Entry: 3
-      Data: 0
-    - Name: isUnlockedNow
-      Entry: 5
-      Data: false
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 6
-    - Name: $v
-      Entry: 7
-      Data: App.Scripts.Resources.ResourceData, Assembly-CSharp
-    - Name: resourceConfig
-      Entry: 10
-      Data: 6
-    - Name: currentAmount
-      Entry: 3
-      Data: 0
-    - Name: maxAmount
-      Entry: 3
-      Data: 0
-    - Name: isUnlockedNow
-      Entry: 5
-      Data: false
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 7
-    - Name: $v
-      Entry: 7
-      Data: App.Scripts.Resources.ResourceData, Assembly-CSharp
-    - Name: resourceConfig
-      Entry: 10
-      Data: 7
-    - Name: currentAmount
-      Entry: 3
-      Data: 0
-    - Name: maxAmount
-      Entry: 3
-      Data: 0
-    - Name: isUnlockedNow
-      Entry: 5
-      Data: false
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 8
-    - Name: $v
-      Entry: 7
-      Data: App.Scripts.Resources.ResourceData, Assembly-CSharp
-    - Name: resourceConfig
-      Entry: 10
-      Data: 8
-    - Name: currentAmount
-      Entry: 3
-      Data: 15
-    - Name: maxAmount
-      Entry: 3
-      Data: 15
-    - Name: isUnlockedNow
-      Entry: 5
-      Data: true
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 9
-    - Name: $v
-      Entry: 7
-      Data: App.Scripts.Resources.ResourceData, Assembly-CSharp
-    - Name: resourceConfig
-      Entry: 10
-      Data: 9
+      Data: 10
     - Name: currentAmount
       Entry: 3
       Data: 0

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using App.Scripts.Buildings.BuildingsConfigs;
 using App.Scripts.Placement;
+using App.Scripts.TurnsBasedSystem;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
@@ -11,19 +12,31 @@ namespace App.Scripts.Buildings.UI
     public class BuildingUIController : MonoBehaviour
     {
         [SerializeField] private GameObject buttonPrefab;
-        [SerializeField] private List<Transform> buttonsTypeContainers;
-        [SerializeField] private PlacementManager placementManager;
         [SerializeField] private Building buildingPrefab;
+        
+        [SerializeField] private PlacementManager placementManager;
+        [SerializeField] private TurnsBasedManager turnsBasedManager;
 
+        [SerializeField] private BuildingsDescriptionUIPanel buildingsDescriptionUIPanel;
+        
         [Title("Building Configs by Section")] [SerializeField]
         private BuildingsDataBaseBySectionsSO buildingsDataBaseBySections;
 
-        [SerializeField] private BuildingsDescriptionUIPanel buildingsDescriptionUIPanel;
+        [SerializeField] private List<Transform> buttonsTypeContainers;
 
+        private bool _isActive = true;
 
         private void Start()
         {
             GenerateButtons();
+
+            turnsBasedManager.OnGamePhaseChange += GameChanges;
+        }
+
+        private void GameChanges()
+        {
+            _isActive = !_isActive;
+            gameObject.SetActive(_isActive);
         }
 
         private void GenerateButtons()
@@ -72,6 +85,11 @@ namespace App.Scripts.Buildings.UI
             }
         }
 
+        private void DisableUIPanel()
+        {
+            
+        }
+        
         private void OnBuildingButtonClicked(BasicBuildingConfig buildingConfig)
         {
             placementManager.StartPlacement(buildingConfig);

@@ -5,6 +5,7 @@ using App.Scripts.Input;
 using App.Scripts.Placement.States;
 using App.Scripts.Resources;
 using App.Scripts.Sound;
+using App.Scripts.TurnsBasedSystem;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -21,6 +22,7 @@ namespace App.Scripts.Placement
         [SerializeField] private GridManager gridManager;
         [SerializeField] private BuildingManager buildingManager;
         [SerializeField] private ResourcesManager resourcesManager;
+        [SerializeField] private TurnsBasedManager turnsBasedManager;
 
         [Title("Buildings"), Space] [SerializeField]
         private BuildingPreview buildingPreview;
