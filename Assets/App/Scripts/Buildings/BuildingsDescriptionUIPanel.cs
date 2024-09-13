@@ -73,7 +73,7 @@ namespace App.Scripts.Buildings
             {
                 var constructingResource = Instantiate(resourcePrefab, container);
             
-                var resourceImage = constructingResource.GetComponentInChildren<Image>(); 
+                var resourceImage = constructingResource.GetComponentInChildren<Image>();
                 resourceImage.sprite = resources[i].config.resourceImage;
                 
                 var resourceAmountToBuild = constructingResource.GetComponentInChildren<TMP_Text>();
