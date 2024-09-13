@@ -551,7 +551,7 @@ RectTransform:
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 288}
   m_SizeDelta: {x: 256, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &6390943747790067998
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1363,6 +1363,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetObject: {fileID: 4834949371362183253}
+  animationsConfig: {fileID: 11400000, guid: 00a106a1462b66348bc3945219768967, type: 2}
 --- !u!1 &4967625893104367248
 GameObject:
   m_ObjectHideFlags: 0

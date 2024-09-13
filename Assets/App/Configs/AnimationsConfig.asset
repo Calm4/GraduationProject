@@ -16,3 +16,4 @@ MonoBehaviour:
   panelShowTime: 0.3
   panelImageRotateTime: 0.3
   buildingPlacingTime: 0.25
+  buildingDescriptionTime: 0.25
