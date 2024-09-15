@@ -11,8 +11,9 @@ namespace App.Scripts.Buildings
     public class BuildingsDescriptionUIPanel : MonoBehaviour
     {
 
+        [SerializeField] private RectTransform mainPanel;
         [SerializeField] private BasicBuildingConfig basicBuildingConfig;
-
+        
         [Title("Header Panel")] 
         [SerializeField] private Image buildingIcon;
         [SerializeField] private TMP_Text buildingName;
@@ -43,6 +44,13 @@ namespace App.Scripts.Buildings
             InitializeMaintenancePanel();
             InitializeConstructionPanel();
             InitializeHelpPanel();
+
+            DisableInitializedAllPanels();
+        }
+
+        private void DisableInitializedAllPanels()
+        {
+            mainPanel.gameObject.SetActive(false);
         }
 
         private void InitializeHeaderPanel()

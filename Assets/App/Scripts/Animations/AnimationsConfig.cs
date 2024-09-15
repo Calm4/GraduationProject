@@ -9,6 +9,7 @@ namespace App.Scripts.Animations
         public float panelShowTime;
         public float panelImageRotateTime;
         public float buildingPlacingTime;
-        public float buildingDescriptionTime;
+        public float buildingDescriptionShowTime;
+        public float buildingDescriptionHideTime;
     }
 }
