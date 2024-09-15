@@ -12,6 +12,7 @@ namespace App.Scripts.Buildings
     {
 
         [SerializeField] private RectTransform mainPanel;
+        [SerializeField] private RectTransform resourcePrefab;
         [SerializeField] private BasicBuildingConfig basicBuildingConfig;
         
         [Title("Header Panel")] 
@@ -24,11 +25,16 @@ namespace App.Scripts.Buildings
 
         [Title("Maintenance Panel")] 
         [SerializeField] private RectTransform maintenanceContainer;
+        [SerializeField] private Color maintenanceColor;
     
         [Title("Construction Panel")]
         [SerializeField] private RectTransform constructionContainer;
-        [SerializeField] private RectTransform resourcePrefab;
+        [SerializeField] private Color constructionColor;
 
+        [Title("Incoming Panel")] 
+        [SerializeField] private RectTransform incomingContainer;
+        [SerializeField] private Color incomingColor;
+        
         [Title("Help Panel")] 
         [SerializeField] private TMP_Text helpTextField;
     
@@ -67,15 +73,15 @@ namespace App.Scripts.Buildings
     
         private void InitializeMaintenancePanel()
         {
-            InstantiateResource(basicBuildingConfig.maintenanceResources, maintenanceContainer);
+            InstantiateResource(basicBuildingConfig.maintenanceResources, maintenanceContainer, maintenanceColor);
         }
     
         private void InitializeConstructionPanel()
         {
-            InstantiateResource(basicBuildingConfig.resourcesToBuild, constructionContainer);
+            InstantiateResource(basicBuildingConfig.resourcesToBuild, constructionContainer, constructionColor);
         }
 
-        private void InstantiateResource(List<ResourceRequirement> resources, RectTransform container)
+        private void InstantiateResource(List<ResourceRequirement> resources, RectTransform container, Color color)
         {
             for (int i = 0; i < resources.Count; i++)
             {
@@ -86,6 +92,7 @@ namespace App.Scripts.Buildings
                 
                 var resourceAmountToBuild = constructingResource.GetComponentInChildren<TMP_Text>();
                 resourceAmountToBuild.text = resources[i].amount.ToString();
+                resourceAmountToBuild.color = color;
             }
         }
 
