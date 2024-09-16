@@ -10,7 +10,6 @@ namespace App.Scripts.Buildings
 {
     public class BuildingsDescriptionUIPanel : MonoBehaviour
     {
-
         [SerializeField] private RectTransform mainPanel;
         [SerializeField] private RectTransform resourcePrefab;
         [SerializeField] private BasicBuildingConfig basicBuildingConfig;
@@ -49,15 +48,13 @@ namespace App.Scripts.Buildings
             InitializeDescriptionPanel();
             InitializeMaintenancePanel();
             InitializeConstructionPanel();
+            InitializeIncomingPanel();
             InitializeHelpPanel();
 
             DisableInitializedAllPanels();
         }
 
-        private void DisableInitializedAllPanels()
-        {
-            mainPanel.gameObject.SetActive(false);
-        }
+
 
         private void InitializeHeaderPanel()
         {
@@ -80,6 +77,10 @@ namespace App.Scripts.Buildings
         {
             InstantiateResource(basicBuildingConfig.resourcesToBuild, constructionContainer, constructionColor);
         }
+        private void InitializeIncomingPanel()
+        {
+            InstantiateResource(basicBuildingConfig.incomingResources, incomingContainer, incomingColor);
+        }
 
         private void InstantiateResource(List<ResourceRequirement> resources, RectTransform container, Color color)
         {
@@ -99,6 +100,10 @@ namespace App.Scripts.Buildings
         private void InitializeHelpPanel()
         {
         
+        }
+        private void DisableInitializedAllPanels()
+        {
+            mainPanel.gameObject.SetActive(false);
         }
     }
 }

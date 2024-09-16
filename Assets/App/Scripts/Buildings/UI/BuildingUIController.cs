@@ -16,8 +16,6 @@ namespace App.Scripts.Buildings.UI
         
         [SerializeField] private PlacementManager placementManager;
         [SerializeField] private TurnsBasedManager turnsBasedManager;
-
-        [SerializeField] private BuildingsDescriptionUIPanel buildingsDescriptionUIPanel;
         
         [Title("Building Configs by Section")] [SerializeField]
         private BuildingsDataBaseBySectionsSO buildingsDataBaseBySections;
@@ -33,7 +31,7 @@ namespace App.Scripts.Buildings.UI
             turnsBasedManager.OnGamePhaseChange += GameChanges;
         }
 
-        private void GameChanges()
+        private void GameChanges(GamePhases gamePhase)
         {
             _isActive = !_isActive;
             gameObject.SetActive(_isActive);

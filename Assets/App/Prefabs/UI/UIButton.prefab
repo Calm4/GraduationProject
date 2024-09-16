@@ -1361,9 +1361,9 @@ MonoBehaviour:
   maintenanceContainer: {fileID: 6331796108101353304}
   maintenanceColor: {r: 1, g: 0.9487169, b: 0.5415094, a: 1}
   constructionContainer: {fileID: 2234382341593256421}
-  constructionColor: {r: 0.7050155, g: 1, b: 0.5264151, a: 1}
+  constructionColor: {r: 1, g: 0.60394657, b: 0.5254902, a: 1}
   incomingContainer: {fileID: 7281746435770787200}
-  incomingColor: {r: 0.90943396, g: 0.49676394, b: 0.41010326, a: 1}
+  incomingColor: {r: 0.5593674, g: 0.9169811, b: 0.40658593, a: 1}
   helpTextField: {fileID: 4526427932147068553}
 --- !u!114 &7980826858980967340
 MonoBehaviour:

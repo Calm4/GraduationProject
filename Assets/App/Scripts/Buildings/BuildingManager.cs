@@ -1,11 +1,7 @@
-﻿using System.Collections.Generic;
-using App.Scripts.Animations;
+﻿using App.Scripts.Animations;
 using App.Scripts.Particles;
 using DG.Tweening;
-using Sirenix.OdinInspector;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace App.Scripts.Buildings
 {

@@ -1,14 +1,19 @@
 using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace App.Scripts.TurnsBasedSystem
 {
     public class TurnsBasedManager : MonoBehaviour
     {
+        [Title("Managers")] 
+        [SerializeField] private WavesManager wavesManager;
+        
+        
         [field: SerializeField] public GamePhases GamePhase { get; private set; }
         private GamePhases[] _phases;
 
-        public event Action OnGamePhaseChange;
+        public event Action<GamePhases> OnGamePhaseChange;
         
         private void Start()
         {
@@ -20,8 +25,9 @@ namespace App.Scripts.TurnsBasedSystem
             if (UnityEngine.Input.GetKeyDown(KeyCode.K))
             {
                 StartNextPhase();
-                OnGamePhaseChange?.Invoke();
+                OnGamePhaseChange?.Invoke(GamePhase);
             }
+            
         }
     
         private void StartNextPhase()

@@ -22,9 +22,10 @@ namespace App.Scripts.Buildings.BuildingsConfigs
         public Color buildingAssociateColor;
         
         [Title("Resources")]
-        public List<ResourceRequirement> resourcesToBuild;
         public List<ResourceRequirement> maintenanceResources;
-
+        public List<ResourceRequirement> resourcesToBuild;
+        public List<ResourceRequirement> incomingResources;
+        
         [Title("Icon")]
         public Sprite sprite;
         

@@ -1,0 +1,168 @@
+{
+    "gridSize": {
+        "x": 10,
+        "y": 10
+    },
+    "gridObjects": [
+        {
+            "buildingConfigID": 4,
+            "position": {
+                "x": 4,
+                "y": 0,
+                "z": 5
+            }
+        },
+        {
+            "buildingConfigID": 4,
+            "position": {
+                "x": 4,
+                "y": 0,
+                "z": 6
+            }
+        },
+        {
+            "buildingConfigID": 4,
+            "position": {
+                "x": 4,
+                "y": 0,
+                "z": 7
+            }
+        },
+        {
+            "buildingConfigID": 4,
+            "position": {
+                "x": 5,
+                "y": 0,
+                "z": 7
+            }
+        },
+        {
+            "buildingConfigID": 4,
+            "position": {
+                "x": 6,
+                "y": 0,
+                "z": 7
+            }
+        },
+        {
+            "buildingConfigID": 4,
+            "position": {
+                "x": 7,
+                "y": 0,
+                "z": 7
+            }
+        },
+        {
+            "buildingConfigID": 4,
+            "position": {
+                "x": 7,
+                "y": 0,
+                "z": 6
+            }
+        },
+        {
+            "buildingConfigID": 4,
+            "position": {
+                "x": 7,
+                "y": 0,
+                "z": 5
+            }
+        },
+        {
+            "buildingConfigID": 4,
+            "position": {
+                "x": 7,
+                "y": 0,
+                "z": 4
+            }
+        },
+        {
+            "buildingConfigID": 4,
+            "position": {
+                "x": 6,
+                "y": 0,
+                "z": 3
+            }
+        },
+        {
+            "buildingConfigID": 4,
+            "position": {
+                "x": 7,
+                "y": 0,
+                "z": 3
+            }
+        },
+        {
+            "buildingConfigID": 4,
+            "position": {
+                "x": 5,
+                "y": 0,
+                "z": 3
+            }
+        },
+        {
+            "buildingConfigID": 4,
+            "position": {
+                "x": 4,
+                "y": 0,
+                "z": 3
+            }
+        },
+        {
+            "buildingConfigID": 4,
+            "position": {
+                "x": 4,
+                "y": 0,
+                "z": 2
+            }
+        },
+        {
+            "buildingConfigID": 4,
+            "position": {
+                "x": 4,
+                "y": 0,
+                "z": 1
+            }
+        },
+        {
+            "buildingConfigID": 4,
+            "position": {
+                "x": 4,
+                "y": 0,
+                "z": 0
+            }
+        },
+        {
+            "buildingConfigID": 4,
+            "position": {
+                "x": 2,
+                "y": 0,
+                "z": 5
+            }
+        },
+        {
+            "buildingConfigID": 4,
+            "position": {
+                "x": 3,
+                "y": 0,
+                "z": 5
+            }
+        },
+        {
+            "buildingConfigID": 4,
+            "position": {
+                "x": 1,
+                "y": 0,
+                "z": 5
+            }
+        },
+        {
+            "buildingConfigID": 4,
+            "position": {
+                "x": 0,
+                "y": 0,
+                "z": 5
+            }
+        }
+    ]
+}
