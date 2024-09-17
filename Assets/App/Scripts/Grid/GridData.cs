@@ -7,12 +7,12 @@ namespace App.Scripts.Grid
     public class GridData
     {
         private readonly GridCell[,] _gridCells;
-        private Vector2Int _gridSize;
+        public Vector2Int GridSize { get; private set; }
         private Vector2Int _gridOffset;
 
         public GridData(Vector2Int gridSize)
         {
-            _gridSize = gridSize;
+            GridSize = gridSize;
             _gridOffset = Vector2Int.zero;
 
             _gridCells = new GridCell[gridSize.x, gridSize.y];
@@ -35,8 +35,6 @@ namespace App.Scripts.Grid
                 }
             }
         }
-
-
         public void RemoveObjectAt(Vector3Int gridPosition)
         {
             GridCell initialCell = _gridCells[gridPosition.x, gridPosition.z];
@@ -53,7 +51,7 @@ namespace App.Scripts.Grid
             {
                 _gridCells[position.x, position.z].Vacate();
             }
-            
+
             Object.Destroy(building.gameObject);
         }
 
@@ -66,6 +64,7 @@ namespace App.Scripts.Grid
                     return false;
                 }
             }
+
             return true;
         }
 
@@ -79,13 +78,15 @@ namespace App.Scripts.Grid
                     positions.Add(gridPosition + new Vector3Int(x, 0, z));
                 }
             }
+
             return positions;
         }
 
         private bool IsWithinBounds(Vector3Int position)
         {
             Vector3Int offsetPosition = position - new Vector3Int(_gridOffset.x, 0, _gridOffset.y);
-            return offsetPosition.x >= 0 && offsetPosition.x < _gridSize.x && offsetPosition.z >= 0 && offsetPosition.z < _gridSize.y;
+            return offsetPosition.x >= 0 && offsetPosition.x < GridSize.x && offsetPosition.z >= 0 &&
+                   offsetPosition.z < GridSize.y;
         }
 
         public Building GetPlacedObject(Vector3Int gridPosition)
@@ -95,13 +96,14 @@ namespace App.Scripts.Grid
 
         public void PrintGridState()
         {
-            for (int y = 0; y < _gridSize.y; y++)
+            for (int y = 0; y < GridSize.y; y++)
             {
                 string row = "";
-                for (int x = 0; x < _gridSize.x; x++)
+                for (int x = 0; x < GridSize.x; x++)
                 {
                     row += _gridCells[x, y].IsOccupied ? "[X]" : "[ ]";
                 }
+
                 Debug.Log(row);
             }
         }

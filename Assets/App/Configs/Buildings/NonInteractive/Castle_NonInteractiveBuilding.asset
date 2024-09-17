@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0d501d5702534699939a45cb941c0032, type: 3}
-  m_Name: Pathway_NeutralBuilding
+  m_Name: Castle_NonInteractiveBuilding
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -21,15 +21,15 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  ID: 4
-  buildingName: Pathway
-  buildingDescription: Pathway for enemies
-  buildingType: 0
-  mesh: {fileID: 4300000, guid: 5b520cf15d61e6b45a53c588f554f3a2, type: 2}
-  material: {fileID: 2100000, guid: 68d9464d0cd4fbf48a81abf378167c7f, type: 2}
-  size: {x: 1, y: 1}
-  buildingAssociateColor: {r: 0.93207544, g: 0.34996784, b: 0.8767423, a: 1}
+  ID: 6
+  buildingName: Castle
+  buildingDescription: Castle description
+  buildingType: 3
+  mesh: {fileID: 4300000, guid: 07354161217c1ba4ba6fe42bfcce59ba, type: 2}
+  material: {fileID: 2100000, guid: c8d0f434948db05438598a0f5237c4b2, type: 2}
+  size: {x: 3, y: 3}
+  buildingAssociateColor: {r: 0.3595147, g: 0.9245283, b: 0.29829118, a: 0}
   maintenanceResources: []
   resourcesToBuild: []
   incomingResources: []
-  sprite: {fileID: 21300000, guid: c9f29daa0e0c0e747a8aad6ea0b195bc, type: 3}
+  sprite: {fileID: 21300000, guid: c166356d9b1035c4fa755c7db06f7fff, type: 3}

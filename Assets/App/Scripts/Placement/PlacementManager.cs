@@ -24,8 +24,8 @@ namespace App.Scripts.Placement
         [SerializeField] private ResourcesManager resourcesManager;
         [SerializeField] private TurnsBasedManager turnsBasedManager;
 
-        [Title("Buildings"), Space] [SerializeField]
-        private BuildingPreview buildingPreview;
+        [Title("Buildings"), Space] 
+        [SerializeField] private BuildingPreview buildingPreview;
 
         [SerializeField] private Building buildingPrefab;
         private IBuildingState _buildingState;
@@ -69,7 +69,8 @@ namespace App.Scripts.Placement
             OnChangeGridVisualizationVisibility?.Invoke(true);
             buildingPrefab.Initialize(buildingConfig);
 
-            _buildingState = new StateOfObjectPlacing(resourcesManager, buildingPrefab, gridManager.GridLayout, buildingPreview
+            _buildingState = new StateOfObjectPlacing(resourcesManager, buildingPrefab, gridManager.GridLayout,
+                buildingPreview
                 , gridManager.GridData, buildingManager, soundFeedback);
 
             inputManager.OnClicked += PlaceStructure;
@@ -102,6 +103,7 @@ namespace App.Scripts.Placement
                 currentPlacementMode = PlacementMode.None;
                 return;
             }
+
             currentPlacementMode = PlacementMode.Removing;
 
             StopPlacement();
@@ -109,8 +111,7 @@ namespace App.Scripts.Placement
             OnChangeGridVisualizationVisibility?.Invoke(true);
 
             _buildingState = new StateOfObjectRemoving(resourcesManager, buildingManager, gridManager.GridLayout,
-                buildingPreview,
-                gridManager.GridData, soundFeedback);
+                buildingPreview, gridManager.GridData, soundFeedback);
 
             inputManager.OnClicked += PlaceStructure;
             inputManager.OnExit += StopPlacement;

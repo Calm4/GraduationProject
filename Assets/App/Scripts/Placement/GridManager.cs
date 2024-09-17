@@ -15,7 +15,7 @@ namespace App.Scripts.Placement
         [VerticalGroup("Grid Settings")]
         public GridLayout GridLayout { get; private set; }
 
-        [field: SerializeField] [VerticalGroup("Grid Settings")]
+        [VerticalGroup("Grid Settings")]
         public Vector2Int GridSize { get; private set; }
 
         [SerializeField] [VerticalGroup("Grid Settings")]
@@ -28,6 +28,8 @@ namespace App.Scripts.Placement
 
         public event Action OnGridLoadFromJson; 
         public event Action OnBuildingsLoadFromJson; 
+        
+        public event Action OnGridSizeSetup; 
         
         private void Awake()
         {
@@ -56,6 +58,7 @@ namespace App.Scripts.Placement
         {
             GridData = gridData;
             GridSize = gridSize;
+            OnGridSizeSetup?.Invoke();
         }
 
         private void SetGridVisualizationVisibility(bool visibilityState)

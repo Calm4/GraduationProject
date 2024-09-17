@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using App.Scripts.Buildings;
 using App.Scripts.Grid;
+using App.Scripts.Placement.JsonClasses;
 using Newtonsoft.Json;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using App.Scripts.Placement.JsonClasses;
 
 namespace App.Scripts.Placement
 {
@@ -46,7 +46,7 @@ namespace App.Scripts.Placement
                 Debug.LogWarning("No grid size found in JSON, using default size.");
             }
         }
-        
+
         private void PlaceObjectsFromJson()
         {
             _buildingPlacer = new BuildingPlacer(gridManager.GridData);
@@ -57,9 +57,7 @@ namespace App.Scripts.Placement
 
             foreach (var gridObjectSerializable in gridObjectsContainer.gridObjects)
             {
-                var config =
-                    buildingsDataBase.buildingConfigs.FirstOrDefault(b =>
-                        b.ID == gridObjectSerializable.buildingConfigID);
+                var config = buildingsDataBase.buildingConfigs.FirstOrDefault(b => b.ID == gridObjectSerializable.buildingConfigID);
                 if (config != null)
                 {
                     var gridObjectData = new GridObjectData(config, gridObjectSerializable.position);
@@ -73,12 +71,9 @@ namespace App.Scripts.Placement
 
             foreach (var gridObject in gridObjects)
             {
-                _buildingPlacer.PlaceBuilding(gridObject.buildingConfig, gridManager, gridObject.position,
-                    buildingsFromJsonContainer);
+                _buildingPlacer.PlaceBuilding(gridObject.buildingConfig, gridManager, gridObject.position, buildingsFromJsonContainer);
             }
         }
-
-        
 
         private void OnDestroy()
         {
@@ -87,3 +82,4 @@ namespace App.Scripts.Placement
         }
     }
 }
+

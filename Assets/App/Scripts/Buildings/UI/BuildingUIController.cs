@@ -51,8 +51,8 @@ namespace App.Scripts.Buildings.UI
 
                 if (matchingContainer == null)
                 {
-                    Debug.LogError($"No container found for BuildingType: {buildingType}");
-                    continue;
+                    Debug.Log($"No container found for BuildingType: {buildingType}");
+                    return;
                 }
 
                 foreach (var config in section.Value)

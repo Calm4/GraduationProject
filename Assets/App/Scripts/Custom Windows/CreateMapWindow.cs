@@ -13,12 +13,10 @@ namespace App.Scripts.Custom_Windows
         public const int GridMinSize = 1;
         public const int GridMaxSize = 50;
 
-        [FormerlySerializedAs("gridDataAsset")]
-        [InlineEditor(Expanded = true), VerticalGroup("Grid Data")]
+        [FormerlySerializedAs("gridDataAsset")] [InlineEditor(Expanded = true), VerticalGroup("Grid Data")]
         public GridDataSO gridDataSo;
 
-        [FormerlySerializedAs("buildingConfigsData")] 
-        [SerializeField, HideInInspector] 
+        [FormerlySerializedAs("buildingConfigsData")] [SerializeField, HideInInspector]
         private BuildingsDataBase buildingsDataBase;
 
         private GridMapWindow _gridMapWindow;
@@ -32,7 +30,11 @@ namespace App.Scripts.Custom_Windows
         {
             base.OnEnable();
             InitializeRenderer();
-            _previousGridSize = gridDataSo.gridSize;
+
+            if (gridDataSo != null)
+            {
+                _previousGridSize = gridDataSo.gridSize;
+            }
         }
 
         private void InitializeRenderer()
@@ -65,11 +67,11 @@ namespace App.Scripts.Custom_Windows
                 Debug.LogWarning("PLEASE INITIALIZE DATA");
                 return;
             }
-            
+
             if (gridDataSo.gridSize != _previousGridSize)
             {
-                ClearGrid(); 
-                _previousGridSize = gridDataSo.gridSize; 
+                ClearGrid();
+                _previousGridSize = gridDataSo.gridSize;
             }
 
             _renderer?.Draw();

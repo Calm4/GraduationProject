@@ -1,3 +1,4 @@
+using App.Scripts.Buildings.BuildingsConfigs;
 using UnityEngine;
 
 namespace App.Scripts.Buildings
@@ -8,8 +9,8 @@ namespace App.Scripts.Buildings
         [SerializeField] private float previewYOffset = 0.06f;
         [SerializeField] private GameObject cellIndicator;
         [SerializeField] private Material previewMaterialPrefab;
-        
-        private Building _previewObject;
+
+        [SerializeField] private Building _previewObject;
         private Material _previewMaterialInstance;
         private Renderer _cellIndicatorRenderer;
 
@@ -50,13 +51,14 @@ namespace App.Scripts.Buildings
             {
                 Destroy(_previewObject.gameObject);
             }
-        
+
             _previewObject = buildingManager.CreateBuilding(prefab);
             PrepareMeshAndMaterial(_previewObject);
             PreparePreview(_previewObject);
             PrepareCursor(size);
             cellIndicator.SetActive(true);
         }
+
         private void PrepareCursor(Vector2Int size)
         {
             if (size.x > 0 || size.y > 0)
@@ -100,7 +102,7 @@ namespace App.Scripts.Buildings
             }
 
             MoveCursor(position);
-            ApplyFeedbackToCursor(validity);
+            ApplyFeedbackToCursor(!validity);
         }
 
         private void ApplyFeedbackToPreview(bool validity)
@@ -113,7 +115,7 @@ namespace App.Scripts.Buildings
 
         private void ApplyFeedbackToCursor(bool validity)
         {
-            Color color = validity ? Color.white : Color.red;
+            Color color = validity ? Color.red : Color.white;
             color.a = 0.5f;
 
             _cellIndicatorRenderer.material.color = color;

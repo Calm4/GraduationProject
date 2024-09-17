@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0d501d5702534699939a45cb941c0032, type: 3}
-  m_Name: Cylinders_BasicBuildingConfig
+  m_Name: Cylinders_BasicBuilding
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2

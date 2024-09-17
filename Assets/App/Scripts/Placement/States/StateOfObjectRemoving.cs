@@ -1,4 +1,5 @@
 using App.Scripts.Buildings;
+using App.Scripts.Buildings.BuildingsConfigs;
 using App.Scripts.Grid;
 using App.Scripts.Resources;
 using App.Scripts.Sound;
@@ -53,6 +54,11 @@ namespace App.Scripts.Placement.States
                 return;
             }
 
+            if (placedObject.BuildingConfig.buildingType == BuildingType.NonInteractive)
+            {
+                return;
+            }
+
             _resourcesManager.ReturnHalfOfResourcesForDestructionBuilding(placedObject.BuildingConfig);
 
             selectedData.RemoveObjectAt(gridPosition);
@@ -66,7 +72,7 @@ namespace App.Scripts.Placement.States
 
         private bool CheckIsSelectionIsValid(Vector3Int gridPosition)
         {
-            return !_gridData.CanPlaceObjectAt(gridPosition, Vector2Int.one);
+            return _gridData.CanPlaceObjectAt(gridPosition, Vector2Int.one);
         }
 
         public void UpdateState(Vector3Int gridPosition)

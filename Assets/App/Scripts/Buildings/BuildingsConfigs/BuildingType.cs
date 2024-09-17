@@ -4,6 +4,7 @@
     {
         Defensive = 0,
         Peaceful = 1,
-        Neutral = 2
+        Neutral = 2,
+        NonInteractive = 3,
     }
 }
