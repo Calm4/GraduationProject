@@ -27,8 +27,8 @@ namespace App.Scripts.Placement
 
             var grid = PathfindingWithJson.LoadGridFromJson(gridObjectContainer);
 
-            Vector2Int spawnerPosition = PathfindingWithJson.FindObjectPosition(grid, spawnerConfig);
-            Vector2Int castlePosition = PathfindingWithJson.FindObjectPosition(grid, castleConfig);
+            Vector2 spawnerPosition = PathfindingWithJson.FindObjectPosition(grid, spawnerConfig);
+            Vector2 castlePosition = PathfindingWithJson.FindObjectPosition(grid, castleConfig);
 
             if (spawnerPosition == new Vector2Int(-1, -1) || castlePosition == new Vector2Int(-1, -1))
             {
@@ -39,10 +39,10 @@ namespace App.Scripts.Placement
             Vector2Int offset = gridManager.GridSize / 2;
             Debug.Log(gridManager.GridSize + "!!!");
 
-            List<Vector2Int> path = PathfindingWithJson.GeneratePath(grid, pathwayConfig, spawnerPosition, castlePosition);
+            List<Vector2> path = PathfindingWithJson.GeneratePath(grid, pathwayConfig, castleConfig, spawnerPosition, castlePosition);
 
             Debug.Log($"Path offset: {offset}");
-            foreach (Vector2Int point in path)
+            foreach (Vector2 point in path)
             {
                 Debug.Log($"Path point: {point}");
                 Instantiate(obje, new Vector3(point.x - offset.x + 0.5f, 0, point.y - offset.y + 0.5f), Quaternion.identity);

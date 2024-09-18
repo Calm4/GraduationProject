@@ -7,7 +7,7 @@ namespace App.Scripts.Placement.Path
 {
     public class PathfindingWithJson
     {
-        public static Vector2Int FindObjectPosition(Dictionary<Vector2Int, int> grid, BasicBuildingConfig objectConfig)
+        public static Vector2 FindObjectPosition(Dictionary<Vector2, int> grid, BasicBuildingConfig objectConfig)
         {
             foreach (var item in grid)
             {
@@ -17,35 +17,35 @@ namespace App.Scripts.Placement.Path
                 }
             }
 
-            return new Vector2Int(-1, -1);
+            return new Vector2(-1, -1);
         }
         
-        public static Dictionary<Vector2Int, int> LoadGridFromJson(GridObjectContainer gridObjectContainer)
+        public static Dictionary<Vector2, int> LoadGridFromJson(GridObjectContainer gridObjectContainer)
         {
-            Dictionary<Vector2Int, int> grid = new Dictionary<Vector2Int, int>();
+            Dictionary<Vector2, int> grid = new Dictionary<Vector2, int>();
 
             foreach (var gridObject in gridObjectContainer.gridObjects)
             {
-                Vector2Int position = new Vector2Int(gridObject.position.x, gridObject.position.z);
+                Vector2 position = new Vector2(gridObject.position.x, gridObject.position.z);
                 grid[position] = gridObject.buildingConfigID;
             }
 
             return grid;
         }
-        public static List<Vector2Int> GeneratePath(Dictionary<Vector2Int, int> grid, BasicBuildingConfig pathwayConfig, Vector2Int spawnerPosition, Vector2Int castlePosition)
+        public static List<Vector2> GeneratePath(Dictionary<Vector2, int> grid, BasicBuildingConfig pathwayConfig, BasicBuildingConfig castleConfig, Vector2 spawnerPosition, Vector2 castlePosition)
         {
-            List<Vector2Int> path = new List<Vector2Int>();
-            Queue<Vector2Int> queue = new Queue<Vector2Int>();
-            HashSet<Vector2Int> visited = new HashSet<Vector2Int>();
+            List<Vector2> path = new List<Vector2>();
+            Queue<Vector2> queue = new Queue<Vector2>();
+            HashSet<Vector2> visited = new HashSet<Vector2>();
 
-            Vector2Int[] directions = { Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right };
+            Vector2[] directions = { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
 
             queue.Enqueue(spawnerPosition);
             visited.Add(spawnerPosition);
 
             while (queue.Count > 0)
             {
-                Vector2Int current = queue.Dequeue();
+                Vector2 current = queue.Dequeue();
                 path.Add(current);
 
                 if (current == castlePosition)
@@ -54,11 +54,12 @@ namespace App.Scripts.Placement.Path
                     break;
                 }
 
-                foreach (Vector2Int direction in directions)
+                foreach (Vector2 direction in directions)
                 {
-                    Vector2Int neighbor = current + direction;
+                    Vector2 neighbor = current + direction;
 
-                    if (grid.ContainsKey(neighbor) && (grid[neighbor] == pathwayConfig.ID || neighbor == castlePosition) && !visited.Contains(neighbor))
+                    
+                    if (grid.ContainsKey(neighbor) && (grid[neighbor] == pathwayConfig.ID) && !visited.Contains(neighbor))
                     {
                         queue.Enqueue(neighbor);
                         visited.Add(neighbor);
@@ -67,8 +68,9 @@ namespace App.Scripts.Placement.Path
             }
 
             if (!path.Contains(castlePosition))
-            {
-                path.Add(castlePosition);
+            { 
+                var halfOfCastleSize = new Vector2(castleConfig.size.x, castleConfig.size.y) / 2 - new Vector2(0.5f, 0.5f);
+                path.Add(castlePosition + halfOfCastleSize);
             }
 
             return path;
