@@ -3,7 +3,6 @@ using App.Scripts.Placement;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace App.Scripts.Buildings.UI
 {

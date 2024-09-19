@@ -4,7 +4,7 @@ using App.Scripts.Buildings.BuildingsConfigs;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace App.Scripts.Resources
+namespace App.Scripts.GameResources
 {
     public class ResourcesManager : SerializedMonoBehaviour
     {

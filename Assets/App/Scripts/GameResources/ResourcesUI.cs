@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace App.Scripts.Resources
+namespace App.Scripts.GameResources
 {
     public class ResourcesUI : MonoBehaviour
     {

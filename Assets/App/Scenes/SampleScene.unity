@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d6e057ab84d4e34abf666cf3092c89a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jsonFile: {fileID: 4900000, guid: 2738082566dba864494ab85b1db969fd, type: 3}
+  jsonFile: {fileID: 4900000, guid: 7533160d24b4e424f9698ba678e518ed, type: 3}
   spawnerConfig: {fileID: 11400000, guid: 3d5647f9d0d3cb24892df44f15140edd, type: 2}
   castleConfig: {fileID: 11400000, guid: 5df24bd768726984c99345d588ecde03, type: 2}
   pathwayConfig: {fileID: 11400000, guid: 09baf9d2d34dba14fa0466204dd11a8a, type: 2}
@@ -613,7 +613,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f0c1d17ab1e47f3b221853cec6c9867, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jsonFile: {fileID: 4900000, guid: 2738082566dba864494ab85b1db969fd, type: 3}
+  jsonFile: {fileID: 4900000, guid: 7533160d24b4e424f9698ba678e518ed, type: 3}
   buildingsDataBase: {fileID: 11400000, guid: c10e51bb945d92e45a0b124f18f15578, type: 2}
   buildingsFromJsonContainer: {fileID: 1081304742}
   gridManager: {fileID: 984141355}

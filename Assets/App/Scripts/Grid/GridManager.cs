@@ -1,10 +1,9 @@
 ﻿using System;
-using App.Scripts.Grid;
+using App.Scripts.Placement;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace App.Scripts.Placement
+namespace App.Scripts.Grid
 {
     public class GridManager : MonoBehaviour
     {

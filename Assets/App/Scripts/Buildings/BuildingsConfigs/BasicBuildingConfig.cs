@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using App.Scripts.Resources;
+using App.Scripts.GameResources;
 using UnityEngine;
 using Sirenix.OdinInspector;
 

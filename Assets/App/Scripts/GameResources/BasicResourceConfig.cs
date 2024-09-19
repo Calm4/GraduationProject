@@ -1,7 +1,6 @@
-﻿using App.Scripts.Resources;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace App.Scripts
+namespace App.Scripts.GameResources
 {
     public class BasicResourceConfig : ScriptableObject
     {

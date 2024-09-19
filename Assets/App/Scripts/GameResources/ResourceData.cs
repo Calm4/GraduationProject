@@ -1,6 +1,6 @@
 using System;
 
-namespace App.Scripts.Resources
+namespace App.Scripts.GameResources
 {
     [Serializable]
     public struct ResourceData

@@ -1,7 +1,6 @@
 ﻿using System;
-using UnityEngine.Serialization;
 
-namespace App.Scripts.Resources
+namespace App.Scripts.GameResources
 {
     [Serializable]
     public struct ResourceRequirement

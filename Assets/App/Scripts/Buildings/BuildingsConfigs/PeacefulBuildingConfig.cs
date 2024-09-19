@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using App.Scripts.Resources;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace App.Scripts.Buildings.BuildingsConfigs
 {

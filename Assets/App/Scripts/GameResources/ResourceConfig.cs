@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace App.Scripts.Resources
+namespace App.Scripts.GameResources
 {
     [CreateAssetMenu(fileName = "_ResourceConfig", menuName = "Configs/Resources/SpecificResource", order = 0)]
     public class ResourceConfig : BasicResourceConfig

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using App.Scripts.Buildings.BuildingsConfigs;
-using App.Scripts.Resources;
+using App.Scripts.GameResources;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;

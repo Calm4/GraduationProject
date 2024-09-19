@@ -33,7 +33,7 @@ namespace App.Scripts.Custom_Windows
 
             if (gridDataSo != null)
             {
-                _previousGridSize = gridDataSo.gridSize;
+                _previousGridSize = gridDataSo.GridSize;
             }
         }
 
@@ -41,7 +41,7 @@ namespace App.Scripts.Custom_Windows
         {
             if (gridDataSo == null || buildingsDataBase == null) return;
 
-            _gridMapWindow ??= new GridMapWindow(gridDataSo.gridSize);
+            _gridMapWindow ??= new GridMapWindow(gridDataSo.GridSize);
 
             if (_renderer == null)
             {
@@ -68,10 +68,10 @@ namespace App.Scripts.Custom_Windows
                 return;
             }
 
-            if (gridDataSo.gridSize != _previousGridSize)
+            if (gridDataSo.GridSize != _previousGridSize)
             {
                 ClearGrid();
-                _previousGridSize = gridDataSo.gridSize;
+                _previousGridSize = gridDataSo.GridSize;
             }
 
             _renderer?.Draw();
@@ -88,7 +88,7 @@ namespace App.Scripts.Custom_Windows
         public void ClearGrid()
         {
             gridDataSo.ClearGrid();
-            _gridMapWindow.InitializeGrid(gridDataSo.gridSize, gridDataSo.gridObjects);
+            _gridMapWindow.InitializeGrid(gridDataSo.GridSize, gridDataSo.gridObjects);
             Repaint();
         }
     }

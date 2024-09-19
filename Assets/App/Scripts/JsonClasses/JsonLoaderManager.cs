@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using App.Scripts.Buildings;
 using App.Scripts.Grid;
-using App.Scripts.Placement.JsonClasses;
+using App.Scripts.JsonClasses.Data;
+using App.Scripts.Placement;
 using Newtonsoft.Json;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace App.Scripts.Placement
+namespace App.Scripts.JsonClasses
 {
     public class JsonLoaderManager : MonoBehaviour
     {
@@ -31,9 +31,9 @@ namespace App.Scripts.Placement
 
         private void LoadGridSizeFromJson()
         {
-            GridDataJson gridDataJson = JsonConvert.DeserializeObject<GridDataJson>(jsonFile.text);
+            GridSaveDataJson gridDataJson = JsonConvert.DeserializeObject<GridSaveDataJson>(jsonFile.text);
 
-            if (gridDataJson != null && gridDataJson.gridSize != null)
+            if (gridDataJson != null)
             {
                 var gridSize = new Vector2Int(gridDataJson.gridSize.x, gridDataJson.gridSize.y);
                 
@@ -51,7 +51,7 @@ namespace App.Scripts.Placement
         {
             _buildingPlacer = new BuildingPlacer(gridManager.GridData);
             
-            var gridObjectsContainer = JsonUtility.FromJson<GridObjectContainer>(jsonFile.text);
+            var gridObjectsContainer = JsonUtility.FromJson<GridObjectContainerJson>(jsonFile.text);
 
             var gridObjects = new List<GridObjectData>();
 

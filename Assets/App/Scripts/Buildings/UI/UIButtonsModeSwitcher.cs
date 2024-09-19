@@ -11,7 +11,7 @@ namespace App.Scripts.Buildings.UI
         [SerializeField] private Color selectedButtonColor;
         [SerializeField] private Color unselectedButtonColor;
 
-        private Button _currentlySelectedButton = null;
+        private Button _currentlySelectedButton;
 
         void Start()
         {

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using App.Scripts.Grid;
 
-namespace App.Scripts.Placement.JsonClasses
+namespace App.Scripts.JsonClasses.Data
 {
     [Serializable]
-    public class GridObjectContainer
+    public class GridObjectContainerJson
     {
         public List<GridObjectSerializableData> gridObjects;
     }

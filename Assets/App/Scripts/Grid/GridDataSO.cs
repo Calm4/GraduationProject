@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using App.Scripts.Buildings.BuildingsConfigs;
 using UnityEditor;
 using UnityEngine;
+using App.Scripts.JsonClasses.Data;
 
 namespace App.Scripts.Grid
 {
@@ -12,7 +12,7 @@ namespace App.Scripts.Grid
         [HideInInspector]
         public List<GridObjectData> gridObjects = new();
 
-        [HideInInspector] public Vector2Int gridSize;
+       [HideInInspector] public Vector2Int GridSize;
 
         public void ExportToJson()
         {
@@ -24,10 +24,10 @@ namespace App.Scripts.Grid
                 return;
             }
             
-            var dataToSave = new GridSaveData
+            var dataToSave = new GridSaveDataJson
             {
-                gridSize = this.gridSize,
-                gridObjects = ConvertToSerializable(gridObjects).ToArray() 
+                gridSize = GridSize,
+                gridObjects = ConvertToSerializable(gridObjects)
             };
 
             string json = JsonUtility.ToJson(dataToSave, true);
@@ -53,13 +53,6 @@ namespace App.Scripts.Grid
         public void ClearGrid()
         {
             gridObjects.Clear();
-        }
-
-        [System.Serializable]
-        private class GridSaveData
-        {
-            public Vector2Int gridSize;
-            public GridObjectSerializableData[] gridObjects;
         }
     }
 }

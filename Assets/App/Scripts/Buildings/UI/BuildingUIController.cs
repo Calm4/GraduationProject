@@ -82,11 +82,6 @@ namespace App.Scripts.Buildings.UI
                 }
             }
         }
-
-        private void DisableUIPanel()
-        {
-            
-        }
         
         private void OnBuildingButtonClicked(BasicBuildingConfig buildingConfig)
         {

@@ -1,4 +1,3 @@
-using App.Scripts.Buildings.BuildingsConfigs;
 using UnityEngine;
 
 namespace App.Scripts.Buildings

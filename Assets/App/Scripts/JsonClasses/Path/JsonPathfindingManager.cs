@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using App.Scripts.Buildings.BuildingsConfigs;
-using App.Scripts.Placement.JsonClasses;
-using App.Scripts.Placement.Path;
+using App.Scripts.Grid;
+using App.Scripts.JsonClasses.Data;
 using UnityEngine;
 
-namespace App.Scripts.Placement
+namespace App.Scripts.JsonClasses.Path
 {
     public class JsonPathfindingManager : MonoBehaviour
     {
@@ -12,7 +12,7 @@ namespace App.Scripts.Placement
         [SerializeField] private BasicBuildingConfig spawnerConfig;
         [SerializeField] private BasicBuildingConfig castleConfig;
         [SerializeField] private BasicBuildingConfig pathwayConfig;
-        [SerializeField] private GameObject obje;
+        [SerializeField] private GameObject tempPrefab;
 
         [SerializeField] private GridManager gridManager;
 
@@ -23,9 +23,9 @@ namespace App.Scripts.Placement
 
         private void FindPathFromJson()
         {
-            GridObjectContainer gridObjectContainer = JsonUtility.FromJson<GridObjectContainer>(jsonFile.text);
+            GridObjectContainerJson gridObjectContainerJson = JsonUtility.FromJson<GridObjectContainerJson>(jsonFile.text);
 
-            var grid = PathfindingWithJson.LoadGridFromJson(gridObjectContainer);
+            var grid = PathfindingWithJson.LoadGridFromJson(gridObjectContainerJson);
 
             Vector2 spawnerPosition = PathfindingWithJson.FindObjectPosition(grid, spawnerConfig);
             Vector2 castlePosition = PathfindingWithJson.FindObjectPosition(grid, castleConfig);
@@ -37,7 +37,6 @@ namespace App.Scripts.Placement
             }
 
             Vector2Int offset = gridManager.GridSize / 2;
-            Debug.Log(gridManager.GridSize + "!!!");
 
             List<Vector2> path = PathfindingWithJson.GeneratePath(grid, pathwayConfig, castleConfig, spawnerPosition, castlePosition);
 
@@ -46,7 +45,7 @@ namespace App.Scripts.Placement
             foreach (Vector2 point in path)
             {
                 Debug.Log($"Path point: {point}");
-                Instantiate(obje, new Vector3(point.x - offset.x + 0.5f, 0, point.y - offset.y + 0.5f), Quaternion.identity);
+                Instantiate(tempPrefab, new Vector3(point.x - offset.x + 0.5f, 0, point.y - offset.y + 0.5f), Quaternion.identity);
             }
         }
     }

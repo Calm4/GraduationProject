@@ -28,7 +28,7 @@ namespace App.Scripts.Custom_Windows
         {
             _gridDataSO = gridDataSO;
             _buildingsDataBase = buildingsDataBase;
-            _gridMapWindow.InitializeGrid(gridDataSO.gridSize, gridDataSO.gridObjects);
+            _gridMapWindow.InitializeGrid(gridDataSO.GridSize, gridDataSO.gridObjects);
         }
 
         public void Draw()
@@ -63,9 +63,9 @@ namespace App.Scripts.Custom_Windows
             GUILayout.Label("Grid Settings", centeredBoldStyle);
             GUILayout.Label("Grid Size", EditorStyles.boldLabel);
 
-            _gridDataSO.gridSize = EditorGUILayout.Vector2IntField("", _gridDataSO.gridSize);
-            _gridDataSO.gridSize = Vector2Int.Max(_gridDataSO.gridSize, new Vector2Int(CreateMapWindow.GridMinSize, CreateMapWindow.GridMinSize));
-            _gridDataSO.gridSize = Vector2Int.Min(_gridDataSO.gridSize, new Vector2Int(CreateMapWindow.GridMaxSize, CreateMapWindow.GridMaxSize));
+            _gridDataSO.GridSize = EditorGUILayout.Vector2IntField("", _gridDataSO.GridSize);
+            _gridDataSO.GridSize = Vector2Int.Max(_gridDataSO.GridSize, new Vector2Int(CreateMapWindow.GridMinSize, CreateMapWindow.GridMinSize));
+            _gridDataSO.GridSize = Vector2Int.Min(_gridDataSO.GridSize, new Vector2Int(CreateMapWindow.GridMaxSize, CreateMapWindow.GridMaxSize));
 
             GUILayout.Space(10);
             GUILayout.Label("Object Settings", centeredBoldStyle);
@@ -76,7 +76,7 @@ namespace App.Scripts.Custom_Windows
         {
             GUILayout.Label("Object Type", EditorStyles.boldLabel);
 
-            if (_buildingsDataBase.buildingConfigs != null && _buildingsDataBase.buildingConfigs.Count > 0)
+            if (_buildingsDataBase.buildingConfigs is { Count: > 0 })
             {
                 var buildingNames = _buildingsDataBase.buildingConfigs.ConvertAll(b => b.buildingName).ToArray();
                 var selectedIndex = _selectedBuildingConfig != null
@@ -132,10 +132,10 @@ namespace App.Scripts.Custom_Windows
 
         private void DrawGrid()
         {
-            if (_gridMapWindow == null || !_gridMapWindow.IsGridSizeValid(_gridDataSO.gridSize))
+            if (_gridMapWindow == null || !_gridMapWindow.IsGridSizeValid(_gridDataSO.GridSize))
             {
-                _gridMapWindow = new GridMapWindow(_gridDataSO.gridSize);
-                _gridMapWindow.InitializeGrid(_gridDataSO.gridSize, _gridDataSO.gridObjects);
+                _gridMapWindow = new GridMapWindow(_gridDataSO.GridSize);
+                _gridMapWindow.InitializeGrid(_gridDataSO.GridSize, _gridDataSO.gridObjects);
             }
 
             var scrollViewHeight = Mathf.Max(_mapCreateWindow.position.height * 0.9f, 300);
@@ -150,13 +150,13 @@ namespace App.Scripts.Custom_Windows
 
         private void DrawGridCells(float cellSize)
         {
-            Rect gridRect = EditorGUILayout.GetControlRect(GUILayout.Width(cellSize * _gridDataSO.gridSize.x), GUILayout.Height(cellSize * _gridDataSO.gridSize.y));
+            Rect gridRect = EditorGUILayout.GetControlRect(GUILayout.Width(cellSize * _gridDataSO.GridSize.x), GUILayout.Height(cellSize * _gridDataSO.GridSize.y));
 
-            for (int y = _gridDataSO.gridSize.y - 1; y >= 0; y--)
+            for (int y = _gridDataSO.GridSize.y - 1; y >= 0; y--)
             {
-                for (int x = 0; x < _gridDataSO.gridSize.x; x++)
+                for (int x = 0; x < _gridDataSO.GridSize.x; x++)
                 {
-                    Rect cellRect = new Rect(gridRect.x + x * cellSize, gridRect.y + (_gridDataSO.gridSize.y - 1 - y) * cellSize, cellSize, cellSize);
+                    Rect cellRect = new Rect(gridRect.x + x * cellSize, gridRect.y + (_gridDataSO.GridSize.y - 1 - y) * cellSize, cellSize, cellSize);
                     DrawCell(cellRect, x, y);
 
                     if (Event.current.type == EventType.MouseDown && cellRect.Contains(Event.current.mousePosition))
@@ -206,7 +206,7 @@ namespace App.Scripts.Custom_Windows
         {
             if (Event.current.button == 0 && _selectedBuildingConfig != null)
             {
-                if (_gridMapWindow.CanPlaceObject(_selectedBuildingConfig, new Vector2Int(x, y), _gridDataSO.gridSize))
+                if (_gridMapWindow.CanPlaceObject(_selectedBuildingConfig, new Vector2Int(x, y), _gridDataSO.GridSize))
                 {
                     ToggleObjectPlacement(_selectedBuildingConfig, new Vector3Int(x, y, 0));
                 }
@@ -223,7 +223,7 @@ namespace App.Scripts.Custom_Windows
 
         private void ToggleObjectPlacement(BasicBuildingConfig buildingConfig, Vector3Int position)
         {
-            if (_gridMapWindow.CanPlaceObject(buildingConfig, new Vector2Int(position.x, position.y), _gridDataSO.gridSize))
+            if (_gridMapWindow.CanPlaceObject(buildingConfig, new Vector2Int(position.x, position.y), _gridDataSO.GridSize))
             {
                 RemoveObjectAtAnyPosition(new Vector2Int(position.x, position.y));
                 var newObject = new GridObjectData(buildingConfig, position);
@@ -245,6 +245,6 @@ namespace App.Scripts.Custom_Windows
         }
 
         private float CalculateCellSize()
-            => Mathf.Min(_mapCreateWindow.position.width * 0.7f / _gridDataSO.gridSize.x, _mapCreateWindow.position.height * 0.85f / _gridDataSO.gridSize.y);
+            => Mathf.Min(_mapCreateWindow.position.width * 0.7f / _gridDataSO.GridSize.x, _mapCreateWindow.position.height * 0.85f / _gridDataSO.GridSize.y);
     }
 }

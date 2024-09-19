@@ -1,0 +1,112 @@
+{
+    "gridSize": {
+        "x": 5,
+        "y": 5
+    },
+    "gridObjects": [
+        {
+            "buildingConfigID": 0,
+            "position": {
+                "x": 0,
+                "y": 0,
+                "z": 4
+            }
+        },
+        {
+            "buildingConfigID": 0,
+            "position": {
+                "x": 2,
+                "y": 0,
+                "z": 4
+            }
+        },
+        {
+            "buildingConfigID": 0,
+            "position": {
+                "x": 4,
+                "y": 0,
+                "z": 4
+            }
+        },
+        {
+            "buildingConfigID": 3,
+            "position": {
+                "x": 0,
+                "y": 0,
+                "z": 2
+            }
+        },
+        {
+            "buildingConfigID": 4,
+            "position": {
+                "x": 1,
+                "y": 0,
+                "z": 4
+            }
+        },
+        {
+            "buildingConfigID": 4,
+            "position": {
+                "x": 1,
+                "y": 0,
+                "z": 3
+            }
+        },
+        {
+            "buildingConfigID": 4,
+            "position": {
+                "x": 1,
+                "y": 0,
+                "z": 2
+            }
+        },
+        {
+            "buildingConfigID": 4,
+            "position": {
+                "x": 2,
+                "y": 0,
+                "z": 2
+            }
+        },
+        {
+            "buildingConfigID": 4,
+            "position": {
+                "x": 3,
+                "y": 0,
+                "z": 2
+            }
+        },
+        {
+            "buildingConfigID": 4,
+            "position": {
+                "x": 3,
+                "y": 0,
+                "z": 3
+            }
+        },
+        {
+            "buildingConfigID": 4,
+            "position": {
+                "x": 3,
+                "y": 0,
+                "z": 4
+            }
+        },
+        {
+            "buildingConfigID": 5,
+            "position": {
+                "x": 2,
+                "y": 0,
+                "z": 1
+            }
+        },
+        {
+            "buildingConfigID": 2,
+            "position": {
+                "x": 4,
+                "y": 0,
+                "z": 0
+            }
+        }
+    ]
+}

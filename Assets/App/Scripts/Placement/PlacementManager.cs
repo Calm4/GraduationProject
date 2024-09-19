@@ -1,9 +1,10 @@
 using System;
 using App.Scripts.Buildings;
 using App.Scripts.Buildings.BuildingsConfigs;
+using App.Scripts.GameResources;
+using App.Scripts.Grid;
 using App.Scripts.Input;
 using App.Scripts.Placement.States;
-using App.Scripts.Resources;
 using App.Scripts.Sound;
 using App.Scripts.TurnsBasedSystem;
 using Sirenix.OdinInspector;

@@ -1,4 +1,4 @@
-﻿namespace App.Scripts.Resources
+﻿namespace App.Scripts.GameResources
 {
     public enum ResourceType
     {
