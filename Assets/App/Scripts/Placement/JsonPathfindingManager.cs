@@ -41,7 +41,8 @@ namespace App.Scripts.Placement
 
             List<Vector2> path = PathfindingWithJson.GeneratePath(grid, pathwayConfig, castleConfig, spawnerPosition, castlePosition);
 
-            Debug.Log($"Path offset: {offset}");
+            Debug.Log("Optimized Path length: " + path.Count);
+            
             foreach (Vector2 point in path)
             {
                 Debug.Log($"Path point: {point}");

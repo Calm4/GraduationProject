@@ -13,13 +13,13 @@ namespace App.Scripts.Placement.Path
             {
                 if (item.Value == objectConfig.ID)
                 {
-                    return item.Key; 
+                    return item.Key;
                 }
             }
 
             return new Vector2(-1, -1);
         }
-        
+
         public static Dictionary<Vector2, int> LoadGridFromJson(GridObjectContainer gridObjectContainer)
         {
             Dictionary<Vector2, int> grid = new Dictionary<Vector2, int>();
@@ -32,9 +32,10 @@ namespace App.Scripts.Placement.Path
 
             return grid;
         }
+
         public static List<Vector2> GeneratePath(Dictionary<Vector2, int> grid, BasicBuildingConfig pathwayConfig, BasicBuildingConfig castleConfig, Vector2 spawnerPosition, Vector2 castlePosition)
         {
-            List<Vector2> path = new List<Vector2>();
+            List<Vector2> fullPath = new List<Vector2>();
             Queue<Vector2> queue = new Queue<Vector2>();
             HashSet<Vector2> visited = new HashSet<Vector2>();
 
@@ -46,11 +47,11 @@ namespace App.Scripts.Placement.Path
             while (queue.Count > 0)
             {
                 Vector2 current = queue.Dequeue();
-                path.Add(current);
+                fullPath.Add(current);
 
                 if (current == castlePosition)
                 {
-                    path.Add(castlePosition);
+                    fullPath.Add(castlePosition);
                     break;
                 }
 
@@ -58,7 +59,6 @@ namespace App.Scripts.Placement.Path
                 {
                     Vector2 neighbor = current + direction;
 
-                    
                     if (grid.ContainsKey(neighbor) && (grid[neighbor] == pathwayConfig.ID) && !visited.Contains(neighbor))
                     {
                         queue.Enqueue(neighbor);
@@ -67,14 +67,44 @@ namespace App.Scripts.Placement.Path
                 }
             }
 
-            if (!path.Contains(castlePosition))
+            if (!fullPath.Contains(castlePosition))
             { 
                 var halfOfCastleSize = new Vector2(castleConfig.size.x, castleConfig.size.y) / 2 - new Vector2(0.5f, 0.5f);
-                path.Add(castlePosition + halfOfCastleSize);
+                fullPath.Add(castlePosition + halfOfCastleSize);
             }
 
-            return path;
+            Debug.Log("Full path length: " + fullPath.Count);
+            return OptimizePath(fullPath);
         }
-    
+
+        private static List<Vector2> OptimizePath(List<Vector2> fullPath)
+        {
+            if (fullPath.Count < 2) return fullPath;
+
+            List<Vector2> optimizedPath = new List<Vector2>();
+            optimizedPath.Add(fullPath[0]);
+
+            for (int i = 1; i < fullPath.Count - 1; i++)
+            {
+                Vector2 prev = fullPath[i - 1];
+                Vector2 current = fullPath[i];
+                Vector2 next = fullPath[i + 1];
+
+                // Если текущая точка не лежит на одной прямой линии с предыдущей и следующей
+                if (!IsOnStraightLine(prev, current, next))
+                {
+                    optimizedPath.Add(current);
+                }
+            }
+
+            optimizedPath.Add(fullPath[fullPath.Count - 1]);
+            return optimizedPath;
+        }
+
+        // Метод проверки, лежат ли три точки на одной прямой
+        private static bool IsOnStraightLine(Vector2 a, Vector2 b, Vector2 c)
+        {
+            return (a.x == b.x && b.x == c.x) || (a.y == b.y && b.y == c.y);
+        }
     }
 }
