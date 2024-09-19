@@ -28,8 +28,6 @@ namespace App.Scripts.Grid
         public event Action OnGridLoadFromJson; 
         public event Action OnBuildingsLoadFromJson; 
         
-        public event Action OnGridSizeSetup; 
-        
         private void Awake()
         {
             placementManager.OnChangeGridVisualizationVisibility += SetGridVisualizationVisibility;
@@ -57,7 +55,6 @@ namespace App.Scripts.Grid
         {
             GridData = gridData;
             GridSize = gridSize;
-            OnGridSizeSetup?.Invoke();
         }
 
         private void SetGridVisualizationVisibility(bool visibilityState)

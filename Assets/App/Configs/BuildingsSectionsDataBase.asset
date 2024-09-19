@@ -21,6 +21,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 77e8bb9f004ea1c43b5ca856009b3ae8, type: 2}
     - {fileID: 11400000, guid: 98ada87800066a744aea5950ef301bc6, type: 2}
     - {fileID: 11400000, guid: 09baf9d2d34dba14fa0466204dd11a8a, type: 2}
+    - {fileID: 11400000, guid: 3d5647f9d0d3cb24892df44f15140edd, type: 2}
+    - {fileID: 11400000, guid: 5df24bd768726984c99345d588ecde03, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -137,10 +139,16 @@ MonoBehaviour:
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 3
     - Name: 
       Entry: 10
       Data: 4
+    - Name: 
+      Entry: 10
+      Data: 5
+    - Name: 
+      Entry: 10
+      Data: 6
     - Name: 
       Entry: 13
       Data: 

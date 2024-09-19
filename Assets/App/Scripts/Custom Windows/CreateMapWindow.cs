@@ -1,4 +1,5 @@
 using App.Scripts.Buildings;
+using App.Scripts.Buildings.UI;
 using App.Scripts.Grid;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
@@ -13,11 +14,11 @@ namespace App.Scripts.Custom_Windows
         public const int GridMinSize = 1;
         public const int GridMaxSize = 50;
 
-        [FormerlySerializedAs("gridDataAsset")] [InlineEditor(Expanded = true), VerticalGroup("Grid Data")]
+        [InlineEditor(Expanded = true), VerticalGroup("Grid Data")]
         public GridDataSO gridDataSo;
 
-        [FormerlySerializedAs("buildingConfigsData")] [SerializeField, HideInInspector]
-        private BuildingsDataBase buildingsDataBase;
+        [SerializeField, HideInInspector]
+        private BuildingsDataBaseBySectionsSO buildingsDataBaseBySections;
 
         private GridMapWindow _gridMapWindow;
         private RenderMapWindow _renderer;
@@ -39,17 +40,17 @@ namespace App.Scripts.Custom_Windows
 
         private void InitializeRenderer()
         {
-            if (gridDataSo == null || buildingsDataBase == null) return;
+            if (gridDataSo == null || buildingsDataBaseBySections == null) return;
 
             _gridMapWindow ??= new GridMapWindow(gridDataSo.GridSize);
 
             if (_renderer == null)
             {
-                _renderer = new RenderMapWindow(this, _gridMapWindow, gridDataSo, buildingsDataBase);
+                _renderer = new RenderMapWindow(this, _gridMapWindow, gridDataSo, buildingsDataBaseBySections);
             }
             else
             {
-                _renderer.UpdateGrid(gridDataSo, buildingsDataBase);
+                _renderer.UpdateGrid(gridDataSo, buildingsDataBaseBySections);
             }
         }
 
@@ -79,9 +80,9 @@ namespace App.Scripts.Custom_Windows
 
         public void UpdateGridData()
         {
-            if (gridDataSo == null || buildingsDataBase == null) return;
+            if (gridDataSo == null || buildingsDataBaseBySections == null) return;
 
-            _renderer?.UpdateGrid(gridDataSo, buildingsDataBase);
+            _renderer?.UpdateGrid(gridDataSo, buildingsDataBaseBySections);
             Repaint();
         }
 

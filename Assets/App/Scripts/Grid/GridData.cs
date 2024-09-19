@@ -39,7 +39,7 @@ namespace App.Scripts.Grid
         {
             GridCell initialCell = _gridCells[gridPosition.x, gridPosition.z];
             Building building = initialCell.OccupyingBuilding;
-            if (building == null)
+            if (!building)
             {
                 return;
             }

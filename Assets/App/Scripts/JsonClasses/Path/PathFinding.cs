@@ -5,34 +5,8 @@ using UnityEngine;
 
 namespace App.Scripts.JsonClasses.Path
 {
-    public abstract class PathfindingWithJson
+    public abstract class PathFinding
     {
-        public static Vector2 FindObjectPosition(Dictionary<Vector2, int> grid, BasicBuildingConfig objectConfig)
-        {
-            foreach (var item in grid)
-            {
-                if (item.Value == objectConfig.ID)
-                {
-                    return item.Key;
-                }
-            }
-
-            return new Vector2(-1, -1);
-        }
-
-        public static Dictionary<Vector2, int> LoadGridFromJson(GridObjectContainerJson gridObjectContainerJson)
-        {
-            Dictionary<Vector2, int> grid = new Dictionary<Vector2, int>();
-
-            foreach (var gridObject in gridObjectContainerJson.gridObjects)
-            {
-                Vector2 position = new Vector2(gridObject.position.x, gridObject.position.z);
-                grid[position] = gridObject.buildingConfigID;
-            }
-
-            return grid;
-        }
-
         public static List<Vector2> GeneratePath(Dictionary<Vector2, int> grid, BasicBuildingConfig pathwayConfig,
             BasicBuildingConfig castleConfig, Vector2 spawnerPosition, Vector2 castlePosition)
         {
@@ -92,7 +66,6 @@ namespace App.Scripts.JsonClasses.Path
                 Vector2 current = fullPath[i];
                 Vector2 next = fullPath[i + 1];
 
-                // Если текущая точка не лежит на одной прямой линии с предыдущей и следующей
                 if (!IsOnStraightLine(prev, current, next))
                 {
                     optimizedPath.Add(current);
@@ -102,8 +75,35 @@ namespace App.Scripts.JsonClasses.Path
             optimizedPath.Add(fullPath[fullPath.Count - 1]);
             return optimizedPath;
         }
+        
+        public static Vector2 FindObjectPosition(Dictionary<Vector2, int> grid, BasicBuildingConfig objectConfig)
+        {
+            foreach (var item in grid)
+            {
+                if (item.Value == objectConfig.ID)
+                {
+                    return item.Key;
+                }
+            }
 
-        // Метод проверки, лежат ли три точки на одной прямой
+            return new Vector2(-1, -1);
+        }
+
+        public static Dictionary<Vector2, int> LoadGridFromJson(GridObjectContainerJson gridObjectContainerJson)
+        {
+            Dictionary<Vector2, int> grid = new Dictionary<Vector2, int>();
+
+            foreach (var gridObject in gridObjectContainerJson.gridObjects)
+            {
+                Vector2 position = new Vector2(gridObject.position.x, gridObject.position.z);
+                grid[position] = gridObject.buildingConfigID;
+            }
+
+            return grid;
+        }
+
+        
+
         private static bool IsOnStraightLine(Vector2 a, Vector2 b, Vector2 c)
         {
             return (Mathf.Approximately(a.x, b.x) && Mathf.Approximately(b.x, c.x)) ||

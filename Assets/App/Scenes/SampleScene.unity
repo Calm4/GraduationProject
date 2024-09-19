@@ -123,56 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &18264511
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 18264512}
-  - component: {fileID: 18264513}
-  m_Layer: 0
-  m_Name: 'JsonPathfindingManager '
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &18264512
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 18264511}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 407665853}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &18264513
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 18264511}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d6e057ab84d4e34abf666cf3092c89a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jsonFile: {fileID: 4900000, guid: 7533160d24b4e424f9698ba678e518ed, type: 3}
-  spawnerConfig: {fileID: 11400000, guid: 3d5647f9d0d3cb24892df44f15140edd, type: 2}
-  castleConfig: {fileID: 11400000, guid: 5df24bd768726984c99345d588ecde03, type: 2}
-  pathwayConfig: {fileID: 11400000, guid: 09baf9d2d34dba14fa0466204dd11a8a, type: 2}
-  obje: {fileID: 1699549996}
-  gridManager: {fileID: 984141355}
 --- !u!1 &72942686
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,7 +496,28 @@ PrefabInstance:
     - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
+      objectReference: {fileID: 0}
+    - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.data[0]
+      value: '"path":"_resources.{0es}","value":{"$id":0,"$type":"App.Scripts.GameResources.ResourceData,
+        Assembly-CSharp","resourceConfig":$eref:0,"currentAmount":0,"maxAmount":0,"isUnlockedNow":false}'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.data[1]
+      value: '"path":"_resources.{0es}.resourceConfig","value":null'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
+      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
+      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: b4a30f8493488424796036fb0dce3545, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -613,10 +584,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f0c1d17ab1e47f3b221853cec6c9867, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jsonFile: {fileID: 4900000, guid: 7533160d24b4e424f9698ba678e518ed, type: 3}
-  buildingsDataBase: {fileID: 11400000, guid: c10e51bb945d92e45a0b124f18f15578, type: 2}
+  jsonFile: {fileID: 4900000, guid: 85e5c49e5dc8d5d45a069a2cec26174c, type: 3}
+  buildingsDataBaseBySections: {fileID: 11400000, guid: 74c59810f16beb547b3df15e9a82f909, type: 2}
   buildingsFromJsonContainer: {fileID: 1081304742}
   gridManager: {fileID: 984141355}
+  spawnerConfig: {fileID: 11400000, guid: 3d5647f9d0d3cb24892df44f15140edd, type: 2}
+  castleConfig: {fileID: 11400000, guid: 5df24bd768726984c99345d588ecde03, type: 2}
+  pathwayConfig: {fileID: 11400000, guid: 09baf9d2d34dba14fa0466204dd11a8a, type: 2}
+  tempPrefab: {fileID: 1699549996}
 --- !u!1 &237577730
 GameObject:
   m_ObjectHideFlags: 0
@@ -1219,7 +1194,6 @@ Transform:
   - {fileID: 984141354}
   - {fileID: 206000926}
   - {fileID: 163407183}
-  - {fileID: 18264512}
   m_Father: {fileID: 118223971}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &429402090

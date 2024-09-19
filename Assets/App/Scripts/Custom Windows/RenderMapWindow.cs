@@ -1,5 +1,6 @@
 ﻿using App.Scripts.Buildings;
 using App.Scripts.Buildings.BuildingsConfigs;
+using App.Scripts.Buildings.UI;
 using App.Scripts.Grid;
 using Sirenix.Utilities.Editor;
 using UnityEditor;
@@ -11,23 +12,24 @@ namespace App.Scripts.Custom_Windows
     {
         private GridMapWindow _gridMapWindow;
         private GridDataSO _gridDataSO;
-        private BuildingsDataBase _buildingsDataBase;
+        private BuildingsDataBaseBySectionsSO _buildingsDataBaseBySections;
         private BasicBuildingConfig _selectedBuildingConfig;
+        private BuildingType _selectedBuildingType;
         private Vector2 _scrollPosition;
         private readonly CreateMapWindow _mapCreateWindow;
 
-        public RenderMapWindow(CreateMapWindow mapCreateWindow, GridMapWindow gridMapWindow, GridDataSO gridDataSO, BuildingsDataBase buildingsDataBase)
+        public RenderMapWindow(CreateMapWindow mapCreateWindow, GridMapWindow gridMapWindow, GridDataSO gridDataSO, BuildingsDataBaseBySectionsSO buildingsDataBaseBySections)
         {
             _mapCreateWindow = mapCreateWindow;
             _gridMapWindow = gridMapWindow;
             _gridDataSO = gridDataSO;
-            _buildingsDataBase = buildingsDataBase;
+            _buildingsDataBaseBySections = buildingsDataBaseBySections;
         }
 
-        public void UpdateGrid(GridDataSO gridDataSO, BuildingsDataBase buildingsDataBase)
+        public void UpdateGrid(GridDataSO gridDataSO, BuildingsDataBaseBySectionsSO buildingsDataBaseBySections)
         {
             _gridDataSO = gridDataSO;
-            _buildingsDataBase = buildingsDataBase;
+            _buildingsDataBaseBySections = buildingsDataBaseBySections;
             _gridMapWindow.InitializeGrid(gridDataSO.GridSize, gridDataSO.gridObjects);
         }
 
@@ -39,9 +41,9 @@ namespace App.Scripts.Custom_Windows
                 return;
             }
 
-            if (_buildingsDataBase == null)
+            if (_buildingsDataBaseBySections == null)
             {
-                SirenixEditorGUI.ErrorMessageBox("Please assign BuildingConfigsData.");
+                SirenixEditorGUI.ErrorMessageBox("Please assign BuildingsDataBaseBySections.");
                 return;
             }
 
@@ -76,16 +78,26 @@ namespace App.Scripts.Custom_Windows
         {
             GUILayout.Label("Object Type", EditorStyles.boldLabel);
 
-            if (_buildingsDataBase.buildingConfigs is { Count: > 0 })
-            {
-                var buildingNames = _buildingsDataBase.buildingConfigs.ConvertAll(b => b.buildingName).ToArray();
-                var selectedIndex = _selectedBuildingConfig != null
-                    ? _buildingsDataBase.buildingConfigs.IndexOf(_selectedBuildingConfig)
-                    : -1;
+            _selectedBuildingType = (BuildingType)EditorGUILayout.EnumPopup("Select Section", _selectedBuildingType);
 
-                selectedIndex = Mathf.Clamp(EditorGUILayout.Popup("", selectedIndex, buildingNames), 0, _buildingsDataBase.buildingConfigs.Count - 1);
-                _selectedBuildingConfig = _buildingsDataBase.buildingConfigs[selectedIndex];
-                _mapCreateWindow.UpdateGridData();
+            if (_buildingsDataBaseBySections.BuildingsDataBaseBySections.ContainsKey(_selectedBuildingType))
+            {
+                var buildingConfigs = _buildingsDataBaseBySections.BuildingsDataBaseBySections[_selectedBuildingType];
+                if (buildingConfigs.Count > 0)
+                {
+                    var buildingNames = buildingConfigs.ConvertAll(b => b.buildingName).ToArray();
+                    var selectedIndex = _selectedBuildingConfig != null
+                        ? buildingConfigs.IndexOf(_selectedBuildingConfig)
+                        : -1;
+
+                    selectedIndex = Mathf.Clamp(EditorGUILayout.Popup("", selectedIndex, buildingNames), 0, buildingConfigs.Count - 1);
+                    _selectedBuildingConfig = buildingConfigs[selectedIndex];
+                    _mapCreateWindow.UpdateGridData();
+                }
+                else
+                {
+                    EditorGUILayout.LabelField("No Building Configs Available in this Section");
+                }
             }
             else
             {
