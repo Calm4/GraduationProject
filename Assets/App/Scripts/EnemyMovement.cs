@@ -3,15 +3,13 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    public float speed = 2f;  // Скорость передвижения врага
-    private List<Vector2> path;  // Путь, по которому будет двигаться враг
-    private int currentTargetIndex = 0;  // Текущая цель в пути
+    public float speed = 2f;  
+    private List<Vector2> path;  
+    private int currentTargetIndex = 0;  
 
-    // Метод для установки пути
     public void SetPath(List<Vector2> newPath)
     {
         path = newPath;
-        Debug.Log(path.Count + "AHAHAHAAHAHAHAH");
         currentTargetIndex = 0;
         if (path != null && path.Count > 0)
         {
@@ -36,19 +34,16 @@ public class EnemyMovement : MonoBehaviour
             }
             else
             {
-                // Когда враг достиг конечной точки (замка), можно добавить логику атаки или уничтожения
                 Debug.Log("Enemy reached the end of the path!");
             }
         }
         else
         {
-            // Продолжаем движение
             transform.position = Vector3.MoveTowards(transform.position,
                 new Vector3(targetPosition.x, transform.position.y, targetPosition.y), speed * Time.deltaTime);
         }
     }
-
-    // Устанавливаем следующую точку как цель
+    
     private void MoveToNextPoint()
     {
         Vector2 targetPosition = path[currentTargetIndex];

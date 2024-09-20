@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -803,13 +803,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f0c1d17ab1e47f3b221853cec6c9867, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jsonFile: {fileID: 4900000, guid: fc5205499c112774e9eaf629e563db59, type: 3}
+  jsonFilesDB: {fileID: 11400000, guid: 0ee9a0ac9af091c47bec67fd0a2f964b, type: 2}
   buildingsDataBaseBySections: {fileID: 11400000, guid: 74c59810f16beb547b3df15e9a82f909, type: 2}
   buildingsFromJsonContainer: {fileID: 1081304742}
   gridManager: {fileID: 984141355}
-  spawnerConfig: {fileID: 11400000, guid: 3d5647f9d0d3cb24892df44f15140edd, type: 2}
-  castleConfig: {fileID: 11400000, guid: 5df24bd768726984c99345d588ecde03, type: 2}
-  pathwayConfig: {fileID: 11400000, guid: 09baf9d2d34dba14fa0466204dd11a8a, type: 2}
+  spawner: {fileID: 3637061191740711284, guid: 06911037f3bb679438cba07d44b69e52, type: 3}
+  castle: {fileID: 3637061191740711284, guid: 8baa5c2312dac9e4b96f2100bc78ba75, type: 3}
+  pathway: {fileID: 3637061191740711284, guid: 441cd41703602ed4dbcb9f416fc70491, type: 3}
   tempPrefab: {fileID: 1699549996}
 --- !u!1 &237577730
 GameObject:

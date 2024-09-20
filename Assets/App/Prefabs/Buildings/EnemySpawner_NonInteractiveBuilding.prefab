@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: <BuildingConfig>k__BackingField
       value: 
       objectReference: {fileID: 11400000, guid: 3d5647f9d0d3cb24892df44f15140edd, type: 2}
+    - target: {fileID: 9111251265515063853, guid: d9c65636e0495ff40b3163ed3af25112, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: f2d74fdfc18575b4caff61913ede09b2, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -92,7 +96,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 4582315957677753624, guid: 0f5734a75d0579c4baa376a520764183, type: 3}
   spawnInterval: 2
   spawnerPoint: {fileID: 5278972234977980888}
-  path: []
+  <Path>k__BackingField: []
 --- !u!4 &5278972234977980888 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2703375377479884149, guid: d9c65636e0495ff40b3163ed3af25112, type: 3}

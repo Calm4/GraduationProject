@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using App.Scripts.Buildings.BuildingsConfigs;
+using App.Scripts.Grid;
 using App.Scripts.JsonClasses.Data;
 using UnityEngine;
 
@@ -7,9 +8,10 @@ namespace App.Scripts.JsonClasses.Path
 {
     public abstract class PathFinding
     {
-        public static List<Vector2> GeneratePath(Dictionary<Vector2, int> grid, BasicBuildingConfig pathwayConfig,
+        public static List<Vector2> GeneratePath(GridManager gridManager, Dictionary<Vector2, int> grid, BasicBuildingConfig pathwayConfig,
             BasicBuildingConfig castleConfig, Vector2 spawnerPosition, Vector2 castlePosition)
         {
+            Debug.LogWarning(gridManager.GridSize.x + "=======" + gridManager.GridSize.y);
             List<Vector2> fullPath = new List<Vector2>();
             Queue<Vector2> queue = new Queue<Vector2>();
             HashSet<Vector2> visited = new HashSet<Vector2>();
@@ -22,11 +24,14 @@ namespace App.Scripts.JsonClasses.Path
             while (queue.Count > 0)
             {
                 Vector2 current = queue.Dequeue();
-                fullPath.Add(current);
+        
+                // Добавляем смещение для каждой точки
+                Vector2 adjustedCurrent = current - gridManager.GridSize / 2;
+                fullPath.Add(adjustedCurrent);
 
                 if (current == castlePosition)
                 {
-                    fullPath.Add(castlePosition);
+                    fullPath.Add(castlePosition - gridManager.GridSize / 2); // Смещаем также замок
                     break;
                 }
 
@@ -45,14 +50,14 @@ namespace App.Scripts.JsonClasses.Path
 
             if (!fullPath.Contains(castlePosition))
             {
-                var halfOfCastleSize =
-                    new Vector2(castleConfig.size.x, castleConfig.size.y) / 2 - new Vector2(0.5f, 0.5f);
-                fullPath.Add(castlePosition + halfOfCastleSize);
+                var halfOfCastleSize = new Vector2(castleConfig.size.x, castleConfig.size.y) / 2 - new Vector2(0.5f, 0.5f);
+                fullPath.Add(castlePosition + halfOfCastleSize - gridManager.GridSize / 2);
             }
 
             Debug.Log("Full path length: " + fullPath.Count);
             return OptimizePath(fullPath);
         }
+
 
         private static List<Vector2> OptimizePath(List<Vector2> fullPath)
         {

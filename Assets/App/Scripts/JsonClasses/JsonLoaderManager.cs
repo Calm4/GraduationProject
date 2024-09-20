@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using App.Scripts.Buildings;
-using App.Scripts.Buildings.BuildingsConfigs;
 using App.Scripts.Buildings.UI;
 using App.Scripts.Grid;
 using App.Scripts.JsonClasses.Data;
@@ -10,13 +9,14 @@ using App.Scripts.Placement;
 using Newtonsoft.Json;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace App.Scripts.JsonClasses
 {
     public class JsonLoaderManager : MonoBehaviour
     {
-        [Title("Json File With Buildings Info")] [SerializeField]
-        private TextAsset jsonFile;
+        [FormerlySerializedAs("filesDB")] [Title("Json Files Data Base")] [SerializeField]
+        private JsonFilesDataBase jsonFilesDB;
 
         [Title("Buildings Parameters")] [SerializeField]
         private BuildingsDataBaseBySectionsSO buildingsDataBaseBySections;
@@ -27,31 +27,36 @@ namespace App.Scripts.JsonClasses
         [Title("Grid Parameters")] [SerializeField]
         private GridManager gridManager;
 
-        [SerializeField] private BasicBuildingConfig spawnerConfig;
-        [SerializeField] private BasicBuildingConfig castleConfig;
-        [SerializeField] private BasicBuildingConfig pathwayConfig;
+        [SerializeField] private Building spawner;
+        [SerializeField] private Building castle;
+        [SerializeField] private Building pathway;
+
         [SerializeField] private GameObject tempPrefab;
 
-        private PathFindingFromJson pathFindingFromJson;
-        
+        private PathFindingFromJson _pathFindingFromJson;
+        private List<Vector2> _path;
+
+
         private void Awake()
         {
-            pathFindingFromJson = new PathFindingFromJson(gridManager, jsonFile, spawnerConfig, castleConfig,
-                pathwayConfig, tempPrefab);
             gridManager.OnGridLoadFromJson += LoadGridSizeFromJson;
             gridManager.OnBuildingsLoadFromJson += PlaceObjectsFromJson;
         }
 
         private void LoadGridSizeFromJson()
         {
-            GridSaveDataJson gridDataJson = JsonConvert.DeserializeObject<GridSaveDataJson>(jsonFile.text);
+            GridSaveDataJson gridDataJson =
+                JsonConvert.DeserializeObject<GridSaveDataJson>(jsonFilesDB.BuildingsJsonFile.text);
 
             if (gridDataJson != null)
             {
                 var gridSize = new Vector2Int(gridDataJson.gridSize.x, gridDataJson.gridSize.y);
                 GridData gridData = new GridData(gridSize);
                 gridManager.SetGridParameters(gridData, gridSize);
-                pathFindingFromJson.FindPathFromJson();
+                _pathFindingFromJson = new PathFindingFromJson(gridManager, jsonFilesDB, spawner, castle, pathway);
+                _path = _pathFindingFromJson.FindPathFromJson();
+                spawner.GetComponent<EnemySpawnerManager>().Path = _path;
+                Debug.LogWarning("HOLA MADRID: ---" + _path.Count);
             }
             else
             {
@@ -63,7 +68,8 @@ namespace App.Scripts.JsonClasses
         {
             _buildingPlacer = new BuildingPlacer(gridManager.GridData);
 
-            var gridObjectsContainer = JsonUtility.FromJson<GridObjectContainerJson>(jsonFile.text);
+            var gridObjectsContainer =
+                JsonUtility.FromJson<GridObjectContainerJson>(jsonFilesDB.BuildingsJsonFile.text);
             var gridObjects = new List<GridObjectData>();
 
             foreach (var gridObjectSerializable in gridObjectsContainer.gridObjects)
@@ -72,8 +78,9 @@ namespace App.Scripts.JsonClasses
 
                 foreach (var section in buildingsDataBaseBySections.BuildingsDataBaseBySections)
                 {
-                    building = section.Value.FirstOrDefault(b => b.BuildingConfig.ID == gridObjectSerializable.buildingConfigID);
-                    if (building != null) break; 
+                    building = section.Value.FirstOrDefault(b =>
+                        b.BuildingConfig.ID == gridObjectSerializable.buildingConfigID);
+                    if (building != null) break;
                 }
 
                 if (building != null)
