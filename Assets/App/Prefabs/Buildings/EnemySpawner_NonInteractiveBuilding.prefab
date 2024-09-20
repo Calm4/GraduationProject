@@ -67,5 +67,34 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6121667864284025279, guid: d9c65636e0495ff40b3163ed3af25112, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -1062799175606987613}
   m_SourcePrefab: {fileID: 100100000, guid: d9c65636e0495ff40b3163ed3af25112, type: 3}
+--- !u!1 &4049427311868001554 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6121667864284025279, guid: d9c65636e0495ff40b3163ed3af25112, type: 3}
+  m_PrefabInstance: {fileID: 7838230181972733101}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-1062799175606987613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4049427311868001554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28ea28e4bca88024c9f6529504ad8dae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 4582315957677753624, guid: 0f5734a75d0579c4baa376a520764183, type: 3}
+  spawnInterval: 2
+  spawnerPoint: {fileID: 5278972234977980888}
+  path: []
+--- !u!4 &5278972234977980888 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2703375377479884149, guid: d9c65636e0495ff40b3163ed3af25112, type: 3}
+  m_PrefabInstance: {fileID: 7838230181972733101}
+  m_PrefabAsset: {fileID: 0}

@@ -52,10 +52,20 @@ namespace App.Scripts.JsonClasses.Path
 
             foreach (Vector2 point in path)
             {
+                Vector3 startPoint = new Vector3(point.x - offset.x, 0, point.y - offset.y);
+                Vector3 nextPoint = startPoint;  // Следующая точка пути
+
+                // Если следующая точка существует, рисуем линию
+                if (point != path[path.Count - 1])
+                {
+                    nextPoint = new Vector3(path[path.IndexOf(point) + 1].x - offset.x, 0, path[path.IndexOf(point) + 1].y - offset.y);
+                    Debug.DrawLine(startPoint, nextPoint, Color.red, 10f);  // Рисует линию между точками
+                }
+
                 Debug.Log($"Path point: {point}");
-                Object.Instantiate(_tempPrefab, new Vector3(point.x - offset.x, 0, point.y - offset.y),
-                    Quaternion.identity);
             }
+
         }
+        
     }
 }
