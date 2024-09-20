@@ -1,5 +1,4 @@
 using App.Scripts.Buildings;
-using App.Scripts.Buildings.BuildingsConfigs;
 using App.Scripts.GameResources;
 using App.Scripts.Grid;
 using App.Scripts.Sound;
@@ -70,7 +69,7 @@ namespace App.Scripts.Placement.States
             Building creatableBuilding = _buildingManager.PlaceBuilding(_buildingPrefab,_gridLayout.CellToWorld(gridPosition));
 
             GridData selectedData = GetSelectedGridData();
-            selectedData.AddObjectAt(gridPosition, _buildingPrefab.BuildingConfig.size, creatableBuilding);
+            selectedData.AddObjectAt(gridPosition, creatableBuilding);
 
             _buildingPreview.UpdatePosition(_gridLayout.CellToWorld(gridPosition), false);
         }

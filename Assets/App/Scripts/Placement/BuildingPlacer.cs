@@ -1,5 +1,4 @@
 ﻿using App.Scripts.Buildings;
-using App.Scripts.Buildings.BuildingsConfigs;
 using App.Scripts.Grid;
 using UnityEngine;
 
@@ -14,32 +13,38 @@ namespace App.Scripts.Placement
             _gridData = gridData;
         }
 
-        public void PlaceBuilding(BasicBuildingConfig config, GridManager gridManager, Vector3Int position, Transform parentTransform)
+        public void PlaceBuilding(Building building, GridManager gridManager, Vector3Int position, Transform parentTransform)
         {
             var gridOffset = new Vector3((float)gridManager.GridSize.x / 2, 0, (float)gridManager.GridSize.y / 2);
+            var buildingPosition = new Vector3(position.x - gridOffset.x, 0, position.z - gridOffset.z);
+            Building tempBuilding = Object.Instantiate(building,buildingPosition, Quaternion.identity);
+            tempBuilding.transform.SetParent(parentTransform);
 
-            var buildingObject = new GameObject(config.buildingName)
+            /*
+            var buildingObject = new GameObject(building.BuildingConfig.buildingName)
             {
                 transform =
                 {
                     position = new Vector3(position.x - gridOffset.x, 0, position.z - gridOffset.z)
                 },
-            };
-            buildingObject.transform.SetParent(parentTransform);
-            Building buildingComponent = buildingObject.AddComponent<Building>();
-            buildingComponent.Initialize(config);
+            };*/
 
-            MeshFilter meshFilter = buildingObject.AddComponent<MeshFilter>();
+            
+            /*
+            Building buildingComponent = buildingObject.AddComponent<Building>();
+            buildingComponent.Initialize(building.BuildingConfig);*/
+
+            //TODO: НУЖЕН ЛИ ЭТОТ КОД МНЕ????
+            /*MeshFilter meshFilter = buildingObject.AddComponent<MeshFilter>();
             meshFilter.mesh = config.mesh;
 
             MeshRenderer meshRenderer = buildingObject.AddComponent<MeshRenderer>();
             meshRenderer.material = config.material;
 
             MeshCollider meshCollider = buildingObject.AddComponent<MeshCollider>();
-            meshCollider.sharedMesh = config.mesh;
+            meshCollider.sharedMesh = config.mesh;*/
             
-            Vector2Int buildingSize = config.size;
-            _gridData.AddObjectAt(position, buildingSize, buildingComponent);
+            _gridData.AddObjectAt(position, tempBuilding);
         }
     }
 }

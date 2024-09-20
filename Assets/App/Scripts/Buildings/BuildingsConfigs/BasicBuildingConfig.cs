@@ -15,9 +15,9 @@ namespace App.Scripts.Buildings.BuildingsConfigs
         public string buildingDescription;
         [ShowInInspector] public BuildingType buildingType;
 
-        [Title("Building Parameters")]
-        public Mesh mesh;
-        public Material material;
+        [Title("Building Parameters")] 
+        /*public Mesh mesh;
+        public Material material;*/
         public Vector2Int size;
         public Color buildingAssociateColor;
         

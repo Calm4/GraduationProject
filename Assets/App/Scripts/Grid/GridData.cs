@@ -25,9 +25,9 @@ namespace App.Scripts.Grid
             }
         }
 
-        public void AddObjectAt(Vector3Int gridPosition, Vector2 objectSize, Building building)
+        public void AddObjectAt(Vector3Int gridPosition, Building building)
         {
-            foreach (var position in CalculatePositions(gridPosition, objectSize))
+            foreach (var position in CalculatePositions(gridPosition, building.BuildingConfig.size))
             {
                 if (IsWithinBounds(position))
                 {

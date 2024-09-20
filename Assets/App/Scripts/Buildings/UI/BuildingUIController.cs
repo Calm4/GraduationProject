@@ -55,7 +55,7 @@ namespace App.Scripts.Buildings.UI
                     return;
                 }
 
-                foreach (var config in section.Value)
+                foreach (var building in section.Value)
                 {
                     var buttonInstance = Instantiate(buttonPrefab, matchingContainer);
                     var button = buttonInstance.GetComponent<Button>();
@@ -64,28 +64,28 @@ namespace App.Scripts.Buildings.UI
                     var buttonDescription = buttonInstance.GetComponent<BuildingsDescriptionUIPanel>();
                     if (button != null)
                     {
-                        var tempConfig = config;
-                        button.onClick.AddListener(() => OnBuildingButtonClicked(tempConfig));
+                        var tempBuilding = building;
+                        button.onClick.AddListener(() => OnBuildingButtonClicked(tempBuilding));
 
-                        buttonDescription.Initialize(tempConfig);
+                        buttonDescription.Initialize(tempBuilding);
                         
                         if (buttonText != null)
                         {
-                            buttonText.text = config.buildingName;
+                            buttonText.text = building.BuildingConfig.buildingName;
                         }
 
                         if (buttonImage != null)
                         {
-                            buttonImage.sprite = config.sprite;
+                            buttonImage.sprite = building.BuildingConfig.sprite;
                         }
                     }
                 }
             }
         }
         
-        private void OnBuildingButtonClicked(BasicBuildingConfig buildingConfig)
+        private void OnBuildingButtonClicked(Building building)
         {
-            placementManager.StartPlacement(buildingConfig);
+            placementManager.StartPlacement(building);
         }
     }
 }

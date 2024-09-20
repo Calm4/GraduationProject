@@ -16,13 +16,13 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 11400000, guid: d57aeb7122d67484a9e52a7d39ff181a, type: 2}
-    - {fileID: 11400000, guid: 4ce26910f0f684645abbb8766f1cf7f7, type: 2}
-    - {fileID: 11400000, guid: 77e8bb9f004ea1c43b5ca856009b3ae8, type: 2}
-    - {fileID: 11400000, guid: 98ada87800066a744aea5950ef301bc6, type: 2}
-    - {fileID: 11400000, guid: 09baf9d2d34dba14fa0466204dd11a8a, type: 2}
-    - {fileID: 11400000, guid: 3d5647f9d0d3cb24892df44f15140edd, type: 2}
-    - {fileID: 11400000, guid: 5df24bd768726984c99345d588ecde03, type: 2}
+    - {fileID: 3637061191740711284, guid: 0e73221145eac404cb9e81eba73d39de, type: 3}
+    - {fileID: 611361116141007165, guid: 3096e9d6e9054d547ad35b03f1497bd5, type: 3}
+    - {fileID: 3637061191740711284, guid: 888292d9efc047b43968e27754470967, type: 3}
+    - {fileID: 3637061191740711284, guid: ccdfdecf72f1a754f960340747980bb7, type: 3}
+    - {fileID: 3637061191740711284, guid: 8baa5c2312dac9e4b96f2100bc78ba75, type: 3}
+    - {fileID: 3637061191740711284, guid: 06911037f3bb679438cba07d44b69e52, type: 3}
+    - {fileID: 3637061191740711284, guid: 441cd41703602ed4dbcb9f416fc70491, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -31,7 +31,7 @@ MonoBehaviour:
     - Name: BuildingsDataBaseBySections
       Entry: 7
       Data: 0|System.Collections.Generic.Dictionary`2[[App.Scripts.Buildings.BuildingsConfigs.BuildingType,
-        Assembly-CSharp],[System.Collections.Generic.List`1[[App.Scripts.Buildings.BuildingsConfigs.BasicBuildingConfig,
+        Assembly-CSharp],[System.Collections.Generic.List`1[[App.Scripts.Buildings.Building,
         Assembly-CSharp]], mscorlib]], mscorlib
     - Name: comparer
       Entry: 7
@@ -57,7 +57,7 @@ MonoBehaviour:
       Data: 0
     - Name: $v
       Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[App.Scripts.Buildings.BuildingsConfigs.BasicBuildingConfig,
+      Data: 2|System.Collections.Generic.List`1[[App.Scripts.Buildings.Building,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
@@ -82,10 +82,10 @@ MonoBehaviour:
       Data: 
     - Name: $k
       Entry: 3
-      Data: 2
+      Data: 1
     - Name: $v
       Entry: 7
-      Data: 3|System.Collections.Generic.List`1[[App.Scripts.Buildings.BuildingsConfigs.BasicBuildingConfig,
+      Data: 3|System.Collections.Generic.List`1[[App.Scripts.Buildings.Building,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
@@ -107,10 +107,10 @@ MonoBehaviour:
       Data: 
     - Name: $k
       Entry: 3
-      Data: 1
+      Data: 2
     - Name: $v
       Entry: 7
-      Data: 4|System.Collections.Generic.List`1[[App.Scripts.Buildings.BuildingsConfigs.BasicBuildingConfig,
+      Data: 4|System.Collections.Generic.List`1[[App.Scripts.Buildings.Building,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
@@ -135,7 +135,7 @@ MonoBehaviour:
       Data: 3
     - Name: $v
       Entry: 7
-      Data: 5|System.Collections.Generic.List`1[[App.Scripts.Buildings.BuildingsConfigs.BasicBuildingConfig,
+      Data: 5|System.Collections.Generic.List`1[[App.Scripts.Buildings.Building,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12

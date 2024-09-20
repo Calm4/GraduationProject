@@ -42,8 +42,8 @@ namespace App.Scripts.Grid
 
             foreach (var obj in objects)
             {
-                var convertedPosition = new Vector3Int(obj.position.x, obj.position.z, obj.position.y);
-                var serializableObject = new GridObjectSerializableData(obj.buildingConfig.ID, convertedPosition);
+                var convertedPosition = new Vector3Int(obj.Position.x, obj.Position.z, obj.Position.y);
+                var serializableObject = new GridObjectSerializableData(obj.Building.BuildingConfig.ID, convertedPosition);
                 convertedObjects.Add(serializableObject);
             }
 

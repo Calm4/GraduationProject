@@ -20,7 +20,7 @@ namespace App.Scripts.Buildings
             _cellIndicatorRenderer = cellIndicator.GetComponentInChildren<Renderer>();
         }
 
-        private void PrepareMeshAndMaterial(Building buildingPrefab)
+        /*private void PrepareMeshAndMaterial(Building buildingPrefab)
         {
             //TODO: ПОФИКСИТЬ СИСТЕМУ PREVIEW
             MeshFilter prefabMeshFilter = buildingPrefab.GetComponent<MeshFilter>();
@@ -42,7 +42,7 @@ namespace App.Scripts.Buildings
                     previewMeshRenderer.material = prefabMeshRenderer.sharedMaterial;
                 }
             }
-        }
+        }*/
 
         public void StartShowingPlacementPreview(Building prefab, Vector2Int size)
         {
@@ -52,7 +52,7 @@ namespace App.Scripts.Buildings
             }
 
             _previewObject = buildingManager.CreateBuilding(prefab);
-            PrepareMeshAndMaterial(_previewObject);
+            //PrepareMeshAndMaterial(_previewObject);
             PreparePreview(_previewObject);
             PrepareCursor(size);
             cellIndicator.SetActive(true);

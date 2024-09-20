@@ -19,29 +19,7 @@ namespace App.Scripts.Buildings
             Building building = Instantiate(buildingPrefab, buildingsContainer);
             building.Initialize(buildingPrefab.BuildingConfig);
 
-            InitializeComponents(building);
-
             return building;
-        }
-
-        private void InitializeComponents(Building building)
-        {
-            building.gameObject.name = building.BuildingConfig.name;
-
-            if (building.TryGetComponent(out MeshFilter meshFilter))
-            {
-                meshFilter.mesh = building.BuildingConfig.mesh;
-            }
-
-            if (building.TryGetComponent(out MeshRenderer meshRenderer))
-            {
-                meshRenderer.material = building.BuildingConfig.material;
-            }
-
-            if (building.TryGetComponent(out MeshCollider meshCollider))
-            {
-                meshCollider.sharedMesh = building.BuildingConfig.mesh;
-            }
         }
 
         public Building PlaceBuilding(Building buildingPrefab, Vector3 position)

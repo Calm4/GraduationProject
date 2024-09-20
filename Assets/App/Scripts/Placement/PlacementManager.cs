@@ -1,6 +1,5 @@
 using System;
 using App.Scripts.Buildings;
-using App.Scripts.Buildings.BuildingsConfigs;
 using App.Scripts.GameResources;
 using App.Scripts.Grid;
 using App.Scripts.Input;
@@ -27,8 +26,7 @@ namespace App.Scripts.Placement
 
         [Title("Buildings"), Space] 
         [SerializeField] private BuildingPreview buildingPreview;
-
-        [SerializeField] private Building buildingPrefab;
+        
         private IBuildingState _buildingState;
 
         [Title("Sound"), Space] [SerializeField]
@@ -54,7 +52,7 @@ namespace App.Scripts.Placement
 
         #region Placement Actions
 
-        public void StartPlacement(BasicBuildingConfig buildingConfig)
+        public void StartPlacement(Building building)
         {
             if (currentPlacementMode == PlacementMode.Building)
             {
@@ -68,9 +66,8 @@ namespace App.Scripts.Placement
             StopPlacement();
 
             OnChangeGridVisualizationVisibility?.Invoke(true);
-            buildingPrefab.Initialize(buildingConfig);
 
-            _buildingState = new StateOfObjectPlacing(resourcesManager, buildingPrefab, gridManager.GridLayout,
+            _buildingState = new StateOfObjectPlacing(resourcesManager, building, gridManager.GridLayout,
                 buildingPreview
                 , gridManager.GridData, buildingManager, soundFeedback);
 

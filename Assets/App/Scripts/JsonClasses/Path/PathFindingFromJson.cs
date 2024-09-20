@@ -53,7 +53,7 @@ namespace App.Scripts.JsonClasses.Path
             foreach (Vector2 point in path)
             {
                 Debug.Log($"Path point: {point}");
-                Object.Instantiate(_tempPrefab, new Vector3(point.x - offset.x + 0.5f, 0, point.y - offset.y + 0.5f),
+                Object.Instantiate(_tempPrefab, new Vector3(point.x - offset.x, 0, point.y - offset.y),
                     Quaternion.identity);
             }
         }

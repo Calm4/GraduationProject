@@ -4,6 +4,7 @@ using App.Scripts.GameResources;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace App.Scripts.Buildings
@@ -12,7 +13,8 @@ namespace App.Scripts.Buildings
     {
         [SerializeField] private RectTransform mainPanel;
         [SerializeField] private RectTransform resourcePrefab;
-        [SerializeField] private BasicBuildingConfig basicBuildingConfig;
+        [SerializeField] private Building building;
+        private BasicBuildingConfig _buildingConfig;
         
         [Title("Header Panel")] 
         [SerializeField] private Image buildingIcon;
@@ -37,9 +39,10 @@ namespace App.Scripts.Buildings
         [Title("Help Panel")] 
         [SerializeField] private TMP_Text helpTextField;
     
-        public void Initialize(BasicBuildingConfig buildingConfig)
+        public void Initialize(Building initializeBuilding)
         {
-            basicBuildingConfig = buildingConfig;
+            building = initializeBuilding;
+            _buildingConfig = building.BuildingConfig;
         }
 
         private void Start()
@@ -58,28 +61,28 @@ namespace App.Scripts.Buildings
 
         private void InitializeHeaderPanel()
         {
-            buildingIcon.sprite = basicBuildingConfig.sprite;
-            buildingName.text = basicBuildingConfig.buildingName;
-            buildingType.text = basicBuildingConfig.buildingType.ToString();
+            buildingIcon.sprite = _buildingConfig.sprite;
+            buildingName.text = _buildingConfig.buildingName;
+            buildingType.text = _buildingConfig.buildingType.ToString();
         }
 
         private void InitializeDescriptionPanel()
         {
-            descriptionTextField.text = basicBuildingConfig.buildingDescription;
+            descriptionTextField.text = _buildingConfig.buildingDescription;
         }
     
         private void InitializeMaintenancePanel()
         {
-            InstantiateResource(basicBuildingConfig.maintenanceResources, maintenanceContainer, maintenanceColor);
+            InstantiateResource(_buildingConfig.maintenanceResources, maintenanceContainer, maintenanceColor);
         }
     
         private void InitializeConstructionPanel()
         {
-            InstantiateResource(basicBuildingConfig.resourcesToBuild, constructionContainer, constructionColor);
+            InstantiateResource(_buildingConfig.resourcesToBuild, constructionContainer, constructionColor);
         }
         private void InitializeIncomingPanel()
         {
-            InstantiateResource(basicBuildingConfig.incomingResources, incomingContainer, incomingColor);
+            InstantiateResource(_buildingConfig.incomingResources, incomingContainer, incomingColor);
         }
 
         private void InstantiateResource(List<ResourceRequirement> resources, RectTransform container, Color color)

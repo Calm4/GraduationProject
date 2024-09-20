@@ -1353,7 +1353,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainPanel: {fileID: 4834949371362183253}
   resourcePrefab: {fileID: 5457817855772325115, guid: 2e69cf1768082714c9e7405e42fd9120, type: 3}
-  basicBuildingConfig: {fileID: 0}
+  building: {fileID: 0}
   buildingIcon: {fileID: 7254529132000897868}
   buildingName: {fileID: 6365935239651080415}
   buildingType: {fileID: 1948897989189949308}

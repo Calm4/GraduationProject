@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using App.Scripts.Buildings;
 using App.Scripts.Buildings.BuildingsConfigs;
 using App.Scripts.Buildings.UI;
 using App.Scripts.Grid;
@@ -67,17 +68,17 @@ namespace App.Scripts.JsonClasses
 
             foreach (var gridObjectSerializable in gridObjectsContainer.gridObjects)
             {
-                BasicBuildingConfig config = null;
+                Building building = null;
 
                 foreach (var section in buildingsDataBaseBySections.BuildingsDataBaseBySections)
                 {
-                    config = section.Value.FirstOrDefault(b => b.ID == gridObjectSerializable.buildingConfigID);
-                    if (config != null) break; 
+                    building = section.Value.FirstOrDefault(b => b.BuildingConfig.ID == gridObjectSerializable.buildingConfigID);
+                    if (building != null) break; 
                 }
 
-                if (config != null)
+                if (building != null)
                 {
-                    var gridObjectData = new GridObjectData(config, gridObjectSerializable.position);
+                    var gridObjectData = new GridObjectData(building, gridObjectSerializable.position);
                     gridObjects.Add(gridObjectData);
                 }
                 else
@@ -88,7 +89,7 @@ namespace App.Scripts.JsonClasses
 
             foreach (var gridObject in gridObjects)
             {
-                _buildingPlacer.PlaceBuilding(gridObject.buildingConfig, gridManager, gridObject.position,
+                _buildingPlacer.PlaceBuilding(gridObject.Building, gridManager, gridObject.Position,
                     buildingsFromJsonContainer);
             }
         }
