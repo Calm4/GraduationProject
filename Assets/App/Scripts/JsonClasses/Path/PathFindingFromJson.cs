@@ -9,11 +9,11 @@ namespace App.Scripts.JsonClasses.Path
 {
     public class PathFindingFromJson
     {
+        private readonly GridManager _gridManager;
         private readonly JsonFilesDataBase _jsonFilesDataBase;
         private readonly Building _spawner;
         private readonly Building _castle;
         private readonly Building _pathway;
-        private readonly GridManager _gridManager;
 
 
         public PathFindingFromJson(GridManager gridManager, JsonFilesDataBase jsonFilesDataBase, Building spawner,
@@ -31,10 +31,10 @@ namespace App.Scripts.JsonClasses.Path
             GridObjectContainerJson gridObjectContainerJson =
                 JsonUtility.FromJson<GridObjectContainerJson>(_jsonFilesDataBase.BuildingsJsonFile.text);
 
-            var grid = PathFinding.LoadGridFromJson(gridObjectContainerJson);
+            var gridObjects = GetGridObjectsFromJson(gridObjectContainerJson);
 
-            Vector2 spawnerPosition = PathFinding.FindObjectPosition(grid, _spawner.BuildingConfig);
-            Vector2 castlePosition = PathFinding.FindObjectPosition(grid, _castle.BuildingConfig);
+            Vector2 spawnerPosition = PathFinding.FindObjectPosition(gridObjects, _spawner);
+            Vector2 castlePosition = PathFinding.FindObjectPosition(gridObjects, _castle);
 
             if (spawnerPosition == new Vector2Int(-1, -1) || castlePosition == new Vector2Int(-1, -1))
             {
@@ -42,10 +42,8 @@ namespace App.Scripts.JsonClasses.Path
                 return null;
             }
 
-            Vector2Int offset = _gridManager.GridSize / 2;
-
             List<Vector2> path =
-                PathFinding.GeneratePath(_gridManager, grid, _pathway.BuildingConfig, _castle.BuildingConfig, spawnerPosition,
+                PathFinding.GeneratePath(_gridManager, gridObjects, _pathway, _castle, spawnerPosition,
                     castlePosition);
 
 
@@ -58,6 +56,19 @@ namespace App.Scripts.JsonClasses.Path
 
 
             return path;
+        }
+        
+        private static Dictionary<Vector2, int> GetGridObjectsFromJson(GridObjectContainerJson gridObjectContainerJson)
+        {
+            Dictionary<Vector2, int> gridObjects = new Dictionary<Vector2, int>();
+
+            foreach (var gridObject in gridObjectContainerJson.gridObjects)
+            {
+                Vector2 position = new Vector2(gridObject.position.x, gridObject.position.z);
+                gridObjects[position] = gridObject.buildingConfigID;
+            }
+
+            return gridObjects;
         }
     }
 }
