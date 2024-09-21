@@ -8,12 +8,10 @@ namespace App.Scripts.Grid
     {
         private readonly GridCell[,] _gridCells;
         public Vector2Int GridSize { get; }
-        private Vector2Int _gridOffset;
 
         public GridData(Vector2Int gridSize)
         {
             GridSize = gridSize;
-            _gridOffset = Vector2Int.zero;
 
             _gridCells = new GridCell[gridSize.x, gridSize.y];
             for (int x = 0; x < gridSize.x; x++)
@@ -84,9 +82,8 @@ namespace App.Scripts.Grid
 
         private bool IsWithinBounds(Vector3Int position)
         {
-            Vector3Int offsetPosition = position - new Vector3Int(_gridOffset.x, 0, _gridOffset.y);
-            return offsetPosition.x >= 0 && offsetPosition.x < GridSize.x && offsetPosition.z >= 0 &&
-                   offsetPosition.z < GridSize.y;
+            return position.x >= 0 && position.x < GridSize.x && position.z >= 0 &&
+                   position.z < GridSize.y;
         }
 
         public Building GetPlacedObject(Vector3Int gridPosition)

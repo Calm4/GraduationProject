@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using App.Scripts.Buildings;
 using App.Scripts.Buildings.BuildingsConfigs;
 using App.Scripts.Grid;
@@ -46,11 +48,8 @@ namespace App.Scripts.JsonClasses.Path
                 PathFinding.GeneratePath(_gridManager, gridObjects, _pathway, _castle, spawnerPosition,
                     castlePosition);
 
-
-            foreach (var p in path)
-            {
-                Debug.Log("Path Points: [" + p.x + ":" + p.y + "]");
-            }
+            var s = path.Aggregate("", (current, p) => current + ("[" + p.x + ":" + p.y + "]\n"));
+            Debug.Log(s);
 
             Debug.Log("Optimized Path length: " + path.Count);
 

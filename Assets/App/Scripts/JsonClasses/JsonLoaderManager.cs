@@ -60,8 +60,6 @@ namespace App.Scripts.JsonClasses
         
         private void PlaceObjectsFromJson()
         {
-            _buildingPlacer = new BuildingPlacer(gridManager.GridData);
-
             var gridObjectsContainer =
                 JsonUtility.FromJson<GridObjectContainerJson>(jsonFilesDB.BuildingsJsonFile.text);
             var gridObjects = new List<GridObjectData>();
@@ -88,6 +86,7 @@ namespace App.Scripts.JsonClasses
                 }
             }
 
+            _buildingPlacer = new BuildingPlacer(gridManager.GridData);
             foreach (var gridObject in gridObjects)
             {
                 _buildingPlacer.PlaceBuilding(gridObject.Building, gridManager, gridObject.Position,
