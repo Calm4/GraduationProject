@@ -8,10 +8,11 @@ namespace App.Scripts.JsonClasses.Path
     public abstract class PathFinding
     {
         private static Vector2 _gridOffset;
+        
         public static List<Vector2> GeneratePath(GridManager gridManager, Dictionary<Vector2, int> grid, 
             Building pathway, Building castle, Vector2 spawnerPosition, Vector2 castlePosition)
         {
-            _gridOffset = gridManager.GridSize / 2;
+            _gridOffset = gridManager.GridData.GridSize / 2;
             
             List<Vector2> fullPath = FindPath(grid, pathway, spawnerPosition, castlePosition);
         

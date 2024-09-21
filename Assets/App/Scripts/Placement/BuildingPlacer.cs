@@ -15,7 +15,8 @@ namespace App.Scripts.Placement
 
         public void PlaceBuilding(Building building, GridManager gridManager, Vector3Int position, Transform parentTransform)
         {
-            var gridOffset = new Vector3((float)gridManager.GridSize.x / 2, 0, (float)gridManager.GridSize.y / 2);
+            var gridSize = gridManager.GridData.GridSize;
+            var gridOffset = new Vector3((float)gridSize.x / 2, 0, (float)gridSize.y / 2);
             var buildingPosition = new Vector3(position.x - gridOffset.x, 0, position.z - gridOffset.z);
             Building tempBuilding = Object.Instantiate(building,buildingPosition, Quaternion.identity);
             tempBuilding.transform.SetParent(parentTransform);

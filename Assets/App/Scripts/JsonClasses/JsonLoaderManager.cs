@@ -18,20 +18,17 @@ namespace App.Scripts.JsonClasses
         [FormerlySerializedAs("filesDB")] [Title("Json Files Data Base")] [SerializeField]
         private JsonFilesDataBase jsonFilesDB;
 
-        [Title("Buildings Parameters")] [SerializeField]
-        private BuildingsDataBaseBySectionsSO buildingsDataBaseBySections;
-
+        [Title("Buildings Parameters")] 
+        [SerializeField] private BuildingsDataBaseBySectionsSO buildingsDataBaseBySections;
         [SerializeField] private Transform buildingsFromJsonContainer;
         private BuildingPlacer _buildingPlacer;
 
-        [Title("Grid Parameters")] [SerializeField]
-        private GridManager gridManager;
 
+        [Title("Grid Parameters")] 
+        [SerializeField] private GridManager gridManager;
         [SerializeField] private Building spawner;
         [SerializeField] private Building castle;
         [SerializeField] private Building pathway;
-
-        [SerializeField] private GameObject tempPrefab;
 
         private PathFindingFromJson _pathFindingFromJson;
         private List<Vector2> _path;
@@ -45,25 +42,22 @@ namespace App.Scripts.JsonClasses
 
         private void LoadGridSizeFromJson()
         {
-            GridSaveDataJson gridDataJson =
-                JsonConvert.DeserializeObject<GridSaveDataJson>(jsonFilesDB.BuildingsJsonFile.text);
+            GridSaveDataJson gridDataJson = JsonConvert.DeserializeObject<GridSaveDataJson>(jsonFilesDB.BuildingsJsonFile.text);
 
+            gridManager.InitializeGridManager(gridDataJson);
+            
             if (gridDataJson != null)
             {
-                var gridSize = new Vector2Int(gridDataJson.gridSize.x, gridDataJson.gridSize.y);
-                GridData gridData = new GridData(gridSize);
-                gridManager.SetGridParameters(gridData, gridSize);
                 _pathFindingFromJson = new PathFindingFromJson(gridManager, jsonFilesDB, spawner, castle, pathway);
                 _path = _pathFindingFromJson.FindPathFromJson();
                 spawner.GetComponent<EnemySpawnerManager>().Path = _path;
-                Debug.LogWarning("HOLA MADRID: ---" + _path.Count);
             }
             else
             {
                 Debug.LogWarning("No grid size found in JSON, using default size.");
             }
         }
-
+        
         private void PlaceObjectsFromJson()
         {
             _buildingPlacer = new BuildingPlacer(gridManager.GridData);

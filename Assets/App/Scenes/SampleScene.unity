@@ -810,7 +810,6 @@ MonoBehaviour:
   spawner: {fileID: 3637061191740711284, guid: 06911037f3bb679438cba07d44b69e52, type: 3}
   castle: {fileID: 3637061191740711284, guid: 8baa5c2312dac9e4b96f2100bc78ba75, type: 3}
   pathway: {fileID: 3637061191740711284, guid: 441cd41703602ed4dbcb9f416fc70491, type: 3}
-  tempPrefab: {fileID: 1699549996}
 --- !u!1 &237577730
 GameObject:
   m_ObjectHideFlags: 0
@@ -1359,7 +1358,7 @@ Transform:
   m_GameObject: {fileID: 385181511}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5, y: 0, z: -3.5}
+  m_LocalPosition: {x: -16, y: 0, z: -16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3444,8 +3443,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1112236722}
   - {fileID: 385181512}
+  - {fileID: 1112236722}
   - {fileID: 2140119112}
   m_Father: {fileID: 407665853}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3463,8 +3462,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   placementManager: {fileID: 2113443925}
   <GridLayout>k__BackingField: {fileID: 385181513}
-  gridVisualization: {fileID: 1112236718}
-  background: {fileID: 2140119108}
+  gridVisualization: {fileID: 1112236722}
+  gridBackground: {fileID: 2140119112}
 --- !u!1001 &1016619759
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3864,7 +3863,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.015, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0.7}
+  m_LocalScale: {x: 3.2, y: 1, z: 3.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 984141354}
@@ -7701,7 +7700,7 @@ GameObject:
   - component: {fileID: 2140119109}
   - component: {fileID: 2140119113}
   m_Layer: 0
-  m_Name: BackgroundFloor
+  m_Name: GridBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7789,7 +7788,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0.7}
+  m_LocalScale: {x: 3.2, y: 1, z: 3.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 984141354}

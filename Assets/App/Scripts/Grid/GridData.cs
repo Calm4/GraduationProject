@@ -7,7 +7,7 @@ namespace App.Scripts.Grid
     public class GridData
     {
         private readonly GridCell[,] _gridCells;
-        private Vector2Int GridSize { get; set; }
+        public Vector2Int GridSize { get; }
         private Vector2Int _gridOffset;
 
         public GridData(Vector2Int gridSize)

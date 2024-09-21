@@ -10,21 +10,18 @@ namespace App.Scripts.Placement.States
     public class StateOfObjectRemoving : IBuildingState
     {
         private readonly ResourcesManager _resourcesManager;
-        private readonly GridLayout _gridLayout;
-        private readonly BuildingPreview _buildingPreview;
-        private readonly GridData _gridData;
         private readonly BuildingManager _buildingManager;
+        private readonly GridManager _gridManager;
+        
+        private readonly BuildingPreview _buildingPreview;
         private readonly SoundFeedback _soundFeedback;
 
-        public StateOfObjectRemoving(ResourcesManager resourcesManager,BuildingManager buildingManager, GridLayout gridLayout, BuildingPreview buildingPreview, GridData gridData, SoundFeedback soundFeedback)
+        public StateOfObjectRemoving(ResourcesManager resourcesManager,BuildingManager buildingManager, GridManager gridManager, BuildingPreview buildingPreview, SoundFeedback soundFeedback)
         {
             _resourcesManager = resourcesManager;
             _buildingManager = buildingManager;
-            
-            _gridLayout = gridLayout;
+            _gridManager = gridManager;
             _buildingPreview = buildingPreview;
-            
-            _gridData = gridData;
             
             _soundFeedback = soundFeedback;
 
@@ -39,9 +36,9 @@ namespace App.Scripts.Placement.States
         public void OnAction(Vector3Int gridPosition)
         {
             GridData selectedData = null;
-            if (!_gridData.CanPlaceObjectAt(gridPosition, Vector2Int.one))
+            if (!_gridManager.GridData.CanPlaceObjectAt(gridPosition, Vector2Int.one))
             {
-                selectedData = _gridData;
+                selectedData = _gridManager.GridData;
             }
             if (selectedData == null)
             {
@@ -65,20 +62,20 @@ namespace App.Scripts.Placement.States
 
             _buildingManager.RemoveBuilding(placedObject);
 
-            Vector3 cellPosition = _gridLayout.CellToWorld(gridPosition);
+            Vector3 cellPosition = _gridManager.GridLayout.CellToWorld(gridPosition);
             _buildingPreview.UpdatePosition(cellPosition, CheckIsSelectionIsValid(gridPosition));
         }
 
 
         private bool CheckIsSelectionIsValid(Vector3Int gridPosition)
         {
-            return _gridData.CanPlaceObjectAt(gridPosition, Vector2Int.one);
+            return _gridManager.GridData.CanPlaceObjectAt(gridPosition, Vector2Int.one);
         }
 
         public void UpdateState(Vector3Int gridPosition)
         {
             bool validity = CheckIsSelectionIsValid(gridPosition);
-            _buildingPreview.UpdatePosition(_gridLayout.CellToWorld(gridPosition),validity);
+            _buildingPreview.UpdatePosition(_gridManager.GridLayout.CellToWorld(gridPosition),validity);
         }
         
         

@@ -24,9 +24,9 @@ namespace App.Scripts.Placement
         [SerializeField] private ResourcesManager resourcesManager;
         [SerializeField] private TurnsBasedManager turnsBasedManager;
 
-        [Title("Buildings"), Space] 
-        [SerializeField] private BuildingPreview buildingPreview;
-        
+        [Title("Buildings"), Space] [SerializeField]
+        private BuildingPreview buildingPreview;
+
         private IBuildingState _buildingState;
 
         [Title("Sound"), Space] [SerializeField]
@@ -67,9 +67,8 @@ namespace App.Scripts.Placement
 
             OnChangeGridVisualizationVisibility?.Invoke(true);
 
-            _buildingState = new StateOfObjectPlacing(resourcesManager, building, gridManager.GridLayout,
-                buildingPreview
-                , gridManager.GridData, buildingManager, soundFeedback);
+            _buildingState = new StateOfObjectPlacing(resourcesManager, buildingManager, gridManager, building,
+                buildingPreview, soundFeedback);
 
             inputManager.OnClicked += PlaceStructure;
             inputManager.OnExit += StopPlacement;
@@ -108,8 +107,8 @@ namespace App.Scripts.Placement
 
             OnChangeGridVisualizationVisibility?.Invoke(true);
 
-            _buildingState = new StateOfObjectRemoving(resourcesManager, buildingManager, gridManager.GridLayout,
-                buildingPreview, gridManager.GridData, soundFeedback);
+            _buildingState = new StateOfObjectRemoving(resourcesManager, buildingManager, gridManager,
+                buildingPreview, soundFeedback);
 
             inputManager.OnClicked += PlaceStructure;
             inputManager.OnExit += StopPlacement;

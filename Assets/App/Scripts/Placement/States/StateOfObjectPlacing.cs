@@ -9,30 +9,27 @@ namespace App.Scripts.Placement.States
     public class StateOfObjectPlacing : IBuildingState
     {
         private readonly ResourcesManager _resourcesManager;
-        private readonly GridLayout _gridLayout;
+        private readonly BuildingManager _buildingManager;
+        private readonly GridManager _gridManager;
         private readonly BuildingPreview _buildingPreview;
-         private readonly GridData _gridData;
         private readonly SoundFeedback _soundFeedback;
         
-        private readonly BuildingManager _buildingManager;
 
         private readonly Building _buildingPrefab;
 
         
 
-        public StateOfObjectPlacing(ResourcesManager resourcesManager,Building buildingPrefab, GridLayout gridLayout, BuildingPreview buildingPreview,
-             GridData gridData, BuildingManager buildingManager, SoundFeedback soundFeedback)
+        public StateOfObjectPlacing(ResourcesManager resourcesManager,BuildingManager buildingManager,GridManager gridManager, Building buildingPrefab, BuildingPreview buildingPreview, SoundFeedback soundFeedback)
         {
             _resourcesManager = resourcesManager;
             _buildingManager = buildingManager;
+            _gridManager = gridManager;
             
             _buildingPrefab = buildingPrefab;
             _buildingPrefab.Initialize(buildingPrefab.BuildingConfig);
             
-            _gridLayout = gridLayout;
             _buildingPreview = buildingPreview;
             
-            _gridData = gridData;
             _soundFeedback = soundFeedback;
 
             
@@ -66,21 +63,21 @@ namespace App.Scripts.Placement.States
             PlaySound(SoundType.Place);
             _resourcesManager.TakeAwayResourcesForConstruction(_buildingPrefab.BuildingConfig);
 
-            Building creatableBuilding = _buildingManager.PlaceBuilding(_buildingPrefab,_gridLayout.CellToWorld(gridPosition));
+            Building creatableBuilding = _buildingManager.PlaceBuilding(_buildingPrefab,_gridManager.GridLayout.CellToWorld(gridPosition));
 
             GridData selectedData = GetSelectedGridData();
             selectedData.AddObjectAt(gridPosition, creatableBuilding);
 
-            _buildingPreview.UpdatePosition(_gridLayout.CellToWorld(gridPosition), false);
+            _buildingPreview.UpdatePosition(_gridManager.GridLayout.CellToWorld(gridPosition), false);
         }
         private GridData GetSelectedGridData()
         {
-            return _gridData;
+            return _gridManager.GridData;
         }
         
         private bool CheckPlacementValidity(Vector3Int gridPosition)
         {
-            return _gridData.CanPlaceObjectAt(gridPosition, _buildingPrefab.BuildingConfig.size);
+            return GetSelectedGridData().CanPlaceObjectAt(gridPosition, _buildingPrefab.BuildingConfig.size);
         }
 
         private bool IsPlacementValid(Vector3Int gridPosition)
@@ -91,7 +88,7 @@ namespace App.Scripts.Placement.States
         public void UpdateState(Vector3Int gridPosition)
         {
             bool placementValidity = CheckPlacementValidity(gridPosition);
-            _buildingPreview.UpdatePosition(_gridLayout.CellToWorld(gridPosition), placementValidity);
+            _buildingPreview.UpdatePosition(_gridManager.GridLayout.CellToWorld(gridPosition), placementValidity);
         }
         private void PlaySound(SoundType soundType)
         {
