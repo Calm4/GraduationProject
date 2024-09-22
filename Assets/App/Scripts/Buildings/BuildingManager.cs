@@ -17,8 +17,6 @@ namespace App.Scripts.Buildings
         public Building CreateBuilding(Building buildingPrefab)
         {
             Building building = Instantiate(buildingPrefab, buildingsContainer);
-            building.Initialize(buildingPrefab.BuildingConfig);
-
             return building;
         }
 

@@ -23,7 +23,7 @@ namespace App.Scripts.Grid
             }
         }
 
-        public void AddObjectAt(Vector3Int gridPosition, Building building)
+        public void AddObjectAt(Building building,Vector3Int gridPosition)
         {
             foreach (var position in CalculatePositions(gridPosition, building.BuildingConfig.size))
             {

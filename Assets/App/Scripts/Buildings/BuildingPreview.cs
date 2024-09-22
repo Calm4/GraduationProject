@@ -52,7 +52,7 @@ namespace App.Scripts.Buildings
             }
 
             _previewObject = buildingManager.CreateBuilding(prefab);
-            //PrepareMeshAndMaterial(_previewObject);
+            
             PreparePreview(_previewObject);
             PrepareCursor(size);
             cellIndicator.SetActive(true);

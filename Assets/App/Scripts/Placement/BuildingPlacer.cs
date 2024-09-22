@@ -13,18 +13,18 @@ namespace App.Scripts.Placement
             _gridData = gridData;
         }
 
-        public void PlaceBuilding(Building building, GridManager gridManager, Vector3Int position,
+        public void PlaceBuilding(Building building, GridManager gridManager, Vector3Int gridPosition,
             Transform parentTransform)
         {
             var gridSize = gridManager.GridData.GridSize;
             var gridOffset = new Vector3((float)gridSize.x / 2, 0, (float)gridSize.y / 2);
 
-            var buildingPosition = new Vector3(position.x - gridOffset.x, 0, position.z - gridOffset.z);
-
+            var buildingPosition = new Vector3(gridPosition.x - gridOffset.x, 0, gridPosition.z - gridOffset.z);
+            
             Building jsonBuilding = Object.Instantiate(building, buildingPosition, Quaternion.identity);
             jsonBuilding.transform.SetParent(parentTransform);
-
-            _gridData.AddObjectAt(position, jsonBuilding);
+            
+            _gridData.AddObjectAt(jsonBuilding, gridPosition);
         }
     }
 }

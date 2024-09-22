@@ -52,7 +52,7 @@ namespace App.Scripts.Grid
 
             var adjustSize = new Vector3((float)gridSize.x / 10, 1, (float)gridSize.y / 10);
             gridVisualization.localScale = adjustSize;
-            gridBackground.localScale = adjustSize;
+            gridBackground.GetComponent<SpriteRenderer>().size = gridSize;
         }
 
         private void SetGridVisualizationVisibility(bool visibilityState)

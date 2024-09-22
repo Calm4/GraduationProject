@@ -26,7 +26,6 @@ namespace App.Scripts.Placement.States
             _gridManager = gridManager;
             
             _buildingPrefab = buildingPrefab;
-            _buildingPrefab.Initialize(buildingPrefab.BuildingConfig);
             
             _buildingPreview = buildingPreview;
             
@@ -63,10 +62,10 @@ namespace App.Scripts.Placement.States
             PlaySound(SoundType.Place);
             _resourcesManager.TakeAwayResourcesForConstruction(_buildingPrefab.BuildingConfig);
 
-            Building creatableBuilding = _buildingManager.PlaceBuilding(_buildingPrefab,_gridManager.GridLayout.CellToWorld(gridPosition));
+            Building creatableBuilding = _buildingManager.PlaceBuilding(_buildingPrefab, _gridManager.GridLayout.CellToWorld(gridPosition));
 
             GridData selectedData = GetSelectedGridData();
-            selectedData.AddObjectAt(gridPosition, creatableBuilding);
+            selectedData.AddObjectAt(creatableBuilding, gridPosition);
 
             _buildingPreview.UpdatePosition(_gridManager.GridLayout.CellToWorld(gridPosition), false);
         }

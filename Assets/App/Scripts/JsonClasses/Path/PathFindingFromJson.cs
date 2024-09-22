@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using App.Scripts.Buildings;
-using App.Scripts.Buildings.BuildingsConfigs;
 using App.Scripts.Grid;
 using App.Scripts.JsonClasses.Data;
 using UnityEngine;
