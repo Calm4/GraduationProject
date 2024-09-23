@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using App.Scripts.Buildings.BuildingsConfigs;
+using App.Scripts.GameResources.Money;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -9,9 +10,10 @@ namespace App.Scripts.GameResources
     public class ResourcesManager : SerializedMonoBehaviour
     {
         [SerializeField] private Dictionary<ResourceType, ResourceData> _resources;
-        
-        public event Action OnUpdateResources;
-        
+
+        public event Action OnUpdateMaterialResources;
+        public event Action OnUpdateFinanceResources;
+
         public ResourcesManager(Dictionary<ResourceType, ResourceData> resources)
         {
             _resources = resources;
@@ -25,7 +27,7 @@ namespace App.Scripts.GameResources
         {
             return _resources[resourceType];
         }
-        
+
         public Dictionary<ResourceType, ResourceData> GetAllResources()
         {
             return _resources;
@@ -63,39 +65,66 @@ namespace App.Scripts.GameResources
 
                 _resources[resource.config.resourceType] = resourceData;
             }
-            OnUpdateResources?.Invoke();
+
+            OnUpdateMaterialResources?.Invoke();
+            OnUpdateFinanceResources?.Invoke();
         }
+
         public void TakeAwayResourcesForConstruction(BasicBuildingConfig placingObjectConfig)
         {
             List<ResourceRequirement> resourcesToBuild = placingObjectConfig.resourcesToBuild;
 
-            foreach (var resource in resourcesToBuild)
-            {
-                var resourceData = _resources[resource.config.resourceType];
-                resourceData.currentAmount -= resource.amount;
+            List<ResourceRequirement> materialResourcesToBuild = new List<ResourceRequirement>();
+            bool isMaterialResourcesUpdated = InitializeSpecificTypeOfResource<MaterialResourceConfig>(resourcesToBuild, materialResourcesToBuild);
+            if (isMaterialResourcesUpdated)
+                OnUpdateMaterialResources?.Invoke();
+            
+            
+            List<ResourceRequirement> financeResourcesToBuild = new List<ResourceRequirement>();
+            bool financeUpdated = InitializeSpecificTypeOfResource<FinanceResourceConfig>(resourcesToBuild, financeResourcesToBuild);
 
-                if (resourceData.currentAmount < 0)
-                {
-                    resourceData.currentAmount = 0;
-                }
-
-                _resources[resource.config.resourceType] = resourceData; 
-            } 
-            OnUpdateResources?.Invoke();
+            if (financeUpdated)
+                OnUpdateFinanceResources?.Invoke();
+            
         }
 
-        public void ReduceResource(int amount, ResourceType resourceType)
+        private bool InitializeSpecificTypeOfResource<T>(List<ResourceRequirement> resourcesToBuild,
+            List<ResourceRequirement> specificResource) where T : BasicResourceConfig
         {
-            if (_resources.ContainsKey(resourceType))
+            foreach (var resource in resourcesToBuild)
             {
-                var resourceData = _resources[resourceType];
-                resourceData.currentAmount -= amount;
-                if (resourceData.currentAmount < 0)
+                if (resource.config is T)
                 {
-                    resourceData.currentAmount = 0;
+                    specificResource.Add(resource);
                 }
+            }
 
-                _resources[resourceType] = resourceData;
+            if (specificResource.Count == 0) return false;
+
+            ReduceResource(specificResource);
+            return true;
+        }
+
+        private void ReduceResource(List<ResourceRequirement> resourcesToBuild)
+        {
+            foreach (var resource in resourcesToBuild)
+            {
+                var resourceType = resource.config.resourceType;
+                if (_resources.ContainsKey(resourceType))
+                {
+                    var resourceData = _resources[resourceType];
+                    resourceData.currentAmount -= resource.amount;
+                    if (resourceData.currentAmount < 0)
+                    {
+                        resourceData.currentAmount = 0;
+                    }
+
+                    _resources[resourceType] = resourceData;
+                }
+                else
+                {
+                    Debug.LogError("This type of resource doesn't exists on resources list");
+                }
             }
         }
 
@@ -116,7 +145,7 @@ namespace App.Scripts.GameResources
                 return resource.currentAmount;
             }
 
-            return 0;
+            return -1;
         }
 
         public int GetResourceMaxAmount(ResourceType resourceType)
@@ -126,8 +155,9 @@ namespace App.Scripts.GameResources
                 return resource.maxAmount;
             }
 
-            return 0;
+            return -1;
         }
+
         public bool CalculatePossibilityOfPlacingBuilding(BasicBuildingConfig placingObjectConfig)
         {
             List<ResourceRequirement> resourcesToBuild = placingObjectConfig.resourcesToBuild;

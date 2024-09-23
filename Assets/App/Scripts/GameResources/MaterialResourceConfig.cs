@@ -2,8 +2,8 @@
 
 namespace App.Scripts.GameResources
 {
-    [CreateAssetMenu(fileName = "_ResourceConfig", menuName = "Configs/Resources/SpecificResource", order = 0)]
-    public class ResourceConfig : BasicResourceConfig
+    [CreateAssetMenu(fileName = "_MaterialResource", menuName = "Configs/Resources/MaterialResource", order = 0)]
+    public class MaterialResourceConfig : BasicResourceConfig
     {
         public int buyCost;
         public int saleCost;
