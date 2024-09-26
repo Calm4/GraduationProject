@@ -1,6 +1,6 @@
 ﻿namespace App.Scripts.TurnsBasedSystem
 {
-    public enum GamePhases
+    public enum GamePhase
     {
         Construction,
         Defense,

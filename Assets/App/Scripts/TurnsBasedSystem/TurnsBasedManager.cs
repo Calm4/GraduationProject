@@ -11,33 +11,30 @@ namespace App.Scripts.TurnsBasedSystem
         [SerializeField] private WavesManager wavesManager;
         
         
-        [field: SerializeField] public GamePhases GamePhase { get; private set; }
-        private GamePhases[] _phases;
+        [field: SerializeField] public GamePhase GamePhase { get; private set; }
+        private GamePhase[] _phases;
 
-        public event Action<GamePhases> OnGamePhaseChange;
-        
+        [SerializeField] private PhaseChangerUIPanel phaseChangerUIPanel;
+
+        public event Action<GamePhase> OnGamePhaseChange;
+
+        private void Awake()
+        {
+            phaseChangerUIPanel.OnPhaseChangerButtonClick += StartNextPhase;
+        }
+
         private void Start()
         {
-            _phases =(GamePhases[])Enum.GetValues(typeof(GamePhases));
-        }
-
-        private void Update()
-        {
-            if (UnityEngine.Input.GetKeyDown(KeyCode.K))
-            {
-                StartNextPhase();
-                OnGamePhaseChange?.Invoke(GamePhase);
-            }
-            
+            _phases =(GamePhase[])Enum.GetValues(typeof(GamePhase));
         }
     
-        private void StartNextPhase()
+        private void StartNextPhase(GameState gameState)
         {
-            var currentPhaseIndex = Array.IndexOf(_phases, GamePhase);
+            /*var currentPhaseIndex = Array.IndexOf(_phases, GamePhase);
             currentPhaseIndex = (currentPhaseIndex + 1) % _phases.Length;
         
-            GamePhase = _phases[currentPhaseIndex];
-            Debug.Log("Current Game Phase: " + GamePhase);
+            GamePhase = _phases[currentPhaseIndex];*/
+            Debug.Log("Current Game Phase: " + gameState);
         }
     }
 }

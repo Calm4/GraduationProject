@@ -15,7 +15,7 @@ namespace App.Scripts.TurnsBasedSystem.Waves
             turnsBasedManager.OnGamePhaseChange += TurnsBasedManagerOnGamePhaseChange;
         }
 
-        private void TurnsBasedManagerOnGamePhaseChange(GamePhases gamePhase)
+        private void TurnsBasedManagerOnGamePhaseChange(GamePhase gamePhase)
         {
         
         }
