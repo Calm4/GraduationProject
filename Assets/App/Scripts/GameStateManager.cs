@@ -1,3 +1,4 @@
+using System;
 using App.Scripts;
 using UnityEngine;
 
@@ -7,13 +8,17 @@ public class GameStateManager : MonoBehaviour
     private GameState gameState;
 
     [SerializeField] private float waitingToStartTimer;
-    [SerializeField] private float countDownToStartTimer;
+    [SerializeField] private float constCountDownToStartTimer;
+    private float countDownToStartTimer;
     [SerializeField] private float gamePlayingTimer;
 
+    public event Action OnDefenseStateEnd;
+    
     private void Awake()
     {
         _phaseChangerUIPanel.OnPhaseChangerButtonClick += ChangeGameState;
-        gameState = GameState.WaitingToStartWave;
+        gameState = GameState.Construction;
+        countDownToStartTimer = constCountDownToStartTimer;
     }
 
     private void ChangeGameState(GameState state)
@@ -25,14 +30,6 @@ public class GameStateManager : MonoBehaviour
     {
         switch (gameState)
         {
-            case GameState.WaitingToStartWave:
-                waitingToStartTimer -= Time.deltaTime;
-                if (waitingToStartTimer < 0f)
-                {
-                    gameState = GameState.CountDownToStart;
-                }
-
-                break;
             case GameState.CountDownToStart:
                 countDownToStartTimer -= Time.deltaTime;
                 if (countDownToStartTimer < 0f)
@@ -45,12 +42,15 @@ public class GameStateManager : MonoBehaviour
                 gamePlayingTimer -= Time.deltaTime;
                 if (gamePlayingTimer < 0f)
                 {
+                    countDownToStartTimer = constCountDownToStartTimer;
+                    Debug.Log("HUYAAAA");
+                    OnDefenseStateEnd?.Invoke();
                     gameState = GameState.Construction;
                 }
 
                 break;
             case GameState.Construction:
-                Debug.Log("CONSTRUCTION");
+                countDownToStartTimer = constCountDownToStartTimer;
                 break;
         }
         Debug.Log(gameState);
@@ -69,5 +69,10 @@ public class GameStateManager : MonoBehaviour
     public float GetCountdownToStartTimer()
     {
         return countDownToStartTimer;
+    }
+
+    public GameState GetCurrentGameState()
+    {
+        return gameState;
     }
 }

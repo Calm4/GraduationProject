@@ -27,7 +27,6 @@ namespace App.Scripts.GameResources
             {
                 if (resourcePair.Value.resourceConfig is FinanceResourceConfig)
                 {
-                    Debug.Log(resourcePair.Key + " is not material");
                     continue;
                 }
 

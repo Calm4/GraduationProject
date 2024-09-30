@@ -1,23 +1,40 @@
 using System;
 using App.Scripts;
+using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class PhaseChangerUIPanel : MonoBehaviour
 {
+    [Title("Managers")]
     [SerializeField] private GameStateManager gameStateManager;
-    [SerializeField] private TMP_Text countdownTextField;
-    [SerializeField] private Sprite defenseImage;
-    [SerializeField] private Sprite constructionImage;
+    
+    [Title("Change Button Components")]
+    [SerializeField] private Button phaseChangerButton;
     [SerializeField] private Image phaseChangerImage;
-    [SerializeField] private RectTransform countdownPanel;
+    [SerializeField] private TMP_Text phaseChangerButtonTextField;
+    [SerializeField] private Sprite defenseImageVariant;
+    [SerializeField] private Sprite constructionImageVariant;
 
+    [Title("Countdown Components")]
+    [SerializeField] private RectTransform countdownPanel;
+    [SerializeField] private TMP_Text countdownTextField;
+
+    private readonly string constructionPhaseText = "Construction";
+    private readonly string defensePhaseText = "Defense";
+    
     private bool isPressed;
     private GameState _gameState;
     public event Action<GameState> OnPhaseChangerButtonClick;
 
     private float timer;
+
+    private void Awake()
+    {
+        gameStateManager.OnDefenseStateEnd += StartConstructionPhase;
+    }
 
     private void Start()
     {
@@ -26,33 +43,62 @@ public class PhaseChangerUIPanel : MonoBehaviour
 
     private void Update()
     {
+        SetCurrentGamePhase();
+    }
+
+    private void SetCurrentGamePhase()
+    {
         timer = gameStateManager.GetCountdownToStartTimer();
         if (timer <= 0)
         {
             countdownTextField.text = "The Defense Begins";
+            StartDefensePhase();
         }
-        else
-        {
-            countdownTextField.text = Mathf.Ceil(timer).ToString();
-        }
+
+        /*if (gameStateManager.GetCurrentGameState() == GameState.WaitingToStartWave)
+            return;
+
+        Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");*/
+        countdownTextField.text = Mathf.Ceil(timer).ToString();
+        //StartConstructionPhase();
+    }
+
+    private void StartDefensePhase()
+    {
+        phaseChangerButton.interactable = false;
+        HideCountdown();
+        SetGamePhasePanelElements(defenseImageVariant, defensePhaseText);
+    }
+
+    private void StartConstructionPhase()
+    {
+        phaseChangerButton.interactable = true;
+        isPressed = !isPressed;
+        SetGamePhasePanelElements(constructionImageVariant, constructionPhaseText);
     }
 
     public void PhaseButtonClick()
     {
+        Debug.Log("CLICK!!!");
         isPressed = !isPressed;
         if (isPressed)
         {
             ShowCountdown();
-            phaseChangerImage.sprite = defenseImage;
-            countdownTextField.text = "Defense";
+            SetGamePhasePanelElements(defenseImageVariant, defensePhaseText);
             OnPhaseChangerButtonClick?.Invoke(GameState.CountDownToStart);
         }
         else
         {
-            phaseChangerImage.sprite = constructionImage;
-            countdownTextField.text = "Construction";
-            OnPhaseChangerButtonClick?.Invoke(GameState.CountDownToStart);
+            HideCountdown();
+            SetGamePhasePanelElements(constructionImageVariant, constructionPhaseText);
+            OnPhaseChangerButtonClick?.Invoke(GameState.Construction);
         }
+    }
+
+    private void SetGamePhasePanelElements(Sprite phaseSprite, string phaseName)
+    {
+        phaseChangerImage.sprite = phaseSprite;
+        phaseChangerButtonTextField.text = phaseName;
     }
 
     private void ShowCountdown()

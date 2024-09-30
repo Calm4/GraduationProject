@@ -33,8 +33,8 @@ namespace App.Scripts.TurnsBasedSystem
             /*var currentPhaseIndex = Array.IndexOf(_phases, GamePhase);
             currentPhaseIndex = (currentPhaseIndex + 1) % _phases.Length;
         
-            GamePhase = _phases[currentPhaseIndex];*/
-            Debug.Log("Current Game Phase: " + gameState);
+            GamePhase = _phases[currentPhaseIndex];*//*
+            Debug.Log("Current Game Phase: " + gameState);*/
         }
     }
 }

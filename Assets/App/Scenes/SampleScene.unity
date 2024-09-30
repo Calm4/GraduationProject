@@ -3858,11 +3858,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameStateManager: {fileID: 1769144307}
-  countdownTextField: {fileID: 642482773}
-  defenseImage: {fileID: 21300000, guid: 1507ca37cec872a4baa2d18dc8a2a4de, type: 3}
-  constructionImage: {fileID: 21300000, guid: 0e7372b1d1039704ebb7001e7464df8f, type: 3}
+  phaseChangerButton: {fileID: 1962156407}
   phaseChangerImage: {fileID: 721886071}
+  phaseChangerButtonTextField: {fileID: 1047020069}
+  defenseImageVariant: {fileID: 21300000, guid: 1507ca37cec872a4baa2d18dc8a2a4de, type: 3}
+  constructionImageVariant: {fileID: 21300000, guid: 0e7372b1d1039704ebb7001e7464df8f, type: 3}
   countdownPanel: {fileID: 1660690558}
+  countdownTextField: {fileID: 642482773}
 --- !u!1001 &1016619759
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4014,12 +4016,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 29.45
-  m_fontSizeBase: 36
+  m_fontSize: 22
+  m_fontSizeBase: 22
   m_fontWeight: 400
-  m_enableAutoSizing: 1
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 22
+  m_fontSizeMax: 22
   m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -7054,8 +7056,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _phaseChangerUIPanel: {fileID: 1008358640}
   waitingToStartTimer: 1
-  countDownToStartTimer: 3
-  gamePlayingTimer: 15
+  constCountDownToStartTimer: 3
+  gamePlayingTimer: 5
 --- !u!4 &1769144308
 Transform:
   m_ObjectHideFlags: 0
@@ -7556,7 +7558,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.4037736, g: 0.4037736, b: 0.4037736, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.7132075, g: 0.7132075, b: 0.7132075, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:

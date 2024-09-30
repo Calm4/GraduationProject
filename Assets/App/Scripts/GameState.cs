@@ -2,7 +2,6 @@
 {
     public enum GameState
     {
-        WaitingToStartWave,
         CountDownToStart,
         Defense,
         Construction
