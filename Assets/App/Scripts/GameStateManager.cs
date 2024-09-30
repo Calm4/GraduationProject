@@ -51,6 +51,7 @@ public class GameStateManager : MonoBehaviour
                 break;
             case GameState.Construction:
                 countDownToStartTimer = constCountDownToStartTimer;
+                gamePlayingTimer = 5f;
                 break;
         }
         Debug.Log(gameState);
