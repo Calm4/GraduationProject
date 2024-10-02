@@ -11,8 +11,9 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] private float constCountDownToStartTimer;
     private float countDownToStartTimer;
     [SerializeField] private float gamePlayingTimer;
-
-    public event Action OnDefenseStateEnd;
+    
+    public event Action<GameState> OnGameStateChanges;
+    
     
     private void Awake()
     {
@@ -35,6 +36,7 @@ public class GameStateManager : MonoBehaviour
                 if (countDownToStartTimer < 0f)
                 {
                     gameState = GameState.Defense;
+                    OnGameStateChanges?.Invoke(gameState);
                 }
 
                 break;
@@ -44,8 +46,8 @@ public class GameStateManager : MonoBehaviour
                 {
                     countDownToStartTimer = constCountDownToStartTimer;
                     Debug.Log("HUYAAAA");
-                    OnDefenseStateEnd?.Invoke();
                     gameState = GameState.Construction;
+                    OnGameStateChanges?.Invoke(gameState);
                 }
 
                 break;
