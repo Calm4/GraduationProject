@@ -28,14 +28,8 @@ namespace App.Scripts.Buildings.UI
         {
             GenerateButtons();
 
-            turnsBasedManager.OnGamePhaseChange += GameChanges;
         }
 
-        private void GameChanges(GamePhase gamePhase)
-        {
-            _isActive = !_isActive;
-            gameObject.SetActive(_isActive);
-        }
 
         private void GenerateButtons()
         {

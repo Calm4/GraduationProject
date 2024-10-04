@@ -22,6 +22,7 @@ namespace App.Scripts.Placement
             var buildingPosition = new Vector3(gridPosition.x - gridOffset.x, 0, gridPosition.z - gridOffset.z);
             
             Building jsonBuilding = Object.Instantiate(building, buildingPosition, Quaternion.identity);
+            //???
             jsonBuilding.transform.SetParent(parentTransform);
             
             _gridData.AddObjectAt(jsonBuilding, gridPosition);

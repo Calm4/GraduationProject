@@ -1,6 +1,6 @@
 ﻿namespace App.Scripts
 {
-    public enum GameState
+    public enum GamePhase
     {
         CountDownToStart,
         Defense,

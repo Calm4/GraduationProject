@@ -11,12 +11,6 @@ namespace App.Scripts.TurnsBasedSystem.Waves
 
         private void Awake()
         {
-            turnsBasedManager.OnGamePhaseChange += TurnsBasedManagerOnGamePhaseChange;
-        }
-
-        private void TurnsBasedManagerOnGamePhaseChange(GamePhase gamePhase)
-        {
-        
         }
 
         private void StartWave()

@@ -10,25 +10,17 @@ namespace App.Scripts.TurnsBasedSystem
         [Title("Managers")] 
         [SerializeField] private WavesManager wavesManager;
         
-        
-        [field: SerializeField] public GamePhase GamePhase { get; private set; }
+   
         private GamePhase[] _phases;
 
         [SerializeField] private PhaseChangerUIPanel phaseChangerUIPanel;
-
-        public event Action<GamePhase> OnGamePhaseChange;
-
-        private void Awake()
-        {
-            phaseChangerUIPanel.OnPhaseChangerButtonClick += StartNextPhase;
-        }
 
         private void Start()
         {
             _phases =(GamePhase[])Enum.GetValues(typeof(GamePhase));
         }
     
-        private void StartNextPhase(GameState gameState)
+        private void StartNextPhase(GamePhase gamePhase)
         {
             /*var currentPhaseIndex = Array.IndexOf(_phases, GamePhase);
             currentPhaseIndex = (currentPhaseIndex + 1) % _phases.Length;

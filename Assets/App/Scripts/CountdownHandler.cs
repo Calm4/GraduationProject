@@ -6,18 +6,18 @@ public class CountdownHandler
 {
     private RectTransform countdownPanel;
     private TMP_Text countdownTextField;
-    private GameStateManager gameStateManager;
+    private GamePhaseManager _gamePhaseManager;
     private float timer;
     private float previousTimerValue;
     private bool isCountingDown;
     private Tween countdownTween;
     private Color defaultTextColor;
 
-    public CountdownHandler(RectTransform panel, TMP_Text textField, GameStateManager manager)
+    public CountdownHandler(RectTransform panel, TMP_Text textField, GamePhaseManager manager)
     {
         countdownPanel = panel;
         countdownTextField = textField;
-        gameStateManager = manager;
+        _gamePhaseManager = manager;
         defaultTextColor = countdownTextField.color;
         ResetCountdownState();
     }
@@ -57,7 +57,7 @@ public class CountdownHandler
     {
         if (!isCountingDown) return;
 
-        timer = gameStateManager.GetCountdownToStartTimer();
+        timer = _gamePhaseManager.GetCountdownToStartTimer();
         if (timer <= 0) return;
 
         countdownTextField.text = Mathf.Ceil(timer).ToString();

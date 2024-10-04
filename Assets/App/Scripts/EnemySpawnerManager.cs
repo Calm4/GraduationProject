@@ -1,15 +1,31 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using App.Scripts;
 using App.Scripts.JsonClasses.Path;
 using UnityEngine;
 
 public class EnemySpawnerManager : MonoBehaviour
 {
+    [SerializeField] private GamePhaseManager gamePhaseManager;
     [SerializeField] private GameObject enemyPrefab; 
     [SerializeField] private  float spawnInterval = 2f; 
     [SerializeField] private  Transform spawnerPoint; 
     [field: SerializeField] public  List<Vector2> Path { get; set; }
-    
+
+    private void Awake()
+    {
+        gamePhaseManager.OnGameStateChanges += GamePhase_OnGamePhaseStateChange;
+    }
+
+    private void GamePhase_OnGamePhaseStateChange(GamePhase gamePhase)
+    {
+        if (gamePhase != GamePhase.Defense)
+            return;
+
+        StartCoroutine(SpawnEnemies());
+    }
+
     private void Start()
     {
         Debug.Log("path is " + Path.Count);

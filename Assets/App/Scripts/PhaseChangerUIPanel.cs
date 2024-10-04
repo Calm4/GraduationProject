@@ -2,11 +2,12 @@ using System;
 using App.Scripts;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class PhaseChangerUIPanel : MonoBehaviour
 {
-    [SerializeField] private GameStateManager gameStateManager;
+    [SerializeField] private GamePhaseManager gamePhaseManager;
     [SerializeField] private Button phaseChangerButton;
     [SerializeField] private Image phaseChangerImage;
     [SerializeField] private TMP_Text phaseChangerButtonTextField;
@@ -19,34 +20,33 @@ public class PhaseChangerUIPanel : MonoBehaviour
     private readonly string defensePhaseText = "Defense";
 
     private bool isConstructionPhase = true;
-    private GameState _gameState;
-    public event Action<GameState> OnPhaseChangerButtonClick;
+    private GamePhase _gamePhase;
 
     private CountdownHandler countdownHandler;
     private PhaseStateHandler phaseStateHandler;
 
     private void Awake()
     {
-        gameStateManager.OnGameStateChanges += GetCurrentGameState;
-        countdownHandler = new CountdownHandler(countdownPanel, countdownTextField, gameStateManager);
+        gamePhaseManager.OnGameStateChanges += GetCurrentGamePhase;
+        countdownHandler = new CountdownHandler(countdownPanel, countdownTextField, gamePhaseManager);
         phaseStateHandler = new PhaseStateHandler(phaseChangerButton, phaseChangerImage, phaseChangerButtonTextField);
     }
 
-    private void GetCurrentGameState(GameState gameState)
+    private void GetCurrentGamePhase(GamePhase gamePhase)
     {
-        _gameState = gameState;
+        _gamePhase = gamePhase;
         StatesController();
     }
 
     private void StatesController()
     {
-        if (_gameState == GameState.Construction)
+        if (_gamePhase == GamePhase.Construction)
         {
             isConstructionPhase = true;
             phaseStateHandler.StartNewPhase(constructionImageVariant, constructionPhaseText, isConstructionPhase);
         }
 
-        if (_gameState == GameState.Defense)
+        if (_gamePhase == GamePhase.Defense)
         {
             isConstructionPhase = false;
             phaseStateHandler.StartNewPhase(defenseImageVariant, defensePhaseText, isConstructionPhase);
@@ -71,14 +71,14 @@ public class PhaseChangerUIPanel : MonoBehaviour
             countdownHandler.StopCountdown();
             countdownHandler.ResetCountdownState();
             phaseStateHandler.SetGamePhasePanelElements(constructionImageVariant, constructionPhaseText);
-            OnPhaseChangerButtonClick?.Invoke(GameState.Construction);
+            gamePhaseManager.SetCurrentGameState(GamePhase.Construction);
         }
         else
         {
             countdownHandler.ShowCountdown();
             countdownHandler.StartCountdown();
             phaseStateHandler.SetGamePhasePanelElements(defenseImageVariant, defensePhaseText);
-            OnPhaseChangerButtonClick?.Invoke(GameState.CountDownToStart);
+            gamePhaseManager.SetCurrentGameState(GamePhase.CountDownToStart);
         }
     }
 }
