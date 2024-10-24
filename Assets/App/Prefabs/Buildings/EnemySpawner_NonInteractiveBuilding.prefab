@@ -97,7 +97,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ea28e4bca88024c9f6529504ad8dae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gamePhaseManager: {fileID: 6116954941725191653, guid: bef1e35a2fcf3f54ca4811bf7f8538a2, type: 3}
   enemyPrefab: {fileID: 4582315957677753624, guid: 0f5734a75d0579c4baa376a520764183, type: 3}
   spawnInterval: 2
   spawnerPoint: {fileID: 5278972234977980888}

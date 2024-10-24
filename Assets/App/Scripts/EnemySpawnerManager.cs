@@ -7,15 +7,14 @@ using UnityEngine;
 
 public class EnemySpawnerManager : MonoBehaviour
 {
-    [SerializeField] private GamePhaseManager gamePhaseManager;
-    [SerializeField] private GameObject enemyPrefab; 
-    [SerializeField] private  float spawnInterval = 2f; 
-    [SerializeField] private  Transform spawnerPoint; 
-    [field: SerializeField] public  List<Vector2> Path { get; set; }
+    [SerializeField] private GameObject enemyPrefab;
+    [SerializeField] private float spawnInterval = 2f;
+    [SerializeField] private Transform spawnerPoint;
+    [field: SerializeField] public List<Vector2> Path { get; set; }
 
     private void Awake()
     {
-        gamePhaseManager.OnGameStateChanges += GamePhase_OnGamePhaseStateChange;
+        
     }
 
     private void GamePhase_OnGamePhaseStateChange(GamePhase gamePhase)
@@ -28,7 +27,7 @@ public class EnemySpawnerManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("path is " + Path.Count);
+        Debug.Log("Path length: " + Path.Count);
     }
 
     private void Update()
@@ -39,7 +38,6 @@ public class EnemySpawnerManager : MonoBehaviour
         }
     }
 
-    // Корутин для спавна врагов
     private IEnumerator SpawnEnemies()
     {
         while (true)
@@ -49,7 +47,6 @@ public class EnemySpawnerManager : MonoBehaviour
         }
     }
 
-    // Метод для спавна врага
     private void SpawnEnemy()
     {
         GameObject enemy = Instantiate(enemyPrefab, spawnerPoint.position, Quaternion.identity);
@@ -59,7 +56,7 @@ public class EnemySpawnerManager : MonoBehaviour
             enemyMovement.SetPath(Path);
         }
     }
-    
+
     private void OnDrawGizmos()
     {
         if (Path == null || Path.Count == 0)

@@ -10,6 +10,7 @@ namespace App.Scripts
         {
             get
             {
+                Debug.Log("ETO PIPEC!");
                 if (_instance != null)
                 {
                     return _instance;
@@ -40,11 +41,17 @@ namespace App.Scripts
             }
         }
 
+        public void Test()
+        {
+            Debug.Log("LOOK AT ME");
+        }
+
         private void Initialize()
         {
+            Debug.Log("123!!!");
             gamePhaseManager = FindObjectOfType<GamePhaseManager>();
         }
         
-        [HideInInspector] public GamePhaseManager gamePhaseManager;
+         public GamePhaseManager gamePhaseManager;
     }
 }

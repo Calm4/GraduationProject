@@ -42,7 +42,6 @@ namespace App.Scripts.Placement
             gridManager.GridData.PrintGridState();
         }
 
-
         private void Start()
         {
             StopPlacement();
