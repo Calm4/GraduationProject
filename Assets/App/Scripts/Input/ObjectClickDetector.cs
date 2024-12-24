@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace App.Scripts
+namespace App.Scripts.Input
 {
     public class ObjectClickDetector : MonoBehaviour
     {

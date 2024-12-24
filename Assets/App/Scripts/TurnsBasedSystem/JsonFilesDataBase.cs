@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace App.Scripts
+namespace App.Scripts.TurnsBasedSystem
 {
     [CreateAssetMenu(fileName = "FilesDataBaseConfig", menuName = "Configs/DataBases/FilesDataBaseConfig", order = 0)]
     public class JsonFilesDataBase : ScriptableObject

@@ -1,4 +1,4 @@
-﻿namespace App.Scripts
+﻿namespace App.Scripts.TurnsBasedSystem
 {
     public enum GamePhase
     {

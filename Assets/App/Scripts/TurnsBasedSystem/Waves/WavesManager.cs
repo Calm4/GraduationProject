@@ -8,20 +8,5 @@ namespace App.Scripts.TurnsBasedSystem.Waves
         [Title("Managers")] 
         [SerializeField] private TurnsBasedManager turnsBasedManager;
         [SerializeField] private int currentWave;
-
-        private void Awake()
-        {
-        }
-
-        private void StartWave()
-        {
-            currentWave += 1;
-            Debug.Log("Wave " + currentWave);
-        }
-
-        private void EndWave()
-        {
-        
-        }
     }
 }

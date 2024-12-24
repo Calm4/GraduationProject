@@ -3,6 +3,7 @@ using System.Linq;
 using App.Scripts.Buildings;
 using App.Scripts.Grid;
 using App.Scripts.JsonClasses.Data;
+using App.Scripts.TurnsBasedSystem;
 using UnityEngine;
 
 namespace App.Scripts.JsonClasses.Path
