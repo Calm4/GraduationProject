@@ -15,26 +15,21 @@ namespace App.Scripts.Buildings.UI
 
         void Start()
         {
-            // Задаем начальные цвета для кнопок
             ResetButtonColors();
 
-            // Добавляем обработчики событий нажатия на кнопки
             buildModeButton.onClick.AddListener(() => OnButtonClick(buildModeButton, destroyModeButton));
             destroyModeButton.onClick.AddListener(() => OnButtonClick(destroyModeButton, buildModeButton));
         }
 
         private void OnButtonClick(Button clickedButton, Button otherButton)
         {
-            // Проверяем, нажата ли уже выбранная кнопка
             if (_currentlySelectedButton == clickedButton)
             {
-                // Сбрасываем выбор, если нажали на ту же кнопку
                 _currentlySelectedButton = null;
                 ResetButtonColors();
             }
             else
             {
-                // Устанавливаем новую выбранную кнопку
                 _currentlySelectedButton = clickedButton;
                 SetButtonColors(clickedButton, otherButton);
             }
@@ -42,16 +37,14 @@ namespace App.Scripts.Buildings.UI
 
         private void SetButtonColors(Button selectedButton, Button unselectedButton)
         {
-            // Настройка всех состояний для выбранной кнопки
             ColorBlock selectedColorBlock = selectedButton.colors;
             selectedColorBlock.normalColor = selectedButtonColor;
-            selectedColorBlock.highlightedColor = selectedButtonColor * 1.2f; // немного светлее
-            selectedColorBlock.pressedColor = selectedButtonColor * 0.8f; // немного темнее
+            selectedColorBlock.highlightedColor = selectedButtonColor * 1.2f; 
+            selectedColorBlock.pressedColor = selectedButtonColor * 0.8f; 
             selectedColorBlock.selectedColor = selectedButtonColor;
             selectedColorBlock.disabledColor = selectedButtonColor;
             selectedButton.colors = selectedColorBlock;
 
-            // Настройка всех состояний для невыбранной кнопки
             ColorBlock unselectedColorBlock = unselectedButton.colors;
             unselectedColorBlock.normalColor = unselectedButtonColor;
             unselectedColorBlock.highlightedColor = unselectedButtonColor * 1.2f;
@@ -63,7 +56,6 @@ namespace App.Scripts.Buildings.UI
 
         private void ResetButtonColors()
         {
-            // Сброс всех состояний для обеих кнопок в невыбранное состояние
             ColorBlock buildButtonColors = buildModeButton.colors;
             buildButtonColors.normalColor = unselectedButtonColor;
             buildButtonColors.highlightedColor = unselectedButtonColor * 1.2f;

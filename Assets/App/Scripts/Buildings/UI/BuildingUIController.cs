@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using App.Scripts.Buildings.BuildingsConfigs;
 using App.Scripts.Placement;
 using App.Scripts.TurnsBasedSystem;
 using Sirenix.OdinInspector;
@@ -21,8 +20,6 @@ namespace App.Scripts.Buildings.UI
         private BuildingsDataBaseBySectionsSO buildingsDataBaseBySections;
 
         [SerializeField] private List<Transform> buttonsTypeContainers;
-
-        private bool _isActive = true;
 
         private void Start()
         {
