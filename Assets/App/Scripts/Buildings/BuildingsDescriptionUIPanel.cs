@@ -57,8 +57,6 @@ namespace App.Scripts.Buildings
             DisableInitializedAllPanels();
         }
 
-
-
         private void InitializeHeaderPanel()
         {
             buildingIcon.sprite = _buildingConfig.sprite;

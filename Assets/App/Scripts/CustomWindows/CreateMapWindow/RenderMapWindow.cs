@@ -6,7 +6,7 @@ using Sirenix.Utilities.Editor;
 using UnityEditor;
 using UnityEngine;
 
-namespace App.Scripts.Custom_Windows
+namespace App.Scripts.CustomWindows.CreateMapWindow
 {
     public class RenderMapWindow
     {

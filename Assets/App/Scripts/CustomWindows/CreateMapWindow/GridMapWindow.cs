@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using App.Scripts.Buildings;
-using App.Scripts.Buildings.BuildingsConfigs;
 using App.Scripts.Grid;
 using UnityEngine;
 
-namespace App.Scripts.Custom_Windows
+namespace App.Scripts.CustomWindows.CreateMapWindow
 {
     public class GridMapWindow
     {

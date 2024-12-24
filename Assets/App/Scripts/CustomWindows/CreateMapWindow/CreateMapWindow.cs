@@ -1,13 +1,11 @@
-using App.Scripts.Buildings;
 using App.Scripts.Buildings.UI;
 using App.Scripts.Grid;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace App.Scripts.Custom_Windows
+namespace App.Scripts.CustomWindows.CreateMapWindow
 {
     public class CreateMapWindow : OdinEditorWindow
     {
