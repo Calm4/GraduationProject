@@ -7,17 +7,17 @@ using UnityEngine.UI;
 
 public class LevelProgressUIBar : MonoBehaviour
 {
+    [SerializeField] private ExperienceManager experienceManager;
+    [Space(10)]
     [SerializeField] private Image progressBar;
     [SerializeField] private TMP_Text levelNumberField;
-    [SerializeField] private LevelUpProgressDataBase levelUpProgressData;
-    [SerializeField] private ExperienceManager experienceManager;
     
     
     private Dictionary<int,int> _levelProgressDictionary;
 
     private void Awake()
     {
-        _levelProgressDictionary = levelUpProgressData.LevelProgressData;
+        _levelProgressDictionary = experienceManager.LevelUpByExperienceDataBase.LevelProgressData;
         experienceManager.OnExperienceUpdate += UpdateUIProgressBar;
         experienceManager.OnLevelUp += UpdateUILevelNumber;
 

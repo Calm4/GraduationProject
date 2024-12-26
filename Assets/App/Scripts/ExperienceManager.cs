@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace App.Scripts
 {
     public class ExperienceManager : MonoBehaviour
     {
         [SerializeField] private int currentExperience;
-        [SerializeField] private LevelUpProgressDataBase experienceData;
+        public LevelUpProgressDataBase LevelUpByExperienceDataBase { get; private set;}
 
         private Dictionary<int, int> _experienceDictionary;
         private int _currentLevel = 1;
@@ -18,7 +17,7 @@ namespace App.Scripts
         
         private void Awake()
         {
-            _experienceDictionary = experienceData.LevelProgressData;
+            _experienceDictionary = LevelUpByExperienceDataBase.LevelProgressData;
         }
 
         public void AddExperience(int experienceToAdd)
