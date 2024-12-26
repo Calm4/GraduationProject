@@ -2,7 +2,7 @@
 
 namespace App.Scripts.Buildings.BuildingsConfigs
 {
-    [CreateAssetMenu(fileName = "_DefensiveBuilding", menuName = "Configs/Buildings/DefensiveBuilding", order = 0)]
+    [CreateAssetMenu(fileName = "_DefensiveBuilding", menuName = "Configs/Gameplay Objects/Buildings/DefensiveBuilding", order = 0)]
     public class DefensiveBuildingConfig : BasicBuildingConfig
     {
         private void OnEnable()

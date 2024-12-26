@@ -49,7 +49,7 @@ namespace App.Scripts.Enemies
         private void MoveToNextPoint()
         {
             Vector2 targetPosition = path[currentTargetIndex];
-            Debug.Log($"Moving to next point: {targetPosition}");
+            //Debug.Log($"Moving to next point: {targetPosition}");
         }
     }
 }

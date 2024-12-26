@@ -5,7 +5,7 @@ using Sirenix.OdinInspector;
 
 namespace App.Scripts.Buildings.BuildingsConfigs
 {
-    [CreateAssetMenu(fileName = "BasicBuildingConfig", menuName = "Configs/Buildings/BasicBuildingConfig", order = 0)]
+    [CreateAssetMenu(fileName = "BasicBuildingConfig", menuName = "Configs/Gameplay Objects/Buildings/BasicBuildingConfig", order = 0)]
     public class BasicBuildingConfig : SerializedScriptableObject
     {
         [Title("Building Config")]
