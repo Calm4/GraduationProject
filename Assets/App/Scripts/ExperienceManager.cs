@@ -1,24 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace App.Scripts
 {
     public class ExperienceManager : MonoBehaviour
     {
         [SerializeField] private int currentExperience;
-        public LevelUpProgressDataBase LevelUpByExperienceDataBase { get; private set;}
+        [SerializeField] private LevelUpProgressDataBase levelUpByExperienceDataBase;
 
-        private Dictionary<int, int> _experienceDictionary;
         private int _currentLevel = 1;
 
         public event Action<int> OnExperienceUpdate;
         public event Action<int> OnLevelUp;
-        
-        private void Awake()
-        {
-            _experienceDictionary = LevelUpByExperienceDataBase.LevelProgressData;
-        }
 
         public void AddExperience(int experienceToAdd)
         {
@@ -45,7 +40,8 @@ namespace App.Scripts
         
         private void CheckExperienceToLevelUp()
         {
-            if (!_experienceDictionary.TryGetValue(_currentLevel, out int requiredExperience)) return;
+            if (!levelUpByExperienceDataBase.LevelProgressData
+                    .TryGetValue(_currentLevel, out int requiredExperience)) return;
             
             if (currentExperience >= requiredExperience)
             {
@@ -56,6 +52,11 @@ namespace App.Scripts
         public int GetCurrentLevel()
         {
             return _currentLevel;
+        }
+
+        public Dictionary<int, int> GetExperienceDictionary()
+        {
+            return levelUpByExperienceDataBase.LevelProgressData;
         }
     }
 }

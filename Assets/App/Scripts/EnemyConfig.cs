@@ -8,5 +8,6 @@ namespace App.Scripts
         public int Health;
         public int Speed;
         public int ExperienceForKilling;
+        public int Damage;
     }
 }

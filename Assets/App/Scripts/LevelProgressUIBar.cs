@@ -12,22 +12,17 @@ public class LevelProgressUIBar : MonoBehaviour
     [SerializeField] private Image progressBar;
     [SerializeField] private TMP_Text levelNumberField;
     
-    
-    private Dictionary<int,int> _levelProgressDictionary;
-
     private void Awake()
     {
-        _levelProgressDictionary = experienceManager.LevelUpByExperienceDataBase.LevelProgressData;
         experienceManager.OnExperienceUpdate += UpdateUIProgressBar;
         experienceManager.OnLevelUp += UpdateUILevelNumber;
 
         progressBar.fillAmount = 0;
     }
-
     
     private void UpdateUIProgressBar(int currentLevelProgressValue)
     {
-        if (!_levelProgressDictionary.
+        if (!experienceManager.GetExperienceDictionary().
                 TryGetValue(experienceManager.GetCurrentLevel(),out int requiredExperience)) return;
         
         progressBar.fillAmount = (float)currentLevelProgressValue / requiredExperience;

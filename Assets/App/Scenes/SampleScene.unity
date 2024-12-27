@@ -314,7 +314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentExperience: 0
-  experienceData: {fileID: 11400000, guid: 5227d1b25f36cd34c8fb2f3c66c412e7, type: 2}
+  levelUpByExperienceDataBase: {fileID: 11400000, guid: 5227d1b25f36cd34c8fb2f3c66c412e7, type: 2}
 --- !u!1 &118223970
 GameObject:
   m_ObjectHideFlags: 0
@@ -1840,7 +1840,7 @@ GameObject:
   - component: {fileID: 480245615}
   - component: {fileID: 480245614}
   m_Layer: 5
-  m_Name: ResoursesUI
+  m_Name: TopUIPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2294,7 +2294,7 @@ GameObject:
   - component: {fileID: 564995037}
   - component: {fileID: 564995036}
   m_Layer: 5
-  m_Name: 2TypesRecources
+  m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3401,7 +3401,7 @@ GameObject:
   - component: {fileID: 894908378}
   - component: {fileID: 894908379}
   m_Layer: 5
-  m_Name: ResourcesPanel
+  m_Name: ResourcesAndExperiencePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5711,10 +5711,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9dae1ee6000623408674ee940464a38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  experienceManager: {fileID: 106579694}
   progressBar: {fileID: 1199401220}
   levelNumberField: {fileID: 1623109259}
-  levelUpProgressData: {fileID: 11400000, guid: 5227d1b25f36cd34c8fb2f3c66c412e7, type: 2}
-  experienceManager: {fileID: 106579694}
 --- !u!1 &1490752739
 GameObject:
   m_ObjectHideFlags: 0
