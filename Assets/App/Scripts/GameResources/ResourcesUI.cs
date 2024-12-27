@@ -3,14 +3,16 @@ using App.Scripts.GameResources.Money;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace App.Scripts.GameResources
 {
     public class ResourcesUI : MonoBehaviour
     {
+        [Inject] private ResourcesManager _resourcesManager;
+        
         [SerializeField] private ResourcesDataBase resourcesDataBase;
         [SerializeField] private Transform resourceUIContainer;
-        [SerializeField] private ResourcesManager resourcesManager;
         [SerializeField] private GameObject resourceUIPrefab;
 
         private readonly Dictionary<ResourceType, GameObject> _resourceUIElements = new();
@@ -18,12 +20,12 @@ namespace App.Scripts.GameResources
         private void Start()
         {
             InitializeResources();
-            resourcesManager.OnUpdateMaterialResources += UpdateResourceAmounts;
+            _resourcesManager.OnUpdateMaterialResources += UpdateResourceAmounts;
         }
         
         private void InitializeResources()
         {
-            foreach (var resourcePair in resourcesManager.GetAllResources())
+            foreach (var resourcePair in _resourcesManager.GetAllResources())
             {
                 if (resourcePair.Value.resourceConfig is FinanceResourceConfig)
                 {
@@ -50,7 +52,7 @@ namespace App.Scripts.GameResources
         private void UpdateResourceAmounts()
         {
             Debug.Log("MATERIALS UPDATED");
-            foreach (var resourcePair in resourcesManager.GetAllResources())
+            foreach (var resourcePair in _resourcesManager.GetAllResources())
             {
                 if (_resourceUIElements.ContainsKey(resourcePair.Key))
                 {

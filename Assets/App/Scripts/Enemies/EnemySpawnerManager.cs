@@ -26,7 +26,13 @@ namespace App.Scripts.Enemies
 
         private void Start()
         {
+            _gamePhaseManager.OnGameStateChanges += ABC;
             Debug.Log("Path length: " + Path.Count);
+        }
+
+        private void ABC(GamePhase obj)
+        {
+            Debug.Log("1`2312323``");
         }
 
         private void Update()

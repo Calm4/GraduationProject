@@ -1,6 +1,7 @@
 using System.Resources;
 using App.Scripts;
 using App.Scripts.Buildings;
+using App.Scripts.Enemies;
 using App.Scripts.GameResources;
 using App.Scripts.Grid;
 using App.Scripts.Input;
@@ -31,6 +32,7 @@ public class GameInstaller : MonoInstaller
     public SoundFeedbackManager soundFeedbackManager;
     public ParticleManager particleManager;
     public InputManager inputManager;
+    public EnemySpawnerManager enemySpawnerManager;
     
     public override void InstallBindings()
     {
@@ -50,5 +52,6 @@ public class GameInstaller : MonoInstaller
         Container.Bind<SoundFeedbackManager>().FromInstance(soundFeedbackManager).AsSingle();
         Container.Bind<ParticleManager>().FromInstance(particleManager).AsSingle();
         Container.Bind<InputManager>().FromInstance(inputManager).AsSingle();
+        Container.Bind<EnemySpawnerManager>().FromInstance(enemySpawnerManager).AsSingle();
     }
 }

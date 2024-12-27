@@ -3,12 +3,13 @@ using App.Scripts.GameResources;
 using App.Scripts.GameResources.Money;
 using TMPro;
 using UnityEngine;
+using Zenject;
 
 namespace App.Scripts.Buildings.UI
 {
     public class PauseUIPanel : MonoBehaviour
     {
-        [SerializeField] private ResourcesManager resourceManager;
+        [Inject] private ResourcesManager resourceManager;
         [SerializeField] private TMP_Text moneyTextField;
 
         private void Awake()

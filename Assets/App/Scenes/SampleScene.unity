@@ -576,12 +576,12 @@ PrefabInstance:
       objectReference: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
     - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
       propertyPath: serializationData.PrefabModifications.Array.size
-      value: 39
+      value: 38
       objectReference: {fileID: 0}
     - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
       propertyPath: serializationData.PrefabModifications.Array.data[0]
       value: '"path":"_resources.{0es}","value":{"$id":0,"$type":"App.Scripts.GameResources.ResourceData,
-        Assembly-CSharp","resourceConfig":$eref:0,"currentAmount":0,"maxAmount":0,"isUnlockedNow":false}'
+        Assembly-CSharp","resourceConfig":$eref:0,"currentAmount":72000,"maxAmount":11111111,"isUnlockedNow":true}'
       objectReference: {fileID: 0}
     - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
       propertyPath: serializationData.PrefabModifications.Array.data[1]
@@ -614,152 +614,147 @@ PrefabInstance:
     - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
       propertyPath: serializationData.PrefabModifications.Array.data[7]
       value: '"path":"_resources.{1es}","value":{"$id":0,"$type":"App.Scripts.GameResources.ResourceData,
-        Assembly-CSharp","resourceConfig":$eref:2,"currentAmount":0,"maxAmount":0,"isUnlockedNow":false}'
+        Assembly-CSharp","resourceConfig":$eref:2,"currentAmount":0,"maxAmount":20,"isUnlockedNow":false}'
       objectReference: {fileID: 0}
     - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
       propertyPath: serializationData.PrefabModifications.Array.data[8]
-      value: '"path":"_resources.{1es}.isUnlockedNow","value":{"$id":0,"$type":"System.Boolean,
-        mscorlib",false}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[9]
       value: '"path":"_resources.{1es}.maxAmount","value":{"$id":0,"$type":"System.Int32,
         mscorlib",20}'
       objectReference: {fileID: 0}
     - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[10]
+      propertyPath: serializationData.PrefabModifications.Array.data[9]
       value: '"path":"_resources.{1es}.resourceConfig","value":$eref:2'
       objectReference: {fileID: 0}
     - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[11]
+      propertyPath: serializationData.PrefabModifications.Array.data[10]
       value: '"path":"_resources.{2es}","value":{"$id":0,"$type":"App.Scripts.GameResources.ResourceData,
-        Assembly-CSharp","resourceConfig":$eref:3,"currentAmount":0,"maxAmount":0,"isUnlockedNow":false}'
+        Assembly-CSharp","resourceConfig":$eref:3,"currentAmount":16,"maxAmount":20,"isUnlockedNow":true}'
       objectReference: {fileID: 0}
     - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[12]
+      propertyPath: serializationData.PrefabModifications.Array.data[11]
       value: '"path":"_resources.{2es}.currentAmount","value":{"$id":0,"$type":"System.Int32,
         mscorlib",16}'
       objectReference: {fileID: 0}
     - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[13]
+      propertyPath: serializationData.PrefabModifications.Array.data[12]
       value: '"path":"_resources.{2es}.isUnlockedNow","value":{"$id":0,"$type":"System.Boolean,
         mscorlib",true}'
       objectReference: {fileID: 0}
     - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[14]
+      propertyPath: serializationData.PrefabModifications.Array.data[13]
       value: '"path":"_resources.{2es}.maxAmount","value":{"$id":0,"$type":"System.Int32,
         mscorlib",20}'
       objectReference: {fileID: 0}
     - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[15]
+      propertyPath: serializationData.PrefabModifications.Array.data[14]
       value: '"path":"_resources.{2es}.resourceConfig","value":$eref:3'
       objectReference: {fileID: 0}
     - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[16]
+      propertyPath: serializationData.PrefabModifications.Array.data[15]
       value: '"path":"_resources.{3es}","value":{"$id":0,"$type":"App.Scripts.GameResources.ResourceData,
-        Assembly-CSharp","resourceConfig":$eref:4,"currentAmount":0,"maxAmount":0,"isUnlockedNow":false}'
+        Assembly-CSharp","resourceConfig":$eref:4,"currentAmount":12,"maxAmount":20,"isUnlockedNow":true}'
       objectReference: {fileID: 0}
     - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[17]
+      propertyPath: serializationData.PrefabModifications.Array.data[16]
       value: '"path":"_resources.{3es}.currentAmount","value":{"$id":0,"$type":"System.Int32,
         mscorlib",12}'
       objectReference: {fileID: 0}
     - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[18]
+      propertyPath: serializationData.PrefabModifications.Array.data[17]
       value: '"path":"_resources.{3es}.isUnlockedNow","value":{"$id":0,"$type":"System.Boolean,
         mscorlib",true}'
       objectReference: {fileID: 0}
     - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[19]
+      propertyPath: serializationData.PrefabModifications.Array.data[18]
       value: '"path":"_resources.{3es}.maxAmount","value":{"$id":0,"$type":"System.Int32,
         mscorlib",20}'
       objectReference: {fileID: 0}
     - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[20]
+      propertyPath: serializationData.PrefabModifications.Array.data[19]
       value: '"path":"_resources.{3es}.resourceConfig","value":$eref:4'
       objectReference: {fileID: 0}
     - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[21]
+      propertyPath: serializationData.PrefabModifications.Array.data[20]
       value: '"path":"_resources.{4es}","value":{"$id":0,"$type":"App.Scripts.GameResources.ResourceData,
         Assembly-CSharp","resourceConfig":$eref:5,"currentAmount":0,"maxAmount":0,"isUnlockedNow":false}'
       objectReference: {fileID: 0}
     - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[22]
+      propertyPath: serializationData.PrefabModifications.Array.data[21]
       value: '"path":"_resources.{4es}.resourceConfig","value":$eref:5'
       objectReference: {fileID: 0}
     - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[23]
+      propertyPath: serializationData.PrefabModifications.Array.data[22]
       value: '"path":"_resources.{5es}","value":{"$id":0,"$type":"App.Scripts.GameResources.ResourceData,
-        Assembly-CSharp","resourceConfig":$eref:6,"currentAmount":0,"maxAmount":0,"isUnlockedNow":false}'
+        Assembly-CSharp","resourceConfig":$eref:6,"currentAmount":15,"maxAmount":20,"isUnlockedNow":true}'
       objectReference: {fileID: 0}
     - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[24]
+      propertyPath: serializationData.PrefabModifications.Array.data[23]
       value: '"path":"_resources.{5es}.currentAmount","value":{"$id":0,"$type":"System.Int32,
         mscorlib",15}'
       objectReference: {fileID: 0}
     - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[25]
+      propertyPath: serializationData.PrefabModifications.Array.data[24]
       value: '"path":"_resources.{5es}.isUnlockedNow","value":{"$id":0,"$type":"System.Boolean,
         mscorlib",true}'
       objectReference: {fileID: 0}
     - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[26]
+      propertyPath: serializationData.PrefabModifications.Array.data[25]
       value: '"path":"_resources.{5es}.maxAmount","value":{"$id":0,"$type":"System.Int32,
         mscorlib",20}'
       objectReference: {fileID: 0}
     - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[27]
+      propertyPath: serializationData.PrefabModifications.Array.data[26]
       value: '"path":"_resources.{5es}.resourceConfig","value":$eref:6'
       objectReference: {fileID: 0}
     - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[28]
+      propertyPath: serializationData.PrefabModifications.Array.data[27]
       value: '"path":"_resources.{6es}","value":{"$id":0,"$type":"App.Scripts.GameResources.ResourceData,
         Assembly-CSharp","resourceConfig":$eref:7,"currentAmount":0,"maxAmount":0,"isUnlockedNow":false}'
       objectReference: {fileID: 0}
     - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[29]
+      propertyPath: serializationData.PrefabModifications.Array.data[28]
       value: '"path":"_resources.{6es}.resourceConfig","value":$eref:7'
       objectReference: {fileID: 0}
     - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[30]
+      propertyPath: serializationData.PrefabModifications.Array.data[29]
       value: '"path":"_resources.{7es}","value":{"$id":0,"$type":"App.Scripts.GameResources.ResourceData,
         Assembly-CSharp","resourceConfig":$eref:8,"currentAmount":0,"maxAmount":0,"isUnlockedNow":false}'
       objectReference: {fileID: 0}
     - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[31]
+      propertyPath: serializationData.PrefabModifications.Array.data[30]
       value: '"path":"_resources.{7es}.resourceConfig","value":$eref:8'
       objectReference: {fileID: 0}
     - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[32]
+      propertyPath: serializationData.PrefabModifications.Array.data[31]
       value: '"path":"_resources.{8es}","value":{"$id":0,"$type":"App.Scripts.GameResources.ResourceData,
         Assembly-CSharp","resourceConfig":$eref:9,"currentAmount":0,"maxAmount":0,"isUnlockedNow":false}'
       objectReference: {fileID: 0}
     - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[33]
+      propertyPath: serializationData.PrefabModifications.Array.data[32]
       value: '"path":"_resources.{8es}.resourceConfig","value":$eref:9'
       objectReference: {fileID: 0}
     - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[34]
+      propertyPath: serializationData.PrefabModifications.Array.data[33]
       value: '"path":"_resources.{9es}","value":{"$id":0,"$type":"App.Scripts.GameResources.ResourceData,
-        Assembly-CSharp","resourceConfig":$eref:10,"currentAmount":0,"maxAmount":0,"isUnlockedNow":false}'
+        Assembly-CSharp","resourceConfig":$eref:10,"currentAmount":15,"maxAmount":20,"isUnlockedNow":true}'
       objectReference: {fileID: 0}
     - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[35]
+      propertyPath: serializationData.PrefabModifications.Array.data[34]
       value: '"path":"_resources.{9es}.currentAmount","value":{"$id":0,"$type":"System.Int32,
         mscorlib",15}'
       objectReference: {fileID: 0}
     - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[36]
+      propertyPath: serializationData.PrefabModifications.Array.data[35]
       value: '"path":"_resources.{9es}.isUnlockedNow","value":{"$id":0,"$type":"System.Boolean,
         mscorlib",true}'
       objectReference: {fileID: 0}
     - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[37]
+      propertyPath: serializationData.PrefabModifications.Array.data[36]
       value: '"path":"_resources.{9es}.maxAmount","value":{"$id":0,"$type":"System.Int32,
         mscorlib",20}'
       objectReference: {fileID: 0}
     - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[38]
+      propertyPath: serializationData.PrefabModifications.Array.data[37]
       value: '"path":"_resources.{9es}.resourceConfig","value":$eref:10'
       objectReference: {fileID: 0}
     - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
@@ -3127,8 +3122,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonPrefab: {fileID: 4888507193843709564, guid: 6534d714a192af04f9275ea4b346e773, type: 3}
   buildingPrefab: {fileID: 6827337395158552025, guid: d9c65636e0495ff40b3163ed3af25112, type: 3}
-  placementManager: {fileID: 2113443925}
-  turnsBasedManager: {fileID: 1699399576}
   buildingsDataBaseBySections: {fileID: 11400000, guid: 74c59810f16beb547b3df15e9a82f909, type: 2}
   buttonsTypeContainers:
   - {fileID: 2114879726}
@@ -3562,7 +3555,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resourcesDataBase: {fileID: 11400000, guid: 27323eb4ac4544b40902b56568963da7, type: 2}
   resourceUIContainer: {fileID: 597903126}
-  resourcesManager: {fileID: 163407184}
   resourceUIPrefab: {fileID: 8732738247636088996, guid: 96ceb105e0bf1d84294dd351c7843b29, type: 3}
 --- !u!1 &941923804
 GameObject:
@@ -7170,7 +7162,6 @@ MonoBehaviour:
   soundFeedbackManager: {fileID: 72942689}
   particleManager: {fileID: 1339536310}
   inputManager: {fileID: 864965515}
-  enemyPrefab: {fileID: 4582315957677753624, guid: 0f5734a75d0579c4baa376a520764183, type: 3}
 --- !u!1 &1699399574
 GameObject:
   m_ObjectHideFlags: 0
@@ -10348,14 +10339,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feda9dac26658f24a87b80a36d8ec69e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gamePhaseManager: {fileID: 307709794329151338}
   phaseChangerButton: {fileID: 2059675458990909448}
   phaseChangerImage: {fileID: 7454625870119217820}
-  phaseChangerButtonTextField: {fileID: 7138566083526564771}
-  defenseImageVariant: {fileID: 21300000, guid: 1507ca37cec872a4baa2d18dc8a2a4de, type: 3}
-  constructionImageVariant: {fileID: 21300000, guid: 0e7372b1d1039704ebb7001e7464df8f, type: 3}
+  phaseChangerTextField: {fileID: 7138566083526564771}
   countdownPanel: {fileID: 2442812491006371200}
   countdownTextField: {fileID: 2837927222291070228}
+  defenseImageVariant: {fileID: 21300000, guid: 1507ca37cec872a4baa2d18dc8a2a4de, type: 3}
+  constructionImageVariant: {fileID: 21300000, guid: 0e7372b1d1039704ebb7001e7464df8f, type: 3}
 --- !u!1 &7776067903803827118
 GameObject:
   m_ObjectHideFlags: 0

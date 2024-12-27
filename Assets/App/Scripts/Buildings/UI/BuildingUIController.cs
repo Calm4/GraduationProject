@@ -5,6 +5,7 @@ using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace App.Scripts.Buildings.UI
 {
@@ -13,8 +14,8 @@ namespace App.Scripts.Buildings.UI
         [SerializeField] private GameObject buttonPrefab;
         [SerializeField] private Building buildingPrefab;
         
-        [SerializeField] private PlacementManager placementManager;
-        [SerializeField] private TurnsBasedManager turnsBasedManager;
+        [Inject] private PlacementManager _placementManager;
+        [Inject] private TurnsBasedManager _turnsBasedManager;
         
         [Title("Building Configs by Section")] [SerializeField]
         private BuildingsDataBaseBySectionsSO buildingsDataBaseBySections;
@@ -76,7 +77,7 @@ namespace App.Scripts.Buildings.UI
         
         private void OnBuildingButtonClicked(Building building)
         {
-            placementManager.StartPlacement(building);
+            _placementManager.StartPlacement(building);
         }
     }
 }
