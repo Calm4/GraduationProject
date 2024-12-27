@@ -4,26 +4,27 @@ using App.Scripts;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class LevelProgressUIBar : MonoBehaviour
 {
-    [SerializeField] private ExperienceManager experienceManager;
+    [Inject] private ExperienceManager _experienceManager;
     [Space(10)]
     [SerializeField] private Image progressBar;
     [SerializeField] private TMP_Text levelNumberField;
     
     private void Awake()
     {
-        experienceManager.OnExperienceUpdate += UpdateUIProgressBar;
-        experienceManager.OnLevelUp += UpdateUILevelNumber;
+        _experienceManager.OnExperienceUpdate += UpdateUIProgressBar;
+        _experienceManager.OnLevelUp += UpdateUILevelNumber;
 
         progressBar.fillAmount = 0;
     }
     
     private void UpdateUIProgressBar(int currentLevelProgressValue)
     {
-        if (!experienceManager.GetExperienceDictionary().
-                TryGetValue(experienceManager.GetCurrentLevel(),out int requiredExperience)) return;
+        if (!_experienceManager.GetExperienceDictionary().
+                TryGetValue(_experienceManager.GetCurrentLevel(),out int requiredExperience)) return;
         
         progressBar.fillAmount = (float)currentLevelProgressValue / requiredExperience;
         Debug.Log(currentLevelProgressValue + "/" + requiredExperience);

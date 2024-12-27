@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace App.Scripts.Particles
 {
-    public class ParticleSpawner : MonoBehaviour
+    public class ParticleManager : MonoBehaviour
     {
         [SerializeField] private ParticleSystem placingParticle;
 

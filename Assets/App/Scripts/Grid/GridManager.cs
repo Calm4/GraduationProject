@@ -3,12 +3,13 @@ using App.Scripts.JsonClasses.Data;
 using App.Scripts.Placement;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Zenject;
 
 namespace App.Scripts.Grid
 {
     public class GridManager : MonoBehaviour
     {
-        [SerializeField] private PlacementManager placementManager;
+        [Inject] private PlacementManager _placementManager;
 
         public GridData GridData { get; private set; }
         
@@ -27,7 +28,7 @@ namespace App.Scripts.Grid
 
         private void Awake()
         {
-            placementManager.OnChangeGridVisualizationVisibility += SetGridVisualizationVisibility;
+            _placementManager.OnChangeGridVisualizationVisibility += SetGridVisualizationVisibility;
         }
 
         private void Start()

@@ -21,7 +21,6 @@ public class ClickDetector : MonoBehaviour
       {
          GameObject clickedObject = hit.collider.gameObject;
 
-         // Check if the clicked object has the EnemyClick component
          EnemyClick enemyClick = clickedObject.GetComponent<EnemyClick>();
          if (enemyClick != null)
          {

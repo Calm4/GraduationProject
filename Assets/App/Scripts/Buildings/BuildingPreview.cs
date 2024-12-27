@@ -1,15 +1,18 @@
 using UnityEngine;
+using UnityEngine.Serialization;
+using Zenject;
 
 namespace App.Scripts.Buildings
 {
     public class BuildingPreview : MonoBehaviour
     {
-        [SerializeField] private BuildingManager buildingManager;
+        [Inject] private BuildingManager _buildingManager;
+        
         [SerializeField] private float previewYOffset = 0.06f;
         [SerializeField] private GameObject cellIndicator;
         [SerializeField] private Material previewMaterialPrefab;
 
-        [SerializeField] private Building _previewObject;
+        [SerializeField] private Building previewObject;
         private Material _previewMaterialInstance;
         private Renderer _cellIndicatorRenderer;
 
@@ -46,14 +49,14 @@ namespace App.Scripts.Buildings
 
         public void StartShowingPlacementPreview(Building prefab, Vector2Int size)
         {
-            if (_previewObject != null)
+            if (previewObject != null)
             {
-                Destroy(_previewObject.gameObject);
+                Destroy(previewObject.gameObject);
             }
 
-            _previewObject = buildingManager.CreateBuilding(prefab);
+            previewObject = _buildingManager.CreateBuilding(prefab);
             
-            PreparePreview(_previewObject);
+            PreparePreview(previewObject);
             PrepareCursor(size);
             cellIndicator.SetActive(true);
         }
@@ -85,16 +88,16 @@ namespace App.Scripts.Buildings
         public void StopShowingPreview()
         {
             cellIndicator.SetActive(false);
-            if (_previewObject != null)
+            if (previewObject != null)
             {
-                Destroy(_previewObject.gameObject);
-                _previewObject = null;
+                Destroy(previewObject.gameObject);
+                previewObject = null;
             }
         }
 
         public void UpdatePosition(Vector3 position, bool validity)
         {
-            if (_previewObject != null)
+            if (previewObject != null)
             {
                 MovePreview(position);
                 ApplyFeedbackToPreview(validity);
@@ -127,7 +130,7 @@ namespace App.Scripts.Buildings
 
         private void MovePreview(Vector3 position)
         {
-            _previewObject.transform.position = new Vector3(position.x, position.y + previewYOffset, position.z);
+            previewObject.transform.position = new Vector3(position.x, position.y + previewYOffset, position.z);
         }
 
         public void StartShowingRemovePreview()

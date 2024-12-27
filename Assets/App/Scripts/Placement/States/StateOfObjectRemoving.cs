@@ -14,16 +14,16 @@ namespace App.Scripts.Placement.States
         private readonly GridManager _gridManager;
         
         private readonly BuildingPreview _buildingPreview;
-        private readonly SoundFeedback _soundFeedback;
+        private readonly SoundFeedbackManager _soundFeedbackManager;
 
-        public StateOfObjectRemoving(ResourcesManager resourcesManager,BuildingManager buildingManager, GridManager gridManager, BuildingPreview buildingPreview, SoundFeedback soundFeedback)
+        public StateOfObjectRemoving(ResourcesManager resourcesManager,BuildingManager buildingManager, GridManager gridManager, BuildingPreview buildingPreview, SoundFeedbackManager soundFeedbackManager)
         {
             _resourcesManager = resourcesManager;
             _buildingManager = buildingManager;
             _gridManager = gridManager;
             _buildingPreview = buildingPreview;
             
-            _soundFeedback = soundFeedback;
+            _soundFeedbackManager = soundFeedbackManager;
 
             buildingPreview.StartShowingRemovePreview();
         }

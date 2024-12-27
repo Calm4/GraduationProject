@@ -8,6 +8,8 @@ using App.Scripts.Sound;
 using App.Scripts.TurnsBasedSystem;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
+using Zenject;
 
 namespace App.Scripts.Placement
 {
@@ -16,22 +18,18 @@ namespace App.Scripts.Placement
         [SerializeField, LabelText(""), Space, Title("Current Placement Mode")]
         private PlacementMode currentPlacementMode = PlacementMode.None;
 
-        [Title("Managers"), Space] [SerializeField]
-        private InputManager inputManager;
-
-        [SerializeField] private GridManager gridManager;
-        [SerializeField] private BuildingManager buildingManager;
-        [SerializeField] private ResourcesManager resourcesManager;
-        [SerializeField] private TurnsBasedManager turnsBasedManager;
+        [Title("Managers"), Space] 
+        [Inject] private GridManager _gridManager;
+        [Inject] private InputManager _inputManager;
+        [Inject] private BuildingManager _buildingManager;
+        [Inject] private ResourcesManager _resourcesManager;
+        [Inject] private TurnsBasedManager _turnsBasedManager;
+        [Inject] private SoundFeedbackManager _soundFeedbackManager;
 
         [Title("Buildings"), Space] [SerializeField]
         private BuildingPreview buildingPreview;
 
         private IBuildingState _buildingState;
-
-        [Title("Sound"), Space] [SerializeField]
-        private SoundFeedback soundFeedback;
-
         private Vector3Int _lastDetectedPosition = Vector3Int.zero;
 
         public event Action<bool> OnChangeGridVisualizationVisibility;
@@ -39,14 +37,14 @@ namespace App.Scripts.Placement
         [Button]
         public void GetGridData()
         {
-            gridManager.GridData.PrintGridState();
+            _gridManager.GridData.PrintGridState();
         }
 
         private void Start()
         {
             StopPlacement();
+            _inputManager.OnExit += StopPlacement;
 
-            inputManager.OnExit += StopPlacement;
         }
 
         #region Placement Actions
@@ -66,11 +64,11 @@ namespace App.Scripts.Placement
 
             OnChangeGridVisualizationVisibility?.Invoke(true);
 
-            _buildingState = new StateOfObjectPlacing(resourcesManager, buildingManager, gridManager, building,
-                buildingPreview, soundFeedback);
+            _buildingState = new StateOfObjectPlacing(_resourcesManager, _buildingManager, _gridManager, building,
+                buildingPreview, _soundFeedbackManager);
 
-            inputManager.OnClicked += PlaceStructure;
-            inputManager.OnExit += StopPlacement;
+            _inputManager.OnClicked += PlaceStructure;
+            _inputManager.OnExit += StopPlacement;
         }
 
         private void StopPlacement()
@@ -82,8 +80,8 @@ namespace App.Scripts.Placement
 
             OnChangeGridVisualizationVisibility?.Invoke(false);
             _buildingState.EndState();
-            inputManager.OnClicked -= PlaceStructure;
-            inputManager.OnExit -= StopPlacement;
+            _inputManager.OnClicked -= PlaceStructure;
+            _inputManager.OnExit -= StopPlacement;
             _lastDetectedPosition = Vector3Int.zero;
             _buildingState = null;
             currentPlacementMode = PlacementMode.None;
@@ -106,22 +104,22 @@ namespace App.Scripts.Placement
 
             OnChangeGridVisualizationVisibility?.Invoke(true);
 
-            _buildingState = new StateOfObjectRemoving(resourcesManager, buildingManager, gridManager,
-                buildingPreview, soundFeedback);
+            _buildingState = new StateOfObjectRemoving(_resourcesManager, _buildingManager, _gridManager,
+                buildingPreview, _soundFeedbackManager);
 
-            inputManager.OnClicked += PlaceStructure;
-            inputManager.OnExit += StopPlacement;
+            _inputManager.OnClicked += PlaceStructure;
+            _inputManager.OnExit += StopPlacement;
         }
 
         private void PlaceStructure()
         {
-            if (inputManager.IsPointerOverUI())
+            if (_inputManager.IsPointerOverUI())
             {
                 return;
             }
 
-            Vector3 mousePosition = inputManager.GetSelectedMapPosition();
-            Vector3Int gridPosition = gridManager.GridLayout.WorldToCell(mousePosition);
+            Vector3 mousePosition = _inputManager.GetSelectedMapPosition();
+            Vector3Int gridPosition = _gridManager.GridLayout.WorldToCell(mousePosition);
 
             _buildingState.OnAction(gridPosition);
             StopPlacement();
@@ -134,8 +132,8 @@ namespace App.Scripts.Placement
                 return;
             }
 
-            Vector3 mousePosition = inputManager.GetSelectedMapPosition();
-            Vector3Int gridPosition = gridManager.GridLayout.WorldToCell(mousePosition);
+            Vector3 mousePosition = _inputManager.GetSelectedMapPosition();
+            Vector3Int gridPosition = _gridManager.GridLayout.WorldToCell(mousePosition);
             if (_lastDetectedPosition != gridPosition)
             {
                 _buildingState.UpdateState(gridPosition);

@@ -12,14 +12,14 @@ namespace App.Scripts.Placement.States
         private readonly BuildingManager _buildingManager;
         private readonly GridManager _gridManager;
         private readonly BuildingPreview _buildingPreview;
-        private readonly SoundFeedback _soundFeedback;
+        private readonly SoundFeedbackManager _soundFeedbackManager;
         
 
         private readonly Building _buildingPrefab;
 
         
 
-        public StateOfObjectPlacing(ResourcesManager resourcesManager,BuildingManager buildingManager,GridManager gridManager, Building buildingPrefab, BuildingPreview buildingPreview, SoundFeedback soundFeedback)
+        public StateOfObjectPlacing(ResourcesManager resourcesManager,BuildingManager buildingManager,GridManager gridManager, Building buildingPrefab, BuildingPreview buildingPreview, SoundFeedbackManager soundFeedbackManager)
         {
             _resourcesManager = resourcesManager;
             _buildingManager = buildingManager;
@@ -29,7 +29,7 @@ namespace App.Scripts.Placement.States
             
             _buildingPreview = buildingPreview;
             
-            _soundFeedback = soundFeedback;
+            _soundFeedbackManager = soundFeedbackManager;
 
             
             _buildingPreview.StartShowingPlacementPreview(_buildingPrefab, _buildingPrefab.BuildingConfig.size);
@@ -91,7 +91,7 @@ namespace App.Scripts.Placement.States
         }
         private void PlaySound(SoundType soundType)
         {
-            _soundFeedback.PlaySound(soundType);
+            _soundFeedbackManager.PlaySound(soundType);
         }
     }
 }

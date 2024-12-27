@@ -1,12 +1,14 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace App.Scripts.TurnsBasedSystem
 {
     public class PhaseChangerUIPanel : MonoBehaviour
     {
-        [SerializeField] private GamePhaseManager gamePhaseManager;
+        [Inject] private GamePhaseManager _gamePhaseManager;
+        
         [SerializeField] private Button phaseChangerButton;
         [SerializeField] private Image phaseChangerImage;
         [SerializeField] private TMP_Text phaseChangerButtonTextField;
@@ -26,8 +28,8 @@ namespace App.Scripts.TurnsBasedSystem
 
         private void Awake()
         {
-            gamePhaseManager.OnGameStateChanges += GetCurrentGamePhase;
-            countdownHandler = new CountdownHandler(countdownPanel, countdownTextField, gamePhaseManager);
+            _gamePhaseManager.OnGameStateChanges += GetCurrentGamePhase;
+            countdownHandler = new CountdownHandler(countdownPanel, countdownTextField, _gamePhaseManager);
             phaseStateHandler = new PhaseStateHandler(phaseChangerButton, phaseChangerImage, phaseChangerButtonTextField);
         }
 
@@ -70,14 +72,14 @@ namespace App.Scripts.TurnsBasedSystem
                 countdownHandler.StopCountdown();
                 countdownHandler.ResetCountdownState();
                 phaseStateHandler.SetGamePhasePanelElements(constructionImageVariant, constructionPhaseText);
-                gamePhaseManager.SetCurrentGameState(GamePhase.Construction);
+                _gamePhaseManager.SetCurrentGameState(GamePhase.Construction);
             }
             else
             {
                 countdownHandler.ShowCountdown();
                 countdownHandler.StartCountdown();
                 phaseStateHandler.SetGamePhasePanelElements(defenseImageVariant, defensePhaseText);
-                gamePhaseManager.SetCurrentGameState(GamePhase.CountDownToStart);
+                _gamePhaseManager.SetCurrentGameState(GamePhase.CountDownToStart);
             }
         }
     }

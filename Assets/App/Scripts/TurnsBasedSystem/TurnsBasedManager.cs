@@ -2,13 +2,14 @@ using System;
 using App.Scripts.TurnsBasedSystem.Waves;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Zenject;
 
 namespace App.Scripts.TurnsBasedSystem
 {
     public class TurnsBasedManager : MonoBehaviour
     {
         [Title("Managers")] 
-        [SerializeField] private WavesManager wavesManager;
+        [Inject] private WavesManager _wavesManager;
         
    
         private GamePhase[] _phases;

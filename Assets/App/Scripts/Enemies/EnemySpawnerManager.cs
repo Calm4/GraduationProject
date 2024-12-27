@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using App.Scripts.TurnsBasedSystem;
 using UnityEngine;
+using Zenject;
 
 namespace App.Scripts.Enemies
 {
     public class EnemySpawnerManager : MonoBehaviour
     {
+        [Inject] private GamePhaseManager _gamePhaseManager;  // TODO: ОСТАНОВИЛСЯ ТУТ
+        
         [SerializeField] private GameObject enemyPrefab;
         [SerializeField] private float spawnInterval = 2f;
         [SerializeField] private Transform spawnerPoint;
         [field: SerializeField] public List<Vector2> Path { get; set; }
-    
-
+        
+        
         private void GamePhase_OnGamePhaseStateChange(GamePhase gamePhase)
         {
             if (gamePhase != GamePhase.Defense)

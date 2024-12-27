@@ -12,13 +12,13 @@ using Newtonsoft.Json;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Zenject;
 
 namespace App.Scripts.JsonClasses
 {
     public class JsonLoaderManager : MonoBehaviour
     {
-        [FormerlySerializedAs("filesDB")] [Title("Json Files Data Base")] [SerializeField]
-        private JsonFilesDataBase jsonFilesDB;
+        [Title("Json Files Data Base")] [SerializeField] private JsonFilesDataBase jsonFilesDB;
 
         [Title("Buildings Parameters")] 
         [SerializeField] private BuildingsDataBaseBySectionsSO buildingsDataBaseBySections;
@@ -27,7 +27,7 @@ namespace App.Scripts.JsonClasses
 
 
         [Title("Grid Parameters")] 
-        [SerializeField] private GridManager gridManager;
+        [Inject] private GridManager _gridManager;
         [SerializeField] private Building spawner;
         [SerializeField] private Building castle;
         [SerializeField] private Building pathway;
@@ -38,19 +38,19 @@ namespace App.Scripts.JsonClasses
 
         private void Awake()
         {
-            gridManager.OnGridLoadFromJson += LoadGridSizeFromJson;
-            gridManager.OnBuildingsLoadFromJson += PlaceObjectsFromJson;
+            _gridManager.OnGridLoadFromJson += LoadGridSizeFromJson;
+            _gridManager.OnBuildingsLoadFromJson += PlaceObjectsFromJson;
         }
 
         private void LoadGridSizeFromJson()
         {
             GridSaveDataJson gridDataJson = JsonConvert.DeserializeObject<GridSaveDataJson>(jsonFilesDB.BuildingsJsonFile.text);
 
-            gridManager.InitializeGridManager(gridDataJson);
+            _gridManager.InitializeGridManager(gridDataJson);
             
             if (gridDataJson != null)
             {
-                _pathFindingFromJson = new PathFindingFromJson(gridManager, jsonFilesDB, spawner, castle, pathway);
+                _pathFindingFromJson = new PathFindingFromJson(_gridManager, jsonFilesDB, spawner, castle, pathway);
                 _path = _pathFindingFromJson.FindPathFromJson();
                 spawner.GetComponent<EnemySpawnerManager>().Path = _path;
             }
@@ -88,18 +88,18 @@ namespace App.Scripts.JsonClasses
                 }
             }
 
-            _buildingPlacer = new BuildingPlacer(gridManager.GridData);
+            _buildingPlacer = new BuildingPlacer(_gridManager.GridData);
             foreach (var gridObject in gridObjects)
             {
-                _buildingPlacer.PlaceBuilding(gridObject.Building, gridManager, gridObject.Position,
+                _buildingPlacer.PlaceBuilding(gridObject.Building, _gridManager, gridObject.Position,
                     buildingsFromJsonContainer);
             }
         }
 
         private void OnDestroy()
         {
-            gridManager.OnGridLoadFromJson -= LoadGridSizeFromJson;
-            gridManager.OnBuildingsLoadFromJson -= PlaceObjectsFromJson;
+            _gridManager.OnGridLoadFromJson -= LoadGridSizeFromJson;
+            _gridManager.OnBuildingsLoadFromJson -= PlaceObjectsFromJson;
         }
     }
 }

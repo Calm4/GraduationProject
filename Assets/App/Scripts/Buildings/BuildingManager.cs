@@ -2,12 +2,15 @@
 using App.Scripts.Particles;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Serialization;
+using Zenject;
 
 namespace App.Scripts.Buildings
 {
     public class BuildingManager : MonoBehaviour
     {
-        [Space(20)] [SerializeField] private ParticleSpawner particleSpawner;
+        [Inject] private ParticleManager _particleManager;
+        
         [SerializeField] private Transform buildingsContainer;
         [SerializeField] private Vector3 buildingOffsetPoint;
 
@@ -30,7 +33,7 @@ namespace App.Scripts.Buildings
             Vector3 particlePosition = position + buildingCenterOffset;
 
             building.transform.DOMove(position, animationsConfig.buildingPlacingTime).SetEase(Ease.InCirc)
-                .OnComplete(() => particleSpawner.SpawnParticleAtObject(building, particlePosition));
+                .OnComplete(() => _particleManager.SpawnParticleAtObject(building, particlePosition));
             return building;
         }
 

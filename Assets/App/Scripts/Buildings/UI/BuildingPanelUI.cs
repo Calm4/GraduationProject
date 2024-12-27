@@ -3,11 +3,14 @@ using App.Scripts.Placement;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Zenject;
 
 namespace App.Scripts.Buildings.UI
 {
     public class BuildingPanelUI : MonoBehaviour
     {
+        [Inject] private PlacementManager _placementManager;
+        
         [SerializeField] private AnimationsConfig animationsConfig;
         
         [Space, Title("Panel Movement Settings")]
@@ -20,7 +23,6 @@ namespace App.Scripts.Buildings.UI
         private bool _isHide;
         private Vector2 _panelStartPosition;
 
-        [SerializeField] private PlacementManager placementManager;
         
         private void Start()
         {

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace App.Scripts.Sound
 {
-    public class SoundFeedback : MonoBehaviour
+    public class SoundFeedbackManager : MonoBehaviour
     {
         [SerializeField]
         private AudioClip clickSound, placeSound, removeSound, wrongPlacementSound;

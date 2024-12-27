@@ -1,17 +1,18 @@
 using UnityEngine;
+using Zenject;
 
 namespace App.Scripts.Input
 {
     public class CameraMovementController : MonoBehaviour
     {
         [SerializeField] private CameraConfig cameraConfig;
-        [SerializeField] private InputManager inputManager;
+        [Inject] private InputManager _inputManager;
 
         private void Start()
         {
-            inputManager.OnKeyboardInput += CameraMovement;
-            inputManager.OnScroll += CameraZoom;
-            inputManager.OnRotateAround += CameraRotation;
+            _inputManager.OnKeyboardInput += CameraMovement;
+            _inputManager.OnScroll += CameraZoom;
+            _inputManager.OnRotateAround += CameraRotation;
         }
 
         private void CameraRotation()
@@ -38,9 +39,9 @@ namespace App.Scripts.Input
 
         private void CameraMovement()
         {
-            Vector3 horizontalMovement = transform.right * inputManager.GetMovementDirection().x;
+            Vector3 horizontalMovement = transform.right * _inputManager.GetMovementDirection().x;
             Vector3 forwardOnXZ = Vector3.ProjectOnPlane(transform.forward, Vector3.up).normalized;
-            Vector3 verticalMovement = forwardOnXZ * inputManager.GetMovementDirection().y;
+            Vector3 verticalMovement = forwardOnXZ * _inputManager.GetMovementDirection().y;
 
 
             Vector3 moveDirection = horizontalMovement + verticalMovement;
