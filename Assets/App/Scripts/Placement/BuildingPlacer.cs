@@ -13,7 +13,7 @@ namespace App.Scripts.Placement
             _gridData = gridData;
         }
 
-        public void PlaceBuilding(Building building, GridManager gridManager, Vector3Int gridPosition,
+        public void InstantiateAndPlaceBuilding(Building building, GridManager gridManager, Vector3Int gridPosition,
             Transform parentTransform)
         {
             var gridSize = gridManager.GridData.GridSize;

@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using App.Scripts.TurnsBasedSystem;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
 namespace App.Scripts.Enemies
 {
     public class EnemySpawnerManager : MonoBehaviour
     {
-        [Inject] private GamePhaseManager _gamePhaseManager;  // TODO: ОСТАНОВИЛСЯ ТУТ
+        
+        [SerializeField] private GamePhaseManager gamePhaseManager;  // TODO: ОСТАНОВИЛСЯ ТУТ
         
         [SerializeField] private GameObject enemyPrefab;
         [SerializeField] private float spawnInterval = 2f;
@@ -26,7 +28,7 @@ namespace App.Scripts.Enemies
 
         private void Start()
         {
-            _gamePhaseManager.OnGameStateChanges += ABC;
+            gamePhaseManager.OnGameStateChanges += ABC;
             Debug.Log("Path length: " + Path.Count);
         }
 
@@ -55,6 +57,7 @@ namespace App.Scripts.Enemies
         private void SpawnEnemy()
         {
             GameObject enemy = Instantiate(enemyPrefab, spawnerPoint.position, Quaternion.identity);
+            
             EnemyMovement enemyMovement = enemy.GetComponent<EnemyMovement>();
             if (enemyMovement != null)
             {

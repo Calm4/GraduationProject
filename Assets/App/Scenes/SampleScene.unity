@@ -1015,6 +1015,7 @@ MonoBehaviour:
   jsonFilesDB: {fileID: 11400000, guid: 0ee9a0ac9af091c47bec67fd0a2f964b, type: 2}
   buildingsDataBaseBySections: {fileID: 11400000, guid: 74c59810f16beb547b3df15e9a82f909, type: 2}
   buildingsFromJsonContainer: {fileID: 1081304742}
+  _gamePhaseManager: {fileID: 307709794329151338}
   spawner: {fileID: 3637061191740711284, guid: 06911037f3bb679438cba07d44b69e52, type: 3}
   castle: {fileID: 3637061191740711284, guid: 8baa5c2312dac9e4b96f2100bc78ba75, type: 3}
   pathway: {fileID: 3637061191740711284, guid: 441cd41703602ed4dbcb9f416fc70491, type: 3}
@@ -5401,7 +5402,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1656508628}
   m_HandleRect: {fileID: 1656508627}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -8202,7 +8203,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b323aa0efeece2438713d5ab5a4c3b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resourceManager: {fileID: 163407184}
   moneyTextField: {fileID: 1139616028}
 --- !u!1 &2038655425
 GameObject:

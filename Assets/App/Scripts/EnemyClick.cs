@@ -1,15 +1,16 @@
 ﻿using UnityEngine;
+using Zenject;
 
 namespace App.Scripts
 {
     public class EnemyClick : MonoBehaviour
     {
-        [SerializeField] private ExperienceManager experienceManager;
+        [Inject] private ExperienceManager _experienceManager;
         
         public void OnClick()
         {
             Destroy(gameObject);
-            experienceManager.AddExperience(20);
+            _experienceManager.AddExperience(20);
         }
     }
 }

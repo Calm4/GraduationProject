@@ -9,7 +9,7 @@ namespace App.Scripts
     {
         [SerializeField] private int currentExperience;
         [SerializeField] private LevelUpProgressDataBase levelUpByExperienceDataBase;
-
+        
         private int _currentLevel = 1;
 
         public event Action<int> OnExperienceUpdate;
