@@ -18,7 +18,8 @@ namespace App.Scripts.JsonClasses
 {
     public class JsonLoaderManager : MonoBehaviour
     {
-        [Title("Json Files Data Base")] [SerializeField] private JsonFilesDataBase jsonFilesDB;
+        [Title("Json Files Data Base")] 
+        [SerializeField] private JsonFilesDataBase jsonFilesDB;
 
         [Title("Buildings Parameters")] 
         [SerializeField] private BuildingsDataBaseBySectionsSO buildingsDataBaseBySections;

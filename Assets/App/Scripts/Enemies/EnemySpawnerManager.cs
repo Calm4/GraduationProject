@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using App.Scripts.Factories;
 using App.Scripts.TurnsBasedSystem;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -9,10 +10,10 @@ namespace App.Scripts.Enemies
 {
     public class EnemySpawnerManager : MonoBehaviour
     {
-        
+        [Inject] private readonly IEnemyFactory _enemyFactory;
         [Inject] private GamePhaseManager _gamePhaseManager;  // TODO: ОСТАНОВИЛСЯ ТУТ
         
-        [SerializeField] private GameObject enemyPrefab;
+        [SerializeField] private Enemy enemyPrefab;
         [SerializeField] private float spawnInterval = 2f;
         [SerializeField] private Transform spawnerPoint;
         [field: SerializeField] public List<Vector2> Path { get; set; }
@@ -58,9 +59,9 @@ namespace App.Scripts.Enemies
 
         private void SpawnEnemy()
         {
-            GameObject o = Instantiate(enemyPrefab, spawnerPoint.position, Quaternion.identity);
+            Enemy enemy = _enemyFactory.Create(enemyPrefab,spawnerPoint);
+            //GameObject o = Instantiate(enemyPrefab, spawnerPoint.position, Quaternion.identity);
             
-            Enemy enemy = o.GetComponent<Enemy>();
             if (enemy != null)
             {
                 enemy.SetPath(Path);

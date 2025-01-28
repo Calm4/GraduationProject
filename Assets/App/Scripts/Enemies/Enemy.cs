@@ -1,13 +1,28 @@
+using System;
 using System.Collections.Generic;
+using App.Scripts.TurnsBasedSystem;
 using UnityEngine;
+using Zenject;
 
 namespace App.Scripts.Enemies
 {
     public class Enemy : MonoBehaviour
     {
+        [Inject] private GamePhaseManager _gamePhaseManager; 
+        
         public float speed = 2f;  
         private List<Vector2> path;  
-        private int currentTargetIndex = 0;  
+        private int currentTargetIndex = 0;
+
+        private void Start()
+        {
+            _gamePhaseManager.OnGameStateChanges += TestEnemyMethod;
+        }
+
+        private void TestEnemyMethod(GamePhase obj)
+        {
+            Debug.Log("Current phase%^^ " + obj.ToString());
+        }
 
         public void SetPath(List<Vector2> newPath)
         {
@@ -23,7 +38,6 @@ namespace App.Scripts.Enemies
         {
             if (path == null || currentTargetIndex >= path.Count) return;
 
-            // Перемещаем врага к следующей точке
             Vector2 targetPosition = path[currentTargetIndex];
             Vector2 currentPosition = new Vector2(transform.position.x, transform.position.z);
 

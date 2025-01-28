@@ -8,12 +8,12 @@ namespace App.Scripts.Placement
     public class BuildingPlacer
     {
         private readonly GridData _gridData;
-        private readonly IBuildingFactory _buildingFactory; // Добавляем зависимость
+        private readonly IBuildingFactory _buildingFactory; 
 
         public BuildingPlacer(GridData gridData, IBuildingFactory buildingFactory)
         {
             _gridData = gridData;
-            _buildingFactory = buildingFactory; // Инжектим фабрику
+            _buildingFactory = buildingFactory;
         }
 
         public void InstantiateAndPlaceBuilding(
@@ -31,7 +31,6 @@ namespace App.Scripts.Placement
                 gridPosition.z - gridOffset.z
             );
             
-            // Заменяем Object.Instantiate на фабрику
             Building jsonBuilding = _buildingFactory.Create(buildingPrefab, parentTransform);
             jsonBuilding.transform.position = buildingPosition;
             

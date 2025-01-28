@@ -2,6 +2,7 @@ using System.Resources;
 using App.Scripts;
 using App.Scripts.Buildings;
 using App.Scripts.Enemies;
+using App.Scripts.Factories;
 using App.Scripts.GameResources;
 using App.Scripts.Grid;
 using App.Scripts.Input;
@@ -53,5 +54,6 @@ public class GameInstaller : MonoInstaller
         Container.Bind<InputManager>().FromInstance(inputManager).AsSingle();
         
         Container.Bind<IBuildingFactory>().To<BuildingFactory>().AsSingle();
+        Container.Bind<IEnemyFactory>().To<EnemyFactory>().AsSingle();
     }
 }
