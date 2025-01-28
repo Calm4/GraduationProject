@@ -10,7 +10,7 @@ namespace App.Scripts.Enemies
     public class EnemySpawnerManager : MonoBehaviour
     {
         
-        [SerializeField] private GamePhaseManager gamePhaseManager;  // TODO: ОСТАНОВИЛСЯ ТУТ
+        [Inject] private GamePhaseManager _gamePhaseManager;  // TODO: ОСТАНОВИЛСЯ ТУТ
         
         [SerializeField] private GameObject enemyPrefab;
         [SerializeField] private float spawnInterval = 2f;
@@ -28,13 +28,15 @@ namespace App.Scripts.Enemies
 
         private void Start()
         {
-            gamePhaseManager.OnGameStateChanges += ABC;
+            _gamePhaseManager.OnGameStateChanges += ABC;
             Debug.Log("Path length: " + Path.Count);
         }
 
         private void ABC(GamePhase obj)
         {
             Debug.Log("1`2312323``");
+            StartCoroutine(SpawnEnemies());
+
         }
 
         private void Update()
@@ -56,12 +58,12 @@ namespace App.Scripts.Enemies
 
         private void SpawnEnemy()
         {
-            GameObject enemy = Instantiate(enemyPrefab, spawnerPoint.position, Quaternion.identity);
+            GameObject o = Instantiate(enemyPrefab, spawnerPoint.position, Quaternion.identity);
             
-            EnemyMovement enemyMovement = enemy.GetComponent<EnemyMovement>();
-            if (enemyMovement != null)
+            Enemy enemy = o.GetComponent<Enemy>();
+            if (enemy != null)
             {
-                enemyMovement.SetPath(Path);
+                enemy.SetPath(Path);
             }
         }
 

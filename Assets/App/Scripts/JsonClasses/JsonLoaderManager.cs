@@ -24,7 +24,7 @@ namespace App.Scripts.JsonClasses
         [SerializeField] private BuildingsDataBaseBySectionsSO buildingsDataBaseBySections;
         [SerializeField] private Transform buildingsFromJsonContainer;
         private BuildingPlacer _buildingPlacer;
-
+        [Inject] private IBuildingFactory _buildingFactory;
 
         [Title("Grid Parameters")] 
         [Inject] private GridManager _gridManager;
@@ -88,11 +88,21 @@ namespace App.Scripts.JsonClasses
                 }
             }
 
-            _buildingPlacer = new BuildingPlacer(_gridManager.GridData);
+            _buildingPlacer = new BuildingPlacer(_gridManager.GridData, _buildingFactory);
             foreach (var gridObject in gridObjects)
             {
-                _buildingPlacer.InstantiateAndPlaceBuilding(gridObject.Building, _gridManager, gridObject.Position,
-                    buildingsFromJsonContainer);
+                var gridPosition = new Vector3Int(
+                    (int)gridObject.Position.x, 
+                    0, 
+                    (int)gridObject.Position.z
+                );
+            
+                _buildingPlacer.InstantiateAndPlaceBuilding(
+                    gridObject.Building, 
+                    _gridManager, 
+                    gridPosition,
+                    buildingsFromJsonContainer
+                );
             }
         }
 

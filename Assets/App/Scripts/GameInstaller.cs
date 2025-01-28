@@ -51,5 +51,7 @@ public class GameInstaller : MonoInstaller
         Container.Bind<SoundFeedbackManager>().FromInstance(soundFeedbackManager).AsSingle();
         Container.Bind<ParticleManager>().FromInstance(particleManager).AsSingle();
         Container.Bind<InputManager>().FromInstance(inputManager).AsSingle();
+        
+        Container.Bind<IBuildingFactory>().To<BuildingFactory>().AsSingle();
     }
 }

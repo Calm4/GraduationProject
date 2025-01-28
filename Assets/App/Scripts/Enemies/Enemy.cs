@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace App.Scripts.Enemies
 {
-    public class EnemyMovement : MonoBehaviour
+    public class Enemy : MonoBehaviour
     {
         public float speed = 2f;  
         private List<Vector2> path;  
