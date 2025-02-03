@@ -26,9 +26,11 @@ namespace App.Scripts.Buildings.BuildingsConfigs
         public List<ResourceRequirement> resourcesToBuild;
         public List<ResourceRequirement> incomingResources;
         
+        [Title("Start Modifiers")]
+        public List<Object> prefabs;
+        
         [Title("Icon")]
         public Sprite sprite;
-        
         
     }
 }
