@@ -2,7 +2,7 @@
 {
     public enum ModifierType
     {
-        FireRate,
+        AttackRate,
         Damage,
         Range,
         

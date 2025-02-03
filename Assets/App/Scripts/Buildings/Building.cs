@@ -1,28 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using App.Scripts.Buildings.BuildingsConfigs;
+﻿using App.Scripts.Buildings.BuildingsConfigs;
 using App.Scripts.Modifiers;
 using UnityEngine;
-using UnityEngine.Serialization;
-using Zenject;
 
 namespace App.Scripts.Buildings
 {
     public class Building : MonoBehaviour
     {
-        [SerializeField] private List<Modifier> modifiers;
-        [SerializeField] private ModifierManager modifierManager;
         [field: SerializeField] public BasicBuildingConfig BuildingConfig { get; private set; }
+        private ModifierManager _modifierManager;
 
         private void Awake()
         {
-            modifierManager = new ModifierManager();
+            _modifierManager = new ModifierManager(BuildingConfig);
         }
 
-
         private void Update()
-        {
-            modifierManager.UpdateModifiers();
+        { 
+            _modifierManager.UpdateModifiers();
         }
     }
 }

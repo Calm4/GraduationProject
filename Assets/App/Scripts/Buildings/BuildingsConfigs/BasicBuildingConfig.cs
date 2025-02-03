@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using App.Scripts.GameResources;
+using App.Scripts.Modifiers.Configs;
 using UnityEngine;
 using Sirenix.OdinInspector;
 
@@ -10,14 +11,11 @@ namespace App.Scripts.Buildings.BuildingsConfigs
     {
         [Title("Building Config")]
         public int ID;
-
         public string buildingName;
         public string buildingDescription;
-        [ShowInInspector] public BuildingType buildingType;
+        public BuildingType buildingType;
 
-        [Title("Building Parameters")] 
-        /*public Mesh mesh;
-        public Material material;*/
+        [Title("Building Parameters")]
         public Vector2Int size;
         public Color buildingAssociateColor;
         
@@ -27,10 +25,10 @@ namespace App.Scripts.Buildings.BuildingsConfigs
         public List<ResourceRequirement> incomingResources;
         
         [Title("Start Modifiers")]
-        public List<Object> prefabs;
+        [ListDrawerSettings(Expanded = true)]
+        public List<BaseModifierSO> initialModifiers;
         
         [Title("Icon")]
         public Sprite sprite;
-        
     }
 }

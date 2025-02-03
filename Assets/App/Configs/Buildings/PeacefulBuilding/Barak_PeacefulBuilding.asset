@@ -25,10 +25,11 @@ MonoBehaviour:
   buildingName: Barak
   buildingDescription: Barak Description
   buildingType: 1
-  mesh: {fileID: 4300000, guid: 51efcb9c47f76ff48879503c6270a9eb, type: 2}
-  material: {fileID: 2100000, guid: 74117f645ca87544896e430b75e9a316, type: 2}
   size: {x: 2, y: 2}
   buildingAssociateColor: {r: 0.058823533, g: 0.8196079, b: 0.5137255, a: 1}
+  maintenanceResources:
+  - amount: 1
+    config: {fileID: 11400000, guid: 690fd2dfdcfe6774fac3487cfcf4dc75, type: 2}
   resourcesToBuild:
   - amount: 250
     config: {fileID: 11400000, guid: 690fd2dfdcfe6774fac3487cfcf4dc75, type: 2}
@@ -36,8 +37,6 @@ MonoBehaviour:
     config: {fileID: 11400000, guid: 3df9d4f94b42acc49858e0129dd1dd37, type: 2}
   - amount: 2
     config: {fileID: 11400000, guid: f65cd3c57f42c7e478c57b97fd4a48e7, type: 2}
-  maintenanceResources:
-  - amount: 1
-    config: {fileID: 11400000, guid: 690fd2dfdcfe6774fac3487cfcf4dc75, type: 2}
-  sprite: {fileID: 21300000, guid: 42fb2cbc08f13144b84e35c4539043c6, type: 3}
   incomingResources: []
+  initialModifiers: []
+  sprite: {fileID: 21300000, guid: 42fb2cbc08f13144b84e35c4539043c6, type: 3}
