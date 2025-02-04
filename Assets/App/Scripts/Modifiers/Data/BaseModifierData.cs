@@ -7,6 +7,8 @@ namespace App.Scripts.Modifiers.Data
     public abstract class BaseModifierData
     {
         public int currentLevel = 1;
+        
+        public BaseModifierSO Config { get; set; }
 
         /// <summary>
         /// Метод для сброса данных к значениям по умолчанию (на основе конфигурации).

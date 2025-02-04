@@ -13,8 +13,11 @@ namespace App.Scripts.Modifiers
         [ShowInInspector, DictionaryDrawerSettings(DisplayMode = DictionaryDisplayOptions.Foldout)]
         private Dictionary<ModifierType, ModifierInstance> _modifierInstances = new Dictionary<ModifierType, ModifierInstance>();
 
-        public ModifierManager(BasicBuildingConfig buildingConfig)
+        private readonly ModifiersDataBase _modifiersDataBase;
+        
+        public ModifierManager(BasicBuildingConfig buildingConfig, ModifiersDataBase modifiersDataBase)
         {
+            _modifiersDataBase = modifiersDataBase;
             InitializeBaseModifiers(buildingConfig);
         }
         
@@ -40,16 +43,23 @@ namespace App.Scripts.Modifiers
         /// <summary>
         /// Добавляет новый модификатор, если его типа ещё нет.
         /// </summary>
-        public void ApplyModifier(BaseModifierSO newModifier)
+        public void ApplyModifier(ModifierType modifierType)
         {
-            if (!_modifierInstances.ContainsKey(newModifier.modifierType))
+            if (!_modifierInstances.ContainsKey(modifierType))
             {
-                _modifierInstances.Add(newModifier.modifierType, new ModifierInstance(newModifier));
+                if (_modifiersDataBase.ModifierConfigs.TryGetValue(modifierType, out BaseModifierSO config))
+                {
+                    _modifierInstances.Add(modifierType, new ModifierInstance(config));
+                }
+                else
+                {
+                    Debug.LogError($"Конфигурация модификатора для типа {modifierType} не найдена в репозитории!");
+                }
             }
             else
             {
-                // Например, можно повысить уровень существующего модификатора.
-                Debug.Log($"Модификатор типа {newModifier.modifierType} уже присутствует – применение не требуется.");
+                //TODO: Возможно тут сделать что модификатор становится второго уровня и теперь нас усиленный модификатор ???
+                Debug.Log($"Модификатор типа {modifierType} уже присутствует – применение не требуется.");
             }
         }
         
@@ -87,5 +97,16 @@ namespace App.Scripts.Modifiers
                 Debug.Log(modifier.Config.modifierName);
             }
         }
+        
+        public List<BaseModifierSO> GetActiveModifiers()
+        {
+            List<BaseModifierSO> activeModifiers = new List<BaseModifierSO>();
+            foreach (var modifier in _modifierInstances.Values)
+            {
+                activeModifiers.Add(modifier.Config);
+            }
+            return activeModifiers;
+        }
+
     }
 }

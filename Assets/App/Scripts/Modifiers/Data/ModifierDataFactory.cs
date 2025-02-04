@@ -29,6 +29,7 @@ namespace App.Scripts.Modifiers.Data
             if (FactoryMap.TryGetValue(config.modifierType, out var factoryMethod))
             {
                 var data = factoryMethod.Invoke(config);
+                data.Config = config;
                 data.ResetToDefault(config);
                 return data;
             }

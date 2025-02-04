@@ -1,4 +1,6 @@
-﻿using App.Scripts.Modifiers.Data;
+﻿using App.Scripts.Modifiers.Configs;
+using App.Scripts.Modifiers.Data;
+using UnityEngine;
 
 namespace App.Scripts.Modifiers.Strategies
 {
@@ -9,9 +11,16 @@ namespace App.Scripts.Modifiers.Strategies
             var damageData = data as DamageData;
             if (damageData != null)
             {
-                // Здесь реализуем логику обновления для урона.
-                UnityEngine.Debug.Log($"[DamageUpdateStrategy] Level: {damageData.currentLevel}, Damage: {damageData.currentDamage}");
+                float baseDamage = 0f;
+                if (damageData.Config is DamageModifierSO dmgConfig)
+                {
+                    baseDamage = dmgConfig.damage;
+                }
+                
+                Debug.Log($"[DamageUpdateStrategy] Level: {damageData.currentLevel}, " +
+                          $"Damage: {damageData.currentDamage}, BaseDamage from SO {damageData.Config.modifierName}: {baseDamage}");
             }
         }
     }
+    
 }

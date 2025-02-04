@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 928c607d72d14cc082780cfc27b068e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  modifiersDataBase: {fileID: 11400000, guid: 71042b4790eb8a24898e969d3720cb3c, type: 2}
   <BuildingConfig>k__BackingField: {fileID: 11400000, guid: d57aeb7122d67484a9e52a7d39ff181a, type: 2}
 --- !u!64 &9111251265515063853
 MeshCollider:
