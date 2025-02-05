@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using App.Scripts.Buildings.BuildingsConfigs;
 using App.Scripts.Modifiers;
 using App.Scripts.Modifiers.Configs;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 
 namespace App.Scripts.Buildings
@@ -42,5 +44,14 @@ namespace App.Scripts.Buildings
         {
             _modifierManager.ApplyModifier(ModifierType.AttackRate);
         }
+        
+        private void OnMouseDown()
+        {
+            if (EventSystem.current.IsPointerOverGameObject()) return;
+            Debug.Log("Clicked on: " + this.gameObject.name);
+            OnBuildingClicked?.Invoke(this);
+        }
+
+        public static event Action<Building> OnBuildingClicked;
     }
 }

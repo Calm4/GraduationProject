@@ -48,6 +48,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6051035967874052382, guid: d9c65636e0495ff40b3163ed3af25112, type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6121667864284025279, guid: d9c65636e0495ff40b3163ed3af25112, type: 3}
       propertyPath: m_Name
       value: Castle_NonInteractiveBuilding
