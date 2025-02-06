@@ -18,99 +18,159 @@ namespace App.Scripts.Buildings.UI
         [SerializeField] private AnimationsConfig animationsConfig;
         
         [Space, Title("Panel Movement Settings")]
-        [SerializeField] private EnumDirections enumDirections = EnumDirections.Down;
-
-        [Space][Title("Panel Offset")]
+        [SerializeField] private EnumDirections enumDirections = EnumDirections.Left;
+        
+        [Space, Title("Panel Offset")]
         [SerializeField] private int panelXOffset;
         [SerializeField] private int panelYOffset;
+        
         private RectTransform _goRectTransform;
-        private bool _isHide;
-        private Vector2 _panelStartPosition;
+        private Vector2 _panelShowPosition;
+        private Vector2 _panelHidePosition;
+        
+        private bool _isShown = false;
 
         [SerializeField] private Button showAndHideButton;
         [SerializeField] private TMP_Text nameTextField; 
         [SerializeField] private TMP_Text descriptionTextField; 
         [SerializeField] private TMP_Text modifiersTextField; 
-        
+
+
+        // Время последнего выбора здания (для защиты от мгновенного скрытия)
+        private float _lastBuildingClickTime = -1f;
+        // Минимальная задержка после выбора здания, чтобы глобальный клик не сработал сразу
+        [SerializeField] private float clickDelayAfterSelection = 0.2f;
+
         private void Start()
         {
             _goRectTransform = GetComponent<RectTransform>();
-            _panelStartPosition = _goRectTransform.anchoredPosition;
+    
+            // Запоминаем начальное положение панели как скрытое (редактор уже выставил за экран)
+            _panelHidePosition = _goRectTransform.anchoredPosition;
+    
+            // Вычисляем положение для показа на основе скрытой позиции
+            _panelShowPosition = CalculateShowPosition(_panelHidePosition);
+    
+            _isShown = false;
+            showAndHideButton.gameObject.SetActive(false);
         }
+
 
         private void OnEnable()
         {
-            showAndHideButton.onClick.AddListener(ShowOrHideBuildingsPanel);
+            showAndHideButton.onClick.AddListener(TogglePanelVisibility);
             Building.OnBuildingClicked += HandleBuildingClicked;
         }
 
         private void OnDisable()
         {
-            showAndHideButton.onClick.RemoveListener(ShowOrHideBuildingsPanel);
+            showAndHideButton.onClick.RemoveListener(TogglePanelVisibility);
             Building.OnBuildingClicked -= HandleBuildingClicked;
         }
         
         private void HandleBuildingClicked(Building building)
         {
-            Debug.Log(building.BuildingConfig.buildingName + " IN UI");
             UpdateUI(building);
-           // ShowPanel();
+            showAndHideButton.gameObject.SetActive(true);
+            _lastBuildingClickTime = Time.time;
+
+            // Если панель ещё скрыта, анимируем её выезд из-за экрана (от скрытого положения к видимому)
+            if (!_isShown)
+            {
+                _goRectTransform.DOAnchorPos(_panelShowPosition, animationsConfig.panelShowTime)
+                                  .SetEase(Ease.InOutSine)
+                                  .OnComplete(() => { _isShown = true; });
+            }
+        }
+        
+        private void TogglePanelVisibility()
+        {
+            if (_isShown)
+            {
+                _goRectTransform.DOAnchorPos(_panelHidePosition, animationsConfig.panelHideTime)
+                                  .SetEase(DG.Tweening.Ease.InOutSine)
+                                  .OnComplete(() => { _isShown = false; });
+            }
+            else
+            {
+                _goRectTransform.DOAnchorPos(_panelShowPosition, animationsConfig.panelShowTime)
+                                  .SetEase(DG.Tweening.Ease.InOutSine)
+                                  .OnComplete(() => { _isShown = true; });
+            }
+            _placementManager.StopPlacement();
         }
 
+
+        private void Update()
+        {
+            if (_isShown && UnityEngine.Input.GetMouseButtonDown(0))
+            {
+                // Если прошло недостаточно времени после выбора здания – не скрываем панель
+                if (Time.time - _lastBuildingClickTime < clickDelayAfterSelection)
+                    return;
+
+                // Если клик не по панели и не по кнопке – закрываем панель
+                if (!IsPointerOverUIElement(_goRectTransform, UnityEngine.Input.mousePosition) &&
+                    !IsPointerOverUIElement(showAndHideButton.GetComponent<RectTransform>(), UnityEngine.Input.mousePosition))
+                {
+                    ClosePanel();
+                }
+            }
+        }
+
+        private void ClosePanel()
+        {
+            _goRectTransform.DOAnchorPos(_panelHidePosition, animationsConfig.panelHideTime)
+                              .SetEase(DG.Tweening.Ease.InOutSine)
+                              .OnComplete(() =>
+                              {
+                                  _isShown = false;
+                                  ClearUI();
+                                  showAndHideButton.gameObject.SetActive(false);
+                              });
+        }
+        
         private void UpdateUI(Building building)
         {
             nameTextField.text = building.BuildingConfig.buildingName;
             descriptionTextField.text = building.BuildingConfig.buildingDescription;
-            modifiersTextField.text = GetModifiersText(building);
+            modifiersTextField.text = string.Join("\n", building.ActiveModifiers.Select(m => m.modifierName));
+        }
+        private void ClearUI()
+        {
+            nameTextField.text = "";
+            descriptionTextField.text = "";
+            modifiersTextField.text = "";
         }
         
-        private string GetModifiersText(Building building)
+        private bool IsPointerOverUIElement(RectTransform rectTransform, Vector2 pointerPosition)
         {
-            return string.Join("\n", building.ActiveModifiers.Select(m => m.modifierName));
+            return RectTransformUtility.RectangleContainsScreenPoint(rectTransform, pointerPosition, null);
         }
         
-        private void ShowOrHideBuildingsPanel()
-        {
-            if (_isHide)
-            {
-                _goRectTransform.DOAnchorPos(_panelStartPosition, animationsConfig.panelShowTime).SetEase(Ease.InOutSine);
-            }
-            else
-            {
-                Vector2 hidePosition = CalculateHidePosition();
-                _goRectTransform.DOAnchorPos(hidePosition, animationsConfig.panelHideTime).SetEase(Ease.InOutSine);
-            }
-
-            //TODO НЕ ЗАБЫТЬ ПРО ЭТУ ГАДОСТЬ
-            _placementManager.StopPlacement();
-
-            _isHide = !_isHide;
-        }
-
-        private Vector2 CalculateHidePosition()
+        private Vector2 CalculateShowPosition(Vector2 hidePosition)
         {
             float panelWidth = _goRectTransform.rect.width;
             float panelHeight = _goRectTransform.rect.height;
-
-            Vector2 hidePosition = _panelStartPosition;
+            Vector2 showPosition = hidePosition;
 
             switch (enumDirections)
             {
                 case EnumDirections.Up:
-                    hidePosition.y = _panelStartPosition.y + panelHeight - panelYOffset;
+                    showPosition.y = hidePosition.y - panelHeight + panelYOffset;
                     break;
                 case EnumDirections.Down:
-                    hidePosition.y = _panelStartPosition.y - panelHeight + panelYOffset;
+                    showPosition.y = hidePosition.y + panelHeight - panelYOffset;
                     break;
                 case EnumDirections.Left:
-                    hidePosition.x = _panelStartPosition.x - panelWidth + panelXOffset;
+                    showPosition.x = hidePosition.x - panelWidth + panelXOffset;
                     break;
                 case EnumDirections.Right:
-                    hidePosition.x = _panelStartPosition.x + panelWidth + panelXOffset;
+                    showPosition.x = hidePosition.x + panelWidth - panelXOffset;
                     break;
             }
 
-            return hidePosition;
+            return showPosition;
         }
     }
 }

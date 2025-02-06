@@ -5771,7 +5771,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1656508628}
   m_HandleRect: {fileID: 1656508627}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -10630,6 +10630,7 @@ MonoBehaviour:
   nameTextField: {fileID: 245712358}
   descriptionTextField: {fileID: 598084213}
   modifiersTextField: {fileID: 900890455}
+  clickDelayAfterSelection: 0.2
 --- !u!224 &8150958515596783438
 RectTransform:
   m_ObjectHideFlags: 0
