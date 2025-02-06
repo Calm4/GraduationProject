@@ -71,7 +71,7 @@ namespace App.Scripts.Placement
             _inputManager.OnExit += StopPlacement;
         }
 
-        private void StopPlacement()
+        public void StopPlacement()
         {
             if (_buildingState == null)
             {

@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using App.Scripts.Buildings.BuildingsConfigs;
 using App.Scripts.Modifiers;
 using App.Scripts.Modifiers.Configs;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 
 namespace App.Scripts.Buildings
@@ -15,17 +17,8 @@ namespace App.Scripts.Buildings
         private ModifierManager _modifierManager;
 
         [ShowInInspector, ReadOnly]
-        public List<BaseModifierSO> ActiveModifiers
-        {
-            get
-            {
-                if (_modifierManager != null)
-                {
-                    return _modifierManager.GetActiveModifiers();
-                }
-                return new List<BaseModifierSO>();
-            }
-        }
+        public List<BaseModifierSO> ActiveModifiers =>
+            _modifierManager?.GetActiveModifiers() ?? new List<BaseModifierSO>();
         
         private void Awake()
         {
@@ -42,5 +35,17 @@ namespace App.Scripts.Buildings
         {
             _modifierManager.ApplyModifier(ModifierType.AttackRate);
         }
+
+        private void OnMouseDown()
+        {
+            if (EventSystem.current.IsPointerOverGameObject()) return;
+            Debug.Log("Clicked on: " + this.gameObject.name);
+            if (this.BuildingConfig.buildingType == BuildingType.NonInteractive)
+                return;
+            
+            OnBuildingClicked?.Invoke(this);
+        }
+
+        public static event Action<Building> OnBuildingClicked;
     }
 }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 422969399050332279}
   - component: {fileID: 7535997934755547241}
   - component: {fileID: 611361116141007165}
+  - component: {fileID: 9116665098879122037}
   m_Layer: 0
   m_Name: Mortira_DefensiveBuilding
   m_TagString: Untagged
@@ -98,3 +99,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modifiersDataBase: {fileID: 11400000, guid: 71042b4790eb8a24898e969d3720cb3c, type: 2}
   <BuildingConfig>k__BackingField: {fileID: 11400000, guid: 4ce26910f0f684645abbb8766f1cf7f7, type: 2}
+--- !u!64 &9116665098879122037
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8518068156521991966}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 902c642387553ff40ae424ba42fa39cb, type: 2}

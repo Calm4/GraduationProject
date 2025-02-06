@@ -11,7 +11,7 @@ namespace App.Scripts.Modifiers.Strategies
             if (attackData != null)
             {
                 // логика обновления для скорострельности.
-                Debug.Log($"[AttackRateUpdateStrategy] Level: {attackData.currentLevel}, AttackRate: {attackData.currentAttackRate}");
+                //Debug.Log($"[AttackRateUpdateStrategy] Level: {attackData.currentLevel}, AttackRate: {attackData.currentAttackRate}");
             }
         }
     }

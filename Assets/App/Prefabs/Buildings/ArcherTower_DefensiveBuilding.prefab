@@ -171,6 +171,10 @@ PrefabInstance:
       propertyPath: <GridPosition>k__BackingField.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9111251265515063853, guid: d9c65636e0495ff40b3163ed3af25112, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1496647157508652541, guid: d9c65636e0495ff40b3163ed3af25112, type: 3}
     - {fileID: 6195401721451145493, guid: d9c65636e0495ff40b3163ed3af25112, type: 3}
@@ -179,8 +183,37 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2703375377479884149, guid: d9c65636e0495ff40b3163ed3af25112, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8181892100897919431}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6121667864284025279, guid: d9c65636e0495ff40b3163ed3af25112, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5906513140269186563}
   m_SourcePrefab: {fileID: 100100000, guid: d9c65636e0495ff40b3163ed3af25112, type: 3}
+--- !u!1 &4049427311868001554 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6121667864284025279, guid: d9c65636e0495ff40b3163ed3af25112, type: 3}
+  m_PrefabInstance: {fileID: 7838230181972733101}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &5906513140269186563
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4049427311868001554}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.63827026, y: 1.5846448, z: 0.76102436}
+  m_Center: {x: 0.49891096, y: 0.29232252, z: 0.5337084}
 --- !u!4 &5278972234977980888 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2703375377479884149, guid: d9c65636e0495ff40b3163ed3af25112, type: 3}

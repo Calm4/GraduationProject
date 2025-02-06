@@ -1,8 +1,12 @@
+using System;
+using System.Linq;
 using App.Scripts.Animations;
 using App.Scripts.Placement;
 using DG.Tweening;
 using Sirenix.OdinInspector;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 namespace App.Scripts.Buildings.UI
@@ -23,6 +27,10 @@ namespace App.Scripts.Buildings.UI
         private bool _isHide;
         private Vector2 _panelStartPosition;
 
+        [SerializeField] private Button showAndHideButton;
+        [SerializeField] private TMP_Text nameTextField; 
+        [SerializeField] private TMP_Text descriptionTextField; 
+        [SerializeField] private TMP_Text modifiersTextField; 
         
         private void Start()
         {
@@ -30,7 +38,38 @@ namespace App.Scripts.Buildings.UI
             _panelStartPosition = _goRectTransform.anchoredPosition;
         }
 
-        public void ShowOrHideBuildingsPanel()
+        private void OnEnable()
+        {
+            showAndHideButton.onClick.AddListener(ShowOrHideBuildingsPanel);
+            Building.OnBuildingClicked += HandleBuildingClicked;
+        }
+
+        private void OnDisable()
+        {
+            showAndHideButton.onClick.RemoveListener(ShowOrHideBuildingsPanel);
+            Building.OnBuildingClicked -= HandleBuildingClicked;
+        }
+        
+        private void HandleBuildingClicked(Building building)
+        {
+            Debug.Log(building.BuildingConfig.buildingName + " IN UI");
+            UpdateUI(building);
+           // ShowPanel();
+        }
+
+        private void UpdateUI(Building building)
+        {
+            nameTextField.text = building.BuildingConfig.buildingName;
+            descriptionTextField.text = building.BuildingConfig.buildingDescription;
+            modifiersTextField.text = GetModifiersText(building);
+        }
+        
+        private string GetModifiersText(Building building)
+        {
+            return string.Join("\n", building.ActiveModifiers.Select(m => m.modifierName));
+        }
+        
+        private void ShowOrHideBuildingsPanel()
         {
             if (_isHide)
             {
@@ -43,7 +82,7 @@ namespace App.Scripts.Buildings.UI
             }
 
             //TODO НЕ ЗАБЫТЬ ПРО ЭТУ ГАДОСТЬ
-            //placementManager.StopPlacement();
+            _placementManager.StopPlacement();
 
             _isHide = !_isHide;
         }

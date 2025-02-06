@@ -1,3 +1,13 @@
-﻿fileFormatVersion: 2
+fileFormatVersion: 2
 guid: 928c607d72d14cc082780cfc27b068e9
-timeCreated: 1717187509
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - modifiersDataBase: {fileID: 11400000, guid: 71042b4790eb8a24898e969d3720cb3c, type: 2}
+  - <BuildingConfig>k__BackingField: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
