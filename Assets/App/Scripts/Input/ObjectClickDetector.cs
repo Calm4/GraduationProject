@@ -22,7 +22,7 @@ namespace App.Scripts.Input
 
                     if (Physics.Raycast(ray, out var hit))
                     {
-                        Debug.Log("Clicked on object: " + hit.collider.gameObject.name);
+                        //Debug.Log("Clicked on object: " + hit.collider.gameObject.name);
                     }
                 
             }

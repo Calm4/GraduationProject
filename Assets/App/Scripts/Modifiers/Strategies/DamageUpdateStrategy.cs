@@ -17,8 +17,8 @@ namespace App.Scripts.Modifiers.Strategies
                     baseDamage = dmgConfig.damage;
                 }
                 
-                //Debug.Log($"[DamageUpdateStrategy] Level: {damageData.currentLevel}, " +
-                //          $"Damage: {damageData.currentDamage}, BaseDamage from SO {damageData.Config.modifierName}: {baseDamage}");
+                Debug.Log($"[DamageUpdateStrategy] Level: {damageData.currentLevel}, " +
+                          $"Damage: {damageData.currentDamage}, BaseDamage from SO {damageData.Config.modifierName}: {baseDamage}");
             }
         }
     }
