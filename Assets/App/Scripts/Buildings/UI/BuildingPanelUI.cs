@@ -134,7 +134,7 @@ namespace App.Scripts.Buildings.UI
         {
             nameTextField.text = building.BuildingConfig.buildingName;
             descriptionTextField.text = building.BuildingConfig.buildingDescription;
-            modifiersTextField.text = string.Join("\n", building.ActiveModifiers.Select(m => m.modifierName));
+            modifiersTextField.text = string.Join("\n", building.ActiveModifiers.Select(m => m.Value.ModifierData.Config.modifierName));
         }
         private void ClearUI()
         {

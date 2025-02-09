@@ -1,14 +1,15 @@
-﻿using App.Scripts.Modifiers.Configs;
+﻿using App.Scripts.Buildings;
+using App.Scripts.Modifiers.Configs;
 using App.Scripts.Modifiers.Data;
 using UnityEngine;
 
 namespace App.Scripts.Modifiers.Strategies
 {
-    public class DamageUpdateStrategy : IModifierUpdateStrategy
+    public class DamageUpdateStrategy : AbstractModifierUpdateStrategy
     {
-        public void UpdateModifier(BaseModifierData data)
+        public override void UpdateModifier(BaseModifierData data)
         {
-            var damageData = data as DamageData;
+            var damageData = data as DamageModifierData;
             if (damageData != null)
             {
                 float baseDamage = 0f;

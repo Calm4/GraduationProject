@@ -5,15 +5,15 @@ using UnityEngine;
 namespace App.Scripts.Modifiers.Data
 {
     [Serializable]
-    public class AttackRateData : BaseModifierData
+    public class DamageModifierData : BaseModifierData
     {
-        public float currentAttackRate;
+        public float currentDamage;
 
         public override void ResetToDefault(BaseModifierSO config)
         {
-            if (config is AttackRateModifierSO attackConfig)
+            if (config is DamageModifierSO damageConfig)
             {
-                currentAttackRate = attackConfig.attackRate;
+                currentDamage = damageConfig.damage;
             }
             else
             {

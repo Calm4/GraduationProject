@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using App.Scripts.Buildings.BuildingsConfigs;
 using App.Scripts.Modifiers;
-using App.Scripts.Modifiers.Configs;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
 
 namespace App.Scripts.Buildings
 {
@@ -17,12 +15,13 @@ namespace App.Scripts.Buildings
         private ModifierManager _modifierManager;
 
         [ShowInInspector, ReadOnly]
-        public List<BaseModifierSO> ActiveModifiers =>
-            _modifierManager?.GetActiveModifiers() ?? new List<BaseModifierSO>();
+        public Dictionary<ModifierType, ModifierInstance> ActiveModifiers =>
+            _modifierManager?.GetCurrentModifiers() ?? new Dictionary<ModifierType, ModifierInstance>();
         
         private void Awake()
         {
-            _modifierManager = new ModifierManager(BuildingConfig, modifiersDataBase);
+            // Передаём ссылку на текущее здание (this)
+            _modifierManager = new ModifierManager(BuildingConfig, this, modifiersDataBase);
         }
 
         private void Update()
