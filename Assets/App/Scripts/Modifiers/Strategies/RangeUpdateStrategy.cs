@@ -1,4 +1,5 @@
 ﻿using App.Scripts.Buildings;
+using App.Scripts.Enemies;
 using App.Scripts.Modifiers.Data;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ namespace App.Scripts.Modifiers.Strategies
     public class RangeUpdateStrategy : AbstractModifierUpdateStrategy
     {
 
-        public override  void UpdateModifier(BaseModifierData data)
+        public override void UpdateModifier(BaseModifierData data)
         {
             if (data is RangeModifierData rangeData)
             {
@@ -16,18 +17,18 @@ namespace App.Scripts.Modifiers.Strategies
                     Debug.LogError("RangeUpdateStrategy: OwnerBuilding не установлен!");
                     return;
                 }
-                
+
                 float radius = rangeData.currentRange;
                 Vector3 center = OwnerBuilding.transform.position;
-                
-                // Используем Physics.OverlapSphere для поиска коллайдеров в радиусе
+
                 Collider[] hits = Physics.OverlapSphere(center, radius);
                 foreach (Collider hit in hits)
                 {
-                    EnemyClick enemy = hit.GetComponent<EnemyClick>();
+                    Enemy enemy = hit.GetComponent<Enemy>();
                     if (enemy != null)
                     {
-                        Debug.Log($"[RangeUpdateStrategy] Объект {enemy.name} вошёл в радиус здания ({center}, radius={radius})");
+                        Debug.Log($"[RangeUpdateStrategy] Уничтожен {enemy.name}");
+                        GameObject.Destroy(enemy.gameObject);
                     }
                 }
             }
@@ -36,5 +37,6 @@ namespace App.Scripts.Modifiers.Strategies
                 Debug.LogError("RangeUpdateStrategy: Неверный тип данных. Ожидался RangeModifierData.");
             }
         }
+
     }
 }

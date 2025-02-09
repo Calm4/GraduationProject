@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using App.Scripts.Buildings.BuildingsConfigs;
 using App.Scripts.Modifiers;
+using App.Scripts.Modifiers.Data;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -13,6 +14,7 @@ namespace App.Scripts.Buildings
         [SerializeField] private ModifiersDataBase modifiersDataBase;
         [field: SerializeField] public BasicBuildingConfig BuildingConfig { get; private set; }
         private ModifierManager _modifierManager;
+        private RangeVisualizer _rangeVisualizer;
 
         [ShowInInspector, ReadOnly]
         public Dictionary<ModifierType, ModifierInstance> ActiveModifiers =>
@@ -20,8 +22,9 @@ namespace App.Scripts.Buildings
         
         private void Awake()
         {
-            // Передаём ссылку на текущее здание (this)
             _modifierManager = new ModifierManager(BuildingConfig, this, modifiersDataBase);
+            _rangeVisualizer = GetComponent<RangeVisualizer>();
+
         }
 
         private void Update()
@@ -43,8 +46,27 @@ namespace App.Scripts.Buildings
                 return;
             
             OnBuildingClicked?.Invoke(this);
+            
+            if (_rangeVisualizer != null)
+            {
+                float range = GetRangeFromModifiers();
+                _rangeVisualizer.SetRadius(range);
+                _rangeVisualizer.ToggleVisibility();
+            }
         }
 
+        private float GetRangeFromModifiers()
+        {
+            if (ActiveModifiers.TryGetValue(ModifierType.Range, out ModifierInstance modifier))
+            {
+                if (modifier.ModifierData is RangeModifierData rangeData)
+                {
+                    return rangeData.currentRange;
+                }
+            }
+            return 1f; // Значение по умолчанию
+        }
+        
         public static event Action<Building> OnBuildingClicked;
     }
 }

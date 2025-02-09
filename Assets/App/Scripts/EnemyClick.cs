@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Zenject;
 
 namespace App.Scripts
@@ -10,6 +11,10 @@ namespace App.Scripts
         public void OnClick()
         {
             Destroy(gameObject);
+        }
+
+        private void OnDestroy()
+        {
             _experienceManager.AddExperience(20);
         }
     }
