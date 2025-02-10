@@ -21,14 +21,14 @@ namespace App.Scripts.Modifiers
             _ownerBuilding = ownerBuilding;
             InitializeBaseModifiers(buildingConfig);
         }
-        
+
         private void InitializeBaseModifiers(BasicBuildingConfig buildingConfig)
         {
             foreach (var baseMod in buildingConfig.initialModifiers)
             {
                 if (!_modifierInstances.ContainsKey(baseMod.modifierType))
                 {
-                    _modifierInstances.Add(baseMod.modifierType, new ModifierInstance(baseMod, _ownerBuilding));
+                    _modifierInstances.Add(baseMod.modifierType, new ModifierInstance(baseMod, _ownerBuilding, this));
                 }
                 else
                 {
@@ -36,14 +36,14 @@ namespace App.Scripts.Modifiers
                 }
             }
         }
-        
+
         public void ApplyModifier(ModifierType modifierType)
         {
             if (!_modifierInstances.ContainsKey(modifierType))
             {
                 if (_modifiersDataBase.ModifierConfigs.TryGetValue(modifierType, out BaseModifierSO config))
                 {
-                    _modifierInstances.Add(modifierType, new ModifierInstance(config, _ownerBuilding));
+                    _modifierInstances.Add(modifierType, new ModifierInstance(config, _ownerBuilding, this));
                 }
                 else
                 {
@@ -55,9 +55,9 @@ namespace App.Scripts.Modifiers
                 Debug.Log($"Модификатор типа {modifierType} уже присутствует – применение не требуется.");
             }
         }
-        
+
         public Dictionary<ModifierType, ModifierInstance> GetCurrentModifiers() => _modifierInstances;
-        
+
         public void UpdateModifiers()
         {
             foreach (var modifier in _modifierInstances.Values)

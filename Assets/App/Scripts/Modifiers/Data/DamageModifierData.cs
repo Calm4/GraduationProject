@@ -7,7 +7,7 @@ namespace App.Scripts.Modifiers.Data
     [Serializable]
     public class DamageModifierData : BaseModifierData
     {
-        public float currentDamage;
+        public int currentDamage;
 
         public override void ResetToDefault(BaseModifierSO config)
         {

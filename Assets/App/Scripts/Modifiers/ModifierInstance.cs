@@ -7,24 +7,23 @@ namespace App.Scripts.Modifiers
 {
     public class ModifierInstance
     {
-        public BaseModifierData ModifierData { get;}
-        
-        private readonly AbstractModifierUpdateStrategy _updateStrategy;
-        
-        public ModifierInstance(BaseModifierSO config, Building ownerBuilding = null)
+        public BaseModifierData ModifierData { get; }
+        public AbstractModifierUpdateStrategy UpdateStrategy { get; }
+
+        public ModifierInstance(BaseModifierSO config, Building ownerBuilding = null, ModifierManager modifierManager = null)
         {
             ModifierData = ModifierDataFactory.Create(config);
-            _updateStrategy = ModifierUpdateStrategyFactory.Create(config.modifierType);
-            
-            if (ownerBuilding != null)
+            UpdateStrategy = ModifierUpdateStrategyFactory.Create(config.modifierType);
+
+            if (ownerBuilding != null && modifierManager != null)
             {
-                _updateStrategy.InitializeModifierUpdateStrategy(ownerBuilding);
+                UpdateStrategy.InitializeModifierUpdateStrategy(ownerBuilding, modifierManager);
             }
         }
-        
+
         public void UpdateModifier()
         {
-            _updateStrategy?.UpdateModifier(ModifierData);
+            UpdateStrategy?.UpdateModifier(ModifierData);
         }
     }
 }

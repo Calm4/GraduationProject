@@ -5,11 +5,15 @@ namespace App.Scripts.Modifiers
 {
     public abstract class AbstractModifierUpdateStrategy
     {
-        public void InitializeModifierUpdateStrategy(Building building)
+        public Building OwnerBuilding { get; private set; }
+        public ModifierManager ModifierManager { get; private set; }
+
+        public void InitializeModifierUpdateStrategy(Building building, ModifierManager modifierManager)
         {
             OwnerBuilding = building;
+            ModifierManager = modifierManager;
         }
-        public Building OwnerBuilding { get; private set; }
+
         public abstract void UpdateModifier(BaseModifierData data);
     }
 }

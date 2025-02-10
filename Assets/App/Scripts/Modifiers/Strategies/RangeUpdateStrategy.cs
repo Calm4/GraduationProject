@@ -2,11 +2,13 @@
 using App.Scripts.Enemies;
 using App.Scripts.Modifiers.Data;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace App.Scripts.Modifiers.Strategies
 {
     public class RangeUpdateStrategy : AbstractModifierUpdateStrategy
     {
+        private List<Enemy> enemyQueue = new List<Enemy>();
 
         public override void UpdateModifier(BaseModifierData data)
         {
@@ -22,21 +24,43 @@ namespace App.Scripts.Modifiers.Strategies
                 Vector3 center = OwnerBuilding.transform.position;
 
                 Collider[] hits = Physics.OverlapSphere(center, radius);
+                List<Enemy> currentEnemies = new List<Enemy>();
+
                 foreach (Collider hit in hits)
                 {
                     Enemy enemy = hit.GetComponent<Enemy>();
                     if (enemy != null)
                     {
-                        Debug.Log($"[RangeUpdateStrategy] Уничтожен {enemy.name}");
-                        GameObject.Destroy(enemy.gameObject);
+                        currentEnemies.Add(enemy);
                     }
                 }
+
+                enemyQueue.RemoveAll(e => e == null || !currentEnemies.Contains(e));
+
+                foreach (Enemy enemy in currentEnemies)
+                {
+                    if (!enemyQueue.Contains(enemy))
+                    {
+                        enemyQueue.Add(enemy);
+                    }
+                }
+
+                enemyQueue.Sort((e1, e2) => e2.progress.CompareTo(e1.progress));
             }
             else
             {
                 Debug.LogError("RangeUpdateStrategy: Неверный тип данных. Ожидался RangeModifierData.");
             }
         }
+        
+        public Enemy GetTargetEnemy()
+        {
+            return enemyQueue.Count > 0 ? enemyQueue[0] : null;
+        }
 
+        public List<Enemy> GetEnemiesInRange()
+        {
+            return enemyQueue;
+        }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using App.Scripts.Buildings.BuildingsConfigs;
 using App.Scripts.Modifiers;
+using App.Scripts.Modifiers.Configs;
 using App.Scripts.Modifiers.Data;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -16,10 +17,11 @@ namespace App.Scripts.Buildings
         private ModifierManager _modifierManager;
         private RangeVisualizer _rangeVisualizer;
 
+
         [ShowInInspector, ReadOnly]
         public Dictionary<ModifierType, ModifierInstance> ActiveModifiers =>
             _modifierManager?.GetCurrentModifiers() ?? new Dictionary<ModifierType, ModifierInstance>();
-        
+
         private void Awake()
         {
             _modifierManager = new ModifierManager(BuildingConfig, this, modifiersDataBase);
@@ -28,14 +30,8 @@ namespace App.Scripts.Buildings
         }
 
         private void Update()
-        { 
-            _modifierManager.UpdateModifiers();
-        }
-        
-        [Button("Добавить AttackRate модификатор")]
-        private void AddAttackRateModifier()
         {
-            _modifierManager.ApplyModifier(ModifierType.AttackRate);
+            _modifierManager.UpdateModifiers();
         }
 
         private void OnMouseDown()
@@ -44,7 +40,7 @@ namespace App.Scripts.Buildings
             Debug.Log("Clicked on: " + this.gameObject.name);
             if (this.BuildingConfig.buildingType == BuildingType.NonInteractive)
                 return;
-            
+
             OnBuildingClicked?.Invoke(this);
             
             if (_rangeVisualizer != null)
@@ -64,7 +60,7 @@ namespace App.Scripts.Buildings
                     return rangeData.currentRange;
                 }
             }
-            return 1f; // Значение по умолчанию
+            return 1f;
         }
         
         public static event Action<Building> OnBuildingClicked;

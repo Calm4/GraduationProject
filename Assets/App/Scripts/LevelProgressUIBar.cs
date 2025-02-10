@@ -33,5 +33,14 @@ namespace App.Scripts
         {
             levelNumberField.text = currentLevel.ToString();
         }
+        
+        private void OnDestroy()
+        {
+            if (_experienceManager != null)
+            {
+                _experienceManager.OnExperienceUpdate -= UpdateUIProgressBar;
+                _experienceManager.OnLevelUp -= UpdateUILevelNumber;
+            }
+        }
     }
 }
