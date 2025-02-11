@@ -38,7 +38,7 @@ namespace App.Scripts.Buildings
         {
             if (EventSystem.current.IsPointerOverGameObject()) return;
             Debug.Log("Clicked on: " + this.gameObject.name);
-            if (this.BuildingConfig.buildingType == BuildingType.NonInteractive)
+            if (BuildingConfig.buildingType == BuildingType.NonInteractive)
                 return;
 
             OnBuildingClicked?.Invoke(this);

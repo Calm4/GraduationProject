@@ -50,8 +50,25 @@ namespace App.Scripts.Modifiers.Strategies
             var damageData = (DamageModifierData)damageInstance.ModifierData;
             int damage = damageData.currentDamage;
 
+            var config = OwnerBuilding.BuildingConfig;
+            if (config == null || config.projectilePrefab == null)
+            {
+                Debug.LogError("Префаб снаряда не назначен в BuildingConfig!");
+                return;
+            }
+            
             enemy.TakeDamage(damage);
-            Debug.Log($"[AttackRateUpdateStrategy] Атака на {enemy.name} нанесла {damage} урона.");
+            Vector3 spawnPosition = OwnerBuilding.transform.position;
+            Projectile projectileObj = GameObject.Instantiate(config.projectilePrefab, spawnPosition, Quaternion.identity);
+            Projectile projectile = projectileObj.GetComponent<Projectile>();
+            if (projectile != null)
+            {
+                projectile.Initialize(enemy, damage);
+            }
+            else
+            {
+                Debug.LogError("Компонент Projectile не найден на префабе снаряда!");
+            }
         }
     }
 }
