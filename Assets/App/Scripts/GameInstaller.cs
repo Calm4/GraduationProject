@@ -30,7 +30,11 @@ namespace App.Scripts
         public SoundFeedbackManager soundFeedbackManager;
         public ParticleManager particleManager;
         public InputManager inputManager;
-    
+        
+        
+        [Space(10)]
+        [Header("UI")] public BuildingButtonsUIPanel buildingButtonsUIPanel;
+        
         public override void InstallBindings()
         {
             Container.Bind<ExperienceManager>().FromInstance(experienceManager).AsSingle();
@@ -43,13 +47,14 @@ namespace App.Scripts
             Container.Bind<BuildingManager>().FromInstance(buildingManager).AsSingle();
             Container.Bind<ResourcesManager>().FromInstance(resourcesManager).AsSingle();
             Container.Bind<TurnsBasedManager>().FromInstance(turnsBasedManager).AsSingle();
-
-
+            
             Container.Bind<JsonLoaderManager>().FromInstance(jsonLoaderManager).AsSingle();
             Container.Bind<SoundFeedbackManager>().FromInstance(soundFeedbackManager).AsSingle();
             Container.Bind<ParticleManager>().FromInstance(particleManager).AsSingle();
             Container.Bind<InputManager>().FromInstance(inputManager).AsSingle();
         
+            Container.Bind<BuildingButtonsUIPanel>().FromInstance(buildingButtonsUIPanel).AsSingle();
+            
             Container.Bind<IBuildingFactory>().To<BuildingFactory>().AsSingle();
             Container.Bind<IEnemyFactory>().To<EnemyFactory>().AsSingle();
         }

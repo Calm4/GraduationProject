@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5118955646507142000}
   - component: {fileID: 2588836354661353699}
   - component: {fileID: 6003611872913137249}
+  - component: {fileID: 3954550155885983035}
   m_Layer: 5
   m_Name: BuildingActionButton
   m_TagString: Untagged
@@ -122,6 +123,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3954550155885983035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1418029304588938032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3afa359f25194cf0a80d963d8d25ea7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionButton: {fileID: 0}
+  windowToOpen: {fileID: 0}
+  parentForWindow: {fileID: 0}
 --- !u!1 &2369868775161656788
 GameObject:
   m_ObjectHideFlags: 0

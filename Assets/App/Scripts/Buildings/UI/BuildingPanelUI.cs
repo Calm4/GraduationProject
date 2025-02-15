@@ -36,19 +36,15 @@ namespace App.Scripts.Buildings.UI
         [SerializeField] private TMP_Text modifiersTextField; 
 
 
-        // Время последнего выбора здания (для защиты от мгновенного скрытия)
         private float _lastBuildingClickTime = -1f;
-        // Минимальная задержка после выбора здания, чтобы глобальный клик не сработал сразу
         [SerializeField] private float clickDelayAfterSelection = 0.2f;
 
         private void Start()
         {
             _goRectTransform = GetComponent<RectTransform>();
     
-            // Запоминаем начальное положение панели как скрытое (редактор уже выставил за экран)
             _panelHidePosition = _goRectTransform.anchoredPosition;
     
-            // Вычисляем положение для показа на основе скрытой позиции
             _panelShowPosition = CalculateShowPosition(_panelHidePosition);
     
             _isShown = false;
@@ -74,7 +70,6 @@ namespace App.Scripts.Buildings.UI
             showAndHideButton.gameObject.SetActive(true);
             _lastBuildingClickTime = Time.time;
 
-            // Если панель ещё скрыта, анимируем её выезд из-за экрана (от скрытого положения к видимому)
             if (!_isShown)
             {
                 _goRectTransform.DOAnchorPos(_panelShowPosition, animationsConfig.panelShowTime)

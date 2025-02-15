@@ -43,5 +43,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f4ffbc72ef5e46843a6cb06eb6b9aba7, type: 2}
   - {fileID: 11400000, guid: 5a59975de002aab4685439e48635b34d, type: 2}
   - {fileID: 11400000, guid: 8fe6b9c58538ba043873b7b67075b6a2, type: 2}
-  buildingButtons: []
+  buildingButtons:
+  - {fileID: 11400000, guid: b947200d51ca6f94789427c1cc3fb591, type: 2}
+  - {fileID: 11400000, guid: 1fc1f229cdd029f45b3d762560b49b0d, type: 2}
   projectilePrefab: {fileID: 906735898567398293, guid: b562d6aff8b9f2f449495210c13ff70c, type: 3}

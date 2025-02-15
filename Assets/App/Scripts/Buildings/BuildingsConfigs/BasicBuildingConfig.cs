@@ -29,13 +29,14 @@ namespace App.Scripts.Buildings.BuildingsConfigs
         public List<ResourceRequirement> incomingResources;
         
         [Title("Start Modifiers")]
-        [ListDrawerSettings(Expanded = true)]
+        [ListDrawerSettings(ShowFoldout = true)]
         public List<BaseModifierSO> initialModifiers;
-        
+
         [Title("Building UI Buttons")]
-        [ListDrawerSettings(Expanded = true)]
+        [ListDrawerSettings(ShowFoldout = true)]
         [Tooltip("Список кнопок, которые появятся при выборе здания")]
         public List<BuildingButtonSO> buildingButtons; 
+
         
         [Title("Projectile")]
         [Tooltip("Префаб снаряда, которым стреляет здание")]

@@ -18,7 +18,7 @@ namespace App.Scripts.JsonClasses.Path
         
             IncludeCastleInPath(fullPath, castlePosition, castle);
 
-            Debug.Log("Full path length: " + fullPath.Count);
+            //Debug.Log("Full path length: " + fullPath.Count);
             return OptimizePath(fullPath);
         }
 

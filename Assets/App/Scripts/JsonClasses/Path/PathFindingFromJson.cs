@@ -48,9 +48,9 @@ namespace App.Scripts.JsonClasses.Path
                     castlePosition);
 
             var s = path.Aggregate("", (current, p) => current + ("[" + p.x + ":" + p.y + "]\n"));
-            Debug.Log(s);
+            //Debug.Log(s);
 
-            Debug.Log("Optimized Path length: " + path.Count);
+            //Debug.Log("Optimized Path length: " + path.Count);
 
 
             return path;
