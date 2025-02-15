@@ -1468,6 +1468,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   closeWindowButton: {fileID: 2952915475309704665}
+  headerPanel: {fileID: 6625138143911556108}
+  panelWidth: 460
+  panelHeight: 600
 --- !u!1 &3963623976673822380
 GameObject:
   m_ObjectHideFlags: 0

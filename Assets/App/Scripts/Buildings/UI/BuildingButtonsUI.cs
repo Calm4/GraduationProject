@@ -9,14 +9,15 @@ namespace App.Scripts.Buildings.UI
 {
     public class BuildingButtonsUI : MonoBehaviour
     {
-        [Header("Префаб кнопки для действий здания")]
-        [SerializeField] private GameObject buildingButtonPrefab; 
-        
-        [Header("Контейнер для кнопок здания")]
-        [SerializeField] private RectTransform buildingButtonsContainer; 
-        
-        [Header("Анимация появления/скрытия")]
-        [SerializeField] private float showTime = 0.3f;
+        [Header("Префаб кнопки для действий здания")] [SerializeField]
+        private GameObject buildingButtonPrefab;
+
+        [Header("Контейнер для кнопок здания")] [SerializeField]
+        private RectTransform buildingButtonsContainer;
+
+        [Header("Анимация появления/скрытия")] [SerializeField]
+        private float showTime = 0.3f;
+
         [SerializeField] private float hideTime = 0.3f;
 
         [Inject] private DiContainer _container;
@@ -30,11 +31,11 @@ namespace App.Scripts.Buildings.UI
             ResetBuildingButtonsContainer();
             buildingButtonsContainer.gameObject.SetActive(false);
         }
-        
+
         private void ShowBuildingActionButtons(Building building)
         {
             ResetBuildingButtonsContainer();
-            
+
             foreach (var buttonConfig in building.BuildingConfig.buildingButtons)
             {
                 var buttonInstance = _container.InstantiatePrefab(buildingButtonPrefab, buildingButtonsContainer);
@@ -44,6 +45,7 @@ namespace App.Scripts.Buildings.UI
                 {
                     buttonText.text = buttonConfig.buttonTitle;
                 }
+
                 var buttonImage = buttonInstance.transform.GetChild(0).GetChild(0).GetComponent<Image>();
                 if (buttonImage != null)
                 {
@@ -64,21 +66,22 @@ namespace App.Scripts.Buildings.UI
         private void OpenButtonsPanel()
         {
             buildingButtonsContainer.gameObject.SetActive(true);
-            buildingButtonsContainer.DOAnchorPosY(0, showTime)
-                                   .SetEase(Ease.OutSine)
-                                   .OnComplete(() => _isShown = true);
+            buildingButtonsContainer.localScale = Vector3.zero;
+            buildingButtonsContainer.DOScale(Vector3.one, showTime)
+                .SetEase(Ease.OutBack)
+                .OnComplete(() => _isShown = true);
         }
 
         private void CloseButtonsPanel()
         {
-            buildingButtonsContainer.DOAnchorPosY(-buildingButtonsContainer.rect.height, hideTime)
-                                   .SetEase(Ease.InSine)
-                                   .OnComplete(() =>
-                                   {
-                                       _isShown = false;
-                                       buildingButtonsContainer.gameObject.SetActive(false);
-                                       ResetBuildingButtonsContainer();
-                                   });
+            buildingButtonsContainer.DOScale(Vector3.zero, hideTime)
+                .SetEase(Ease.InBack)
+                .OnComplete(() =>
+                {
+                    _isShown = false;
+                    buildingButtonsContainer.gameObject.SetActive(false);
+                    ResetBuildingButtonsContainer();
+                });
         }
 
         private void Update()

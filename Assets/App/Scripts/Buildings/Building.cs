@@ -25,7 +25,9 @@ namespace App.Scripts.Buildings
         private void Awake()
         {
             _modifierManager = new ModifierManager(BuildingConfig, this, modifiersDataBase);
+           
             _rangeVisualizer = GetComponent<RangeVisualizer>();
+            _rangeVisualizer.Initialize(this);
 
         }
 
@@ -43,25 +45,11 @@ namespace App.Scripts.Buildings
 
             OnBuildingClicked?.Invoke(this);
             
-            if (_rangeVisualizer != null)
-            {
-                float range = GetRangeFromModifiers();
-                _rangeVisualizer.SetRadius(range);
-                _rangeVisualizer.ToggleVisibility();
-            }
+            if (_rangeVisualizer != null)  
+                _rangeVisualizer.ShowVisualizer();
         }
 
-        private float GetRangeFromModifiers()
-        {
-            if (ActiveModifiers.TryGetValue(ModifierType.Range, out ModifierInstance modifier))
-            {
-                if (modifier.ModifierData is RangeModifierData rangeData)
-                {
-                    return rangeData.currentRange;
-                }
-            }
-            return 1f;
-        }
+       
         
         public static event Action<Building> OnBuildingClicked;
     }
