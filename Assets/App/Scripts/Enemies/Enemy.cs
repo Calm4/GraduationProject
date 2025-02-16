@@ -2,41 +2,41 @@ using System;
 using System.Collections.Generic;
 using App.Scripts.TurnsBasedSystem;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
 namespace App.Scripts.Enemies
 {
     public class Enemy : MonoBehaviour
     {
-        [Inject] private GamePhaseManager _gamePhaseManager; 
+        [Inject] private GamePhaseManager _gamePhaseManager;
+        [Inject] private ExperienceManager _experienceManager;
         
-        public float speed = 2f;  
-        private List<Vector2> path;  
-        private int currentTargetIndex = 0;
+        [SerializeField] private EnemyConfig enemyConfig;
+        private readonly EnemyData _enemyData = new();
         
-        private float _progress = 0f;
-        public float progress => _progress;
+        public float TraveledDistance { get; private set; }
+        private List<Vector2> _pathToFinish;  
+        private int _currentPointToMoveIndex;
         
-        public int maxHealth;
-        public int health { get; private set; }
 
-
-        private void Start()
+        private void Awake()
         {
             _gamePhaseManager.OnGameStateChanges += TestEnemyMethod;
-            health = maxHealth;
+            _enemyData.InitializeEnemyData(enemyConfig);
         }
 
         private void TestEnemyMethod(GamePhase obj)
         {
+            //TODO: СДЕЛАТЬ ЛОГИКУ ДЛЯ ВРАГОВ ОТНОСИТЕЛЬНО СМЕНЫ ФАЗЫ
             Debug.Log("Current phase: " + obj.ToString());
         }
 
         public void SetPath(List<Vector2> newPath)
         {
-            path = newPath;
-            currentTargetIndex = 0;
-            if (path != null && path.Count > 0)
+            _pathToFinish = newPath;
+            _currentPointToMoveIndex = 0;
+            if (_pathToFinish != null && _pathToFinish.Count > 0)
             {
                 MoveToNextPoint();
             }
@@ -44,16 +44,16 @@ namespace App.Scripts.Enemies
 
         private void Update()
         {
-            if (path == null || currentTargetIndex >= path.Count)
+            if (_pathToFinish == null || _currentPointToMoveIndex >= _pathToFinish.Count)
                 return;
 
-            Vector2 targetPosition = path[currentTargetIndex];
+            Vector2 targetPosition = _pathToFinish[_currentPointToMoveIndex];
             Vector2 currentPosition = new Vector2(transform.position.x, transform.position.z);
 
             if (Vector2.Distance(currentPosition, targetPosition) < 0.1f)
             {
-                currentTargetIndex++;
-                if (currentTargetIndex < path.Count)
+                _currentPointToMoveIndex++;
+                if (_currentPointToMoveIndex < _pathToFinish.Count)
                 {
                     MoveToNextPoint();
                 }
@@ -67,44 +67,44 @@ namespace App.Scripts.Enemies
                 transform.position = Vector3.MoveTowards(
                     transform.position,
                     new Vector3(targetPosition.x, transform.position.y, targetPosition.y),
-                    speed * Time.deltaTime);
+                    _enemyData.CurrentSpeed * Time.deltaTime);
             }
             UpdateProgress();
         }
     
         private void MoveToNextPoint()
         {
-            Vector2 targetPosition = path[currentTargetIndex];
+            Vector2 targetPosition = _pathToFinish[_currentPointToMoveIndex];
             //Debug.Log($"Moving to next point: {targetPosition}");
         }
         
         private void UpdateProgress()
         {
-            if (path == null || path.Count == 0)
+            if (_pathToFinish == null || _pathToFinish.Count == 0)
             {
-                _progress = 0f;
+                TraveledDistance = 0f;
                 return;
             }
 
             float total = 0f;
-            for (int i = 0; i < currentTargetIndex - 1; i++)
+            for (int i = 0; i < _currentPointToMoveIndex - 1; i++)
             {
-                total += Vector2.Distance(path[i], path[i + 1]);
+                total += Vector2.Distance(_pathToFinish[i], _pathToFinish[i + 1]);
             }
-            if (currentTargetIndex > 0 && currentTargetIndex <= path.Count)
+            if (_currentPointToMoveIndex > 0 && _currentPointToMoveIndex <= _pathToFinish.Count)
             {
-                Vector2 lastPoint = path[currentTargetIndex - 1];
+                Vector2 lastPoint = _pathToFinish[_currentPointToMoveIndex - 1];
                 Vector2 currentPos2D = new Vector2(transform.position.x, transform.position.z);
                 total += Vector2.Distance(lastPoint, currentPos2D);
             }
-            _progress = total;
+            TraveledDistance = total;
         }
         
         public void TakeDamage(int damage)
         {
-            health -= damage;
-            Debug.Log($"{gameObject.name} получил {damage} урона, осталось здоровья: {health}");
-            if (health <= 0)
+            _enemyData.CurrentHealth -= damage;
+            Debug.Log($"{gameObject.name} получил {damage} урона, осталось здоровья: {_enemyData.CurrentHealth}");
+            if (_enemyData.CurrentHealth <= 0)
             {
                 Die();
             }
@@ -112,6 +112,7 @@ namespace App.Scripts.Enemies
 
         private void Die()
         {
+            _experienceManager.AddExperience(enemyConfig.ExperienceForKilling);
             // Здесь можно добавить выдачу опыта, эффекты смерти, и т.д.
             Destroy(gameObject);
         }

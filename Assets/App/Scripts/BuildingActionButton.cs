@@ -15,7 +15,7 @@ namespace App.Scripts
         [Inject]
         public void Construct(BuildingButtonsUIPanel buildingButtonsUIPanel)
         {
-            this._buildingButtonsUIPanel = buildingButtonsUIPanel;
+            _buildingButtonsUIPanel = buildingButtonsUIPanel;
         }
 
         private void Awake()

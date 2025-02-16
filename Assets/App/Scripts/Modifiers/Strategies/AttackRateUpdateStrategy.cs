@@ -57,8 +57,7 @@ namespace App.Scripts.Modifiers.Strategies
                 return;
             }
             
-            enemy.TakeDamage(damage);
-            Vector3 spawnPosition = OwnerBuilding.transform.position;
+            Vector3 spawnPosition = OwnerBuilding.transform.position + new Vector3(0,2,0);
             Projectile projectileObj = GameObject.Instantiate(config.projectilePrefab, spawnPosition, Quaternion.identity);
             Projectile projectile = projectileObj.GetComponent<Projectile>();
             if (projectile != null)

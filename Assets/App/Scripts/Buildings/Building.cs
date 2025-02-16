@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using App.Scripts.Buildings.BuildingsConfigs;
 using App.Scripts.Modifiers;
-using App.Scripts.Modifiers.Configs;
-using App.Scripts.Modifiers.Data;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.EventSystems;

@@ -45,7 +45,7 @@ namespace App.Scripts.Modifiers.Strategies
                     }
                 }
 
-                enemyQueue.Sort((e1, e2) => e2.progress.CompareTo(e1.progress));
+                enemyQueue.Sort((e1, e2) => e2.TraveledDistance.CompareTo(e1.TraveledDistance));
             }
             else
             {

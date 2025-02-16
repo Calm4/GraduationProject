@@ -1,3 +1,4 @@
+using App.Scripts.Enemies;
 using UnityEngine;
 
 namespace App.Scripts

@@ -1,8 +1,7 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using Zenject;
 
-namespace App.Scripts
+namespace App.Scripts.Enemies
 {
     public class EnemyClick : MonoBehaviour
     {
@@ -15,6 +14,7 @@ namespace App.Scripts
 
         private void OnDestroy()
         {
+            //TODO: сделать добавление экспы при убийстве, а не при уничтожении
             _experienceManager.AddExperience(20);
         }
     }

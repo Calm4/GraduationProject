@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using DG.Tweening;
 
-namespace App.Scripts.Buildings.UI
+namespace App.Scripts
 {
     public abstract class UIClosableElement : MonoBehaviour
     {

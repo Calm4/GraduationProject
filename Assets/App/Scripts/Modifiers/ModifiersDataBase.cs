@@ -11,6 +11,5 @@ namespace App.Scripts.Modifiers
         [DictionaryDrawerSettings(DisplayMode = DictionaryDisplayOptions.Foldout)]
         public Dictionary<ModifierType, BaseModifierSO> ModifierConfigs = new();
         
-        // применить данную DB в коде для поиска модификаторов
     }
 }
