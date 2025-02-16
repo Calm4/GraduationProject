@@ -8,6 +8,7 @@ namespace App.Scripts.JsonClasses.Path
     public abstract class PathFinding
     {
         private static Vector2 _gridOffset;
+        private static readonly  Vector2 CellOffset = new Vector2(0.5f, 0.5f);
         
         public static List<Vector2> GeneratePath(GridManager gridManager, Dictionary<Vector2, int> grid, 
             Building pathway, Building castle, Vector2 spawnerPosition, Vector2 castlePosition)
@@ -66,8 +67,8 @@ namespace App.Scripts.JsonClasses.Path
         {
             if (fullPath.Contains(castlePosition)) return;
             
-            var cellOffset = new Vector2(0.5f, 0.5f);
-            Vector2 halfOfCastleSize = castle.BuildingConfig.size / 2 - cellOffset;
+
+            Vector2 halfOfCastleSize = castle.BuildingConfig.size / 2 - CellOffset;
             fullPath.Add(AdjustForGridOffset(castlePosition) + halfOfCastleSize);
         }
         
@@ -96,7 +97,7 @@ namespace App.Scripts.JsonClasses.Path
         private static Vector2 AdjustForGridOffset(Vector2 position)
         {
             
-            return position - _gridOffset;
+            return position - _gridOffset + CellOffset;
         }
 
         private static bool IsOnStraightLine(Vector2 a, Vector2 b, Vector2 c)

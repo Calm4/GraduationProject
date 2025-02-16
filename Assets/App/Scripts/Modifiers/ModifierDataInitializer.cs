@@ -11,14 +11,11 @@ namespace App.Scripts.Modifiers
             ModifierDataFactory.Register(ModifierType.AttackRate, (config) => new AttackRateModifierData());
             ModifierDataFactory.Register(ModifierType.Damage, (config) => new DamageModifierData());
             ModifierDataFactory.Register(ModifierType.Range, (config) => new RangeModifierData());
-
-
+            
             ModifierUpdateStrategyFactory.Register(ModifierType.AttackRate, () => new AttackRateUpdateStrategy());
             ModifierUpdateStrategyFactory.Register(ModifierType.Damage, () => new DamageUpdateStrategy());
             ModifierUpdateStrategyFactory.Register(ModifierType.Range, () => new RangeUpdateStrategy());
-
             
-            Debug.Log("ModifierDataFactory и ModifierUpdateStrategyFactory инициализированы.");
         }
     }
 }
