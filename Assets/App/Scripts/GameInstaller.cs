@@ -32,8 +32,11 @@ namespace App.Scripts
         public InputManager inputManager;
         
         
-        [Space(10)]
-        [Header("UI")] public BuildingButtonsUIPanel buildingButtonsUIPanel;
+        
+        [Space(10)][Header("UI")]
+        public BuildingButtonsUIPanel buildingButtonsUIPanel;
+        public OpenPanelsManager openPanelsManager;
+        
         
         public override void InstallBindings()
         {
@@ -54,6 +57,7 @@ namespace App.Scripts
             Container.Bind<InputManager>().FromInstance(inputManager).AsSingle();
         
             Container.Bind<BuildingButtonsUIPanel>().FromInstance(buildingButtonsUIPanel).AsSingle();
+            Container.Bind<OpenPanelsManager>().FromInstance(openPanelsManager).AsSingle();
             
             Container.Bind<IBuildingFactory>().To<BuildingFactory>().AsSingle();
             Container.Bind<IEnemyFactory>().To<EnemyFactory>().AsSingle();

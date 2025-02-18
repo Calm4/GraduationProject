@@ -53,9 +53,10 @@ namespace App.Scripts.Buildings.UI
                 }
 
                 var actionButton = buttonInstance.GetComponent<BuildingActionButton>();
+                
                 if (actionButton != null)
                 {
-                    actionButton.Initialize(buttonConfig.uiPanelPrefab);
+                    actionButton.Initialize(buttonConfig.uiPanelPrefab, building);
                 }
             }
 

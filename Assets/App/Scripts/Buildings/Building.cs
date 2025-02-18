@@ -15,8 +15,15 @@ namespace App.Scripts.Buildings
         private ModifierManager _modifierManager;
         private RangeVisualizer _rangeVisualizer;
 
-
-        [ShowInInspector, ReadOnly]
+        public ModifierManager ModifierManager => _modifierManager;
+        
+        [Button]
+        public void AddModifier()
+        {
+            _modifierManager.ApplyModifier(ModifierType.Damage);
+        }
+        
+        [ShowInInspector,ReadOnly]
         public Dictionary<ModifierType, ModifierInstance> ActiveModifiers =>
             _modifierManager?.GetCurrentModifiers() ?? new Dictionary<ModifierType, ModifierInstance>();
 

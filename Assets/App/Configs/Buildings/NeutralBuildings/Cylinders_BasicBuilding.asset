@@ -35,7 +35,8 @@ MonoBehaviour:
   - amount: 100
     config: {fileID: 11400000, guid: 690fd2dfdcfe6774fac3487cfcf4dc75, type: 2}
   incomingResources: []
-  initialModifiers: []
+  initialModifiers:
+  - {fileID: 11400000, guid: 8fe6b9c58538ba043873b7b67075b6a2, type: 2}
   buildingButtons:
   - {fileID: 11400000, guid: 1fc1f229cdd029f45b3d762560b49b0d, type: 2}
   projectilePrefab: {fileID: 0}

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using App.Scripts.Buildings;
 using App.Scripts.Buildings.BuildingsConfigs;
 using App.Scripts.Modifiers.Configs;
@@ -10,12 +11,17 @@ namespace App.Scripts.Modifiers
     public class ModifierManager
     {
         [ShowInInspector, DictionaryDrawerSettings(DisplayMode = DictionaryDisplayOptions.Foldout)]
-        private Dictionary<ModifierType, ModifierInstance> _modifierInstances = new Dictionary<ModifierType, ModifierInstance>();
+        private Dictionary<ModifierType, ModifierInstance> _modifierInstances =
+            new Dictionary<ModifierType, ModifierInstance>();
 
         private readonly ModifiersDataBase _modifiersDataBase;
         private readonly Building _ownerBuilding;
 
-        public ModifierManager(BasicBuildingConfig buildingConfig, Building ownerBuilding, ModifiersDataBase modifiersDataBase)
+        public event Action<ModifierInstance> OnModifierAdded;
+
+
+        public ModifierManager(BasicBuildingConfig buildingConfig, Building ownerBuilding,
+            ModifiersDataBase modifiersDataBase)
         {
             _modifiersDataBase = modifiersDataBase;
             _ownerBuilding = ownerBuilding;
@@ -28,11 +34,15 @@ namespace App.Scripts.Modifiers
             {
                 if (!_modifierInstances.ContainsKey(baseMod.modifierType))
                 {
-                    _modifierInstances.Add(baseMod.modifierType, new ModifierInstance(baseMod, _ownerBuilding, this));
+                    var instance = new ModifierInstance(baseMod, _ownerBuilding, this);
+                    _modifierInstances.Add(baseMod.modifierType, instance);
+
+                    OnModifierAdded?.Invoke(instance);
                 }
                 else
                 {
-                    Debug.Log($"Модификатор типа {baseMod.modifierType} уже существует – повторное добавление игнорируется.");
+                    Debug.Log(
+                        $"Модификатор типа {baseMod.modifierType} уже существует – повторное добавление игнорируется.");
                 }
             }
         }
@@ -43,7 +53,10 @@ namespace App.Scripts.Modifiers
             {
                 if (_modifiersDataBase.ModifierConfigs.TryGetValue(modifierType, out BaseModifierSO config))
                 {
-                    _modifierInstances.Add(modifierType, new ModifierInstance(config, _ownerBuilding, this));
+                    var newModifier = new ModifierInstance(config, _ownerBuilding, this);
+                    _modifierInstances.Add(modifierType, newModifier);
+
+                    OnModifierAdded?.Invoke(newModifier);
                 }
                 else
                 {

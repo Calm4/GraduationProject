@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7801952643749100685}
   - component: {fileID: 3756675889666406256}
   - component: {fileID: 8970132318357653430}
+  - component: {fileID: 2351268946483769142}
   m_Layer: 5
   m_Name: ModifierRowPanel
   m_TagString: Untagged
@@ -73,6 +74,21 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &2351268946483769142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2793222966392379090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c909cef9b8341eeb05c3b160c27d2a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <BgImage>k__BackingField: {fileID: 4577694649861022035}
+  <MainImage>k__BackingField: {fileID: 277853858912305494}
+  <ModifierText>k__BackingField: {fileID: 8796515822810077721}
 --- !u!1 &3725358269088997019
 GameObject:
   m_ObjectHideFlags: 0
