@@ -36,10 +36,5 @@ namespace App.Scripts.Buildings.BuildingsConfigs
         [ListDrawerSettings(ShowFoldout = true)]
         [Tooltip("Список кнопок, которые появятся при выборе здания")]
         public List<BuildingButtonSO> buildingButtons; 
-
-        
-        [Title("Projectile")]
-        [Tooltip("Префаб снаряда, которым стреляет здание")]
-        public Projectile projectilePrefab;
     }
 }

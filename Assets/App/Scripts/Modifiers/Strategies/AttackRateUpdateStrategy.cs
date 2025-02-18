@@ -1,4 +1,5 @@
 ﻿using App.Scripts.Buildings;
+using App.Scripts.Buildings.BuildingsConfigs;
 using App.Scripts.Enemies;
 using App.Scripts.Modifiers.Data;
 using UnityEngine;
@@ -50,7 +51,7 @@ namespace App.Scripts.Modifiers.Strategies
             var damageData = (DamageModifierData)damageInstance.ModifierData;
             int damage = damageData.currentDamage;
 
-            var config = OwnerBuilding.BuildingConfig;
+            var config = (DefensiveBuildingConfig)OwnerBuilding.BuildingConfig;
             if (config == null || config.projectilePrefab == null)
             {
                 Debug.LogError("Префаб снаряда не назначен в BuildingConfig!");
