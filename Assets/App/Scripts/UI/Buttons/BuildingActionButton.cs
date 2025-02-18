@@ -8,8 +8,8 @@ namespace App.Scripts
     public class BuildingActionButton :  MonoBehaviour
     {
         [Inject] private OpenPanelsManager _openPanelsManager;
-        
-        public Building ParentBuilding { get; private set; }
+
+        private Building _parentBuilding;
         
         private RectTransform _uiPanelPrefab;
         private BuildingButtonsUIPanel _buildingButtonsUIPanel;
@@ -32,28 +32,34 @@ namespace App.Scripts
         public void Initialize(RectTransform panelPrefab, Building parentBuilding)
         {
             _uiPanelPrefab = panelPrefab;
-            ParentBuilding = parentBuilding;
+            _parentBuilding = parentBuilding;
         }
 
         private void OnButtonClicked()
         {
             if (_uiPanelPrefab != null && _buildingButtonsUIPanel != null)
             {
-                GameObject instanceGo = _container.InstantiatePrefab(_uiPanelPrefab.gameObject, _buildingButtonsUIPanel.WindowsContainer);
-                RectTransform instance = instanceGo.GetComponent<RectTransform>();
-                if (instance.TryGetComponent(out IBuildingButtonInitializer uiBuildingActionButton))
-                {
-                    uiBuildingActionButton.BaseInitializer(ParentBuilding);
-                    _openPanelsManager.RegisterWindow(ParentBuilding, uiBuildingActionButton);
-
-                }
-
-                instance.anchoredPosition = Vector2.zero;
+                CreateCustomWindow(_uiPanelPrefab.gameObject, _buildingButtonsUIPanel.WindowsContainer);
             }
             else
             {
                 Debug.LogError("UI Panel Prefab или BuildingButtonsUIPanel не назначены!");
             }
+        }
+
+        private void CreateCustomWindow(GameObject uiPanelPrefab, RectTransform windowContainer)
+        {
+            GameObject instanceGo = _container.InstantiatePrefab(uiPanelPrefab, windowContainer);
+            
+            RectTransform instance = instanceGo.GetComponent<RectTransform>();
+            if (instance.TryGetComponent(out IBuildingButtonInitializer uiBuildingActionButton))
+            {
+                uiBuildingActionButton.BaseInitializer(_parentBuilding);
+                _openPanelsManager.RegisterWindow(_parentBuilding, uiBuildingActionButton);
+
+            }
+
+            instance.anchoredPosition = Vector2.zero;
         }
     }
 }

@@ -13,7 +13,7 @@ namespace App.Scripts.Buildings
         [SerializeField] private ModifiersDataBase modifiersDataBase;
         [field: SerializeField] public BasicBuildingConfig BuildingConfig { get; private set; }
         private ModifierManager _modifierManager;
-        private RangeVisualizer _rangeVisualizer;
+        private BuildingRangeVisualizer _buildingRangeVisualizer;
 
         public ModifierManager ModifierManager => _modifierManager;
         
@@ -31,8 +31,8 @@ namespace App.Scripts.Buildings
         {
             _modifierManager = new ModifierManager(BuildingConfig, this, modifiersDataBase);
            
-            _rangeVisualizer = GetComponent<RangeVisualizer>();
-            _rangeVisualizer.Initialize(this);
+            _buildingRangeVisualizer = GetComponent<BuildingRangeVisualizer>();
+            _buildingRangeVisualizer.Initialize(this);
 
         }
 
@@ -49,9 +49,8 @@ namespace App.Scripts.Buildings
                 return;
 
             OnBuildingClicked?.Invoke(this);
-            
-            if (_rangeVisualizer != null)  
-                _rangeVisualizer.ShowVisualizer();
+
+            _buildingRangeVisualizer.ShowVisualizer();
         }
 
        

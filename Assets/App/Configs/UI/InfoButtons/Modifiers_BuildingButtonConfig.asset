@@ -22,5 +22,5 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   buttonTitle: Modifiers
-  buttonIcon: {fileID: 21300000, guid: 69f6e97969ecc764b961d9be9cedf51e, type: 3}
+  buttonIcon: {fileID: 21300000, guid: 0eb4e5eb45d302747abfd1c2dcfcc7f5, type: 3}
   uiPanelPrefab: {fileID: 8841399009108321235, guid: f06c46b29a4335746af7ca7608c2e592, type: 3}

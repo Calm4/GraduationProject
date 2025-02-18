@@ -17,25 +17,26 @@ namespace App.Scripts
 {
     public class GameInstaller : MonoInstaller
     {
-        public GridManager gridManager;
-        public PlacementManager placementManager;
-        public BuildingManager buildingManager;
-        public ResourcesManager resourcesManager;
-        public TurnsBasedManager turnsBasedManager;
-        [Space(10)] public ExperienceManager experienceManager;
-        public WavesManager wavesManager;
-        public GamePhaseManager gamePhaseManager;
-
-        [Space(10)] public JsonLoaderManager jsonLoaderManager;
-        public SoundFeedbackManager soundFeedbackManager;
-        public ParticleManager particleManager;
-        public InputManager inputManager;
+        [Header("Core Managers")]
+        [SerializeField] private GridManager gridManager;
+        [SerializeField] private PlacementManager placementManager;
+        [SerializeField] private BuildingManager buildingManager;
+        [SerializeField] private ResourcesManager resourcesManager;
+        [SerializeField] private TurnsBasedManager turnsBasedManager;
+        [SerializeField] private ExperienceManager experienceManager;
+        [SerializeField] private WavesManager wavesManager;
+        [SerializeField] private GamePhaseManager gamePhaseManager;
         
-        
+        [Space(10)] 
+        [Header("Meta Managers")]
+        [SerializeField] private JsonLoaderManager jsonLoaderManager;
+        [SerializeField] private SoundFeedbackManager soundFeedbackManager;
+        [SerializeField] private ParticleManager particleManager;
+        [SerializeField] private InputManager inputManager;
         
         [Space(10)][Header("UI")]
-        public BuildingButtonsUIPanel buildingButtonsUIPanel;
-        public OpenPanelsManager openPanelsManager;
+        [SerializeField] private BuildingButtonsUIPanel buildingButtonsUIPanel;
+        [SerializeField] private OpenPanelsManager openPanelsManager;
         
         
         public override void InstallBindings()

@@ -12,14 +12,14 @@ namespace App.Scripts
         [SerializeField] private CinemachineVirtualCamera virtualCamera;
 
         [Header("Movement Settings")]
-        [SerializeField] private float mousePanMultiplier = 0.5f;   
-        [SerializeField] private float moveSmoothTime = 0.1f;        
+        [SerializeField] private float mousePanMultiplier;   
+        [SerializeField] private float moveSmoothTime;        
 
         [Header("Zoom Settings")]
-        [SerializeField] private float zoomSpeed = 5f;               
-        [SerializeField] private float minOrthographicSize = 2f;     
-        [SerializeField] private float maxOrthographicSize = 10f;    
-        [SerializeField] private float pinchZoomSensitivity = 0.01f; 
+        [SerializeField] private float zoomSpeed;               
+        [SerializeField] private float minOrthographicSize;     
+        [SerializeField] private float maxOrthographicSize;    
+        [SerializeField] private float pinchZoomSensitivity; 
 
         #endregion
 
