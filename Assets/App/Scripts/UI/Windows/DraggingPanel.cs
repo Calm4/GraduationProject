@@ -1,8 +1,6 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.Serialization;
+﻿using UnityEngine;
 
-namespace App.Scripts
+namespace App.Scripts.UI.Windows
 {
     public class DraggingPanel : MonoBehaviour
     {

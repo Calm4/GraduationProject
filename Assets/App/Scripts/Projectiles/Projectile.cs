@@ -1,7 +1,7 @@
 ﻿using App.Scripts.Enemies;
 using UnityEngine;
 
-namespace App.Scripts
+namespace App.Scripts.Projectiles
 {
     public class Projectile : MonoBehaviour
     {

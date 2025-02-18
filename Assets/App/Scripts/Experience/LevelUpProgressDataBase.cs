@@ -3,7 +3,7 @@ using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
 
-namespace App.Scripts
+namespace App.Scripts.Experience
 {
     [CreateAssetMenu(fileName = "LevelUpProgressDataBase", menuName = "Configs/DataBases/LevelUpProgressDataBase", order = 0)]
     public class LevelUpProgressDataBase : SerializedScriptableObject

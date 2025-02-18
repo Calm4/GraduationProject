@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace App.Scripts
+namespace App.Scripts.Experience
 {
     public class ExperienceManager : MonoBehaviour
     {

@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using App.Scripts.Buildings;
+using App.Scripts.UI.Buttons;
 using UnityEngine;
 
-namespace App.Scripts
+namespace App.Scripts.UI.Windows
 {
     public class OpenPanelsManager : MonoBehaviour
     {

@@ -1,7 +1,7 @@
 using App.Scripts.Enemies;
 using UnityEngine;
 
-namespace App.Scripts
+namespace App.Scripts.Input
 {
    public class ClickDetector : MonoBehaviour
    {
@@ -14,7 +14,7 @@ namespace App.Scripts
 
       private void DetectClick()
       {
-         Ray ray = Camera.main.ScreenPointToRay(UnityEngine.Input.mousePosition);
+         Ray ray = UnityEngine.Camera.main.ScreenPointToRay(UnityEngine.Input.mousePosition);
          RaycastHit hit;
 
          if (Physics.Raycast(ray, out hit))

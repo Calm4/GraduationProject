@@ -1,9 +1,8 @@
 using App.Scripts.Buildings;
-using App.Scripts.Modifiers;
 using App.Scripts.Modifiers.Data;
 using UnityEngine;
 
-namespace App.Scripts
+namespace App.Scripts.Modifiers
 {
     [RequireComponent(typeof(LineRenderer))]
     public class BuildingRangeVisualizer : MonoBehaviour

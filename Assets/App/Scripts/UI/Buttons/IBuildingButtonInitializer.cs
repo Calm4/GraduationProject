@@ -1,7 +1,6 @@
 ﻿using App.Scripts.Buildings;
-using UnityEngine;
 
-namespace App.Scripts
+namespace App.Scripts.UI.Buttons
 {
     public interface IBuildingButtonInitializer
     {

@@ -1,4 +1,5 @@
-﻿using Sirenix.OdinInspector;
+﻿using App.Scripts.Projectiles;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace App.Scripts.Buildings.BuildingsConfigs

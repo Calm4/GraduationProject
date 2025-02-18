@@ -1,7 +1,7 @@
 using UnityEngine;
 using Zenject;
 
-namespace App.Scripts.Input
+namespace App.Scripts.Input.Camera
 {
     public class CameraMovementController : MonoBehaviour
     {

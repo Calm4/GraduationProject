@@ -2,6 +2,7 @@
 using App.Scripts.Buildings.BuildingsConfigs;
 using App.Scripts.Enemies;
 using App.Scripts.Modifiers.Data;
+using App.Scripts.Projectiles;
 using UnityEngine;
 
 namespace App.Scripts.Modifiers.Strategies

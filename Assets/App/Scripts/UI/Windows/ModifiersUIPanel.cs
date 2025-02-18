@@ -1,10 +1,11 @@
 ﻿using App.Scripts.Buildings;
 using App.Scripts.Modifiers;
+using App.Scripts.UI.Buttons;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace App.Scripts
+namespace App.Scripts.UI.Windows
 {
     public class ModifiersUIPanel : MonoBehaviour, IBuildingButtonInitializer
     {

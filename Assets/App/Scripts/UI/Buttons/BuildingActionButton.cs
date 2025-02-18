@@ -1,9 +1,10 @@
 ﻿using App.Scripts.Buildings;
+using App.Scripts.UI.Windows;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace App.Scripts
+namespace App.Scripts.UI.Buttons
 {
     public class BuildingActionButton :  MonoBehaviour
     {

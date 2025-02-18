@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace App.Scripts
+namespace App.Scripts.UI.Buttons
 {
     public class BuildingButtonsUIPanel : MonoBehaviour
     {

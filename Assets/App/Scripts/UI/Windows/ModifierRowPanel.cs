@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace App.Scripts
+namespace App.Scripts.UI.Windows
 {
     public class ModifierRowPanel : MonoBehaviour
     {

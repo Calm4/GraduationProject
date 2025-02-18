@@ -1,7 +1,7 @@
 using Cinemachine;
 using UnityEngine;
 
-namespace App.Scripts
+namespace App.Scripts.Input.Camera
 {
     [RequireComponent(typeof(Transform))]
     public class IsometricCameraController : MonoBehaviour

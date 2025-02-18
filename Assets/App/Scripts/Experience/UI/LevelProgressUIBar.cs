@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace App.Scripts
+namespace App.Scripts.Experience.UI
 {
     public class LevelProgressUIBar : MonoBehaviour
     {

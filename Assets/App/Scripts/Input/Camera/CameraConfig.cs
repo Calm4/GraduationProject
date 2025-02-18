@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace App.Scripts.Input
+namespace App.Scripts.Input.Camera
 {
     [CreateAssetMenu(fileName = "CameraConfig", menuName = "Configs/CameraConfig", order = 0)]
     public class CameraConfig : ScriptableObject

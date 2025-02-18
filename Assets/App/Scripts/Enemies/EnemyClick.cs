@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using App.Scripts.Experience;
+using UnityEngine;
 using Zenject;
 
 namespace App.Scripts.Enemies
