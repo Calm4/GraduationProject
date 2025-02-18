@@ -6,7 +6,7 @@ namespace App.Scripts.Input
 {
     public class InputManager : MonoBehaviour
     {
-        [SerializeField] private Camera sceneCamera;
+        [SerializeField] private UnityEngine.Camera sceneCamera;
         [SerializeField] private LayerMask placementLayerMask;
         private Vector3 _lastPosition;
     
