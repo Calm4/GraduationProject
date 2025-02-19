@@ -10,11 +10,11 @@ namespace App.Scripts.Buildings.UI
 {
     public class BuildingButtonsUI : MonoBehaviour
     {
-        [Header("Префаб кнопки для действий здания")] [SerializeField]
-        private GameObject buildingButtonPrefab;
+        [Header("Префаб кнопки для действий здания")] 
+        [SerializeField] private GameObject buildingButtonPrefab;
 
-        [Header("Контейнер для кнопок здания")] [SerializeField]
-        private RectTransform buildingButtonsContainer;
+        [Header("Контейнер для кнопок здания")] 
+        [SerializeField] private RectTransform buildingButtonsContainer;
 
         [Header("Анимация появления/скрытия")] [SerializeField]
         private float showTime = 0.3f;
@@ -115,14 +115,7 @@ namespace App.Scripts.Buildings.UI
             }
         }
 
-        private void OnEnable()
-        {
-            Building.OnBuildingClicked += ShowBuildingActionButtons;
-        }
-
-        private void OnDisable()
-        {
-            Building.OnBuildingClicked -= ShowBuildingActionButtons;
-        }
+        private void OnEnable() => Building.OnBuildingClicked += ShowBuildingActionButtons;
+        private void OnDisable() => Building.OnBuildingClicked -= ShowBuildingActionButtons;
     }
 }
