@@ -532,6 +532,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buffImage: {fileID: 4908973001417636843}
   buffText: {fileID: 6451632424788103717}
+  modifierType: 0
 --- !u!1 &822644654170728469
 GameObject:
   m_ObjectHideFlags: 0
@@ -775,6 +776,7 @@ GameObject:
   - component: {fileID: 8546969452373644031}
   - component: {fileID: 6447220184910902439}
   - component: {fileID: 9196844791332662269}
+  - component: {fileID: 908926988751706846}
   m_Layer: 5
   m_Name: CustomModifiersPanel
   m_TagString: Untagged
@@ -889,6 +891,22 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &908926988751706846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181674659407696587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d2a719e558348aba146bc60676107c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firstLevelModifierPanel: {fileID: 8198227100779952323}
+  secondLevelModifierPanel: {fileID: 3230855901132892523}
+  thirdLevelModifierPanel: {fileID: 5871813657299728581}
+  lastLevelModifierPanel: {fileID: 4111205466841912686}
 --- !u!1 &1267960937466715222
 GameObject:
   m_ObjectHideFlags: 0
@@ -1073,6 +1091,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buffImage: {fileID: 1744355870704252256}
   buffText: {fileID: 8074145064785799322}
+  modifierType: 0
 --- !u!1 &1320640876835114684
 GameObject:
   m_ObjectHideFlags: 0
@@ -2514,6 +2533,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buffImage: {fileID: 1819863336117243303}
   buffText: {fileID: 973275912126212819}
+  modifierType: 0
 --- !u!1 &2473114544602541353
 GameObject:
   m_ObjectHideFlags: 0
@@ -2945,6 +2965,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buffImage: {fileID: 1895885676593527976}
   buffText: {fileID: 4444565466967729019}
+  modifierType: 0
 --- !u!1 &2701950498435728115
 GameObject:
   m_ObjectHideFlags: 0
@@ -3093,8 +3114,9 @@ GameObject:
   - component: {fileID: 1421683853705478240}
   - component: {fileID: 240057362770723056}
   - component: {fileID: 935123156953480561}
+  - component: {fileID: 6268801007681369353}
   m_Layer: 5
-  m_Name: MainInfoPanel
+  m_Name: HeaderInfoPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3219,6 +3241,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fullPanel: {fileID: 4793006058649971527}
+--- !u!114 &6268801007681369353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2788511776125491202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ec54efd079b4aa29b7ee4a5466addaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingInfoUIWindow: {fileID: 4699470157232257914}
+  buildingIcon: {fileID: 906964163909144040}
+  buildingTitleTextField: {fileID: 6402411198495625598}
+  buildingLevelTextField: {fileID: 5467528630771361975}
+  closeWindowButton: {fileID: 1281302031839849498}
 --- !u!1 &2935256260946102810
 GameObject:
   m_ObjectHideFlags: 0
@@ -3509,19 +3548,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0197d9ddf2b9402f871a6fdd17697ce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingIcon: {fileID: 906964163909144040}
-  buildingTitleTextField: {fileID: 6402411198495625598}
-  buildingLevelTextField: {fileID: 5467528630771361975}
-  closeWindowButton: {fileID: 1281302031839849498}
-  standardModifiersPanels:
-  - {fileID: 4134991711881272367}
-  - {fileID: 7635192730775815015}
-  - {fileID: 5842428483356703606}
-  customModifiersPanels:
-  - {fileID: 8198227100779952323}
-  - {fileID: 3230855901132892523}
-  - {fileID: 5871813657299728581}
-  - {fileID: 4111205466841912686}
+  buildingInfoHeaderUIPanel: {fileID: 6268801007681369353}
+  standardModifierUIPanel: {fileID: 5966885955903118662}
+  customModifierUIPanel: {fileID: 908926988751706846}
   aboutBuildingButton: {fileID: 1593380917220631781}
   upgradeBuildingButton: {fileID: 8855591562980196152}
 --- !u!1 &3107615355772159876
@@ -4481,6 +4510,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buffImage: {fileID: 3422466744229494735}
   buffText: {fileID: 778182081489317587}
+  modifierType: 0
 --- !u!1 &3850801476164916778
 GameObject:
   m_ObjectHideFlags: 0
@@ -4886,6 +4916,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buffImage: {fileID: 1718806814134275270}
   buffText: {fileID: 7097479143670858270}
+  modifierType: 0
 --- !u!1 &4248642153367672464
 GameObject:
   m_ObjectHideFlags: 0
@@ -6580,6 +6611,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buffImage: {fileID: 145985353474637833}
   buffText: {fileID: 6662601526174104981}
+  modifierType: 2
 --- !u!1 &5015630195516138972
 GameObject:
   m_ObjectHideFlags: 0
@@ -6689,6 +6721,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buffImage: {fileID: 4769085909728164552}
   buffText: {fileID: 3153524376383190622}
+  modifierType: 0
 --- !u!1 &5134683443210102800
 GameObject:
   m_ObjectHideFlags: 0
@@ -7104,10 +7137,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modifierImage: {fileID: 2785180877343268726}
   modifierName: {fileID: 7833863845205555113}
-  modifierBuffs:
-  - {fileID: 9158106519036385000}
-  - {fileID: 67256661704310830}
-  - {fileID: 5392393124835122348}
 --- !u!1 &5345039341531819808
 GameObject:
   m_ObjectHideFlags: 0
@@ -7217,6 +7246,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buffImage: {fileID: 8406067246623350030}
   buffText: {fileID: 642052556227906453}
+  modifierType: 0
 --- !u!1 &5520312190983000132
 GameObject:
   m_ObjectHideFlags: 0
@@ -7978,6 +8008,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buffImage: {fileID: 2401214828248061365}
   buffText: {fileID: 7010938146669318277}
+  modifierType: 0
 --- !u!1 &6219962472017396570
 GameObject:
   m_ObjectHideFlags: 0
@@ -8209,6 +8240,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buffImage: {fileID: 8411744239457338255}
   buffText: {fileID: 6502929585689133529}
+  modifierType: 1
 --- !u!1 &6306501328979240766
 GameObject:
   m_ObjectHideFlags: 0
@@ -8413,6 +8445,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buffImage: {fileID: 3889987367150443068}
   buffText: {fileID: 962249869760890040}
+  modifierType: 0
 --- !u!1 &6609949509461404607
 GameObject:
   m_ObjectHideFlags: 0
@@ -8677,6 +8710,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buffImage: {fileID: 3602526596031564819}
   buffText: {fileID: 2839046108738817589}
+  modifierType: 0
 --- !u!1 &6666082114468494502
 GameObject:
   m_ObjectHideFlags: 0
@@ -9193,10 +9227,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modifierImage: {fileID: 2515107719221474981}
   modifierName: {fileID: 8216844276984869335}
-  modifierBuffs:
-  - {fileID: 2840598505152526380}
-  - {fileID: 5043354005054310325}
-  - {fileID: 5005777692682498780}
 --- !u!1 &7247989989376455364
 GameObject:
   m_ObjectHideFlags: 0
@@ -9461,6 +9491,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buffImage: {fileID: 8745197030851167399}
   buffText: {fileID: 1683094398182688471}
+  modifierType: 0
 --- !u!1 &7388943812792715560
 GameObject:
   m_ObjectHideFlags: 0
@@ -9704,10 +9735,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modifierImage: {fileID: 9017574171191162199}
   modifierName: {fileID: 1554152540575841274}
-  modifierBuffs:
-  - {fileID: 6406531832064452949}
-  - {fileID: 6583199523048100227}
-  - {fileID: 46786324790746795}
 --- !u!1 &7441428447723263261
 GameObject:
   m_ObjectHideFlags: 0
@@ -10082,10 +10109,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modifierImage: {fileID: 7967877251924399534}
   modifierName: {fileID: 5853880503789686223}
-  modifierBuffs:
-  - {fileID: 6575532344775973745}
-  - {fileID: 7367608065770854903}
-  - {fileID: 6422364026931745883}
 --- !u!1 &7645651131110013950
 GameObject:
   m_ObjectHideFlags: 0
@@ -10957,6 +10980,7 @@ GameObject:
   - component: {fileID: 3878975071888333535}
   - component: {fileID: 5731780855938340882}
   - component: {fileID: 7659174452477381665}
+  - component: {fileID: 5966885955903118662}
   m_Layer: 5
   m_Name: StandardModifiersPanel
   m_TagString: Untagged
@@ -11070,6 +11094,22 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &5966885955903118662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8968309814855318514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2e7f054026a4d9aa3c9f1fed8957689, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  standardModifiersPanels:
+  - {fileID: 4134991711881272367}
+  - {fileID: 7635192730775815015}
+  - {fileID: 5842428483356703606}
 --- !u!1 &9059532295087234258
 GameObject:
   m_ObjectHideFlags: 0
@@ -11348,3 +11388,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buffImage: {fileID: 8867269096199215223}
   buffText: {fileID: 975965389278737258}
+  modifierType: 0

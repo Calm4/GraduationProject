@@ -11,6 +11,6 @@ namespace App.Scripts
         
         [SerializeField] private TMP_Text modifierName;
         
-        [SerializeField] private List<ModifierBuffUIInfo> modifierBuffs;
+        //[SerializeField] private List<ModifierBuffUIInfo> modifierBuffs;
     }
 }
