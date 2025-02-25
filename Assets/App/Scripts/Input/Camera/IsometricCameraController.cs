@@ -1,3 +1,4 @@
+using App.Scripts.Buildings;
 using Cinemachine;
 using UnityEngine;
 
@@ -41,7 +42,6 @@ namespace App.Scripts.Input.Camera
         
         private void ProcessInput()
         {
-            //только для ПКМ (правой кнопки мыши)
             if (UnityEngine.Input.GetMouseButton(1))
             {
                 float mouseX = UnityEngine.Input.GetAxis("Mouse X");
@@ -91,6 +91,32 @@ namespace App.Scripts.Input.Camera
                     virtualCamera.m_Lens.OrthographicSize = Mathf.Clamp(newSize, minOrthographicSize, maxOrthographicSize);
                 }
             }
+        }
+
+        private void CenterOnBuilding(Building building)
+        {
+            Vector3 buildingPos = building.transform.position;
+            Vector2Int size = building.BuildingConfig.size;
+
+
+            Vector3 centerOffset = new Vector3(size.x / 2f, 0f, size.y / 2f);
+
+            buildingPos += centerOffset;
+    
+            buildingPos.y = transform.position.y;
+    
+            _targetPosition = buildingPos;
+        }
+
+
+        private void OnEnable()
+        {
+            Building.OnBuildingClicked += CenterOnBuilding;
+        }
+
+        private void OnDisable()
+        {
+            Building.OnBuildingClicked -= CenterOnBuilding;
         }
     }
 }
