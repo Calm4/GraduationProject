@@ -13,7 +13,7 @@ namespace App.Scripts.Enemies
         [Inject] private readonly IEnemyFactory _enemyFactory;
         [Inject] private GamePhaseManager _gamePhaseManager;  // TODO: ОСТАНОВИЛСЯ ТУТ
         
-        [SerializeField] private Enemy enemyPrefab;
+        [SerializeField] private EnemiesDataBase enemiesDataBase;
         [SerializeField] private float spawnInterval = 2f;
         [SerializeField] private Transform spawnerPoint;
         [field: SerializeField] public List<Vector2> Path { get; set; }
@@ -59,8 +59,21 @@ namespace App.Scripts.Enemies
 
         private void SpawnEnemy()
         {
-            Enemy enemy = _enemyFactory.Create(enemyPrefab, spawnerPoint);
-    
+            // Получаем все поля типа Enemy из EnemiesDataBase
+            Enemy[] allEnemies = new Enemy[]
+            {
+                enemiesDataBase.Cuban,
+                enemiesDataBase.Spherik,
+                enemiesDataBase.Piramidon,
+                enemiesDataBase.Cylindron
+            };
+
+            // Выбираем случайного врага
+            Enemy randomEnemyPrefab = allEnemies[Random.Range(0, allEnemies.Length)];
+
+            // Создаем врага через фабрику
+            Enemy enemy = _enemyFactory.Create(randomEnemyPrefab, spawnerPoint);
+
             if (enemy != null)
             {
                 enemy.name = $"Enemy_{_enemyCounter}"; // Устанавливаем имя
@@ -68,6 +81,7 @@ namespace App.Scripts.Enemies
                 enemy.SetPath(Path);
             }
         }
+
 
         private void OnDrawGizmos()
         {

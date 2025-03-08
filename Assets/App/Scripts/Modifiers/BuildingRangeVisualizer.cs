@@ -71,7 +71,7 @@ namespace App.Scripts.Modifiers
 
         private float GetRangeFromModifiers()
         {
-            if (_visualizerOwner.ActiveModifiers.TryGetValue(ModifierType.Range, out ModifierInstance modifier))
+            if (_visualizerOwner.StandardModifiers.TryGetValue(ModifierType.Range, out ModifierInstance modifier))
             {
                 if (modifier.ModifierData is RangeModifierData rangeData)
                 {

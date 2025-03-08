@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84980f0a43a647e699b5d18bbec15aac, type: 3}
-  m_Name: AttackRateModifier
+  m_Script: {fileID: 11500000, guid: d9053d3dc419430581326f7b837ec1b0, type: 3}
+  m_Name: Piramidon_EnemyConfig
   m_EditorClassIdentifier: 
-  modifierName: AttackRate
-  modifierDescription: AttackRate desc
-  modifierIcon: {fileID: 21300000, guid: 2778ca8bc5fd4a0479426360c738e8ed, type: 3}
-  modifierType: 0
-  attackRate: 50
+  Health: 15
+  Speed: 3
+  ExperienceForKilling: 25
+  Damage: 3

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d9053d3dc419430581326f7b837ec1b0, type: 3}
-  m_Name: Default_EnemyConfig
+  m_Name: Cylindron_EnemyConfig
   m_EditorClassIdentifier: 
-  Health: 20
-  Speed: 2
-  ExperienceForKilling: 20
-  Damage: 5
+  Health: 25
+  Speed: 1
+  ExperienceForKilling: 25
+  Damage: 3

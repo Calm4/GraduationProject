@@ -24,11 +24,12 @@ MonoBehaviour:
   ID: 6
   buildingName: Castle
   buildingDescription: Castle description
-  buildingType: 3
+  buildingType: 2
+  sprite: {fileID: 21300000, guid: c166356d9b1035c4fa755c7db06f7fff, type: 3}
   size: {x: 3, y: 3}
   buildingAssociateColor: {r: 0.3595147, g: 0.9245283, b: 0.29829118, a: 0}
   maintenanceResources: []
   resourcesToBuild: []
   incomingResources: []
   initialModifiers: []
-  sprite: {fileID: 21300000, guid: c166356d9b1035c4fa755c7db06f7fff, type: 3}
+  buildingButtons: []

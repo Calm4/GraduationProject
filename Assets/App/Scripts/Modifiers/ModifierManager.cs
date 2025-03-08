@@ -11,8 +11,7 @@ namespace App.Scripts.Modifiers
     public class ModifierManager
     {
         [ShowInInspector, DictionaryDrawerSettings(DisplayMode = DictionaryDisplayOptions.Foldout)]
-        private Dictionary<ModifierType, ModifierInstance> _modifierInstances =
-            new Dictionary<ModifierType, ModifierInstance>();
+        private Dictionary<ModifierType, ModifierInstance> _modifierInstances = new();
 
         private readonly ModifiersDataBase _modifiersDataBase;
         private readonly Building _ownerBuilding;

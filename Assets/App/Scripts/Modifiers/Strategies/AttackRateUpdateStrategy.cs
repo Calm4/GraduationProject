@@ -21,8 +21,11 @@ namespace App.Scripts.Modifiers.Strategies
                     return;
                 }
 
-                float attackRate = attackRateData.currentAttackRate;
-                if (Time.time - lastAttackTime >= 1f / attackRate)
+                // Теперь attackRate - это множитель, где 100 = 1 выстрел в секунду, 200 = 2 выстрела в секунду
+                float attackRate = attackRateData.currentAttackRate / 100f;
+                float timeBetweenShots = 1f / attackRate; 
+
+                if (Time.time - lastAttackTime >= timeBetweenShots)
                 {
                     ShootAtEnemy();
                     lastAttackTime = Time.time;

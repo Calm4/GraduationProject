@@ -14,7 +14,8 @@ namespace App.Scripts.Buildings
         [field: SerializeField] public BasicBuildingConfig BuildingConfig { get; private set; }
         private ModifierManager _modifierManager;
         private BuildingRangeVisualizer _buildingRangeVisualizer;
-
+        
+        
         public ModifierManager ModifierManager => _modifierManager;
         
         [Button]
@@ -24,8 +25,11 @@ namespace App.Scripts.Buildings
         }
         
         [ShowInInspector,ReadOnly]
-        public Dictionary<ModifierType, ModifierInstance> ActiveModifiers =>
+        public Dictionary<ModifierType, ModifierInstance> StandardModifiers =>
             _modifierManager?.GetCurrentModifiers() ?? new Dictionary<ModifierType, ModifierInstance>();
+        
+        [ShowInInspector,ReadOnly]
+        public Dictionary<ModifierType, ModifierInstance> CustomModifiers => new();
 
         private void Awake()
         {

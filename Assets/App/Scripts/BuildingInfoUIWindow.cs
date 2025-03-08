@@ -14,6 +14,7 @@ namespace App.Scripts
         [SerializeField] private BuildingInfoHeaderUIPanel buildingInfoHeaderUIPanel;
         [SerializeField] private StandardModifierUIPanel standardModifierUIPanel;
         [SerializeField] private CustomModifierUIPanel customModifierUIPanel;
+        [SerializeField] private OtherButtonsModifierUIPanel otherButtonsModifierUIPanel;
         
         [Space(10),Header("Variant Buttons")]
         [SerializeField] private Button aboutBuildingButton;

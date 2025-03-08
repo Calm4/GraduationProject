@@ -50,7 +50,7 @@ namespace App.Scripts.UI.Windows
                 Destroy(child.gameObject);
             }
 
-            foreach (var modifier in _parentBuilding.ActiveModifiers.Values)
+            foreach (var modifier in _parentBuilding.StandardModifiers.Values)
             {
                 InitializeModifierRow(modifier);
             }

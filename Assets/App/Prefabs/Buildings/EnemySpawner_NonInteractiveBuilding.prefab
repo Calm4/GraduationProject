@@ -131,23 +131,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ea28e4bca88024c9f6529504ad8dae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 292388024181299099, guid: 0f5734a75d0579c4baa376a520764183, type: 3}
+  enemiesDataBase: {fileID: 11400000, guid: 671a95850833cf54aba71acac8e60b89, type: 2}
   spawnInterval: 2
   spawnerPoint: {fileID: 2691585206647768464}
   <Path>k__BackingField:
-  - {x: 6, y: 6}
-  - {x: -3, y: 6}
-  - {x: -3, y: 2}
-  - {x: 5, y: 2}
-  - {x: 5, y: -1}
-  - {x: 3, y: -1}
-  - {x: 3, y: -2}
-  - {x: 0, y: -2}
-  - {x: 0, y: 0}
-  - {x: -5, y: 0}
-  - {x: -5, y: -5}
-  - {x: -2, y: -5}
-  - {x: -0.5, y: -5.5}
+  - {x: 4.5, y: 4.5}
+  - {x: 4.5, y: 2.5}
+  - {x: 0.5, y: 2.5}
+  - {x: 0.5, y: 4.5}
+  - {x: -4.5, y: 4.5}
+  - {x: -4.5, y: -0.5}
+  - {x: -2.5, y: -0.5}
+  - {x: -2.5, y: 0.5}
+  - {x: -0.5, y: 0.5}
+  - {x: -0.5, y: -0.5}
+  - {x: 1.5, y: -0.5}
+  - {x: 1.5, y: 0.5}
+  - {x: 4.5, y: 0.5}
+  - {x: 4.5, y: -4.5}
+  - {x: 1.5, y: -4.5}
+  - {x: 1.5, y: -2.5}
+  - {x: -0.5, y: -2.5}
+  - {x: -0.5, y: -3.5}
+  - {x: -1.5, y: -3.5}
+  - {x: -4, y: -4}
 --- !u!4 &5278972234977980888 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2703375377479884149, guid: d9c65636e0495ff40b3163ed3af25112, type: 3}
