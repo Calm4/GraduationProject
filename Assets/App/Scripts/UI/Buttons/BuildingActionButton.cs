@@ -53,10 +53,10 @@ namespace App.Scripts.UI.Buttons
             GameObject instanceGo = _container.InstantiatePrefab(uiPanelPrefab, windowContainer);
             
             RectTransform instance = instanceGo.GetComponent<RectTransform>();
-            if (instance.TryGetComponent(out IBuildingButtonInitializer uiBuildingActionButton))
+            if (instance.TryGetComponent(out IBuildingButtonInitializer buildingButtonInitializer))
             {
-                uiBuildingActionButton.BaseInitializer(_parentBuilding);
-                _openPanelsManager.RegisterWindow(_parentBuilding, uiBuildingActionButton);
+                buildingButtonInitializer.BaseInitializer(_parentBuilding);
+                _openPanelsManager.RegisterWindow(_parentBuilding, buildingButtonInitializer);
 
             }
 

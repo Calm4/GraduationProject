@@ -19,13 +19,39 @@ namespace App.Scripts
         [SerializeField] private TMP_Text buildingLevelTextField;
         [SerializeField] private Button closeWindowButton;
 
+        private const string LevelTextField = "Level: ";
         private Building _parentBuilding;
         
         public void Initialize(Building parentBuilding)
         {
             _parentBuilding = parentBuilding;
+            InitializeHeader(_parentBuilding);
         }
-        
+
+        private void InitializeHeader(Building building)
+        {
+            if (building == null)
+            {
+                Debug.LogError("Building is null");
+                return;
+            }
+            if (building.BuildingConfig == null)
+            {
+                Debug.LogError("BuildingConfig is null");
+                return;
+            }
+            if (buildingIcon == null)
+            {
+                Debug.LogError("buildingIcon is null");
+                return;
+            }
+    
+            buildingIcon.sprite = building.BuildingConfig.sprite;
+            buildingTitleTextField.text = building.BuildingConfig.buildingName;
+            buildingLevelTextField.text = string.Concat(LevelTextField, building.BuildingConfig.buildingLevel);
+        }
+
+
         private void Awake()
         {
             closeWindowButton.onClick.AddListener(CloseWindow);

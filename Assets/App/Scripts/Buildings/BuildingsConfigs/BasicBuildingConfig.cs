@@ -15,6 +15,7 @@ namespace App.Scripts.Buildings.BuildingsConfigs
         public string buildingName;
         public string buildingDescription;
         public BuildingType buildingType;
+        public int buildingLevel = 1;
         
         [Title("Icon")]
         public Sprite sprite;

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1239,7 +1239,7 @@ PrefabInstance:
       objectReference: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
     - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
       propertyPath: serializationData.PrefabModifications.Array.size
-      value: 24
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
       propertyPath: serializationData.PrefabModifications.Array.data[0]
@@ -1296,6 +1296,10 @@ PrefabInstance:
       propertyPath: serializationData.PrefabModifications.Array.data[9]
       value: '"path":"_resources.{2es}.maxAmount","value":{"$id":0,"$type":"System.Int32,
         mscorlib",35}'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
+      propertyPath: serializationData.ReferencedUnityObjects.Array.size
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
       propertyPath: serializationData.PrefabModifications.Array.data[10]
@@ -1365,8 +1369,28 @@ PrefabInstance:
       value: '"path":"_resources.{9es}.resourceConfig","value":$eref:3'
       objectReference: {fileID: 0}
     - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
+      propertyPath: serializationData.ReferencedUnityObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 690fd2dfdcfe6774fac3487cfcf4dc75, type: 2}
+    - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
+      propertyPath: serializationData.ReferencedUnityObjects.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 3df9d4f94b42acc49858e0129dd1dd37, type: 2}
+    - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
+      propertyPath: serializationData.ReferencedUnityObjects.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: f9e10c81e0042e94e87b97a1c3e7c3f0, type: 2}
+    - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
+      propertyPath: serializationData.ReferencedUnityObjects.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: f65cd3c57f42c7e478c57b97fd4a48e7, type: 2}
+    - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
+      propertyPath: serializationData.ReferencedUnityObjects.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 7923030f6f0f1854680341d54d0eee92, type: 2}
+    - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
       propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7669249798843200113, guid: 08910bf0a4c0a8f4d854bd863a9d0a6b, type: 3}
       propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[0]
@@ -1456,6 +1480,7 @@ MonoBehaviour:
   _scriptableObjectInstallers: []
   _monoInstallers:
   - {fileID: 1687457522}
+  - {fileID: 498577841}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -3319,10 +3344,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 760121114}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &455992813
 GameObject:
@@ -3707,6 +3732,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 498446649}
   m_CullTransparentMesh: 1
+--- !u!1 &498577839
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 498577840}
+  - component: {fileID: 498577841}
+  m_Layer: 0
+  m_Name: ObjectsInstaller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &498577840
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 498577839}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1538352121}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &498577841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 498577839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d1c706577e74f66845e0615da7ea0d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  windowsContainer: {fileID: 439442308}
 --- !u!1 &519144928
 GameObject:
   m_ObjectHideFlags: 0
@@ -9716,6 +9786,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 498577840}
   - {fileID: 1687457521}
   - {fileID: 185259130}
   m_Father: {fileID: 118223971}

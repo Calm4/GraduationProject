@@ -1,4 +1,5 @@
-﻿using App.Scripts.Buildings;
+﻿using System.Collections.Generic;
+using App.Scripts.Buildings;
 using App.Scripts.UI.Buttons;
 using App.Scripts.UI.Windows;
 using TMPro;
@@ -20,6 +21,9 @@ namespace App.Scripts
         [SerializeField] private Button aboutBuildingButton;
         [SerializeField] private Button upgradeBuildingButton;
 
+        [Space(10), Header("Variant Buttons")] [SerializeField]
+        private List<WindowOpener> buildingInfoButtons;
+        
         private Building _parentBuilding;
         
 
@@ -30,6 +34,12 @@ namespace App.Scripts
             buildingInfoHeaderUIPanel.Initialize(_parentBuilding);
             standardModifierUIPanel.Initialize(_parentBuilding);
             customModifierUIPanel.Initialize(_parentBuilding);
+
+            foreach (var buildingInfoButton in buildingInfoButtons)
+            {
+                buildingInfoButton.Initialize(_parentBuilding);
+            }
+            Debug.Log("Parent building: " + _parentBuilding);
         }
     }
 }

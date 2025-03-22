@@ -41,7 +41,6 @@ namespace App.Scripts
         [SerializeField] private BuildingButtonsUIPanel buildingButtonsUIPanel;
         [SerializeField] private OpenPanelsManager openPanelsManager;
         
-        
         public override void InstallBindings()
         {
             Container.Bind<ExperienceManager>().FromInstance(experienceManager).AsSingle();
