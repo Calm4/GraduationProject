@@ -12,8 +12,8 @@ namespace App.Scripts
     {
         [Inject] private OpenPanelsManager _openPanelsManager;
         
-        [Header("Header Elements")]
-        [SerializeField] private BuildingInfoUIWindow buildingInfoUIWindow;
+        [Header("Header Elements")]/*
+        [SerializeField] private BuildingInfoUIWindow buildingInfoUIWindow;*/
         [SerializeField] private Image buildingIcon;
         [SerializeField] private TMP_Text buildingTitleTextField;
         [SerializeField] private TMP_Text buildingLevelTextField;
