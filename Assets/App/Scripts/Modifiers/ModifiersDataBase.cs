@@ -9,8 +9,7 @@ namespace App.Scripts.Modifiers
     public class ModifiersDataBase : SerializedScriptableObject
     {
         [DictionaryDrawerSettings(DisplayMode = DictionaryDisplayOptions.Foldout)]
-        public Dictionary<ModifierType, BaseModifierSO> ModifierConfigs = new();
+        public readonly Dictionary<ModifierType, BaseModifierSO> ModifierConfigs = new();
         
-        // применить данную DB в коде для поиска модификаторов
     }
 }

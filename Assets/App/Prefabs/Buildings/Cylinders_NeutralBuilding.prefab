@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: <BuildingConfig>k__BackingField
       value: 
       objectReference: {fileID: 11400000, guid: 77e8bb9f004ea1c43b5ca856009b3ae8, type: 2}
+    - target: {fileID: 9111251265515063853, guid: d9c65636e0495ff40b3163ed3af25112, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: b4b769a18198ab5429d3e9b723aaab53, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

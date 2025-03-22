@@ -1,26 +1,27 @@
-﻿using App.Scripts.Modifiers.Configs;
-using App.Scripts.Modifiers.Data;
+﻿using App.Scripts.Modifiers.Data;
 using UnityEngine;
 
 namespace App.Scripts.Modifiers.Strategies
 {
-    public class DamageUpdateStrategy : IModifierUpdateStrategy
+    public class DamageUpdateStrategy : AbstractModifierUpdateStrategy
     {
-        public void UpdateModifier(BaseModifierData data)
+        public override void UpdateModifier(BaseModifierData data)
         {
-            var damageData = data as DamageData;
-            if (damageData != null)
+            if (data is DamageModifierData damageData)
             {
-                float baseDamage = 0f;
-                if (damageData.Config is DamageModifierSO dmgConfig)
+                if (OwnerBuilding == null)
                 {
-                    baseDamage = dmgConfig.damage;
+                    Debug.LogError("DamageUpdateStrategy: OwnerBuilding не установлен!");
+                    return;
                 }
-                
-                Debug.Log($"[DamageUpdateStrategy] Level: {damageData.currentLevel}, " +
-                          $"Damage: {damageData.currentDamage}, BaseDamage from SO {damageData.Config.modifierName}: {baseDamage}");
+
+                float damage = damageData.currentDamage;
+                //Debug.Log($"[DamageUpdateStrategy] Урон установлен: {damage}");
+            }
+            else
+            {
+                Debug.LogError("DamageUpdateStrategy: Неверный тип данных. Ожидался DamageModifierData.");
             }
         }
     }
-    
 }

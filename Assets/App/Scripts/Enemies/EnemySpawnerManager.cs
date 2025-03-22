@@ -13,11 +13,11 @@ namespace App.Scripts.Enemies
         [Inject] private readonly IEnemyFactory _enemyFactory;
         [Inject] private GamePhaseManager _gamePhaseManager;  // TODO: ОСТАНОВИЛСЯ ТУТ
         
-        [SerializeField] private Enemy enemyPrefab;
+        [SerializeField] private EnemiesDataBase enemiesDataBase;
         [SerializeField] private float spawnInterval = 2f;
         [SerializeField] private Transform spawnerPoint;
         [field: SerializeField] public List<Vector2> Path { get; set; }
-        
+        private int _enemyCounter = 1;
         
         private void GamePhase_OnGamePhaseStateChange(GamePhase gamePhase)
         {
@@ -59,14 +59,29 @@ namespace App.Scripts.Enemies
 
         private void SpawnEnemy()
         {
-            Enemy enemy = _enemyFactory.Create(enemyPrefab,spawnerPoint);
-            //GameObject o = Instantiate(enemyPrefab, spawnerPoint.position, Quaternion.identity);
-            
+            // Получаем все поля типа Enemy из EnemiesDataBase
+            Enemy[] allEnemies = new Enemy[]
+            {
+                enemiesDataBase.Cuban,
+                enemiesDataBase.Spherik,
+                enemiesDataBase.Piramidon,
+                enemiesDataBase.Cylindron
+            };
+
+            // Выбираем случайного врага
+            Enemy randomEnemyPrefab = allEnemies[Random.Range(0, allEnemies.Length)];
+
+            // Создаем врага через фабрику
+            Enemy enemy = _enemyFactory.Create(randomEnemyPrefab, spawnerPoint);
+
             if (enemy != null)
             {
+                enemy.name = $"Enemy_{_enemyCounter}"; // Устанавливаем имя
+                _enemyCounter++; // Увеличиваем счетчик
                 enemy.SetPath(Path);
             }
         }
+
 
         private void OnDrawGizmos()
         {

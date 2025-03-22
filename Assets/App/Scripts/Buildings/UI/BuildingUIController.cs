@@ -21,7 +21,7 @@ namespace App.Scripts.Buildings.UI
         private BuildingsDataBaseBySectionsSO buildingsDataBaseBySections;
 
         [SerializeField] private List<Transform> buttonsTypeContainers;
-
+        
         private void Start()
         {
             GenerateButtons();
@@ -74,6 +74,7 @@ namespace App.Scripts.Buildings.UI
                 }
             }
         }
+
         
         private void OnBuildingButtonClicked(Building building)
         {

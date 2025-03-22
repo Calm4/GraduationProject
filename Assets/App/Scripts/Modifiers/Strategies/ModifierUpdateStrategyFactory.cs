@@ -6,12 +6,9 @@ namespace App.Scripts.Modifiers.Strategies
 {
     public static class ModifierUpdateStrategyFactory
     {
-        private static readonly Dictionary<ModifierType, Func<IModifierUpdateStrategy>> StrategyMap = new();
-
-        /// <summary>
-        /// Регистрирует стратегию обновления для данного типа модификатора.
-        /// </summary>
-        public static void Register(ModifierType modifierType, Func<IModifierUpdateStrategy> strategyCreator)
+        private static readonly Dictionary<ModifierType, Func<AbstractModifierUpdateStrategy>> StrategyMap = new();
+        
+        public static void Register(ModifierType modifierType, Func<AbstractModifierUpdateStrategy> strategyCreator)
         {
             if (!StrategyMap.ContainsKey(modifierType))
             {
@@ -23,10 +20,7 @@ namespace App.Scripts.Modifiers.Strategies
             }
         }
 
-        /// <summary>
-        /// Создаёт стратегию обновления для заданного типа модификатора.
-        /// </summary>
-        public static IModifierUpdateStrategy Create(ModifierType modifierType)
+        public static AbstractModifierUpdateStrategy Create(ModifierType modifierType)
         {
             if (StrategyMap.TryGetValue(modifierType, out var strategyCreator))
             {

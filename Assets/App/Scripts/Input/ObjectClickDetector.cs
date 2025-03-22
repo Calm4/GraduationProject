@@ -4,11 +4,11 @@ namespace App.Scripts.Input
 {
     public class ObjectClickDetector : MonoBehaviour
     {
-        private Camera _camera;
+        private UnityEngine.Camera _camera;
 
         private void Start()
         {
-            _camera = Camera.main;
+            _camera = UnityEngine.Camera.main;
             if(!_camera)
                 Debug.LogError("Can't find camera!");
         }

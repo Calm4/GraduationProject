@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using App.Scripts.Buildings.UI.BuildingButtons.Configs;
 using App.Scripts.GameResources;
 using App.Scripts.Modifiers.Configs;
 using UnityEngine;
@@ -14,6 +15,10 @@ namespace App.Scripts.Buildings.BuildingsConfigs
         public string buildingName;
         public string buildingDescription;
         public BuildingType buildingType;
+        public int buildingLevel = 1;
+        
+        [Title("Icon")]
+        public Sprite sprite;
 
         [Title("Building Parameters")]
         public Vector2Int size;
@@ -25,10 +30,12 @@ namespace App.Scripts.Buildings.BuildingsConfigs
         public List<ResourceRequirement> incomingResources;
         
         [Title("Start Modifiers")]
-        [ListDrawerSettings(Expanded = true)]
+        [ListDrawerSettings(ShowFoldout = true)]
         public List<BaseModifierSO> initialModifiers;
-        
-        [Title("Icon")]
-        public Sprite sprite;
+
+        [Title("Building UI Buttons")]
+        [ListDrawerSettings(ShowFoldout = true)]
+        [Tooltip("Список кнопок, которые появятся при выборе здания")]
+        public List<BuildingButtonSO> buildingButtons; 
     }
 }

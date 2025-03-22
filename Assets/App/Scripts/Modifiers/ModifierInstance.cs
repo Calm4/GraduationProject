@@ -1,33 +1,29 @@
-﻿using System;
+﻿using App.Scripts.Buildings;
 using App.Scripts.Modifiers.Configs;
 using App.Scripts.Modifiers.Data;
 using App.Scripts.Modifiers.Strategies;
-using UnityEngine;
 
 namespace App.Scripts.Modifiers
 {
-    public class ModifierInstance : IModifier
+    public class ModifierInstance
     {
-        public BaseModifierSO Config { get; private set; }
-        public BaseModifierData Data { get; private set; }
-        
-        // Стратегия обновления, отвечающая за выполнение индивидуальной логики.
-        private IModifierUpdateStrategy _updateStrategy;
+        public BaseModifierData ModifierData { get; }
+        public AbstractModifierUpdateStrategy UpdateStrategy { get; }
 
-        public ModifierInstance(BaseModifierSO config)
+        public ModifierInstance(BaseModifierSO config, Building ownerBuilding = null, ModifierManager modifierManager = null)
         {
-            Config = config;
-            Data = ModifierDataFactory.Create(config);
-            _updateStrategy = ModifierUpdateStrategyFactory.Create(config.modifierType);
+            ModifierData = ModifierDataFactory.Create(config);
+            UpdateStrategy = ModifierUpdateStrategyFactory.Create(config.modifierType);
+
+            if (ownerBuilding != null && modifierManager != null)
+            {
+                UpdateStrategy.InitializeModifierUpdateStrategy(ownerBuilding, modifierManager);
+            }
         }
-        
-        /// <summary>
-        /// Метод обновления, который делегирует обновление стратегии.
-        /// </summary>
+
         public void UpdateModifier()
         {
-            _updateStrategy?.UpdateModifier(Data);
+            UpdateStrategy?.UpdateModifier(ModifierData);
         }
-        
     }
 }

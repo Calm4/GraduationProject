@@ -3,8 +3,8 @@
 namespace App.Scripts.Modifiers.Configs
 {
     [CreateAssetMenu(fileName = "DamageModifier", menuName = "Configs/Modifiers/DamageModifier", order = 0)]
-    public class DamageModifierSO : BaseModifierSO
+    public class DamageModifierSO : StandardModifiersSO
     {
-        public float damage;
+        public int damage;
     }
 }

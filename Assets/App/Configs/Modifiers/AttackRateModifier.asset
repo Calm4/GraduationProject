@@ -16,4 +16,4 @@ MonoBehaviour:
   modifierDescription: AttackRate desc
   modifierIcon: {fileID: 21300000, guid: 2778ca8bc5fd4a0479426360c738e8ed, type: 3}
   modifierType: 0
-  attackRate: 1
+  attackRate: 50

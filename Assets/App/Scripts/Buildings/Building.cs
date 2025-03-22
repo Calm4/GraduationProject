@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using App.Scripts.Buildings.BuildingsConfigs;
 using App.Scripts.Modifiers;
-using App.Scripts.Modifiers.Configs;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Serialization;
+using UnityEngine.EventSystems;
 
 namespace App.Scripts.Buildings
 {
@@ -13,34 +13,52 @@ namespace App.Scripts.Buildings
         [SerializeField] private ModifiersDataBase modifiersDataBase;
         [field: SerializeField] public BasicBuildingConfig BuildingConfig { get; private set; }
         private ModifierManager _modifierManager;
-
-        [ShowInInspector, ReadOnly]
-        public List<BaseModifierSO> ActiveModifiers
+        private BuildingRangeVisualizer _buildingRangeVisualizer;
+        
+        
+        public ModifierManager ModifierManager => _modifierManager;
+        
+        [Button]
+        public void AddModifier()
         {
-            get
-            {
-                if (_modifierManager != null)
-                {
-                    return _modifierManager.GetActiveModifiers();
-                }
-                return new List<BaseModifierSO>();
-            }
+            _modifierManager.ApplyModifier(ModifierType.Damage);
         }
         
+        [ShowInInspector,ReadOnly]
+        public Dictionary<ModifierType, ModifierInstance> StandardModifiers =>
+            _modifierManager?.GetCurrentModifiers() ?? new Dictionary<ModifierType, ModifierInstance>();
+        
+        [ShowInInspector,ReadOnly]
+        public Dictionary<ModifierType, ModifierInstance> CustomModifiers => new();
+
         private void Awake()
         {
-            _modifierManager = new ModifierManager(BuildingConfig, modifiersDataBase);
+            _modifierManager = new ModifierManager(BuildingConfig, this, modifiersDataBase);
+           
+            _buildingRangeVisualizer = GetComponent<BuildingRangeVisualizer>();
+            _buildingRangeVisualizer.Initialize(this);
+
         }
 
         private void Update()
-        { 
+        {
             _modifierManager.UpdateModifiers();
         }
-        
-        [Button("Добавить AttackRate модификатор")]
-        private void AddAttackRateModifier()
+
+        private void OnMouseDown()
         {
-            _modifierManager.ApplyModifier(ModifierType.AttackRate);
+            if (EventSystem.current.IsPointerOverGameObject()) return;
+            Debug.Log("Clicked on: " + this.gameObject.name);
+            if (BuildingConfig.buildingType == BuildingType.NonInteractive)
+                return;
+
+            OnBuildingClicked?.Invoke(this);
+
+            _buildingRangeVisualizer.ShowVisualizer();
         }
+
+       
+        
+        public static event Action<Building> OnBuildingClicked;
     }
 }
