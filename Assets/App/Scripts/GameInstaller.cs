@@ -40,6 +40,8 @@ namespace App.Scripts
         [Space(10)][Header("UI")]
         [SerializeField] private BuildingButtonsUIPanel buildingButtonsUIPanel;
         [SerializeField] private OpenPanelsManager openPanelsManager;
+
+        /*[SerializeField] private EnemySpawnerManager enemySpawnerManager;*/
         
         public override void InstallBindings()
         {
@@ -64,6 +66,8 @@ namespace App.Scripts
             
             Container.Bind<IBuildingFactory>().To<BuildingFactory>().AsSingle();
             Container.Bind<IEnemyFactory>().To<EnemyFactory>().AsSingle();
+            
+            /*Container.Bind<EnemySpawnerManager>().FromInstance(enemySpawnerManager).AsSingle();*/
         }
     }
 }

@@ -431,8 +431,9 @@ GameObject:
   - component: {fileID: 3660197764819213244}
   - component: {fileID: 1565948478708191578}
   - component: {fileID: 6251177115929961128}
-  - component: {fileID: 3464575487297724309}
   - component: {fileID: 7122714129924604690}
+  - component: {fileID: 3464575487297724309}
+  - component: {fileID: -5811698567391785278}
   m_Layer: 0
   m_Name: Castle
   m_TagString: Untagged
@@ -542,6 +543,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modifiersDataBase: {fileID: 11400000, guid: 71042b4790eb8a24898e969d3720cb3c, type: 2}
   <BuildingConfig>k__BackingField: {fileID: 11400000, guid: 5df24bd768726984c99345d588ecde03, type: 2}
+--- !u!114 &7122714129924604690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9215857785204022827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 114119c1082274346b64c94d8791ff64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!120 &3464575487297724309
 LineRenderer:
   serializedVersion: 2
@@ -646,7 +659,7 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
---- !u!114 &7122714129924604690
+--- !u!114 &-5811698567391785278
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -655,6 +668,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9215857785204022827}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 114119c1082274346b64c94d8791ff64, type: 3}
+  m_Script: {fileID: 11500000, guid: cdf79505c1abdd546837ba7b05646749, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 100

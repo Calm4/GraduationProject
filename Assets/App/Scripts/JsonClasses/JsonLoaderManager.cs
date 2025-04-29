@@ -92,18 +92,9 @@ namespace App.Scripts.JsonClasses
             _buildingPlacer = new BuildingPlacer(_gridManager.GridData, _buildingFactory);
             foreach (var gridObject in gridObjects)
             {
-                var gridPosition = new Vector3Int(
-                    (int)gridObject.Position.x, 
-                    0, 
-                    (int)gridObject.Position.z
-                );
+                var gridPosition = new Vector3Int((int)gridObject.Position.x, 0, (int)gridObject.Position.z);
             
-                _buildingPlacer.InstantiateAndPlaceBuilding(
-                    gridObject.Building, 
-                    _gridManager, 
-                    gridPosition,
-                    buildingsFromJsonContainer
-                );
+                _buildingPlacer.InstantiateAndPlaceBuilding(gridObject.Building, _gridManager, gridPosition, buildingsFromJsonContainer);
             }
         }
 

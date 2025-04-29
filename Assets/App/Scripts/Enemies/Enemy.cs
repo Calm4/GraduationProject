@@ -13,18 +13,18 @@ namespace App.Scripts.Enemies
         [Inject] private GamePhaseManager _gamePhaseManager;
         [Inject] private ExperienceManager _experienceManager;
         
-        [SerializeField] private EnemyConfig enemyConfig;
+        [field: SerializeField] public EnemyConfig EnemyConfig { get; private set; }
         private readonly EnemyData _enemyData = new();
         
         public float TraveledDistance { get; private set; }
         private List<Vector2> _pathToFinish;  
         private int _currentPointToMoveIndex;
-        
+        public event Action OnDeath;
 
         private void Awake()
         {
             _gamePhaseManager.OnGameStateChanges += TestEnemyMethod;
-            _enemyData.InitializeEnemyData(enemyConfig);
+            _enemyData.InitializeEnemyData(EnemyConfig);
         }
 
         private void TestEnemyMethod(GamePhase obj)
@@ -111,10 +111,10 @@ namespace App.Scripts.Enemies
             }
         }
 
-        private void Die()
+        public void Die()
         {
-            _experienceManager.AddExperience(enemyConfig.ExperienceForKilling);
-            // Здесь можно добавить выдачу опыта, эффекты смерти, и т.д.
+            _experienceManager.AddExperience(EnemyConfig.ExperienceForKilling);
+            OnDeath?.Invoke();
             Destroy(gameObject);
         }
     }

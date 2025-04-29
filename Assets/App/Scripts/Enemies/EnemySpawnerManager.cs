@@ -1,105 +1,60 @@
+// EnemySpawnerManager.cs
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using App.Scripts.Factories;
 using App.Scripts.TurnsBasedSystem;
+using App.Scripts.TurnsBasedSystem.WavesData;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Zenject;
 
-namespace App.Scripts.Enemies
-{
-    public class EnemySpawnerManager : MonoBehaviour
-    {
-        [Inject] private readonly IEnemyFactory _enemyFactory;
-        [Inject] private GamePhaseManager _gamePhaseManager;  // TODO: ОСТАНОВИЛСЯ ТУТ
-        
-        [SerializeField] private EnemiesDataBase enemiesDataBase;
-        [SerializeField] private float spawnInterval = 2f;
-        [SerializeField] private Transform spawnerPoint;
+namespace App.Scripts.Enemies {
+    public class EnemySpawnerManager : MonoBehaviour {
+        [Inject] private IEnemyFactory _enemyFactory;
+
         [field: SerializeField] public List<Vector2> Path { get; set; }
-        private int _enemyCounter = 1;
-        
-        private void GamePhase_OnGamePhaseStateChange(GamePhase gamePhase)
-        {
-            if (gamePhase != GamePhase.Defense)
-                return;
 
-            StartCoroutine(SpawnEnemies());
+        private int _alive;
+        private bool _spawning;
+
+        public void StartSpawning(List<EnemySpawnInfo> spawnList, Action onAllDone) {
+            StopAllCoroutines();                  // сброс старых, если есть
+            StartCoroutine(DoSpawn(spawnList, onAllDone));
         }
 
-        private void Start()
-        {
-            _gamePhaseManager.OnGameStateChanges += ABC;
-            Debug.Log("Path length: " + Path.Count);
-        }
+        private IEnumerator DoSpawn(List<EnemySpawnInfo> list, Action onAllDone) {
+            _spawning = true;
+            _alive = 0;
 
-        private void ABC(GamePhase obj)
-        {
-            Debug.Log("1`2312323``");
-            StartCoroutine(SpawnEnemies());
-
-        }
-
-        private void Update()
-        {
-            if (UnityEngine.Input.GetKeyDown(KeyCode.P))
-            {
-                StartCoroutine(SpawnEnemies());
+            // 1) Спавним всех врагов по списку
+            foreach (var info in list) {
+                for (int i = 0; i < info.count; i++) {
+                    var enemy = _enemyFactory.Create(info.prefab, null);
+                    var spawnOffset = new Vector3(0, 0.25f, 0);
+                    enemy.transform.position = transform.position + spawnOffset;
+                    enemy.SetPath(Path);
+                    enemy.OnDeath += () => _alive--;
+                    _alive++;
+                    yield return new WaitForSeconds(info.spawnInterval);
+                }
             }
+
+            // 2) Ждём, пока пользователь не убьёт всех (_alive станет 0)
+            yield return new WaitUntil(() => _alive <= 0);
+
+            _spawning = false;
+            onAllDone?.Invoke();
         }
 
-        private IEnumerator SpawnEnemies()
-        {
-            while (true)
-            {
-                SpawnEnemy();
-                yield return new WaitForSeconds(spawnInterval);
-            }
-        }
-
-        private void SpawnEnemy()
-        {
-            // Получаем все поля типа Enemy из EnemiesDataBase
-            Enemy[] allEnemies = new Enemy[]
-            {
-                enemiesDataBase.Cuban,
-                enemiesDataBase.Spherik,
-                enemiesDataBase.Piramidon,
-                enemiesDataBase.Cylindron
-            };
-
-            // Выбираем случайного врага
-            Enemy randomEnemyPrefab = allEnemies[Random.Range(0, allEnemies.Length)];
-
-            // Создаем врага через фабрику
-            Enemy enemy = _enemyFactory.Create(randomEnemyPrefab, spawnerPoint);
-
-            if (enemy != null)
-            {
-                enemy.name = $"Enemy_{_enemyCounter}"; // Устанавливаем имя
-                _enemyCounter++; // Увеличиваем счетчик
-                enemy.SetPath(Path);
-            }
-        }
-
-
-        private void OnDrawGizmos()
-        {
-            if (Path == null || Path.Count == 0)
-                return;
-
+        private void OnDrawGizmos() {
+            if (Path == null) return;
             Gizmos.color = Color.green;
-        
-            for (int i = 0; i < Path.Count; i++)
-            {
-                Vector3 point = new Vector3(Path[i].x, 0.5f, Path[i].y);
-            
-                Gizmos.DrawSphere(point, 0.2f);
-
-                if (i < Path.Count - 1)
-                {
-                    Vector3 nextPoint = new Vector3(Path[i + 1].x, 0.5f, Path[i + 1].y);
-                    Gizmos.DrawLine(point, nextPoint);
+            for (int i = 0; i < Path.Count; i++) {
+                Vector3 p = new Vector3(Path[i].x, 0.5f, Path[i].y);
+                Gizmos.DrawSphere(p, 0.2f);
+                if (i < Path.Count - 1) {
+                    Vector3 n = new Vector3(Path[i+1].x, 0.5f, Path[i+1].y);
+                    Gizmos.DrawLine(p, n);
                 }
             }
         }

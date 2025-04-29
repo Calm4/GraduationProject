@@ -1,77 +1,72 @@
-using System;
-using UnityEngine;
+    using System;
+    using UnityEngine;
 
-namespace App.Scripts.TurnsBasedSystem
-{
-    public class GamePhaseManager : MonoBehaviour
+    namespace App.Scripts.TurnsBasedSystem
     {
-        [SerializeField] private GamePhase _gamePhase;
-
-        [SerializeField] private float waitingToStartTimer;
-        [SerializeField] private float constCountDownToStartTimer;
-        private float countDownToStartTimer;
-        [SerializeField] private float gamePlayingTimer;
-
-        public event Action<GamePhase> OnGameStateChanges;
-
-
-        private void Awake()
+        public class GamePhaseManager : MonoBehaviour
         {
-            _gamePhase = GamePhase.Construction;
-            countDownToStartTimer = constCountDownToStartTimer;
-        }
+            [SerializeField] private GamePhase _gamePhase;
 
-        private void ChangeGameState(GamePhase phase)
-        {
-            _gamePhase = phase;
-        }
+            [SerializeField] private float waitingToStartTimer;
+            [SerializeField] private float constCountDownToStartTimer;
+            private float countDownToStartTimer;
+            [SerializeField] private float gamePlayingTimer;
 
-        private void Update()
-        {
-            switch (_gamePhase)
+            public event Action<GamePhase> OnGameStateChanges;
+
+
+            private void Awake()
             {
-                case GamePhase.CountDownToStart:
-                    countDownToStartTimer -= Time.deltaTime;
-                    if (countDownToStartTimer < 0f)
-                    {
-                        _gamePhase = GamePhase.Defense;
-                        OnGameStateChanges?.Invoke(_gamePhase);
-                    }
-
-                    break;
-                case GamePhase.Defense:
-                    gamePlayingTimer -= Time.deltaTime;
-                    if (gamePlayingTimer < 0f)
-                    {
-                        countDownToStartTimer = constCountDownToStartTimer;
-                        Debug.Log("HUYAAAA");
-                        _gamePhase = GamePhase.Construction;
-                        OnGameStateChanges?.Invoke(_gamePhase);
-                    }
-
-                    break;
-                case GamePhase.Construction:
-                    countDownToStartTimer = constCountDownToStartTimer;
-                    gamePlayingTimer = 5f;
-                    break;
+                _gamePhase = GamePhase.Construction;
+                countDownToStartTimer = constCountDownToStartTimer;
             }
 
-            Debug.Log(_gamePhase);
-        }
+            private void ChangeGameState(GamePhase phase)
+            {
+                _gamePhase = phase;
+            }
 
-        public float GetCountdownToStartTimer()
-        {
-            return countDownToStartTimer;
-        }
+            private void Update()
+            {
+                switch (_gamePhase)
+                {
+                    case GamePhase.CountDownToStart:
+                        countDownToStartTimer -= Time.deltaTime;
+                        if (countDownToStartTimer < 0f)
+                        {
+                            _gamePhase = GamePhase.Defense;
+                            OnGameStateChanges?.Invoke(_gamePhase);
+                        }
 
-        public GamePhase GetCurrentGameState()
-        {
-            return _gamePhase;
-        }
+                        break;
+                    case GamePhase.Defense:
+                        // больше не переключаем фазу по таймеру,
+                        // дождёмся WavesManager и колбэка onAllDone
+                        break;
+                    
+                    case GamePhase.Construction:
+                        countDownToStartTimer = constCountDownToStartTimer;
+                        gamePlayingTimer = 5f;
+                        break;
+                }
 
-        public void SetCurrentGameState(GamePhase gamePhase)
-        {
-            _gamePhase = gamePhase;
+                Debug.Log(_gamePhase);
+            }
+
+            public float GetCountdownToStartTimer()
+            {
+                return countDownToStartTimer;
+            }
+
+            public GamePhase GetCurrentGameState()
+            {
+                return _gamePhase;
+            }
+
+            public void SetCurrentGameState(GamePhase gamePhase) {
+                _gamePhase = gamePhase;
+                OnGameStateChanges?.Invoke(_gamePhase);
+            }
+
         }
     }
-}

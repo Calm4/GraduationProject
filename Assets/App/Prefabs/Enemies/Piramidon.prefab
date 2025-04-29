@@ -222,6 +222,10 @@ PrefabInstance:
       propertyPath: enemyConfig
       value: 
       objectReference: {fileID: 11400000, guid: ce7a6c6795c9f02488019fd027167b25, type: 2}
+    - target: {fileID: 292388024181299099, guid: 0f5734a75d0579c4baa376a520764183, type: 3}
+      propertyPath: <EnemyConfig>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: ce7a6c6795c9f02488019fd027167b25, type: 2}
     - target: {fileID: 2383657546326043635, guid: 0f5734a75d0579c4baa376a520764183, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

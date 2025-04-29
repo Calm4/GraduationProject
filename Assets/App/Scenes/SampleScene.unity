@@ -1640,7 +1640,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9c808b1b6aedd14a99eb762b384c9fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentWave: 0
+  _db: {fileID: 11400000, guid: 6ecb11bad44a20d428c077a6e768a257, type: 2}
 --- !u!1 &206000925
 GameObject:
   m_ObjectHideFlags: 0
@@ -7275,7 +7275,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 1.1102231e-17, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.5, y: -0.6, z: 0.5}
-  m_LocalScale: {x: 15, y: 1, z: 15}
+  m_LocalScale: {x: 25, y: 1, z: 25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 984141354}
@@ -11837,7 +11837,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0b6c70f0ad87834f852d25a5306f525, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  phaseChangerUIPanel: {fileID: 7562066523520748710}
 --- !u!1 &1702532291
 GameObject:
   m_ObjectHideFlags: 0
@@ -14140,9 +14139,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gamePhase: 2
-  waitingToStartTimer: 1
+  waitingToStartTimer: 0
   constCountDownToStartTimer: 3
-  gamePlayingTimer: 5
+  gamePlayingTimer: 0
 --- !u!224 &1063862381922697408
 RectTransform:
   m_ObjectHideFlags: 0
