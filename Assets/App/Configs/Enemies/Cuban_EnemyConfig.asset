@@ -13,6 +13,15 @@ MonoBehaviour:
   m_Name: Cuban_EnemyConfig
   m_EditorClassIdentifier: 
   Health: 30
-  Speed: 5
+  Speed: 2
   ExperienceForKilling: 30
-  Damage: 8
+  Damage: 111
+  droppableResources:
+  - resourceType: 0
+    minAmount: 100
+    maxAmount: 100
+    dropChance: 0.2
+  - resourceType: 2
+    minAmount: 1
+    maxAmount: 3
+    dropChance: 0.1

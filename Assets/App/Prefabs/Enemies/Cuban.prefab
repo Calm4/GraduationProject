@@ -60,6 +60,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cuban
       objectReference: {fileID: 0}
+    - target: {fileID: 6036999860596582111, guid: 0f5734a75d0579c4baa376a520764183, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

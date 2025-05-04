@@ -10,7 +10,11 @@ namespace App.Scripts.TurnsBasedSystem
         [Inject] private WavesManager wavesManager;
         [Inject] private GamePhaseManager phaseManager;
     
+        [SerializeField] private WaveUIController waveUI;
+
         private void Start() {
+            waveUI.Init(wavesManager);
+
             wavesManager.OnWaveCompleted += waveIndex => {
                 phaseManager.SetCurrentGameState(GamePhase.Construction);
             };

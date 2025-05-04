@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using App.Scripts.Enemies;
 using UnityEngine.Serialization;
@@ -7,6 +8,8 @@ namespace App.Scripts.Buildings
     [RequireComponent(typeof(Collider))]
     public class CastleHealth : MonoBehaviour
     {
+        public static event Action OnCastleDefeated;
+        
         [FormerlySerializedAs("_currentHealth")]
         [Header("Castle Stats")]
         [SerializeField] private int currentHealth;
@@ -44,7 +47,9 @@ namespace App.Scripts.Buildings
             if (currentHealth <= 0)
             {
                 Debug.Log("You lost!");
+                OnCastleDefeated?.Invoke(); // Вызываем событие
             }
         }
+    
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using App.Scripts.Experience;
+using App.Scripts.GameResources;
 using App.Scripts.TurnsBasedSystem;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -12,6 +13,7 @@ namespace App.Scripts.Enemies
     {
         [Inject] private GamePhaseManager _gamePhaseManager;
         [Inject] private ExperienceManager _experienceManager;
+        [Inject] private ResourcesManager _resourcesManager;
         
         [field: SerializeField] public EnemyConfig EnemyConfig { get; private set; }
         private readonly EnemyData _enemyData = new();
@@ -25,6 +27,13 @@ namespace App.Scripts.Enemies
         {
             _gamePhaseManager.OnGameStateChanges += TestEnemyMethod;
             _enemyData.InitializeEnemyData(EnemyConfig);
+            
+            if (TryGetComponent<Rigidbody>(out var rb) == false)
+            {
+                rb = gameObject.AddComponent<Rigidbody>();
+                rb.isKinematic = true;
+                rb.useGravity = false;
+            }
         }
 
         private void TestEnemyMethod(GamePhase obj)
@@ -104,16 +113,32 @@ namespace App.Scripts.Enemies
         public void TakeDamage(int damage)
         {
             _enemyData.CurrentHealth -= damage;
-            Debug.Log($"{gameObject.name} получил {damage} урона, осталось здоровья: {_enemyData.CurrentHealth}");
+            //Debug.Log($"{gameObject.name} получил {damage} урона, осталось здоровья: {_enemyData.CurrentHealth}");
             if (_enemyData.CurrentHealth <= 0)
             {
                 Die();
             }
         }
 
+        private void DropResources()
+        {
+            foreach (var drop in EnemyConfig.droppableResources)
+            {
+                float roll = UnityEngine.Random.value;
+                if (roll <= drop.dropChance)
+                {
+                    int amount = UnityEngine.Random.Range(drop.minAmount, drop.maxAmount + 1);
+                    _resourcesManager.AddResource(amount, drop.resourceType);
+                    Debug.Log($"Enemy dropped {amount} of {drop.resourceType}");
+                }
+            }
+        }
+
+        
         public void Die()
         {
             _experienceManager.AddExperience(EnemyConfig.ExperienceForKilling);
+            DropResources();
             OnDeath?.Invoke();
             Destroy(gameObject);
         }

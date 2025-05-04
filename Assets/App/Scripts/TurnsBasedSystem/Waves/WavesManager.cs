@@ -18,6 +18,9 @@ namespace App.Scripts.TurnsBasedSystem.Waves
         private EnemySpawnerManager _spawner;    // будем искать сами
         private int _currentWave = 0;
 
+        public int CurrentWave => _currentWave;
+        public int TotalWaves => _db.waves.Count;
+        
         private void Awake()
         {
             // подпишемся на смену фазы

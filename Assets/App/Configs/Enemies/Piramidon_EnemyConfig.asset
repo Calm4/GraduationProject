@@ -16,3 +16,12 @@ MonoBehaviour:
   Speed: 3
   ExperienceForKilling: 25
   Damage: 3
+  droppableResources:
+  - resourceType: 0
+    minAmount: 300
+    maxAmount: 300
+    dropChance: 0.2
+  - resourceType: 5
+    minAmount: 1
+    maxAmount: 2
+    dropChance: 0.15

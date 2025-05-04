@@ -47,6 +47,9 @@ namespace App.Scripts.GameResources
 
                 _resources[resourceType] = resourceData;
             }
+            
+            OnUpdateMaterialResources?.Invoke();
+            OnUpdateFinanceResources?.Invoke();
         }
 
         public void ReturnHalfOfResourcesForDestructionBuilding(BasicBuildingConfig placedObjectConfig)
