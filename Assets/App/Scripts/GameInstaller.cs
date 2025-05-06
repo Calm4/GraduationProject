@@ -29,6 +29,7 @@ namespace App.Scripts
         [SerializeField] private ExperienceManager experienceManager;
         [SerializeField] private WavesManager wavesManager;
         [SerializeField] private GamePhaseManager gamePhaseManager;
+        [SerializeField] private ResourceDropVisualFactory resourceDropVisualFactory;
         
         [Space(10)] 
         [Header("Meta Managers")]
@@ -55,6 +56,7 @@ namespace App.Scripts
             Container.Bind<BuildingManager>().FromInstance(buildingManager).AsSingle();
             Container.Bind<ResourcesManager>().FromInstance(resourcesManager).AsSingle();
             Container.Bind<TurnsBasedManager>().FromInstance(turnsBasedManager).AsSingle();
+            Container.Bind<ResourceDropVisualFactory>().FromInstance(resourceDropVisualFactory).AsSingle();
             
             Container.Bind<JsonLoaderManager>().FromInstance(jsonLoaderManager).AsSingle();
             Container.Bind<SoundFeedbackManager>().FromInstance(soundFeedbackManager).AsSingle();

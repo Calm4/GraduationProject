@@ -14,6 +14,7 @@ namespace App.Scripts.Enemies
         [Inject] private GamePhaseManager _gamePhaseManager;
         [Inject] private ExperienceManager _experienceManager;
         [Inject] private ResourcesManager _resourcesManager;
+        [Inject] private ResourceDropVisualFactory _resourceDropVisualFactory;
         
         [field: SerializeField] public EnemyConfig EnemyConfig { get; private set; }
         private readonly EnemyData _enemyData = new();
@@ -129,6 +130,7 @@ namespace App.Scripts.Enemies
                 {
                     int amount = UnityEngine.Random.Range(drop.minAmount, drop.maxAmount + 1);
                     _resourcesManager.AddResource(amount, drop.resourceType);
+                    _resourceDropVisualFactory.SpawnResourceDropVisual(transform.position, drop.resourceType, amount);
                     Debug.Log($"Enemy dropped {amount} of {drop.resourceType}");
                 }
             }

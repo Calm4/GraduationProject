@@ -20,6 +20,13 @@ namespace App.Scripts.Buildings
         public Building CreateBuilding(Building buildingPrefab)
         {
             Building building = Instantiate(buildingPrefab, buildingsContainer);
+            
+            // Добавляем компонент ResourceGeneratorBuilding, если у здания есть входящие ресурсы
+            if (building.BuildingConfig.incomingResources != null && building.BuildingConfig.incomingResources.Count > 0)
+            {
+                building.gameObject.AddComponent<ResourceGeneratorBuilding>();
+            }
+            
             return building;
         }
 

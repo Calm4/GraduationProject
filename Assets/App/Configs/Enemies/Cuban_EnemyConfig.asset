@@ -24,4 +24,4 @@ MonoBehaviour:
   - resourceType: 2
     minAmount: 1
     maxAmount: 3
-    dropChance: 0.1
+    dropChance: 1

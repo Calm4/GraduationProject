@@ -39,7 +39,11 @@ MonoBehaviour:
     config: {fileID: 11400000, guid: 3df9d4f94b42acc49858e0129dd1dd37, type: 2}
   - amount: 2
     config: {fileID: 11400000, guid: f65cd3c57f42c7e478c57b97fd4a48e7, type: 2}
-  incomingResources: []
+  incomingResources:
+  - amount: 250
+    config: {fileID: 11400000, guid: 690fd2dfdcfe6774fac3487cfcf4dc75, type: 2}
+  - amount: 5
+    config: {fileID: 11400000, guid: 3df9d4f94b42acc49858e0129dd1dd37, type: 2}
   initialModifiers: []
   buildingButtons:
   - {fileID: 11400000, guid: b947200d51ca6f94789427c1cc3fb591, type: 2}
