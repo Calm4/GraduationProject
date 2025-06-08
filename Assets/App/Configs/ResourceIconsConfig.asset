@@ -14,17 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resourceIcons:
   - resourceType: 0
-    icon: {fileID: 21300000, guid: f06f6fdc239d14341b46cf8d45a0f63c, type: 3}
-  - resourceType: 1
-    icon: {fileID: 1608621086, guid: a212f53675812c6499666e035dda0764, type: 3}
+    icon: {fileID: 21300000, guid: 4c482ef9d7515754981bf97b41abfa34, type: 3}
   - resourceType: 2
-    icon: {fileID: 21300000, guid: d441190b225193644bc27155724ef4b5, type: 3}
+    icon: {fileID: -475999896, guid: a212f53675812c6499666e035dda0764, type: 3}
   - resourceType: 3
-    icon: {fileID: 21300000, guid: a22dce568dd022c4d84847ecd38c46d7, type: 3}
+    icon: {fileID: -1028281216, guid: a212f53675812c6499666e035dda0764, type: 3}
   - resourceType: 4
     icon: {fileID: 1761316613, guid: a212f53675812c6499666e035dda0764, type: 3}
   - resourceType: 5
-    icon: {fileID: 21300000, guid: b39f10415fadf4e4a9a2b328ca8c67c8, type: 3}
+    icon: {fileID: -1892438907, guid: a212f53675812c6499666e035dda0764, type: 3}
   - resourceType: 6
     icon: {fileID: -701838314, guid: a212f53675812c6499666e035dda0764, type: 3}
   - resourceType: 7
@@ -32,6 +30,6 @@ MonoBehaviour:
   - resourceType: 8
     icon: {fileID: 1917437548, guid: a212f53675812c6499666e035dda0764, type: 3}
   - resourceType: 9
-    icon: {fileID: 21300000, guid: 8c035b028ef9f6446b0bdb217c1a0316, type: 3}
+    icon: {fileID: -223129050, guid: a212f53675812c6499666e035dda0764, type: 3}
   - resourceType: 10
     icon: {fileID: 845424930, guid: a212f53675812c6499666e035dda0764, type: 3}

@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -44,4 +45,6 @@ namespace App.Scripts.Setup
             AssetDatabase.SaveAssets();
         }
     }
+    
 }
+#endif

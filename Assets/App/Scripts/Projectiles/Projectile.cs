@@ -6,7 +6,7 @@ namespace App.Scripts.Projectiles
     public class Projectile : MonoBehaviour
     {
         private Enemy target;
-        private int damage;
+        [SerializeField] private int damage;
         public float speed = 10f;
         
         public void Initialize(Enemy targetEnemy, int dmg)

@@ -14,27 +14,32 @@ namespace App.Scripts.Grid
 
        [HideInInspector] public Vector2Int GridSize;
 
-        public void ExportToJson()
-        {
-            string path = EditorUtility.SaveFilePanel("Save Grid Data as JSON", "", "level_setup", "json");
+       public void ExportToJson()
+       {
+#if UNITY_EDITOR
+           string path = EditorUtility.SaveFilePanel("Save Grid Data as JSON", "", "level_setup", "json");
 
-            if (string.IsNullOrEmpty(path))
-            {
-                Debug.LogWarning("No file path selected.");
-                return;
-            }
-            
-            var dataToSave = new GridSaveDataJson
-            {
-                gridSize = GridSize,
-                gridObjects = ConvertToSerializable(gridObjects)
-            };
+           if (string.IsNullOrEmpty(path))
+           {
+               Debug.LogWarning("No file path selected.");
+               return;
+           }
 
-            string json = JsonUtility.ToJson(dataToSave, true);
-            File.WriteAllText(path, json);
+           var dataToSave = new GridSaveDataJson
+           {
+               gridSize = GridSize,
+               gridObjects = ConvertToSerializable(gridObjects)
+           };
 
-            Debug.Log($"Grid data exported to JSON at path: {path}");
-        }
+           string json = JsonUtility.ToJson(dataToSave, true);
+           File.WriteAllText(path, json);
+
+           Debug.Log($"Grid data exported to JSON at path: {path}");
+#else
+    Debug.LogError("ExportToJson is only supported in the Unity Editor.");
+#endif
+       }
+
 
         private List<GridObjectSerializableData> ConvertToSerializable(List<GridObjectData> objects)
         {

@@ -7,7 +7,6 @@ namespace App.Scripts.Buildings.BuildingsConfigs
     { 
         private void OnEnable()
         {
-            buildingType = BuildingType.Peaceful;
         }
     }
 }

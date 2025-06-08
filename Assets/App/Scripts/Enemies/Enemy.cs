@@ -58,7 +58,7 @@ namespace App.Scripts.Enemies
             if (_pathToFinish == null || _currentPointToMoveIndex >= _pathToFinish.Count)
                 return;
 
-            Vector2 targetPosition = _pathToFinish[_currentPointToMoveIndex];
+            Vector2 targetPosition = _pathToFinish[_currentPointToMoveIndex] - new Vector2(0.5f,0.5f);
             Vector2 currentPosition = new Vector2(transform.position.x, transform.position.z);
 
             if (Vector2.Distance(currentPosition, targetPosition) < 0.1f)

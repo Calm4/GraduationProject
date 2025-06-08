@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿#if UNITY_EDITOR
+using System.Collections.Generic;
 using App.Scripts.Buildings;
 using App.Scripts.Grid;
 using UnityEngine;
@@ -66,3 +67,4 @@ namespace App.Scripts.CustomWindows.CreateMapWindow
         }
     }
 }
+#endif

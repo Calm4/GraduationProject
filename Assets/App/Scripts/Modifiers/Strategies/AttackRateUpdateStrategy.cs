@@ -62,7 +62,7 @@ namespace App.Scripts.Modifiers.Strategies
                 return;
             }
             
-            Vector3 spawnPosition = OwnerBuilding.transform.position + new Vector3(0,2,0);
+            Vector3 spawnPosition = OwnerBuilding.transform.position + new Vector3(0,2.25f,0);
             Projectile projectileObj = GameObject.Instantiate(config.projectilePrefab, spawnPosition, Quaternion.identity);
             Projectile projectile = projectileObj.GetComponent<Projectile>();
             if (projectile != null)

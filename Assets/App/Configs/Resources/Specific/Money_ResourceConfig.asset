@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Money_ResourceConfig
   m_EditorClassIdentifier: 
   resourceType: 0
-  resourceImage: {fileID: 21300000, guid: f06f6fdc239d14341b46cf8d45a0f63c, type: 3}
+  resourceImage: {fileID: 21300000, guid: 414f7a1836b96b34d891995317d0f03b, type: 3}

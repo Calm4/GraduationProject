@@ -2846,7 +2846,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 3ed5f99dfb79c7540a663ed4a8cb7f15, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -3550,8 +3550,10 @@ MonoBehaviour:
   standardModifierUIPanel: {fileID: 5966885955903118662}
   customModifierUIPanel: {fileID: 908926988751706846}
   otherButtonsModifierUIPanel: {fileID: 0}
+  buildingDescription: {fileID: 0}
   aboutBuildingButton: {fileID: 1593380917220631781}
   upgradeBuildingButton: {fileID: 8855591562980196152}
+  buildingInfoButtons: []
 --- !u!1 &3107615355772159876
 GameObject:
   m_ObjectHideFlags: 0

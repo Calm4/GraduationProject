@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawns:
   - prefab: {fileID: 8376466748043270185, guid: 72d03177c4c44d94c832d880e5daba34, type: 3}
-    count: 7
+    count: 2
     spawnInterval: 0.5
   - prefab: {fileID: 5005370760775793115, guid: 88a7321154421b84699314424846a9a3, type: 3}
-    count: 5
+    count: 1
     spawnInterval: 0.5

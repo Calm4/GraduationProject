@@ -29,7 +29,7 @@ namespace App.Scripts.Enemies {
             foreach (var info in list) {
                 for (int i = 0; i < info.count; i++) {
                     var enemy = _enemyFactory.Create(info.prefab, null);
-                    var spawnOffset = new Vector3(0, 0.25f, 0);
+                    var spawnOffset = new Vector3(0.5f, 0.25f, 0.5f);
                     enemy.transform.position = transform.position + spawnOffset;
                     enemy.SetPath(Path);
                     enemy.OnDeath += () => _alive--;

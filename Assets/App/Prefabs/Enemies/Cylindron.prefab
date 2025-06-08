@@ -76,6 +76,14 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+    - target: {fileID: 9206635834405804155, guid: 0f5734a75d0579c4baa376a520764183, type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9206635834405804155, guid: 0f5734a75d0579c4baa376a520764183, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bbf79aa63eb428749864c9450d5371c6, type: 2}
     m_RemovedComponents:
     - {fileID: 6036999860596582111, guid: 0f5734a75d0579c4baa376a520764183, type: 3}
     m_RemovedGameObjects: []

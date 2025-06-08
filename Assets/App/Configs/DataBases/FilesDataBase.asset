@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4533877d9b543e0b6c8e61af393c309, type: 3}
   m_Name: FilesDataBase
   m_EditorClassIdentifier: 
-  BuildingsJsonFile: {fileID: 4900000, guid: 98e162c9b071e8e4e9f9dfa28f93bd16, type: 3}
+  BuildingsJsonFile: {fileID: 4900000, guid: 33d507682c1c53446934e0b8fa46c527, type: 3}
   WavesJsonFile: {fileID: 0}

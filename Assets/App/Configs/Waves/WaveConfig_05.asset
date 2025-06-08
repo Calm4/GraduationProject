@@ -13,12 +13,9 @@ MonoBehaviour:
   m_Name: WaveConfig_05
   m_EditorClassIdentifier: 
   spawns:
-  - prefab: {fileID: 5005370760775793115, guid: 88a7321154421b84699314424846a9a3, type: 3}
-    count: 25
-    spawnInterval: 0.75
   - prefab: {fileID: 8376466748043270185, guid: 72d03177c4c44d94c832d880e5daba34, type: 3}
-    count: 25
+    count: 6
     spawnInterval: 0.5
-  - prefab: {fileID: 4182968140268124181, guid: 35b34ffd8e863c743956fd0202838388, type: 3}
-    count: 25
-    spawnInterval: 1
+  - prefab: {fileID: 5005370760775793115, guid: 88a7321154421b84699314424846a9a3, type: 3}
+    count: 2
+    spawnInterval: 0.75

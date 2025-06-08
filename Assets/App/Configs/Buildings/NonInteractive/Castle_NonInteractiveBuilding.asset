@@ -25,9 +25,10 @@ MonoBehaviour:
   buildingName: Castle
   buildingDescription: Castle description
   buildingType: 2
+  buildingLevel: 1
   sprite: {fileID: 21300000, guid: c166356d9b1035c4fa755c7db06f7fff, type: 3}
   size: {x: 3, y: 3}
-  buildingAssociateColor: {r: 0.3595147, g: 0.9245283, b: 0.29829118, a: 0}
+  buildingAssociateColor: {r: 0.3835457, g: 0.3886792, b: 0.38429603, a: 0}
   maintenanceResources: []
   resourcesToBuild: []
   incomingResources: []

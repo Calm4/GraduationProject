@@ -15,7 +15,16 @@ MonoBehaviour:
   Health: 30
   Speed: 2
   ExperienceForKilling: 30
-  Damage: 111
+  Damage: 5
+  movementParameters:
+    movementStyle: 0
+    jumpHeight: 0.5
+    jumpFrequency: 2
+    zigzagAmplitude: 0.5
+    zigzagFrequency: 2
+    hoverHeight: 1
+    hoverSpeed: 1
+    rotationSpeed: 50
   droppableResources:
   - resourceType: 0
     minAmount: 100

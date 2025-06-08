@@ -16,6 +16,7 @@ namespace App.Scripts
         [SerializeField] private StandardModifierUIPanel standardModifierUIPanel;
         [SerializeField] private CustomModifierUIPanel customModifierUIPanel;
         [SerializeField] private OtherButtonsModifierUIPanel otherButtonsModifierUIPanel;
+        [SerializeField] private TMP_Text buildingDescription;
         
         [Space(10),Header("Variant Buttons")]
         [SerializeField] private Button aboutBuildingButton;
@@ -40,6 +41,8 @@ namespace App.Scripts
                 buildingInfoButton.Initialize(_parentBuilding);
             }
             Debug.Log("Parent building: " + _parentBuilding);
+
+            buildingDescription.text = _parentBuilding.BuildingConfig.buildingDescription;
         }
     }
 }

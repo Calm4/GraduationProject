@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2869e5c82934a549d46760e07304235, type: 3}
+  m_Name: Lumbermill_NeutralBuilding
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  ID: 109
+  buildingName: Lumber Mill
+  buildingDescription: Produces wood over time by processing nearby forests, essential
+    for construction and upgrades
+  buildingType: 2
+  buildingLevel: 1
+  sprite: {fileID: 72443380, guid: 1eea3173415ac8747aec8b9fad41c864, type: 3}
+  size: {x: 2, y: 2}
+  buildingAssociateColor: {r: 0.89433956, g: 0.58876044, b: 0.30205047, a: 1}
+  maintenanceResources:
+  - amount: 5
+    config: {fileID: 11400000, guid: 690fd2dfdcfe6774fac3487cfcf4dc75, type: 2}
+  resourcesToBuild:
+  - amount: 300
+    config: {fileID: 11400000, guid: 690fd2dfdcfe6774fac3487cfcf4dc75, type: 2}
+  - amount: 3
+    config: {fileID: 11400000, guid: 3df9d4f94b42acc49858e0129dd1dd37, type: 2}
+  - amount: 1
+    config: {fileID: 11400000, guid: f9e10c81e0042e94e87b97a1c3e7c3f0, type: 2}
+  incomingResources:
+  - amount: 2
+    config: {fileID: 11400000, guid: 3df9d4f94b42acc49858e0129dd1dd37, type: 2}
+  initialModifiers: []
+  buildingButtons:
+  - {fileID: 11400000, guid: 1567339aaa8ea48459283de016ccf5bb, type: 2}

@@ -21,12 +21,12 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  ID: 1
+  ID: 105
   buildingName: Barak
   buildingDescription: Barak Description
   buildingType: 1
   buildingLevel: 1
-  sprite: {fileID: 21300000, guid: 42fb2cbc08f13144b84e35c4539043c6, type: 3}
+  sprite: {fileID: -1485369678, guid: eaa1973a58c16754a8641e7e0b07a38d, type: 3}
   size: {x: 2, y: 2}
   buildingAssociateColor: {r: 0.058823533, g: 0.8196079, b: 0.5137255, a: 1}
   maintenanceResources:
@@ -42,8 +42,6 @@ MonoBehaviour:
   incomingResources:
   - amount: 250
     config: {fileID: 11400000, guid: 690fd2dfdcfe6774fac3487cfcf4dc75, type: 2}
-  - amount: 5
-    config: {fileID: 11400000, guid: 3df9d4f94b42acc49858e0129dd1dd37, type: 2}
   initialModifiers: []
   buildingButtons:
-  - {fileID: 11400000, guid: b947200d51ca6f94789427c1cc3fb591, type: 2}
+  - {fileID: 11400000, guid: 1567339aaa8ea48459283de016ccf5bb, type: 2}

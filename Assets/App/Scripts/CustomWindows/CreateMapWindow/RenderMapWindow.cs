@@ -1,4 +1,5 @@
-﻿using App.Scripts.Buildings;
+﻿#if UNITY_EDITOR
+using App.Scripts.Buildings;
 using App.Scripts.Buildings.BuildingsConfigs;
 using App.Scripts.Buildings.UI;
 using App.Scripts.Grid;
@@ -260,3 +261,4 @@ namespace App.Scripts.CustomWindows.CreateMapWindow
             => Mathf.Min(_mapCreateWindow.position.width * 0.7f / _gridDataSO.GridSize.x, _mapCreateWindow.position.height * 0.85f / _gridDataSO.GridSize.y);
     }
 }
+#endif

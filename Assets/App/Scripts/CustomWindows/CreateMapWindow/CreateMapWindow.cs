@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using App.Scripts.Buildings.UI;
 using App.Scripts.Grid;
 using Sirenix.OdinInspector;
@@ -92,3 +93,5 @@ namespace App.Scripts.CustomWindows.CreateMapWindow
         }
     }
 }
+#endif   
+    

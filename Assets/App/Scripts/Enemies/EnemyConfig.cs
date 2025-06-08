@@ -13,6 +13,8 @@ namespace App.Scripts.Enemies
         public int ExperienceForKilling;
         public int Damage;
         
+        [SerializeField] public EnemyMovementParameters movementParameters = new EnemyMovementParameters();
+        
         [Serializable]
         public struct DroppableResource
         {
