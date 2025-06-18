@@ -34,7 +34,7 @@ MonoBehaviour:
   - amount: 2
     config: {fileID: 11400000, guid: 690fd2dfdcfe6774fac3487cfcf4dc75, type: 2}
   resourcesToBuild:
-  - amount: 750
+  - amount: 800
     config: {fileID: 11400000, guid: 690fd2dfdcfe6774fac3487cfcf4dc75, type: 2}
   - amount: 4
     config: {fileID: 11400000, guid: 3df9d4f94b42acc49858e0129dd1dd37, type: 2}
